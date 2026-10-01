@@ -14,10 +14,9 @@
 
 /* ---------- Text ---------- */
 
-/* The gaps between the eyebrow, highlight, heading and description are
+/* The gaps between the eyebrow, heading and description are
    .sr-spacer-* classes in the markup, applied only when something follows, so
    the theme's own bottom margins are zeroed to stop the two stacking. */
-.ac-two-col-01 .ac-tc__highlight,
 .ac-two-col-01 .ac-tc__heading {
 	margin-bottom: 0;
 	text-wrap: balance;

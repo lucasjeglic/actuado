@@ -140,7 +140,7 @@
         "preset": null,
         "type": "choice",
         "display_width": null,
-        "default": "half"
+        "default": "full"
       },
       {
         "id": "design_settings.spacing",
@@ -349,7 +349,7 @@
         "preset": null,
         "type": "choice",
         "display_width": null,
-        "default": "tertiary"
+        "default": "none"
       },
       {
         "id": "design_settings.background_custom",
@@ -508,7 +508,7 @@
         "preset": null,
         "type": "choice",
         "display_width": null,
-        "default": "white"
+        "default": "auto"
       },
       {
         "id": "design_settings.text_color_custom",
@@ -1722,72 +1722,6 @@
     "display_width": null,
     "default": false,
     "visibility": null
-  },
-  {
-    "name": "highlight",
-    "label": "Highlight",
-    "type": "text",
-    "required": false,
-    "locked": false,
-    "allow_new_line": false,
-    "default": "3\u20136 months",
-    "help_text": "Optional large figure or phrase above the heading, e.g. \"3\u20136 months\". Leave blank to hide it."
-  },
-  {
-    "name": "highlight_size",
-    "label": "Highlight Size",
-    "type": "choice",
-    "display": "select",
-    "required": false,
-    "locked": false,
-    "default": "display-3",
-    "help_text": "Visual size, using the theme's type scale.",
-    "choices": [
-      [
-        "h1",
-        "H1"
-      ],
-      [
-        "h2",
-        "H2"
-      ],
-      [
-        "h3",
-        "H3"
-      ],
-      [
-        "h4",
-        "H4"
-      ],
-      [
-        "h5",
-        "H5"
-      ],
-      [
-        "h6",
-        "H6"
-      ],
-      [
-        "display-4",
-        "L"
-      ],
-      [
-        "display-3",
-        "XL"
-      ],
-      [
-        "display-2",
-        "XXL"
-      ],
-      [
-        "display-1",
-        "XXXL"
-      ]
-    ],
-    "visibility": {
-      "controlling_field": "highlight",
-      "operator": "NOT_EMPTY"
-    }
   },
   {
     "id": "heading",

@@ -37,11 +37,7 @@
 						<div class="{{ text_col }} sr-col ac-tc__text">
 							<div class="content-wrapper">
 
-							{{ ac.eyebrow(module, 'sr-spacer-bottom-25' if module.highlight || module.heading.heading_text || module.description else '') }}
-
-							{% if module.highlight %}
-							<p class="heading ac-tc__highlight {{ module.highlight_size }}{% if module.heading.heading_text || module.description %} sr-spacer-bottom-25{% endif %}">{{ module.highlight }}</p>
-							{% endif %}
+							{{ ac.eyebrow(module, 'sr-spacer-bottom-25' if module.heading.heading_text || module.description else '') }}
 
 							{{ ac.heading(module, 'ac-tc__heading' ~ (' sr-spacer-bottom-25' if module.description else '')) }}
 
