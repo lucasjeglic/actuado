@@ -61,7 +61,7 @@
 							{{ require_js("https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js", { defer: true, position: "head", type: "module" }) }}
 							{{ require_js(get_asset_url('../../js/ac-lottie.js'), { defer: true }) }}
 							<div class="lottie media-item ac-tc__lottie">
-								<dotlottie-wc data-ac-lottie src="{{ module.lottie_file }}" aria-hidden="true" autoplay{% if module.lottie_loop %} loop{% endif %}></dotlottie-wc>
+								<dotlottie-wc data-ac-lottie src="{{ module.lottie_file }}" renderconfig='{"autoResize":true}' aria-hidden="true" autoplay{% if module.lottie_loop %} loop{% endif %}></dotlottie-wc>
 							</div>
 							{% else %}
 							<div class="responsive-image media-item">
