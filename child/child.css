@@ -124,35 +124,4 @@
 		margin-inline: auto;
 	}
 
-	/* ==========================================================================
-	   Navigation over the split hero
-	   Actuado Hero 01 is a 50/50 split: a navy text panel on one side and the
-	   image on the other. The nav overlays it so the image can run to the top
-	   of the page, and the links read better sitting wholly over the image
-	   rather than straddling the panel edge.
-
-	   Scoped with :has() so only pages that actually contain the split hero are
-	   affected - every other page keeps the nav exactly as it is. The nav is a
-	   global partial rendered before the body, so a descendant selector could
-	   not reach it from the module; :has() on <body> can. The logo is left
-	   alone, only the link container moves.
-	   ========================================================================== */
-	@media (min-width: 992px) {
-		/* Image on the right (the default - there is no --media-right class,
-		   only --media-left), so the panel is the left half and the links are
-		   pushed past it. padding-left rather than margin-left: the menu is
-		   right-aligned inside its own box, so a margin would move the box but
-		   let the first link sit back over the panel; padding shrinks the space
-		   the links can occupy instead. */
-		body:has(.ac-hero-01 .ac-hero):not(:has(.ac-hero-01 .ac-hero--media-left)) .header__menu--desktop {
-			padding-left: 50vw;
-		}
-
-		/* Mirrored when the image is moved to the left: the panel is then the
-		   right half, so the links stop short of it instead. */
-		body:has(.ac-hero-01 .ac-hero--media-left) .header__menu--desktop {
-			padding-right: 50vw;
-		}
-	}
-
 }
