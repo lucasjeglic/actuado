@@ -2089,6 +2089,16 @@
     "help_text": "A hairline running through the numbers, linking the steps into a sequence."
   },
   {
+    "name": "animate_steps",
+    "label": "Animate steps",
+    "type": "boolean",
+    "required": false,
+    "locked": false,
+    "display": "toggle",
+    "default": false,
+    "help_text": "Steps fade in one after another, first to last, when the section scrolls into view. On wide screens the connecting rule draws in between them."
+  },
+  {
     "name": "intro_align",
     "label": "Intro Alignment",
     "type": "choice",

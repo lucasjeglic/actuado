@@ -110,19 +110,3 @@
 	margin: 0;
 	text-wrap: balance;
 }
-
-/* ---------- Scroll reveal ---------- */
-
-/* Pre-hide before GSAP runs so nothing flashes in at full opacity. The class is
-   removed by the script once the timeline is built; if the script never runs
-   (JS off, GSAP missing), the rows stay visible rather than disappearing. */
-.ac-question-list-01 .ac-ql__list--animate.is-revealing > .ac-ql__item {
-	opacity: 0;
-}
-
-@media (prefers-reduced-motion: reduce) {
-	/* Reduced motion means don't animate - not don't show. */
-	.ac-question-list-01 .ac-ql__list--animate.is-revealing > .ac-ql__item {
-		opacity: 1;
-	}
-}

@@ -45,7 +45,7 @@
 					{% endif %}
 
 					{# ---------- Steps ---------- #}
-					<ol class="ac-steps ac-steps--{{ cols }}{% if module.show_rule %} ac-steps--ruled{% endif %} text-{{ module.step_align }}">
+					<ol class="ac-steps ac-steps--{{ cols }}{% if module.show_rule %} ac-steps--ruled{% endif %} text-{{ module.step_align }}{% if module.animate_steps %} is-revealing{% endif %}"{% if module.animate_steps %} data-ac-reveal="0.3"{% if module.show_rule %} data-ac-reveal-line="{{ 'center' if module.step_align == 'center' else 'out' }}"{% endif %}{% endif %}>
 						{% for item in module.steps %}
 						<li class="ac-steps__item">
 							{% if item.number %}
@@ -70,5 +70,9 @@
 	</div>
 
 	{{ ac.heading_scripts(module) }}
+
+	{% if module.animate_steps %}
+	{{ ac.reveal_scripts() }}
+	{% endif %}
 
 {% endif %}

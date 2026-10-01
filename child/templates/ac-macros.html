@@ -84,3 +84,17 @@
 {{ require_js(get_asset_url('../js/ac-type-on-scroll.js'), { defer: true }) }}
 {%- endif -%}
 {%- endmacro -%}
+
+
+{# -----------------------------------------------------------------------------
+   reveal_scripts()
+
+   Loads the list reveal for a list marked data-ac-reveal (see js/ac-reveal.js
+   and the List reveal section of child.css). Call it only when the module's
+   reveal option is on.
+   -------------------------------------------------------------------------- #}
+{%- macro reveal_scripts() -%}
+{{ require_js(get_asset_url('../js/gsap.js'), { defer: true, position: head }) }}
+{{ require_js(get_asset_url('../js/ScrollTrigger.js'), { defer: true, position: head }) }}
+{{ require_js(get_asset_url('../js/ac-reveal.js'), { defer: true }) }}
+{%- endmacro -%}

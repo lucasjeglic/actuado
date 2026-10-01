@@ -124,4 +124,26 @@
 		margin-inline: auto;
 	}
 
+	/* ==========================================================================
+	   List reveal
+	   Lists marked data-ac-reveal fade their items in one after another, via
+	   js/ac-reveal.js. Items are hidden here only while .is-revealing is on,
+	   which the script removes once GSAP has taken over, so if the script never
+	   runs the list simply shows. Rules drawn by the reveal start undrawn too.
+	   ========================================================================== */
+	[data-ac-reveal].is-revealing > * {
+		opacity: 0;
+		--ac-reveal-line-in: 0;
+		--ac-reveal-line-out: 0;
+	}
+
+	/* Reduced motion means don't animate - not don't show. */
+	@media (prefers-reduced-motion: reduce) {
+		[data-ac-reveal].is-revealing > * {
+			opacity: 1;
+			--ac-reveal-line-in: 1;
+			--ac-reveal-line-out: 1;
+		}
+	}
+
 }

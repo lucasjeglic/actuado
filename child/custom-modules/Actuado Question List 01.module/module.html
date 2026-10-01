@@ -62,7 +62,7 @@
 						{# ---------- Rows ---------- #}
 						<div class="{% if module.custom_column_size %}{{ macros.col_size([module.rows_column_size]) }}{% else %}{{ rows_default }}{% endif %} sr-col ac-ql__rows-col">
 							<div class="content-wrapper">
-							<ul class="ac-ql__list{% if module.show_rules %} ac-ql__list--ruled{% endif %}{% if module.animate_rows %} ac-ql__list--animate is-revealing{% endif %}">
+							<ul class="ac-ql__list{% if module.show_rules %} ac-ql__list--ruled{% endif %}{% if module.animate_rows %} is-revealing{% endif %}"{% if module.animate_rows %} data-ac-reveal="0.08"{% endif %}>
 								{% for item in module.rows %}
 								{% if item.text %}
 								<li class="ac-ql__item sr-spacer-{{ module.row_spacing|int }}">
@@ -93,8 +93,7 @@
 	{{ ac.heading_scripts(module) }}
 
 	{% if module.animate_rows %}
-	{{ require_js(get_asset_url('../../js/gsap.js'), { defer: true, position: head }) }}
-	{{ require_js(get_asset_url('../../js/ac-question-reveal.js'), { defer: true }) }}
+	{{ ac.reveal_scripts() }}
 	{% endif %}
 
 {% endif %}

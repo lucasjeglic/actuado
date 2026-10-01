@@ -153,3 +153,25 @@
 		visibility: hidden;
 	}
 }
+
+/* ---------- Reveal ---------- */
+
+/* With Animate steps on, js/ac-reveal.js fades the steps in and animates
+   --ac-reveal-line-out / --ac-reveal-line-in on each one, so the rule draws
+   from each number towards the next. The rules only exist at this breakpoint,
+   so below it the steps still animate and there is simply no line to draw.
+   Without the animation the properties are unset and the rules sit at full
+   length. */
+@media (min-width: 992px) {
+	.ac-steps-01 .ac-steps--ruled .ac-steps__number::after {
+		transform: scaleX(var(--ac-reveal-line-out, 1));
+		transform-origin: left center;
+	}
+
+	/* Centred, the leading half arrives at the number, so it also draws left
+	   to right and finishes as the number appears. */
+	.ac-steps-01 .ac-steps--ruled.text-center .ac-steps__number::before {
+		transform: scaleX(var(--ac-reveal-line-in, 1));
+		transform-origin: left center;
+	}
+}
