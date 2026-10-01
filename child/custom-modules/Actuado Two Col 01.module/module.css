@@ -28,9 +28,7 @@
 
 /* ---------- Media ---------- */
 
-/* A Lottie player has no size of its own until its file loads, so it is given
-   the column's width here and js/ac-lottie.js sets its height from the
-   animation's proportions once loaded. */
+/* The Lottie player fills the column's width. */
 .ac-two-col-01 .ac-tc__lottie dotlottie-wc {
 	display: block;
 	width: 100%;
