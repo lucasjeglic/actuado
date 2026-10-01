@@ -1,0 +1,1695 @@
+<!--
+templateType: page
+isAvailableForNewContent: true
+label: FullStory Homepage
+screenshotPath: ../../images/fullstory-homepage.jpg
+-->
+
+	{% include '../header.html' %}
+
+		<body class="pre-built {{ widget_data.body_class.value }} {{ builtin_body_classes }} {% set theme_name = content.template_path|split('/')|first %}{{ theme_name }} {% set template_name = content.template_path|split('/')|last %}{{ template_name[:-5] if template_name }}">
+
+		{% block header %}
+			{% boolean "enabled_site_header" label='Enable Global Site Header', value=true, export_to_template_context=True %}
+			{% if widget_data.enabled_site_header.value %}
+				{% global_partial path="../partials/site_header.html" %}
+			{% endif %}
+		{% endblock header %}
+
+		{% block body %}
+			{% dnd_area "body_dnd_area", class='body_dnd_area' label="Main Content" %}
+				{% dnd_section %}
+				  {% dnd_column
+					offset=0,
+					width=12
+				  %}
+					{% dnd_row %}
+					  {% dnd_module
+						path="../../custom-modules/SR Two Col 04",
+						offset=0,
+						width=12,
+						column=[ {
+						  "add_to_lightbox" : false,
+						  "col_content" : "<p><span>Your bottom line depends on the quality of the digital experience you offer your users. See what’s working—and what’s not—with all the data you need to make smarter decisions, faster.</span></p>",
+						  "col_media_type" : "none",
+						  "col_overlay_color" : {
+							"color" : "#000000",
+							"opacity" : 50
+						  },
+						  "col_text_align" : "auto",
+						  "column_size" : [ {
+							"column_breakpoint" : "md",
+							"column_offset" : "0",
+							"column_order" : 1,
+							"column_width" : "5"
+						  } ],
+						  "ctas" : [ {
+							"button_text" : "Get Started",
+							"cta_size" : "md",
+							"cta_style" : "primary",
+							"cta_type" : "btn",
+							"link" : {
+							  "no_follow" : false,
+							  "open_in_new_tab" : false,
+							  "url" : {
+								"href" : "#",
+								"type" : "EXTERNAL"
+							  }
+							},
+							"modal_target" : "demo"
+						  }, {
+							"add_icon" : true,
+							"button_text" : "Take a self-guided tour",
+							"cta_size" : "md",
+							"cta_style" : "none",
+							"cta_type" : "btn",
+							"default" : {
+							  "background" : {
+								"color" : "#0c63ff",
+								"opacity" : 100
+							  },
+							  "border" : {
+								"color" : "#0c63ff",
+								"opacity" : 100
+							  },
+							  "text" : {
+								"color" : "#fff",
+								"opacity" : 100
+							  }
+							},
+							"hover" : {
+							  "background" : {
+								"color" : "#5a93fd",
+								"opacity" : 100
+							  },
+							  "border" : {
+								"color" : "#5a93fd",
+								"opacity" : 100
+							  },
+							  "text" : {
+								"color" : "#fff",
+								"opacity" : 100
+							  }
+							},
+							"icon" : {
+							  "icon" : {
+								"name" : "arrow-right",
+								"type" : "SOLID",
+								"unicode" : "f061"
+							  },
+							  "position" : "right"
+							},
+							"link" : {
+							  "no_follow" : false,
+							  "open_in_new_tab" : false,
+							  "url" : {
+								"href" : "#",
+								"type" : "EXTERNAL"
+							  }
+							},
+							"modal_target" : "demo"
+						  } ],
+						  "custom_column_size" : true,
+						  "heading" : [ {
+							"heading" : "Happier customers. Healthier bottom line.",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							  "color" : "#30343b",
+							  "opacity" : 100
+							},
+							"heading_display_size" : "display-4",
+							"heading_size" : "h1"
+						  } ],
+						  "image_link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+							  "type" : "EXTERNAL"
+							}
+						  },
+						  "lead_text" : false,
+						  "text_color" : "auto",
+						  "video" : {
+							"autoplay" : true,
+							"background_video_design" : "none",
+							"custom_accent_color" : {
+							  "color" : "#000000",
+							  "opacity" : 20
+							},
+							"embed_field" : {
+							  "source_type" : "oembed"
+							},
+							"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+							"loop" : true,
+							"muted" : true,
+							"oembed_thumbnail" : {
+							  "loading" : "disabled",
+							  "src" : ""
+							},
+							"placeholder_fields" : {
+							  "placeholder_description" : "Select a video type in the sidebar.",
+							  "placeholder_title" : "No video selected"
+							},
+							"show_controls" : true,
+							"style_options" : {
+							  "oembed_thumbnail_play_button_color" : {
+								"color" : "#ffffff"
+							  }
+							},
+							"video_accent_color" : "primary",
+							"video_poster" : {
+							  "alt" : "Sprocket Rocket Demo",
+							  "size_type" : "exact",
+							  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+							},
+							"video_type" : "html_video"
+						  }
+						}, {
+						  "add_to_lightbox" : false,
+						  "col_image" : {
+							"alt" : "hero-visual-optimized",
+							"height" : 60,
+							"loading" : "lazy",
+							"max_height" : 60,
+							"max_width" : 78,
+							"size_type" : "auto",
+							"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/hero-visual-optimized.svg",
+							"width" : 78
+						  },
+						  "col_media_type" : "image",
+						  "col_overlay_color" : {
+							"color" : "#000000",
+							"opacity" : 50
+						  },
+						  "col_text_align" : "auto",
+						  "column_size" : [ {
+							"column_breakpoint" : "md",
+							"column_offset" : "1",
+							"column_order" : 2,
+							"column_width" : "6"
+						  }, {
+							"column_breakpoint" : "sm",
+							"column_offset" : "0",
+							"column_order" : 1,
+							"column_width" : "12"
+						  } ],
+						  "custom_column_size" : true,
+						  "image_link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+							  "type" : "EXTERNAL"
+							}
+						  },
+						  "lead_text" : false,
+						  "text_color" : "auto",
+						  "video" : {
+							"autoplay" : true,
+							"background_video_design" : "none",
+							"custom_accent_color" : {
+							  "color" : "#000000",
+							  "opacity" : 20
+							},
+							"embed_field" : {
+							  "source_type" : "oembed"
+							},
+							"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+							"loop" : true,
+							"muted" : true,
+							"oembed_thumbnail" : {
+							  "loading" : "disabled",
+							  "src" : ""
+							},
+							"placeholder_fields" : {
+							  "placeholder_description" : "Select a video type in the sidebar.",
+							  "placeholder_title" : "No video selected"
+							},
+							"show_controls" : true,
+							"style_options" : {
+							  "oembed_thumbnail_play_button_color" : {
+								"color" : "#ffffff"
+							  }
+							},
+							"video_accent_color" : "primary",
+							"video_poster" : {
+							  "alt" : "Sprocket Rocket Demo",
+							  "size_type" : "exact",
+							  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+							},
+							"video_type" : "html_video"
+						  }
+						} ],
+						design_settings={
+						  "background_color" : "tertiary",
+						  "background_custom" : {
+							"color" : "#014591",
+							"opacity" : 100
+						  },
+						  "background_option" : "custom",
+						  "text_color" : "white"
+						}
+					  %}
+					  {% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					  {% dnd_module
+						path="../../custom-modules/SR Clients 01",
+						offset=0,
+						width=12,
+						design_settings={
+						  "container_width" : "wide",
+						  "top_bottom_padding" : "full"
+						},
+						heading=[ {
+						  "heading" : "The most trusted name in Digital Experience Intelligence",
+						  "heading_align" : "auto",
+						  "heading_color" : "auto",
+						  "heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+						  },
+						  "heading_display_size" : "h2",
+						  "heading_size" : "h2"
+						} ],
+						logos=[ {
+						  "image" : {
+							"alt" : "airbnb",
+							"height" : "68",
+							"loading" : "lazy",
+							"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/pattern-library/sr-clients/logo-airbnb-01.png",
+							"width" : "216"
+						  }
+						}, {
+						  "image" : {
+							"alt" : "fitbit",
+							"height" : "60",
+							"loading" : "lazy",
+							"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/pattern-library/sr-clients/logo-fitbit-01.png",
+							"width" : "216"
+						  }
+						}, {
+						  "image" : {
+							"alt" : "spotify",
+							"height" : "68",
+							"loading" : "lazy",
+							"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/pattern-library/sr-clients/logo-spotify-01.png",
+							"width" : "216"
+						  }
+						}, {
+						  "image" : {
+							"alt" : "slack",
+							"height" : "64",
+							"loading" : "lazy",
+							"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/pattern-library/sr-clients/logo-slack-01.png",
+							"width" : "216"
+						  }
+						}, {
+						  "image" : {
+							"alt" : "alphabet",
+							"height" : "56",
+							"loading" : "lazy",
+							"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/pattern-library/sr-clients/logo-alphabet-01.png",
+							"width" : "216"
+						  }
+						} ]
+					  %}
+					  {% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					  {% dnd_module
+						path="../../custom-modules/SR Three Col 02",
+						offset=0,
+						width=12,
+						column=[ {
+						  "add_to_lightbox" : false,
+							"col_content" : "<p><span>Use FullStory’s&nbsp;</span><a target='_self' href='https://www.fullstory.com/platform/data-capture/'>proprietary autocapture technology</a><span>&nbsp;to see where and why users are struggling with your website, mobile app, or software platform.</span></p>",
+						  "col_image" : {
+							"alt" : "monitor",
+							"height" : 60,
+							"loading" : "lazy",
+							"max_height" : 60,
+							"max_width" : 78,
+							"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/monitor.svg",
+							"width" : 78
+						  },
+						  "col_media_type" : "image",
+						  "col_overlay_color" : {
+							"color" : "#000000",
+							"opacity" : 50
+						  },
+						  "col_text_align" : "left",
+						  "custom_column_size" : false,
+						  "heading" : [ {
+							"heading" : "Monitor your whole digital experience",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							  "color" : "#30343b",
+							  "opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h4"
+						  } ],
+						  "image_link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+							  "type" : "EXTERNAL"
+							}
+						  },
+						  "lead_text" : false,
+						  "text_color" : "auto",
+						  "video" : {
+							"autoplay" : true,
+							"background_video_design" : "none",
+							"custom_accent_color" : {
+							  "color" : "#000000",
+							  "opacity" : 20
+							},
+							"embed_field" : {
+							  "source_type" : "oembed"
+							},
+							"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+							"loop" : true,
+							"muted" : true,
+							"oembed_thumbnail" : {
+							  "loading" : "disabled",
+							  "src" : ""
+							},
+							"placeholder_fields" : {
+							  "placeholder_description" : "Select a video type in the sidebar.",
+							  "placeholder_title" : "No video selected"
+							},
+							"show_controls" : true,
+							"style_options" : {
+							  "oembed_thumbnail_play_button_color" : {
+								"color" : "#ffffff"
+							  }
+							},
+							"video_accent_color" : "primary",
+							"video_poster" : {
+							  "alt" : "Sprocket Rocket Demo",
+							  "size_type" : "exact",
+							  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+							},
+							"video_type" : "html_video"
+						  }
+						}, {
+						  "add_to_lightbox" : false,
+							"col_content" : "<p><span>Quickly identify root causes or opportunities for improvement, and then prioritize changes by&nbsp;</span><a target='_self' href='https://www.fullstory.com/platform/product-analytics/'>quantifying impact</a><span>.</span></p>",
+						  "col_image" : {
+							"alt" : "debug",
+							"height" : 60,
+							"loading" : "lazy",
+							"max_height" : 60,
+							"max_width" : 78,
+							"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/debug.svg",
+							"width" : 78
+						  },
+						  "col_media_type" : "image",
+						  "col_overlay_color" : {
+							"color" : "#000000",
+							"opacity" : 50
+						  },
+						  "col_text_align" : "left",
+						  "custom_column_size" : false,
+						  "heading" : [ {
+							"heading" : "Reveal every issue and opportunity",
+							"heading_align" : "left",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							  "color" : "#30343b",
+							  "opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h4"
+						  } ],
+						  "image_link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+							  "type" : "EXTERNAL"
+							}
+						  },
+						  "lead_text" : false,
+						  "text_color" : "auto",
+						  "video" : {
+							"autoplay" : true,
+							"background_video_design" : "none",
+							"custom_accent_color" : {
+							  "color" : "#000000",
+							  "opacity" : 20
+							},
+							"embed_field" : {
+							  "source_type" : "oembed"
+							},
+							"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+							"loop" : true,
+							"muted" : true,
+							"oembed_thumbnail" : {
+							  "loading" : "disabled",
+							  "src" : ""
+							},
+							"placeholder_fields" : {
+							  "placeholder_description" : "Select a video type in the sidebar.",
+							  "placeholder_title" : "No video selected"
+							},
+							"show_controls" : true,
+							"style_options" : {
+							  "oembed_thumbnail_play_button_color" : {
+								"color" : "#ffffff"
+							  }
+							},
+							"video_accent_color" : "primary",
+							"video_poster" : {
+							  "alt" : "Sprocket Rocket Demo",
+							  "size_type" : "exact",
+							  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+							},
+							"video_type" : "html_video"
+						  }
+						}, {
+						  "add_to_lightbox" : false,
+						  "col_content" : "<p><span>When you can&nbsp;</span><a target='_self' href='https://www.fullstory.com/platform/session-insights/'>see how users navigate</a><span>, you can continually optimize their experience to help them succeed.</span></p>",
+						  "col_image" : {
+							"alt" : "optimize",
+							"height" : 60,
+							"loading" : "lazy",
+							"max_height" : 60,
+							"max_width" : 78,
+							"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/optimize.svg",
+							"width" : 78
+						  },
+						  "col_media_type" : "image",
+						  "col_overlay_color" : {
+							"color" : "#000000",
+							"opacity" : 50
+						  },
+						  "col_text_align" : "left",
+						  "custom_column_size" : false,
+						  "heading" : [ {
+							"heading" : "Give users exactly what they want",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							  "color" : "#30343b",
+							  "opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h4"
+						  } ],
+						  "image_link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+							  "type" : "EXTERNAL"
+							}
+						  },
+						  "lead_text" : false,
+						  "text_color" : "auto",
+						  "video" : {
+							"autoplay" : true,
+							"background_video_design" : "none",
+							"custom_accent_color" : {
+							  "color" : "#000000",
+							  "opacity" : 20
+							},
+							"embed_field" : {
+							  "source_type" : "oembed"
+							},
+							"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+							"loop" : true,
+							"muted" : true,
+							"oembed_thumbnail" : {
+							  "loading" : "disabled",
+							  "src" : ""
+							},
+							"placeholder_fields" : {
+							  "placeholder_description" : "Select a video type in the sidebar.",
+							  "placeholder_title" : "No video selected"
+							},
+							"show_controls" : true,
+							"style_options" : {
+							  "oembed_thumbnail_play_button_color" : {
+								"color" : "#ffffff"
+							  }
+							},
+							"video_accent_color" : "primary",
+							"video_poster" : {
+							  "alt" : "Sprocket Rocket Demo",
+							  "size_type" : "exact",
+							  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+							},
+							"video_type" : "html_video"
+						  }
+						} ],
+						design_settings={
+						  "background_gradient" : {
+							"colors" : [ {
+							  "color" : {
+								"a" : 1,
+								"b" : 121,
+								"g" : 58,
+								"r" : 17
+							  }
+							}, {
+							  "color" : {
+								"a" : 1,
+								"b" : 60,
+								"g" : 31,
+								"r" : 2
+							  }
+							} ],
+							"side_or_corner" : {
+							  "verticalSide" : "BOTTOM"
+							}
+						  },
+						  "background_option" : "gradient",
+						  "text_align" : {
+							"text_align" : "LEFT"
+						  },
+						  "text_color" : "white"
+						},
+						heading=[ {
+						  "heading" : "Powerful results for your business",
+						  "heading_align" : "auto",
+						  "heading_color" : "auto",
+						  "heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+						  },
+						  "heading_display_size" : "auto",
+						  "heading_size" : "h3"
+						} ]
+					  %}
+					  {% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					  {% dnd_module
+						path="../../custom-modules/SR Two Col 04",
+						offset=0,
+						width=12,
+						column=[ {
+						  "add_to_lightbox" : false,
+						  "col_content" : "<p><em>“Most companies don’t tag everything. FullStory has been able to fill in some gaps for us, like 404 error pages or product availability, where we did not have them tagged, but we were able to see what was going on and then make adjustments. And it’s millions of dollars that we have saved.”</em></p>\n<p><span>Stephen Stewart</span><span>Senior Manager,&nbsp;<strong>Merchandising Analytics, Lowe’s</strong></span></p>",
+						  "col_media_type" : "none",
+						  "col_overlay_color" : {
+							"color" : "#000000",
+							"opacity" : 50
+						  },
+						  "col_text_align" : "auto",
+						  "column_size" : [ {
+							"column_breakpoint" : "md",
+							"column_offset" : "0",
+							"column_order" : 1,
+							"column_width" : "5"
+						  } ],
+						  "ctas" : [ ],
+						  "custom_column_size" : true,
+						  "heading" : [ {
+							"heading" : "Lowe’s saves millions with FullStory’s autocapture",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							  "color" : "#30343b",
+							  "opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h3"
+						  } ],
+						  "image_link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+							  "type" : "EXTERNAL"
+							}
+						  },
+						  "lead_text" : false,
+						  "text_color" : "auto",
+						  "video" : {
+							"autoplay" : true,
+							"background_video_design" : "none",
+							"custom_accent_color" : {
+							  "color" : "#000000",
+							  "opacity" : 20
+							},
+							"embed_field" : {
+							  "source_type" : "oembed"
+							},
+							"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+							"loop" : true,
+							"muted" : true,
+							"oembed_thumbnail" : {
+							  "loading" : "disabled",
+							  "src" : ""
+							},
+							"placeholder_fields" : {
+							  "placeholder_description" : "Select a video type in the sidebar.",
+							  "placeholder_title" : "No video selected"
+							},
+							"show_controls" : true,
+							"style_options" : {
+							  "oembed_thumbnail_play_button_color" : {
+								"color" : "#ffffff"
+							  }
+							},
+							"video_accent_color" : "primary",
+							"video_poster" : {
+							  "alt" : "Sprocket Rocket Demo",
+							  "size_type" : "exact",
+							  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+							},
+							"video_type" : "html_video"
+						  }
+						}, {
+						  "add_to_lightbox" : false,
+						  "col_image" : {
+							"height" : "450",
+							"loading" : "lazy",
+							"src" : "https://f.hubspotusercontent20.net/hub/275827/hubfs/sr-assets/images/sr-two-col-04-1.jpg",
+							"width" : "600"
+						  },
+						  "col_media_type" : "video",
+						  "col_overlay_color" : {
+							"color" : "#000000",
+							"opacity" : 50
+						  },
+						  "col_text_align" : "auto",
+						  "column_size" : [ {
+							"column_breakpoint" : "md",
+							"column_offset" : "1",
+							"column_order" : 2,
+							"column_width" : "6"
+						  }, {
+							"column_breakpoint" : "sm",
+							"column_offset" : "0",
+							"column_order" : 1,
+							"column_width" : "12"
+						  } ],
+						  "custom_column_size" : true,
+						  "image_link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+							  "type" : "EXTERNAL"
+							}
+						  },
+						  "lead_text" : false,
+						  "text_color" : "auto",
+						  "video" : {
+							"autoplay" : true,
+							"background_video_design" : "none",
+							"custom_accent_color" : {
+							  "color" : "#000000",
+							  "opacity" : 20
+							},
+							"embed_field" : {
+							  "source_type" : "oembed"
+							},
+							"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+							"loop" : true,
+							"muted" : true,
+							"oembed_thumbnail" : {
+							  "loading" : "disabled",
+							  "src" : ""
+							},
+							"placeholder_fields" : {
+							  "placeholder_description" : "Select a video type in the sidebar.",
+							  "placeholder_title" : "No video selected"
+							},
+							"show_controls" : true,
+							"style_options" : {
+							  "oembed_thumbnail_play_button_color" : {
+								"color" : "#ffffff"
+							  }
+							},
+							"video_accent_color" : "primary",
+							"video_poster" : {
+							  "alt" : "Sprocket Rocket Demo",
+							  "size_type" : "exact",
+							  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+							},
+							"video_type" : "html_video"
+						  }
+						} ],
+						design_settings={
+						  "background_color" : "light"
+						}
+					  %}
+					  {% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					  {% dnd_module
+						path="../../custom-modules/SR Two Col 03",
+						offset=0,
+						width=12,
+						column=[ {
+						  "add_to_lightbox" : false,
+						  "background_video_design" : "none",
+						  "col_image" : {
+							"alt" : "privacy-optimized",
+							"height" : 462,
+							"loading" : "lazy",
+							"max_height" : 60,
+							"max_width" : 78,
+							"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/privacy-optimized.svg",
+							"width" : 600
+						  },
+						  "col_media_type" : "image",
+						  "col_overlay_color" : {
+							"color" : "#000000",
+							"opacity" : 50
+						  },
+						  "col_text_align" : "auto",
+						  "custom_accent_color" : {
+							"color" : "#000000",
+							"opacity" : 20
+						  },
+						  "custom_column_size" : false,
+						  "image_link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+							  "type" : "EXTERNAL"
+							}
+						  },
+						  "lead_text" : false,
+						  "text_color" : "auto",
+						  "video" : {
+							"autoplay" : true,
+							"background_video_design" : "none",
+							"custom_accent_color" : {
+							  "color" : "#000000",
+							  "opacity" : 20
+							},
+							"embed_field" : {
+							  "source_type" : "oembed"
+							},
+							"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+							"loop" : true,
+							"muted" : true,
+							"oembed_thumbnail" : {
+							  "loading" : "disabled",
+							  "src" : ""
+							},
+							"placeholder_fields" : {
+							  "placeholder_description" : "Select a video type in the sidebar.",
+							  "placeholder_title" : "No video selected"
+							},
+							"show_controls" : true,
+							"style_options" : {
+							  "oembed_thumbnail_play_button_color" : {
+								"color" : "#ffffff"
+							  }
+							},
+							"video_accent_color" : "primary",
+							"video_poster" : {
+							  "alt" : "Sprocket Rocket Demo",
+							  "size_type" : "exact",
+							  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+							},
+							"video_type" : "html_video"
+						  },
+						  "video_accent_color" : "primary"
+						}, {
+						  "add_to_lightbox" : false,
+						  "background_video_design" : "none",
+						  "col_content" : "<p><span>Private-by-Default settings, industry-leading security practices, and automatic PII detection provide the peace-of-mind brands need to build faster.</span></p>",
+						  "col_media_type" : "none",
+						  "col_overlay_color" : {
+							"color" : "#000000",
+							"opacity" : 50
+						  },
+						  "col_size" : "col-md-5 offset-md-1",
+						  "col_text_align" : "auto",
+						  "column_size" : [ {
+							"column_breakpoint" : "md",
+							"column_offset" : "1",
+							"column_width" : "5"
+						  } ],
+						  "ctas" : [ {
+							"button_text" : "What is Private by Default? >>",
+							"cta_size" : "md",
+							"cta_style" : "primary",
+							"cta_type" : "btn",
+							"link" : {
+							  "no_follow" : false,
+							  "open_in_new_tab" : false,
+							  "url" : {
+								"href" : "#",
+								"type" : "EXTERNAL"
+							  }
+							},
+							"modal_target" : "demo"
+						  } ],
+						  "custom_accent_color" : {
+							"color" : "#000000",
+							"opacity" : 20
+						  },
+						  "custom_column_size" : true,
+						  "heading" : [ {
+							"heading" : "Privacy protections for faster optimization",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							  "color" : "#30343b",
+							  "opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h3"
+						  } ],
+						  "image_link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+							  "type" : "EXTERNAL"
+							}
+						  },
+						  "lead_text" : false,
+						  "text_color" : "auto",
+						  "video" : {
+							"autoplay" : true,
+							"background_video_design" : "none",
+							"custom_accent_color" : {
+							  "color" : "#000000",
+							  "opacity" : 20
+							},
+							"embed_field" : {
+							  "source_type" : "oembed"
+							},
+							"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+							"loop" : true,
+							"muted" : true,
+							"oembed_thumbnail" : {
+							  "loading" : "disabled",
+							  "src" : ""
+							},
+							"placeholder_fields" : {
+							  "placeholder_description" : "Select a video type in the sidebar.",
+							  "placeholder_title" : "No video selected"
+							},
+							"show_controls" : true,
+							"style_options" : {
+							  "oembed_thumbnail_play_button_color" : {
+								"color" : "#ffffff"
+							  }
+							},
+							"video_accent_color" : "primary",
+							"video_poster" : {
+							  "alt" : "Sprocket Rocket Demo",
+							  "size_type" : "exact",
+							  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+							},
+							"video_type" : "html_video"
+						  },
+						  "video_accent_color" : "primary"
+						} ],
+						design_settings={
+						  "spacing" : {
+							"margin" : {
+							  "bottom" : {
+								"units" : "rem",
+								"value" : 0
+							  },
+							  "top" : {
+								"units" : "rem",
+								"value" : 0
+							  }
+							},
+							"padding" : {
+							  "bottom" : {
+								"units" : "px",
+								"value" : 0
+							  },
+							  "left" : {
+								"units" : "rem",
+								"value" : 0
+							  },
+							  "right" : {
+								"units" : "rem",
+								"value" : 0
+							  },
+							  "top" : {
+								"units" : "rem",
+								"value" : 6.25
+							  }
+							}
+						  },
+						  "top_bottom_padding" : "custom"
+						}
+					  %}
+					  {% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					  {% dnd_module
+						path="../../custom-modules/SR Two Col 04",
+						offset=0,
+						width=12,
+						column=[ {
+						  "add_to_lightbox" : false,
+						  "col_content" : "<p><span>Find answers to questions you didn’t even think to ask. With complete coverage of both key events and long-tail data, discover bugs, friction, and opportunities that would have otherwise flown under the radar.</span></p>",
+						  "col_media_type" : "none",
+						  "col_overlay_color" : {
+							"color" : "#000000",
+							"opacity" : 50
+						  },
+						  "col_text_align" : "auto",
+						  "column_size" : [ {
+							"column_breakpoint" : "md",
+							"column_offset" : "0",
+							"column_order" : 1,
+							"column_width" : "5"
+						  } ],
+						  "ctas" : [ {
+							"button_text" : "See how autocapture works >>",
+							"cta_size" : "md",
+							"cta_style" : "primary",
+							"cta_type" : "btn",
+							"link" : {
+							  "no_follow" : false,
+							  "open_in_new_tab" : false,
+							  "url" : {
+								"href" : "#",
+								"type" : "EXTERNAL"
+							  }
+							},
+							"modal_target" : "demo"
+						  } ],
+						  "custom_column_size" : true,
+						  "heading" : [ {
+							"heading" : "Autocapture reveals every unknown",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							  "color" : "#30343b",
+							  "opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h3"
+						  } ],
+						  "image_link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+							  "type" : "EXTERNAL"
+							}
+						  },
+						  "lead_text" : false,
+						  "text_color" : "auto",
+						  "video" : {
+							"autoplay" : true,
+							"background_video_design" : "none",
+							"custom_accent_color" : {
+							  "color" : "#000000",
+							  "opacity" : 20
+							},
+							"embed_field" : {
+							  "source_type" : "oembed"
+							},
+							"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+							"loop" : true,
+							"muted" : true,
+							"oembed_thumbnail" : {
+							  "loading" : "disabled",
+							  "src" : ""
+							},
+							"placeholder_fields" : {
+							  "placeholder_description" : "Select a video type in the sidebar.",
+							  "placeholder_title" : "No video selected"
+							},
+							"show_controls" : true,
+							"style_options" : {
+							  "oembed_thumbnail_play_button_color" : {
+								"color" : "#ffffff"
+							  }
+							},
+							"video_accent_color" : "primary",
+							"video_poster" : {
+							  "alt" : "Sprocket Rocket Demo",
+							  "size_type" : "exact",
+							  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+							},
+							"video_type" : "html_video"
+						  }
+						}, {
+						  "add_to_lightbox" : false,
+						  "col_image" : {
+							"alt" : "autocapture-optimized",
+							"height" : 462,
+							"loading" : "lazy",
+							"max_height" : 60,
+							"max_width" : 78,
+							"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/autocapture-optimized.svg",
+							"width" : 600
+						  },
+						  "col_media_type" : "image",
+						  "col_overlay_color" : {
+							"color" : "#000000",
+							"opacity" : 50
+						  },
+						  "col_text_align" : "auto",
+						  "column_size" : [ {
+							"column_breakpoint" : "md",
+							"column_offset" : "1",
+							"column_order" : 2,
+							"column_width" : "6"
+						  }, {
+							"column_breakpoint" : "sm",
+							"column_offset" : "0",
+							"column_order" : 1,
+							"column_width" : "12"
+						  } ],
+						  "custom_column_size" : true,
+						  "image_link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+							  "type" : "EXTERNAL"
+							}
+						  },
+						  "lead_text" : false,
+						  "text_color" : "auto",
+						  "video" : {
+							"autoplay" : true,
+							"background_video_design" : "none",
+							"custom_accent_color" : {
+							  "color" : "#000000",
+							  "opacity" : 20
+							},
+							"embed_field" : {
+							  "source_type" : "oembed"
+							},
+							"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+							"loop" : true,
+							"muted" : true,
+							"oembed_thumbnail" : {
+							  "loading" : "disabled",
+							  "src" : ""
+							},
+							"placeholder_fields" : {
+							  "placeholder_description" : "Select a video type in the sidebar.",
+							  "placeholder_title" : "No video selected"
+							},
+							"show_controls" : true,
+							"style_options" : {
+							  "oembed_thumbnail_play_button_color" : {
+								"color" : "#ffffff"
+							  }
+							},
+							"video_accent_color" : "primary",
+							"video_poster" : {
+							  "alt" : "Sprocket Rocket Demo",
+							  "size_type" : "exact",
+							  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+							},
+							"video_type" : "html_video"
+						  }
+						} ]
+					  %}
+					  {% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					  {% dnd_module
+						path="../../custom-modules/SR Two Col 04",
+						offset=0,
+						width=12,
+						column=[ {
+						  "add_to_lightbox" : false,
+							"col_content" : "<div>\n<p>FullStory is used on over 11,000 of the most popular digital destinations.* And for good reason. But don’t take our word for it: Read the reviews from real users on<span>&nbsp;</span><a href='https://www.g2.com/products/fullstory/reviews' target='_blank' rel='noopener noreferrer'>G2</a><span>&nbsp;</span>and<span>&nbsp;</span><a href='https://www.trustradius.com/products/fullstory/reviews?qs=alternatives-evaluated#reviews' target='_blank' rel='noopener noreferrer'>TrustRadius</a>.</p>\n</div>\n<p><em>*Source: Builtwith.com</em></p>",
+						  "col_media_type" : "none",
+						  "col_overlay_color" : {
+							"color" : "#000000",
+							"opacity" : 50
+						  },
+						  "col_text_align" : "auto",
+						  "column_size" : [ {
+							"column_breakpoint" : "md",
+							"column_offset" : "0",
+							"column_order" : 1,
+							"column_width" : "5"
+						  } ],
+						  "ctas" : [ ],
+						  "custom_column_size" : true,
+						  "heading" : [ {
+							"heading" : "Don’t let poor user experience impact loyalty and revenue",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							  "color" : "#30343b",
+							  "opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h3"
+						  } ],
+						  "image_link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+							  "type" : "EXTERNAL"
+							}
+						  },
+						  "lead_text" : false,
+						  "text_color" : "auto",
+						  "video" : {
+							"autoplay" : true,
+							"background_video_design" : "none",
+							"custom_accent_color" : {
+							  "color" : "#000000",
+							  "opacity" : 20
+							},
+							"embed_field" : {
+							  "source_type" : "oembed"
+							},
+							"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+							"loop" : true,
+							"muted" : true,
+							"oembed_thumbnail" : {
+							  "loading" : "disabled",
+							  "src" : ""
+							},
+							"placeholder_fields" : {
+							  "placeholder_description" : "Select a video type in the sidebar.",
+							  "placeholder_title" : "No video selected"
+							},
+							"show_controls" : true,
+							"style_options" : {
+							  "oembed_thumbnail_play_button_color" : {
+								"color" : "#ffffff"
+							  }
+							},
+							"video_accent_color" : "primary",
+							"video_poster" : {
+							  "alt" : "Sprocket Rocket Demo",
+							  "size_type" : "exact",
+							  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+							},
+							"video_type" : "html_video"
+						  }
+						}, {
+						  "add_to_lightbox" : false,
+						  "col_image" : {
+							"height" : "450",
+							"loading" : "lazy",
+							"src" : "https://f.hubspotusercontent20.net/hub/275827/hubfs/sr-assets/images/sr-two-col-04-1.jpg",
+							"width" : "600"
+						  },
+						  "col_media_type" : "video",
+						  "col_overlay_color" : {
+							"color" : "#000000",
+							"opacity" : 50
+						  },
+						  "col_text_align" : "auto",
+						  "column_size" : [ {
+							"column_breakpoint" : "md",
+							"column_offset" : "1",
+							"column_order" : 2,
+							"column_width" : "6"
+						  }, {
+							"column_breakpoint" : "sm",
+							"column_offset" : "0",
+							"column_order" : 1,
+							"column_width" : "12"
+						  } ],
+						  "custom_column_size" : true,
+						  "image_link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+							  "type" : "EXTERNAL"
+							}
+						  },
+						  "lead_text" : false,
+						  "text_color" : "auto",
+						  "video" : {
+							"autoplay" : true,
+							"background_video_design" : "none",
+							"custom_accent_color" : {
+							  "color" : "#000000",
+							  "opacity" : 20
+							},
+							"embed_field" : {
+							  "source_type" : "oembed"
+							},
+							"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+							"loop" : true,
+							"muted" : true,
+							"oembed_thumbnail" : {
+							  "loading" : "disabled",
+							  "src" : ""
+							},
+							"placeholder_fields" : {
+							  "placeholder_description" : "Select a video type in the sidebar.",
+							  "placeholder_title" : "No video selected"
+							},
+							"show_controls" : true,
+							"style_options" : {
+							  "oembed_thumbnail_play_button_color" : {
+								"color" : "#ffffff"
+							  }
+							},
+							"video_accent_color" : "primary",
+							"video_poster" : {
+							  "alt" : "Sprocket Rocket Demo",
+							  "size_type" : "exact",
+							  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+							},
+							"video_type" : "html_video"
+						  }
+						} ],
+						design_settings={
+						  "background_gradient" : {
+							"colors" : [ {
+							  "color" : {
+								"a" : 1,
+								"b" : 126,
+								"g" : 78,
+								"r" : 232
+							  }
+							}, {
+							  "color" : {
+								"a" : 1,
+								"b" : 69,
+								"g" : 27,
+								"r" : 164
+							  }
+							} ],
+							"side_or_corner" : {
+							  "verticalSide" : "BOTTOM"
+							}
+						  },
+						  "background_option" : "gradient",
+						  "text_color" : "white"
+						}
+					  %}
+					  {% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					  {% dnd_module
+						path="../../custom-modules/SR Two Col 04",
+						offset=0,
+						width=12,
+						column=[ {
+						  "add_to_lightbox" : false,
+						  "col_content" : "<p><span>Leverage the full power of your data using the full range of your data tools. With an open API and a growing catalog of integrations, FullStory communicates seamlessly with the tools your team is already using.</span></p>",
+						  "col_media_type" : "none",
+						  "col_overlay_color" : {
+							"color" : "#000000",
+							"opacity" : 50
+						  },
+						  "col_text_align" : "auto",
+						  "column_size" : [ {
+							"column_breakpoint" : "md",
+							"column_offset" : "0",
+							"column_order" : 1,
+							"column_width" : "5"
+						  } ],
+						  "ctas" : [ {
+							"button_text" : "Learn more about integrations >>",
+							"cta_size" : "md",
+							"cta_style" : "primary",
+							"cta_type" : "btn",
+							"link" : {
+							  "no_follow" : false,
+							  "open_in_new_tab" : false,
+							  "url" : {
+								"href" : "#",
+								"type" : "EXTERNAL"
+							  }
+							},
+							"modal_target" : "demo"
+						  } ],
+						  "custom_column_size" : true,
+						  "heading" : [ {
+							"heading" : "Enrich your tech stack with FullStory",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							  "color" : "#30343b",
+							  "opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h3"
+						  } ],
+						  "image_link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+							  "type" : "EXTERNAL"
+							}
+						  },
+						  "lead_text" : false,
+						  "text_color" : "auto",
+						  "video" : {
+							"autoplay" : true,
+							"background_video_design" : "none",
+							"custom_accent_color" : {
+							  "color" : "#000000",
+							  "opacity" : 20
+							},
+							"embed_field" : {
+							  "source_type" : "oembed"
+							},
+							"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+							"loop" : true,
+							"muted" : true,
+							"oembed_thumbnail" : {
+							  "loading" : "disabled",
+							  "src" : ""
+							},
+							"placeholder_fields" : {
+							  "placeholder_description" : "Select a video type in the sidebar.",
+							  "placeholder_title" : "No video selected"
+							},
+							"show_controls" : true,
+							"style_options" : {
+							  "oembed_thumbnail_play_button_color" : {
+								"color" : "#ffffff"
+							  }
+							},
+							"video_accent_color" : "primary",
+							"video_poster" : {
+							  "alt" : "Sprocket Rocket Demo",
+							  "size_type" : "exact",
+							  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+							},
+							"video_type" : "html_video"
+						  }
+						}, {
+						  "add_to_lightbox" : false,
+						  "col_image" : {
+							"alt" : "fs-technology-integrations-new",
+							"height" : 462,
+							"loading" : "lazy",
+							"max_height" : 60,
+							"max_width" : 78,
+							"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/fs-technology-integrations-new.svg",
+							"width" : 600
+						  },
+						  "col_media_type" : "image",
+						  "col_overlay_color" : {
+							"color" : "#000000",
+							"opacity" : 50
+						  },
+						  "col_text_align" : "auto",
+						  "column_size" : [ {
+							"column_breakpoint" : "md",
+							"column_offset" : "1",
+							"column_order" : 2,
+							"column_width" : "6"
+						  }, {
+							"column_breakpoint" : "sm",
+							"column_offset" : "0",
+							"column_order" : 1,
+							"column_width" : "12"
+						  } ],
+						  "custom_column_size" : true,
+						  "image_link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+							  "type" : "EXTERNAL"
+							}
+						  },
+						  "lead_text" : false,
+						  "text_color" : "auto",
+						  "video" : {
+							"autoplay" : true,
+							"background_video_design" : "none",
+							"custom_accent_color" : {
+							  "color" : "#000000",
+							  "opacity" : 20
+							},
+							"embed_field" : {
+							  "source_type" : "oembed"
+							},
+							"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+							"loop" : true,
+							"muted" : true,
+							"oembed_thumbnail" : {
+							  "loading" : "disabled",
+							  "src" : ""
+							},
+							"placeholder_fields" : {
+							  "placeholder_description" : "Select a video type in the sidebar.",
+							  "placeholder_title" : "No video selected"
+							},
+							"show_controls" : true,
+							"style_options" : {
+							  "oembed_thumbnail_play_button_color" : {
+								"color" : "#ffffff"
+							  }
+							},
+							"video_accent_color" : "primary",
+							"video_poster" : {
+							  "alt" : "Sprocket Rocket Demo",
+							  "size_type" : "exact",
+							  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+							},
+							"video_type" : "html_video"
+						  }
+						} ]
+					  %}
+					  {% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					  {% dnd_module
+						path="../../custom-modules/SR Hero Two Col 01",
+						offset=0,
+						width=12,
+						left_column={
+						  "ctas" : [ {
+							"button_text" : "Learn more >>",
+							"cta" : "",
+							"cta_size" : "md",
+							"cta_style" : "none",
+							"cta_type" : "btn",
+							"link" : {
+							  "no_follow" : false,
+							  "open_in_new_tab" : false,
+							  "url" : {
+								"href" : "#",
+								"type" : "EXTERNAL"
+							  }
+							},
+							"modal_target" : "demo"
+						  } ],
+						  "description" : "<p><span>See why DXI gives you a competitive advantage.</span></p>",
+						  "design_settings" : {
+							"background_color" : "white",
+							"background_custom" : {
+							  "color" : "#000",
+							  "opacity" : 100
+							},
+							"background_option" : "color"
+						  },
+						  "heading" : [ {
+							"heading" : "Why choose FullStory?",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							  "color" : "#30343b",
+							  "opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h4"
+						  } ],
+						  "image" : { },
+						  "image_" : {
+							"alt" : "why-fullstory",
+							"height" : 296,
+							"loading" : "lazy",
+							"max_height" : 296,
+							"max_width" : 558,
+							"size_type" : "exact",
+							"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/why-fullstory.webp",
+							"width" : 558
+						  },
+						  "lead_text" : true,
+						  "loop" : true,
+						  "media_type" : "image",
+						  "text_align" : "center",
+						  "text_color" : "auto",
+						  "video" : [ "https://www.lean-labs.com/hubfs/LLv2/images/case-studies/sprocketrocket/Compressed%20Videos/01%20Complete%20Design%20Control-1.m4v" ],
+						  "video_max_height" : 300
+						},
+						right_column={
+						  "ctas" : [ {
+							"button_text" : "Customer stories >>",
+							"cta" : "",
+							"cta_size" : "md",
+							"cta_style" : "none",
+							"cta_type" : "btn",
+							"link" : {
+							  "no_follow" : false,
+							  "open_in_new_tab" : false,
+							  "url" : {
+								"href" : "#",
+								"type" : "EXTERNAL"
+							  }
+							},
+							"modal_target" : "demo"
+						  } ],
+						  "description" : "<p><span>Read real success stories from FullStory users.</span></p>",
+						  "heading" : [ {
+							"heading" : "The brands love us",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							  "color" : "#30343b",
+							  "opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h4"
+						  } ]
+						}
+					  %}
+					  {% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					  {% dnd_module
+						path="../../custom-modules/SR One Col 01",
+						offset=0,
+						width=12,
+						column=[ {
+						  "add_to_lightbox" : false,
+						  "col_content" : "<p><span>Request a fully customized demo to hear from the team within one business day.</span></p>",
+						  "col_media_type" : "none",
+						  "col_overlay_color" : {
+							"color" : "#000000",
+							"opacity" : 50
+						  },
+						  "col_text_align" : "auto",
+						  "ctas" : [ {
+							"add_icon" : false,
+							"button_text" : "Get a Demo",
+							"cta_size" : "md",
+							"cta_style" : "primary",
+							"cta_type" : "btn",
+							"default" : {
+							  "background" : {
+								"color" : "#0c63ff",
+								"opacity" : 100
+							  },
+							  "border" : {
+								"color" : "#0c63ff",
+								"opacity" : 100
+							  },
+							  "text" : {
+								"color" : "#fff",
+								"opacity" : 100
+							  }
+							},
+							"hover" : {
+							  "background" : {
+								"color" : "#5a93fd",
+								"opacity" : 100
+							  },
+							  "border" : {
+								"color" : "#5a93fd",
+								"opacity" : 100
+							  },
+							  "text" : {
+								"color" : "#fff",
+								"opacity" : 100
+							  }
+							},
+							"icon" : {
+							  "icon" : {
+								"name" : "arrow-right",
+								"type" : "SOLID",
+								"unicode" : "f061"
+							  },
+							  "position" : "right"
+							},
+							"link" : {
+							  "no_follow" : false,
+							  "open_in_new_tab" : false,
+							  "url" : {
+								"href" : "#",
+								"type" : "EXTERNAL"
+							  }
+							},
+							"modal_target" : "demo"
+						  } ],
+						  "custom_column_size" : false,
+						  "heading" : [ {
+							"heading" : "Ready to build a better digital experience?",
+							"heading_align" : "center",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							  "color" : "#30343b",
+							  "opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h3"
+						  } ],
+						  "image_link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+							  "type" : "EXTERNAL"
+							}
+						  },
+						  "lead_text" : false,
+						  "text_color" : "auto",
+						  "video" : {
+							"autoplay" : true,
+							"background_video_design" : "none",
+							"custom_accent_color" : {
+							  "color" : "#000000",
+							  "opacity" : 20
+							},
+							"embed_field" : {
+							  "source_type" : "oembed"
+							},
+							"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+							"loop" : true,
+							"muted" : true,
+							"oembed_thumbnail" : {
+							  "loading" : "disabled",
+							  "src" : ""
+							},
+							"placeholder_fields" : {
+							  "placeholder_description" : "Select a video type in the sidebar.",
+							  "placeholder_title" : "No video selected"
+							},
+							"show_controls" : true,
+							"style_options" : {
+							  "oembed_thumbnail_play_button_color" : {
+								"color" : "#ffffff"
+							  }
+							},
+							"video_accent_color" : "primary",
+							"video_poster" : {
+							  "alt" : "Sprocket Rocket Demo",
+							  "size_type" : "exact",
+							  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+							},
+							"video_type" : "html_video"
+						  }
+						} ],
+						design_settings={
+						  "container_width" : "wide",
+						  "text_align" : {
+							"text_align" : "CENTER"
+						  }
+						}
+					  %}
+					  {% end_dnd_module %}
+					{% end_dnd_row %}
+				  {% end_dnd_column %}
+				{% end_dnd_section %}
+			{% end_dnd_area %}
+		{% endblock body %}
+
+		{% block footer %}
+			{% boolean "enabled_site_footer" label='Enable Global Site Footer', value=true, export_to_template_context=True %}
+			{% if widget_data.enabled_site_footer.value %}
+				{% global_partial path="../partials/site_footer.html" %}
+			{% endif %}
+		{% endblock footer %}
+
+		{% include '../footer-includes.html' %}
+	</body>
+</html>

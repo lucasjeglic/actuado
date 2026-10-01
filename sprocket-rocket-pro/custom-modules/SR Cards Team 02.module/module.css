@@ -1,0 +1,72 @@
+.sr-cards-team-02 .team-meta {
+  margin-top: 1.85rem;
+}
+
+.sr-cards-team-02 .team-member {
+  text-align: center;
+  width: 100%;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.sr-cards-team-02 .team-member img {
+  border-radius: 50%;
+  max-height: 96px;
+}
+
+.sr-cards-team-02 .team-member-additional p a {
+  text-decoration: none;
+  border: none;
+}
+
+.sr-cards-team-02 .team-member-wrapper {
+  gap: 1.875rem;
+  display: grid;
+}
+
+.sr-cards-team-02 .team-content {
+	position: sticky;
+	top: 6.25rem;
+}
+
+@media only screen and (min-width : 767px) {
+
+  .sr-cards-team-02 .team-member:nth-child(1),
+  .sr-cards-team-02 .team-member:nth-child(2) {
+    margin-top: 0;
+  }
+
+  .sr-cards-team-02 .team-member-wrapper {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.sr-cards-team-02 ul.social {
+  margin: 0;
+  padding: 0;
+}
+
+.sr-cards-team-02 ul.social li {
+  display: inline-block;
+  font-size: 1.2rem;
+}
+
+.sr-cards-team-02 ul.social li span {
+  border-radius: 50%;
+  padding: .2rem;
+  margin: .25rem .35rem;
+  color: #fff;
+  width: 2.3rem;
+  height: 2.3rem;
+  line-height: 2rem;
+  display: inline-block;
+}
+
+.sr-cards-team-02 ul.social li span svg,
+.sr-cards-team-02 ul.social li span svg g {
+  fill: inherit;
+}
+
+.sr-cards-team-02 ul.social li a {
+  padding: 0 0.1rem;
+}

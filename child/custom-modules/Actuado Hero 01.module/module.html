@@ -1,0 +1,95 @@
+{% if module.enabled %}
+
+	{% import "../../templates/macros.html" as macros %}
+	{% import "../../templates/ac-macros.html" as ac %}
+
+	{% set panel = module.panel_color.color ? macros.color(module.panel_color) : 'var(--tertiary)' %}
+
+	{% set is_left = module.media_side == 'left' %}
+
+	{% require_css %}
+	<style>
+		.{{ name }} .ac-hero {
+			--ac-panel: {{ panel }};
+			--ac-nav-h: {{ module.nav_offset|int }}px;
+			/* The width of the container the Layout setting chose, so the panel
+			   text lines up with the nav when both are set to the same option.
+			   Reading theme.containers.default regardless of Layout meant Large
+			   and Small silently kept the Default measurement. */
+			--ac-container: {{
+				module.design_settings.layout == 'container container-small' ? theme.containers.small :
+				module.design_settings.layout == 'container container-large' ? theme.containers.large :
+				theme.containers.default
+			}}px;
+		}
+		{% if module.image_overlay.opacity > 0 %}
+		.{{ name }} .ac-hero__media::after {
+			background-color: {{ macros.color(module.image_overlay) }};
+		}
+		{% endif %}
+		{% if module.hero_height != 'auto' %}
+		@media (min-width: 992px) {
+			.{{ name }} .ac-hero__panel,
+			.{{ name }} .ac-hero__media {
+				min-height: {{ module.hero_height|int }}vh;
+			}
+		}
+		{% endif %}
+	</style>
+	{% end_require_css %}
+
+	<div class="ac-hero-01 {{ name }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+
+		<div class="ac-hero{% if module.align_to_container %} ac-hero--aligned{% endif %}{% if is_left %} ac-hero--media-left{% endif %}{% if module.parallax && module.image.src %} ac-hero--parallax{% endif %}">
+
+			{# ---------- Text panel ---------- #}
+			<div class="ac-hero__panel">
+				<div class="ac-hero__container {{ module.design_settings.layout }}">
+				<div class="ac-hero__inner">
+
+					{{ ac.eyebrow(module) }}
+
+					{% if module.heading.heading_text %}
+					{% set h = module.heading %}
+					<{{ h.heading_size }} class="heading ac-hero__heading{% if h.heading_display_size != 'auto' %} {{ h.heading_display_size }}{% endif %}{% if module.animate_heading %} ac-animate-words{% endif %}">{{ h.heading_text }}</{{ h.heading_size }}>
+					{% endif %}
+
+					{% if module.description %}
+					<div class="description ac-hero__text{% if module.lead_text %} lead{% endif %}">{{ module.description }}</div>
+					{% endif %}
+
+					{{ macros.cta(module.ctas, 'ac-hero__cta') }}
+
+				</div>
+				</div>
+			</div>
+
+			{# ---------- Image ---------- #}
+			{% if module.image.src %}
+			<div class="ac-hero__media">
+				{# The inner element is what moves, so the panel beside it stays put. #}
+				<div class="ac-hero__media-inner">
+					<img src="{{ module.image.src }}" alt="{{ module.image.alt }}"
+						{% if module.image.width %}width="{{ module.image.width }}"{% endif %}
+						{% if module.image.height %}height="{{ module.image.height }}"{% endif %}
+						loading="eager">
+				</div>
+			</div>
+			{% endif %}
+
+		</div>
+	</div>
+
+	{% if module.animate_heading %}
+	{{ require_js(get_asset_url('../../js/gsap.js'), { defer: true, position: head }) }}
+	{{ require_js(get_asset_url('../../js/TextPlugin.js'), { defer: true, position: head }) }}
+	{{ require_js(get_asset_url('../../js/ac-type-on-scroll.js'), { defer: true }) }}
+	{% endif %}
+
+	{% if module.parallax && module.image.src %}
+	{{ require_js(get_asset_url('../../js/gsap.js'), { defer: true, position: head }) }}
+	{{ require_js(get_asset_url('../../js/ScrollTrigger.js'), { defer: true, position: head }) }}
+	{{ require_js(get_asset_url('../../js/ac-hero-parallax.js'), { defer: true }) }}
+	{% endif %}
+
+{% endif %}

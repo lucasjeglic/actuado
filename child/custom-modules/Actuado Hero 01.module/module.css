@@ -1,0 +1,209 @@
+/* ==========================================================================
+   Actuado Hero 01
+   A 50/50 split: a coloured panel carrying the text on one side, a full-bleed
+   image on the other. The image drifts slowly as the page scrolls while the
+   panel stays still - two speeds is what reads as depth.
+
+   The hero is deliberately full-bleed, so it ignores the container and the SR
+   section padding.
+   ========================================================================== */
+
+.ac-hero-01 .ac-hero {
+	display: grid;
+	grid-template-columns: 1fr;
+}
+
+@media (min-width: 992px) {
+	.ac-hero-01 .ac-hero {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	/* Image first in the source, so the panel still reads first for screen
+	   readers when the image is moved to the left. */
+	.ac-hero-01 .ac-hero--media-left .ac-hero__panel {
+		order: 2;
+	}
+}
+
+/* ---------- Text panel ---------- */
+
+.ac-hero-01 .ac-hero__panel {
+	background: var(--ac-panel, var(--tertiary));
+/* The nav overlays the hero so the image can run to the very top of the page.
+   Adding its height to the panel's top padding keeps the content clear of it
+   without moving the image. */
+	display: flex;
+	align-items: center;
+	padding: calc(4rem + var(--ac-nav-h, 0px)) 0 4rem;
+}
+
+@media (min-width: 992px) {
+	.ac-hero-01 .ac-hero__panel {
+		/* Aligns the text with the site's container edge rather than the
+		   screen edge, so it lines up with the sections below. */
+		/* No horizontal padding: the container inside positions the text, and
+		   extra padding here would push it off the container edge. */
+		padding: calc(5rem + var(--ac-nav-h, 0px)) 0 5rem;
+		justify-content: flex-end;
+	}
+
+	.ac-hero-01 .ac-hero--media-left .ac-hero__panel {
+		justify-content: flex-start;
+	}
+}
+
+.ac-hero-01 .ac-hero__inner {
+	width: 100%;
+	text-align: left;
+	/* Bootstrap's column classes size this; padding comes from the container. */
+	padding-left: 0;
+	padding-right: 0;
+}
+
+/* ---------- Type ---------- */
+
+/* Shape, spacing and the gold rule come from .ac-eyebrow in child.css. Only
+   the colour is module-specific: the panel is dark, so the eyebrow cannot
+   inherit the theme's body colour. Same value as .ac-hero__text, so the
+   eyebrow and supporting copy sit one level below the full-white heading. */
+.ac-hero-01 .ac-eyebrow {
+	color: rgba(255, 255, 255, 0.78);
+	margin-bottom: 1.5rem;
+}
+
+
+/* The panel is dark, so the type overrides the theme's heading and body
+   colours rather than inheriting them. */
+.ac-hero-01 .ac-hero__heading {
+	color: #fff;
+	margin: 0;
+}
+
+.ac-hero-01 .ac-hero__text {
+	margin-top: 1.5rem;
+	color: rgba(255, 255, 255, 0.78);
+}
+
+.ac-hero-01 .ac-hero__text > *:last-child {
+	margin-bottom: 0;
+}
+
+.ac-hero-01 .ac-hero__cta {
+	margin-top: 2.5rem;
+}
+
+/* ==========================================================================
+   Image
+   overflow: hidden on the frame, with the inner element oversized so it has
+   room to travel without exposing an edge.
+   ========================================================================== */
+
+.ac-hero-01 .ac-hero__media {
+	position: relative;
+	overflow: hidden;
+	min-height: 60vw;
+}
+
+@media (min-width: 992px) {
+	.ac-hero-01 .ac-hero__media {
+		min-height: 0;
+	}
+}
+
+.ac-hero-01 .ac-hero__media-inner {
+	position: absolute;
+	inset: 0;
+}
+
+/* Only the parallax variant is oversized - a static image should fill its
+   frame exactly. */
+/* Oversized top and bottom so the image has room to travel without exposing
+   an edge. Must exceed the script's TRAVEL value. */
+.ac-hero-01 .ac-hero--parallax .ac-hero__media-inner {
+	inset: -22% 0;
+	will-change: transform;
+}
+
+.ac-hero-01 .ac-hero__media img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+/* ---------- No parallax on small screens or under reduced motion ---------- */
+
+@media (max-width: 991px) {
+	.ac-hero-01 .ac-hero--parallax .ac-hero__media-inner {
+		inset: 0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.ac-hero-01 .ac-hero--parallax .ac-hero__media-inner {
+		inset: 0;
+		transform: none !important;
+	}
+}
+
+/* Optional tint over the image, sitting above it but below nothing else -
+   the text lives on the panel, so this is purely about how the photo reads
+   next to the dark half. */
+.ac-hero-01 .ac-hero__media::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	z-index: 1;
+}
+
+/* ==========================================================================
+   Container
+   The panel's background stays full-bleed while its content sits in the
+   theme container, so the text lines up with the nav and the sections below.
+   The container is half-width here because the panel occupies half the hero,
+   so its inner edge meets the middle of the page.
+   ========================================================================== */
+
+/* Keeps Bootstrap's own 15px container padding, so the text sits exactly where
+   the nav's container puts its logo. */
+.ac-hero-01 .ac-hero__container {
+	width: 100%;
+	margin: 0;
+}
+
+/* Below the split, the container centres normally. */
+@media (max-width: 991px) {
+	.ac-hero-01 .ac-hero__container {
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+@media (min-width: 992px) {
+	/* Half the container, anchored to the panel's inner edge, so the text
+	   starts exactly where a full-width container would. */
+	/* The panel is half the page, so a centred container cannot be used. The
+	   text is instead inset from the panel's left edge by exactly the gutter a
+	   full-width container would leave - (100vw - container) / 2 - which puts
+	   it on the same line as the nav's logo. */
+	.ac-hero-01 .ac-hero__container {
+		max-width: none;
+		margin: 0;
+		padding-left: max(1.5rem, calc((100vw - var(--ac-container, 1140px)) / 2 + 15px));
+		padding-right: clamp(1.5rem, 3vw, 3rem);
+	}
+
+	/* Full Width has no gutter to align to, so the text simply keeps a
+	   sensible inset from the screen edge. */
+	.ac-hero-01 .ac-hero__container.container-fluid {
+		padding-left: clamp(1.5rem, 3vw, 3rem);
+	}
+
+	/* Mirrored when the image is on the left: the text then sits against the
+	   page's right-hand gutter. */
+	.ac-hero-01 .ac-hero--media-left .ac-hero__container {
+		padding-left: clamp(1.5rem, 3vw, 3rem);
+		padding-right: max(1.5rem, calc((100vw - var(--ac-container, 1140px)) / 2 + 15px));
+	}
+}

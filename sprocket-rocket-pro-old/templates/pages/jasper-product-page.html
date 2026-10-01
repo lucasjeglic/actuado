@@ -1,0 +1,1746 @@
+<!--
+templateType: page
+isAvailableForNewContent: true
+label: Jasper Product Page
+screenshotPath: ../../images/jasper-product-page.jpg
+-->
+
+	{% include '../header.html' %}
+
+		<body class="pre-built {{ widget_data.body_class.value }} {{ builtin_body_classes }} {% set theme_name = content.template_path|split('/')|first %}{{ theme_name }} {% set template_name = content.template_path|split('/')|last %}{{ template_name[:-5] if template_name }}">
+
+		{% block header %}
+			{% boolean "enabled_site_header" label='Enable Global Site Header', value=true, export_to_template_context=True %}
+			{% if widget_data.enabled_site_header.value %}
+				{% global_partial path="../partials/site_header.html" %}
+			{% endif %}
+		{% endblock header %}
+
+		{% block body %}
+			{% dnd_area "body_dnd_area", class='body_dnd_area' label="Main Content" %}
+				{% dnd_section %}
+							  {% dnd_column
+								offset=0,
+								width=12
+							  %}
+								{% dnd_row %}
+								  {% dnd_module
+									path="../../custom-modules/SR One Col Media 01",
+									offset=0,
+									width=12,
+									design_settings={
+									  "background_color" : "dark",
+									  "background_option" : "color",
+									  "text_color" : "white"
+									},
+									heading=[ {
+									  "heading" : "Write Blog Posts 5X Faster Using Boss Mode",
+									  "heading_align" : "auto",
+									  "heading_color" : "auto",
+									  "heading_color_custom" : {
+										"color" : "#30343b",
+										"opacity" : 100
+									  },
+									  "heading_display_size" : "display-4",
+									  "heading_size" : "h1"
+									} ]
+								  %}
+									{% module_attribute "description" %}
+									  <p><span>Activate the full power of Jasper when you upgrade to Boss Mode. Write high-quality content that's 100% original and SEO optimized.</span></p>
+									{% end_module_attribute %}
+								  {% end_dnd_module %}
+								{% end_dnd_row %}
+								{% dnd_row %}
+								  {% dnd_module
+									path="../../custom-modules/SR Clients 02",
+									offset=0,
+									width=12,
+									design_settings={
+									  "background_color" : "dark",
+									  "spacing" : {
+										"margin" : {
+										  "bottom" : {
+											"units" : "rem",
+											"value" : 0
+										  },
+										  "top" : {
+											"units" : "rem",
+											"value" : 0
+										  }
+										},
+										"padding" : {
+										  "bottom" : {
+											"units" : "rem",
+											"value" : 6.25
+										  },
+										  "left" : {
+											"units" : "rem",
+											"value" : 0
+										  },
+										  "right" : {
+											"units" : "rem",
+											"value" : 0
+										  },
+										  "top" : {
+											"units" : "px",
+											"value" : 0
+										  }
+										}
+									  },
+									  "text_color" : "white",
+									  "top_bottom_padding" : "custom"
+									},
+									heading=[ {
+									  "heading" : "Jasper is loved by over 50,000 companies including:",
+									  "heading_align" : "auto",
+									  "heading_color" : "auto",
+									  "heading_color_custom" : {
+										"color" : "#30343b",
+										"opacity" : 100
+									  },
+									  "heading_display_size" : "p",
+									  "heading_size" : "p"
+									} ]
+								  %}
+								  {% end_dnd_module %}
+								{% end_dnd_row %}
+								{% dnd_row %}
+								  {% dnd_module
+									path="../../custom-modules/SR Cards Grid 02",
+									offset=0,
+									width=12,
+									cards=[ {
+									  "background_color" : {
+										"color" : "#ffffff",
+										"opacity" : 100
+									  },
+									  "heading" : [ {
+										"heading" : "Finish your first draft 5X faster in Jasper Docs",
+										"heading_align" : "auto",
+										"heading_color" : "auto",
+										"heading_color_custom" : {
+										  "color" : "#30343b",
+										  "opacity" : 100
+										},
+										"heading_display_size" : "auto",
+										"heading_size" : "h4"
+									  } ],
+									  "image" : {
+										"alt" : "5x faster",
+										"height" : 48,
+										"loading" : "lazy",
+										"max_height" : 48,
+										"max_width" : 48,
+										"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/5x%20faster.svg",
+										"width" : 48
+									  },
+									  "text" : "<p><span>Speed up your content pipeline by writing 80% by Jasper and 20% edited by you.</span></p>",
+									  "text_color" : "auto"
+									}, {
+									  "background_color" : {
+										"color" : "#ffffff",
+										"opacity" : 100
+									  },
+									  "heading" : [ {
+										"heading" : "Create original content that ranks for SEO",
+										"heading_align" : "auto",
+										"heading_color" : "auto",
+										"heading_color_custom" : {
+										  "color" : "#30343b",
+										  "opacity" : 100
+										},
+										"heading_display_size" : "auto",
+										"heading_size" : "h4"
+									  } ],
+									  "image" : {
+										"alt" : "G logo",
+										"height" : 48,
+										"loading" : "lazy",
+										"max_height" : 24,
+										"max_width" : 24,
+										"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/G%20logo.svg",
+										"width" : 48
+									  },
+									  "text" : "<p><span>Integrate with SurferSEO.com* to unlock the EXACT keywords you need rank high on search.</span></p>",
+									  "text_color" : "auto"
+									}, {
+									  "background_color" : {
+										"color" : "#ffffff",
+										"opacity" : 100
+									  },
+									  "heading" : [ {
+										"heading" : "Original content that's 100% plagiarism-free",
+										"heading_align" : "auto",
+										"heading_color" : "auto",
+										"heading_color_custom" : {
+										  "color" : "#30343b",
+										  "opacity" : 100
+										},
+										"heading_display_size" : "auto",
+										"heading_size" : "h4"
+									  } ],
+									  "image" : {
+										"alt" : "quote mark",
+										"height" : 48,
+										"loading" : "lazy",
+										"max_height" : 48,
+										"max_width" : 48,
+										"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/quote%20mark.svg",
+										"width" : 48
+									  },
+									  "text" : "<p><span>Scan your content for sources using Copyscape*, most best plagiarism search on the web.</span></p>",
+									  "text_color" : "auto"
+									}, {
+									  "background_color" : {
+										"color" : "#ffffff",
+										"opacity" : 100
+									  },
+									  "heading" : [ {
+										"heading" : "Command the AI to write what you want",
+										"heading_align" : "auto",
+										"heading_color" : "auto",
+										"heading_color_custom" : {
+										  "color" : "#30343b",
+										  "opacity" : 100
+										},
+										"heading_display_size" : "auto",
+										"heading_size" : "h4"
+									  } ],
+									  "image" : {
+										"alt" : "bubble",
+										"height" : 48,
+										"loading" : "lazy",
+										"max_height" : 48,
+										"max_width" : 48,
+										"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/bubble.svg",
+										"width" : 48
+									  },
+									  "text" : "<p><span>Tell the AI exactly what you want written... then like magic, watch it happen.</span></p>",
+									  "text_color" : "auto"
+									}, {
+									  "background_color" : {
+										"color" : "#ffffff",
+										"opacity" : 100
+									  },
+									  "heading" : [ {
+										"heading" : "Higher quality outputs with better context",
+										"heading_align" : "auto",
+										"heading_color" : "auto",
+										"heading_color_custom" : {
+										  "color" : "#30343b",
+										  "opacity" : 100
+										},
+										"heading_display_size" : "auto",
+										"heading_size" : "h4"
+									  } ],
+									  "image" : {
+										"alt" : "eye",
+										"height" : 48,
+										"loading" : "lazy",
+										"max_height" : 48,
+										"max_width" : 48,
+										"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/eye.svg",
+										"width" : 48
+									  },
+									  "text" : "<p><span>Jasper reads your past 3,000 characters every time before writing for better context.</span></p>",
+									  "text_color" : "auto"
+									}, {
+									  "background_color" : {
+										"color" : "#ffffff",
+										"opacity" : 100
+									  },
+									  "heading" : [ {
+										"heading" : "Grammarly included for mistake-free writing.",
+										"heading_align" : "auto",
+										"heading_color" : "auto",
+										"heading_color_custom" : {
+										  "color" : "#30343b",
+										  "opacity" : 100
+										},
+										"heading_display_size" : "auto",
+										"heading_size" : "h4"
+									  } ],
+									  "image" : {
+										"alt" : "grammarly",
+										"height" : 48,
+										"loading" : "lazy",
+										"max_height" : 92,
+										"max_width" : 92,
+										"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/grammarly.svg",
+										"width" : 48
+									  },
+									  "text" : "<p><span>Improve your grammar and fix spelling mistakes in your docs by activating Grammarly.</span></p>",
+									  "text_color" : "auto"
+									} ],
+									heading=[ {
+									  "heading" : "6 Reasons To Activate Boss Mode",
+									  "heading_align" : "auto",
+									  "heading_color" : "auto",
+									  "heading_color_custom" : {
+										"color" : "#30343b",
+										"opacity" : 100
+									  },
+									  "heading_display_size" : "h1",
+									  "heading_size" : "h2"
+									} ]
+								  %}
+									{% module_attribute "description" %}
+									  <span>If you want to write content like blog articles, social media posts, and stories then BossMode is a must.</span>
+									{% end_module_attribute %}
+								  {% end_dnd_module %}
+								{% end_dnd_row %}
+								{% dnd_row %}
+								  {% dnd_module
+									path="../../custom-modules/SR Two Col 04",
+									offset=0,
+									width=12,
+									column=[ {
+									  "add_to_lightbox" : false,
+									  "col_content" : "<p><span>Boss Mode unlocks Documents – the fastest way to write long-form content that's original and plagiarism free.</span></p>",
+									  "col_media_type" : "none",
+									  "col_overlay_color" : {
+										"color" : "#000000",
+										"opacity" : 50
+									  },
+									  "col_text_align" : "auto",
+									  "column_size" : [ {
+										"column_breakpoint" : "md",
+										"column_offset" : "0",
+										"column_order" : 1,
+										"column_width" : "5"
+									  }, {
+										"column_breakpoint" : "sm",
+										"column_offset" : "0",
+										"column_order" : 2,
+										"column_width" : "12"
+									  } ],
+									  "ctas" : [ ],
+									  "custom_column_size" : true,
+									  "heading" : [ {
+										"heading" : "Write blog posts, stories, and even books",
+										"heading_align" : "auto",
+										"heading_color" : "auto",
+										"heading_color_custom" : {
+										  "color" : "#30343b",
+										  "opacity" : 100
+										},
+										"heading_display_size" : "auto",
+										"heading_size" : "h3"
+									  } ],
+									  "image_link" : {
+										"no_follow" : false,
+										"open_in_new_tab" : false,
+										"url" : {
+										  "type" : "EXTERNAL"
+										}
+									  },
+									  "lead_text" : false,
+									  "text_color" : "auto",
+									  "video" : {
+										"autoplay" : true,
+										"background_video_design" : "none",
+										"custom_accent_color" : {
+										  "color" : "#000000",
+										  "opacity" : 20
+										},
+										"embed_field" : {
+										  "source_type" : "oembed"
+										},
+										"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+										"loop" : true,
+										"muted" : true,
+										"oembed_thumbnail" : {
+										  "loading" : "disabled",
+										  "src" : ""
+										},
+										"placeholder_fields" : {
+										  "placeholder_description" : "Select a video type in the sidebar.",
+										  "placeholder_title" : "No video selected"
+										},
+										"show_controls" : true,
+										"style_options" : {
+										  "oembed_thumbnail_play_button_color" : {
+											"color" : "#ffffff"
+										  }
+										},
+										"video_accent_color" : "primary",
+										"video_poster" : {
+										  "alt" : "Sprocket Rocket Demo",
+										  "size_type" : "exact",
+										  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+										},
+										"video_type" : "html_video"
+									  }
+									}, {
+									  "add_to_lightbox" : false,
+									  "col_image" : {
+										"height" : "450",
+										"loading" : "lazy",
+										"src" : "https://f.hubspotusercontent20.net/hub/275827/hubfs/sr-assets/images/sr-two-col-04-1.jpg",
+										"width" : "600"
+									  },
+									  "col_media_type" : "video",
+									  "col_overlay_color" : {
+										"color" : "#000000",
+										"opacity" : 50
+									  },
+									  "col_text_align" : "auto",
+									  "column_size" : [ {
+										"column_breakpoint" : "md",
+										"column_offset" : "1",
+										"column_order" : 2,
+										"column_width" : "6"
+									  }, {
+										"column_breakpoint" : "sm",
+										"column_offset" : "0",
+										"column_order" : 1,
+										"column_width" : "12"
+									  } ],
+									  "custom_column_size" : true,
+									  "image_link" : {
+										"no_follow" : false,
+										"open_in_new_tab" : false,
+										"url" : {
+										  "type" : "EXTERNAL"
+										}
+									  },
+									  "lead_text" : false,
+									  "text_color" : "auto",
+									  "video" : {
+										"autoplay" : true,
+										"background_video_design" : "none",
+										"custom_accent_color" : {
+										  "color" : "#000000",
+										  "opacity" : 20
+										},
+										"embed_field" : {
+										  "source_type" : "oembed"
+										},
+										"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+										"loop" : true,
+										"muted" : true,
+										"oembed_thumbnail" : {
+										  "loading" : "disabled",
+										  "src" : ""
+										},
+										"placeholder_fields" : {
+										  "placeholder_description" : "Select a video type in the sidebar.",
+										  "placeholder_title" : "No video selected"
+										},
+										"show_controls" : true,
+										"style_options" : {
+										  "oembed_thumbnail_play_button_color" : {
+											"color" : "#ffffff"
+										  }
+										},
+										"video_accent_color" : "primary",
+										"video_poster" : {
+										  "alt" : "Sprocket Rocket Demo",
+										  "size_type" : "exact",
+										  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+										},
+										"video_type" : "html_video"
+									  }
+									} ],
+									design_settings={
+									  "background_color" : "dark",
+									  "text_color" : "white",
+									  "top_bottom_padding" : "full"
+									},
+									heading=[ {
+									  "heading" : "Write Long-Form Content 5X Faster In Boss Mode",
+									  "heading_align" : "auto",
+									  "heading_color" : "auto",
+									  "heading_color_custom" : {
+										"color" : "#30343b",
+										"opacity" : 100
+									  },
+									  "heading_display_size" : "h1",
+									  "heading_size" : "h2"
+									} ]
+								  %}
+								  {% end_dnd_module %}
+								{% end_dnd_row %}
+								{% dnd_row %}
+								  {% dnd_module
+									path="../../custom-modules/SR Two Col 03",
+									offset=0,
+									width=12,
+									column=[ {
+									  "add_to_lightbox" : false,
+									  "background_video_design" : "none",
+									  "col_image" : {
+										"alt" : "privacy-optimized",
+										"height" : 462,
+										"loading" : "lazy",
+										"max_height" : 60,
+										"max_width" : 78,
+										"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/privacy-optimized.svg",
+										"width" : 600
+									  },
+									  "col_media_type" : "video",
+									  "col_overlay_color" : {
+										"color" : "#000000",
+										"opacity" : 50
+									  },
+									  "col_text_align" : "auto",
+									  "custom_accent_color" : {
+										"color" : "#000000",
+										"opacity" : 20
+									  },
+									  "custom_column_size" : false,
+									  "image_link" : {
+										"no_follow" : false,
+										"open_in_new_tab" : false,
+										"url" : {
+										  "type" : "EXTERNAL"
+										}
+									  },
+									  "lead_text" : false,
+									  "text_color" : "auto",
+									  "video" : {
+										"autoplay" : true,
+										"background_video_design" : "none",
+										"custom_accent_color" : {
+										  "color" : "#000000",
+										  "opacity" : 20
+										},
+										"embed_field" : {
+										  "source_type" : "oembed"
+										},
+										"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+										"loop" : true,
+										"muted" : true,
+										"oembed_thumbnail" : {
+										  "loading" : "disabled",
+										  "src" : ""
+										},
+										"placeholder_fields" : {
+										  "placeholder_description" : "Select a video type in the sidebar.",
+										  "placeholder_title" : "No video selected"
+										},
+										"show_controls" : true,
+										"style_options" : {
+										  "oembed_thumbnail_play_button_color" : {
+											"color" : "#ffffff"
+										  }
+										},
+										"video_accent_color" : "primary",
+										"video_poster" : {
+										  "alt" : "Sprocket Rocket Demo",
+										  "size_type" : "exact",
+										  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+										},
+										"video_type" : "html_video"
+									  },
+									  "video_accent_color" : "primary"
+									}, {
+									  "add_to_lightbox" : false,
+									  "background_video_design" : "none",
+									  "col_content" : "<p><span>Easily switch between Jasper's 50+ copywriting skills such as the blog introduction and storyteller to build the perfect piece of content in just a few minutes.</span></p>",
+									  "col_media_type" : "none",
+									  "col_overlay_color" : {
+										"color" : "#000000",
+										"opacity" : 50
+									  },
+									  "col_size" : "col-md-5 offset-md-1",
+									  "col_text_align" : "auto",
+									  "column_size" : [ {
+										"column_breakpoint" : "md",
+										"column_offset" : "1",
+										"column_width" : "5"
+									  } ],
+									  "ctas" : [ ],
+									  "custom_accent_color" : {
+										"color" : "#000000",
+										"opacity" : 20
+									  },
+									  "custom_column_size" : true,
+									  "heading" : [ {
+										"heading" : "Build content fast by using multiple copywriting skills in one document.",
+										"heading_align" : "auto",
+										"heading_color" : "auto",
+										"heading_color_custom" : {
+										  "color" : "#30343b",
+										  "opacity" : 100
+										},
+										"heading_display_size" : "auto",
+										"heading_size" : "h3"
+									  } ],
+									  "image_link" : {
+										"no_follow" : false,
+										"open_in_new_tab" : false,
+										"url" : {
+										  "type" : "EXTERNAL"
+										}
+									  },
+									  "lead_text" : false,
+									  "text_color" : "auto",
+									  "video" : {
+										"autoplay" : true,
+										"background_video_design" : "none",
+										"custom_accent_color" : {
+										  "color" : "#000000",
+										  "opacity" : 20
+										},
+										"embed_field" : {
+										  "source_type" : "oembed"
+										},
+										"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+										"loop" : true,
+										"muted" : true,
+										"oembed_thumbnail" : {
+										  "loading" : "disabled",
+										  "src" : ""
+										},
+										"placeholder_fields" : {
+										  "placeholder_description" : "Select a video type in the sidebar.",
+										  "placeholder_title" : "No video selected"
+										},
+										"show_controls" : true,
+										"style_options" : {
+										  "oembed_thumbnail_play_button_color" : {
+											"color" : "#ffffff"
+										  }
+										},
+										"video_accent_color" : "primary",
+										"video_poster" : {
+										  "alt" : "Sprocket Rocket Demo",
+										  "size_type" : "exact",
+										  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+										},
+										"video_type" : "html_video"
+									  },
+									  "video_accent_color" : "primary"
+									} ],
+									design_settings={
+									  "background_color" : "dark",
+									  "text_color" : "white",
+									  "top_bottom_padding" : "zero"
+									}
+								  %}
+								  {% end_dnd_module %}
+								{% end_dnd_row %}
+								{% dnd_row %}
+								  {% dnd_module
+									path="../../custom-modules/SR Two Col 04",
+									offset=0,
+									width=12,
+									column=[ {
+									  "add_to_lightbox" : false,
+									  "col_content" : "<p><span>When you write a lot of content, staying organized is key. Now it's easy for you and your team to switch between different projects and manage multiple clients.</span></p>",
+									  "col_media_type" : "none",
+									  "col_overlay_color" : {
+										"color" : "#000000",
+										"opacity" : 50
+									  },
+									  "col_text_align" : "auto",
+									  "column_size" : [ {
+										"column_breakpoint" : "md",
+										"column_offset" : "0",
+										"column_order" : 1,
+										"column_width" : "5"
+									  }, {
+										"column_breakpoint" : "sm",
+										"column_offset" : "0",
+										"column_order" : 2,
+										"column_width" : "12"
+									  } ],
+									  "ctas" : [ ],
+									  "custom_column_size" : true,
+									  "heading" : [ {
+										"heading" : "Keep your team organized with folders for your clients and multiple projects",
+										"heading_align" : "auto",
+										"heading_color" : "auto",
+										"heading_color_custom" : {
+										  "color" : "#30343b",
+										  "opacity" : 100
+										},
+										"heading_display_size" : "auto",
+										"heading_size" : "h3"
+									  } ],
+									  "image_link" : {
+										"no_follow" : false,
+										"open_in_new_tab" : false,
+										"url" : {
+										  "type" : "EXTERNAL"
+										}
+									  },
+									  "lead_text" : false,
+									  "text_color" : "auto",
+									  "video" : {
+										"autoplay" : true,
+										"background_video_design" : "none",
+										"custom_accent_color" : {
+										  "color" : "#000000",
+										  "opacity" : 20
+										},
+										"embed_field" : {
+										  "source_type" : "oembed"
+										},
+										"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+										"loop" : true,
+										"muted" : true,
+										"oembed_thumbnail" : {
+										  "loading" : "disabled",
+										  "src" : ""
+										},
+										"placeholder_fields" : {
+										  "placeholder_description" : "Select a video type in the sidebar.",
+										  "placeholder_title" : "No video selected"
+										},
+										"show_controls" : true,
+										"style_options" : {
+										  "oembed_thumbnail_play_button_color" : {
+											"color" : "#ffffff"
+										  }
+										},
+										"video_accent_color" : "primary",
+										"video_poster" : {
+										  "alt" : "Sprocket Rocket Demo",
+										  "size_type" : "exact",
+										  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+										},
+										"video_type" : "html_video"
+									  }
+									}, {
+									  "add_to_lightbox" : false,
+									  "col_image" : {
+										"alt" : "jasper-feature",
+										"height" : 420,
+										"loading" : "lazy",
+										"max_height" : 420,
+										"max_width" : 800,
+										"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/jasper-feature.jpeg",
+										"width" : 800
+									  },
+									  "col_media_type" : "image",
+									  "col_overlay_color" : {
+										"color" : "#000000",
+										"opacity" : 50
+									  },
+									  "col_text_align" : "auto",
+									  "column_size" : [ {
+										"column_breakpoint" : "md",
+										"column_offset" : "1",
+										"column_order" : 2,
+										"column_width" : "6"
+									  }, {
+										"column_breakpoint" : "sm",
+										"column_offset" : "0",
+										"column_order" : 1,
+										"column_width" : "12"
+									  } ],
+									  "custom_column_size" : true,
+									  "image_link" : {
+										"no_follow" : false,
+										"open_in_new_tab" : false,
+										"url" : {
+										  "type" : "EXTERNAL"
+										}
+									  },
+									  "lead_text" : false,
+									  "text_color" : "auto",
+									  "video" : {
+										"autoplay" : true,
+										"background_video_design" : "none",
+										"custom_accent_color" : {
+										  "color" : "#000000",
+										  "opacity" : 20
+										},
+										"embed_field" : {
+										  "source_type" : "oembed"
+										},
+										"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+										"loop" : true,
+										"muted" : true,
+										"oembed_thumbnail" : {
+										  "loading" : "disabled",
+										  "src" : ""
+										},
+										"placeholder_fields" : {
+										  "placeholder_description" : "Select a video type in the sidebar.",
+										  "placeholder_title" : "No video selected"
+										},
+										"show_controls" : true,
+										"style_options" : {
+										  "oembed_thumbnail_play_button_color" : {
+											"color" : "#ffffff"
+										  }
+										},
+										"video_accent_color" : "primary",
+										"video_poster" : {
+										  "alt" : "Sprocket Rocket Demo",
+										  "size_type" : "exact",
+										  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+										},
+										"video_type" : "html_video"
+									  }
+									} ],
+									design_settings={
+									  "background_color" : "dark",
+									  "text_color" : "white",
+									  "top_bottom_padding" : "full"
+									}
+								  %}
+								  {% end_dnd_module %}
+								{% end_dnd_row %}
+								{% dnd_row %}
+								  {% dnd_module
+									path="../../custom-modules/SR Two Col 03",
+									offset=0,
+									width=12,
+									column=[ {
+									  "add_to_lightbox" : false,
+									  "background_video_design" : "none",
+									  "col_content" : "",
+									  "col_image" : {
+										"alt" : "jasper-optimize",
+										"height" : 420,
+										"loading" : "lazy",
+										"max_height" : 420,
+										"max_width" : 800,
+										"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/jasper-optimize.png",
+										"width" : 800
+									  },
+									  "col_media_type" : "image",
+									  "col_overlay_color" : {
+										"color" : "#000000",
+										"opacity" : 50
+									  },
+									  "col_text_align" : "auto",
+									  "custom_accent_color" : {
+										"color" : "#000000",
+										"opacity" : 20
+									  },
+									  "custom_column_size" : false,
+									  "image_link" : {
+										"no_follow" : false,
+										"open_in_new_tab" : false,
+										"url" : {
+										  "type" : "EXTERNAL"
+										}
+									  },
+									  "lead_text" : false,
+									  "text_color" : "auto",
+									  "video" : {
+										"autoplay" : true,
+										"background_video_design" : "none",
+										"custom_accent_color" : {
+										  "color" : "#000000",
+										  "opacity" : 20
+										},
+										"embed_field" : {
+										  "source_type" : "oembed"
+										},
+										"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+										"loop" : true,
+										"muted" : true,
+										"oembed_thumbnail" : {
+										  "loading" : "disabled",
+										  "src" : ""
+										},
+										"placeholder_fields" : {
+										  "placeholder_description" : "Select a video type in the sidebar.",
+										  "placeholder_title" : "No video selected"
+										},
+										"show_controls" : true,
+										"style_options" : {
+										  "oembed_thumbnail_play_button_color" : {
+											"color" : "#ffffff"
+										  }
+										},
+										"video_accent_color" : "primary",
+										"video_poster" : {
+										  "alt" : "Sprocket Rocket Demo",
+										  "size_type" : "exact",
+										  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+										},
+										"video_type" : "html_video"
+									  },
+									  "video_accent_color" : "primary"
+									}, {
+									  "add_to_lightbox" : false,
+									  "background_video_design" : "none",
+									  "col_content" : "<p><span>Our integration with SurferSEO.com (not included) will guide you and Jasper to optimize your blog post to rank at the top of search results.</span></p>",
+									  "col_media_type" : "none",
+									  "col_overlay_color" : {
+										"color" : "#000000",
+										"opacity" : 50
+									  },
+									  "col_size" : "col-md-5 offset-md-1",
+									  "col_text_align" : "auto",
+									  "column_size" : [ {
+										"column_breakpoint" : "md",
+										"column_offset" : "1",
+										"column_width" : "5"
+									  } ],
+									  "ctas" : [ ],
+									  "custom_accent_color" : {
+										"color" : "#000000",
+										"opacity" : 20
+									  },
+									  "custom_column_size" : true,
+									  "heading" : [ {
+										"heading" : "Optimize content to rank for valuable keywords with our Surfer SEO partnership",
+										"heading_align" : "auto",
+										"heading_color" : "auto",
+										"heading_color_custom" : {
+										  "color" : "#30343b",
+										  "opacity" : 100
+										},
+										"heading_display_size" : "auto",
+										"heading_size" : "h3"
+									  } ],
+									  "image_link" : {
+										"no_follow" : false,
+										"open_in_new_tab" : false,
+										"url" : {
+										  "type" : "EXTERNAL"
+										}
+									  },
+									  "lead_text" : false,
+									  "text_color" : "auto",
+									  "video" : {
+										"autoplay" : true,
+										"background_video_design" : "none",
+										"custom_accent_color" : {
+										  "color" : "#000000",
+										  "opacity" : 20
+										},
+										"embed_field" : {
+										  "source_type" : "oembed"
+										},
+										"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+										"loop" : true,
+										"muted" : true,
+										"oembed_thumbnail" : {
+										  "loading" : "disabled",
+										  "src" : ""
+										},
+										"placeholder_fields" : {
+										  "placeholder_description" : "Select a video type in the sidebar.",
+										  "placeholder_title" : "No video selected"
+										},
+										"show_controls" : true,
+										"style_options" : {
+										  "oembed_thumbnail_play_button_color" : {
+											"color" : "#ffffff"
+										  }
+										},
+										"video_accent_color" : "primary",
+										"video_poster" : {
+										  "alt" : "Sprocket Rocket Demo",
+										  "size_type" : "exact",
+										  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+										},
+										"video_type" : "html_video"
+									  },
+									  "video_accent_color" : "primary"
+									} ],
+									design_settings={
+									  "background_color" : "dark",
+									  "text_color" : "white",
+									  "top_bottom_padding" : "zero"
+									}
+								  %}
+								  {% end_dnd_module %}
+								{% end_dnd_row %}
+								{% dnd_row %}
+								  {% dnd_module
+									path="../../custom-modules/SR Two Col 04",
+									offset=0,
+									width=12,
+									column=[ {
+									  "add_to_lightbox" : false,
+										"col_content" : "<p><span>Want to write your blog posts in perfect American English? Have customers in multiple countries? Look in our FAQ center to&nbsp;</span><a href='https://www.jasper.ai/languages'>see all 26 language Jasper knows</a><span>.</span></p>",
+									  "col_media_type" : "none",
+									  "col_overlay_color" : {
+										"color" : "#000000",
+										"opacity" : 50
+									  },
+									  "col_text_align" : "auto",
+									  "column_size" : [ {
+										"column_breakpoint" : "md",
+										"column_offset" : "0",
+										"column_order" : 1,
+										"column_width" : "5"
+									  }, {
+										"column_breakpoint" : "sm",
+										"column_offset" : "0",
+										"column_order" : 2,
+										"column_width" : "12"
+									  } ],
+									  "ctas" : [ ],
+									  "custom_column_size" : true,
+									  "heading" : [ {
+										"heading" : "Write and translate to 25 different languages",
+										"heading_align" : "auto",
+										"heading_color" : "auto",
+										"heading_color_custom" : {
+										  "color" : "#30343b",
+										  "opacity" : 100
+										},
+										"heading_display_size" : "auto",
+										"heading_size" : "h3"
+									  } ],
+									  "image_link" : {
+										"no_follow" : false,
+										"open_in_new_tab" : false,
+										"url" : {
+										  "type" : "EXTERNAL"
+										}
+									  },
+									  "lead_text" : false,
+									  "text_color" : "auto",
+									  "video" : {
+										"autoplay" : true,
+										"background_video_design" : "none",
+										"custom_accent_color" : {
+										  "color" : "#000000",
+										  "opacity" : 20
+										},
+										"embed_field" : {
+										  "source_type" : "oembed"
+										},
+										"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+										"loop" : true,
+										"muted" : true,
+										"oembed_thumbnail" : {
+										  "loading" : "disabled",
+										  "src" : ""
+										},
+										"placeholder_fields" : {
+										  "placeholder_description" : "Select a video type in the sidebar.",
+										  "placeholder_title" : "No video selected"
+										},
+										"show_controls" : true,
+										"style_options" : {
+										  "oembed_thumbnail_play_button_color" : {
+											"color" : "#ffffff"
+										  }
+										},
+										"video_accent_color" : "primary",
+										"video_poster" : {
+										  "alt" : "Sprocket Rocket Demo",
+										  "size_type" : "exact",
+										  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+										},
+										"video_type" : "html_video"
+									  }
+									}, {
+									  "add_to_lightbox" : false,
+									  "col_image" : {
+										"height" : "450",
+										"loading" : "lazy",
+										"src" : "https://f.hubspotusercontent20.net/hub/275827/hubfs/sr-assets/images/sr-two-col-04-1.jpg",
+										"width" : "600"
+									  },
+									  "col_media_type" : "video",
+									  "col_overlay_color" : {
+										"color" : "#000000",
+										"opacity" : 50
+									  },
+									  "col_text_align" : "auto",
+									  "column_size" : [ {
+										"column_breakpoint" : "md",
+										"column_offset" : "1",
+										"column_order" : 2,
+										"column_width" : "6"
+									  }, {
+										"column_breakpoint" : "sm",
+										"column_offset" : "0",
+										"column_order" : 1,
+										"column_width" : "12"
+									  } ],
+									  "custom_column_size" : true,
+									  "image_link" : {
+										"no_follow" : false,
+										"open_in_new_tab" : false,
+										"url" : {
+										  "type" : "EXTERNAL"
+										}
+									  },
+									  "lead_text" : false,
+									  "text_color" : "auto",
+									  "video" : {
+										"autoplay" : true,
+										"background_video_design" : "none",
+										"custom_accent_color" : {
+										  "color" : "#000000",
+										  "opacity" : 20
+										},
+										"embed_field" : {
+										  "source_type" : "oembed"
+										},
+										"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+										"loop" : true,
+										"muted" : true,
+										"oembed_thumbnail" : {
+										  "loading" : "disabled",
+										  "src" : ""
+										},
+										"placeholder_fields" : {
+										  "placeholder_description" : "Select a video type in the sidebar.",
+										  "placeholder_title" : "No video selected"
+										},
+										"show_controls" : true,
+										"style_options" : {
+										  "oembed_thumbnail_play_button_color" : {
+											"color" : "#ffffff"
+										  }
+										},
+										"video_accent_color" : "primary",
+										"video_poster" : {
+										  "alt" : "Sprocket Rocket Demo",
+										  "size_type" : "exact",
+										  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+										},
+										"video_type" : "html_video"
+									  }
+									} ],
+									design_settings={
+									  "background_color" : "dark",
+									  "background_gradient" : {
+										"colors" : [ {
+										  "color" : {
+											"a" : 1,
+											"b" : 126,
+											"g" : 78,
+											"r" : 232
+										  }
+										}, {
+										  "color" : {
+											"a" : 1,
+											"b" : 69,
+											"g" : 27,
+											"r" : 164
+										  }
+										} ],
+										"side_or_corner" : {
+										  "verticalSide" : "BOTTOM"
+										}
+									  },
+									  "background_option" : "color",
+									  "text_color" : "white",
+									  "top_bottom_padding" : "full"
+									}
+								  %}
+								  {% end_dnd_module %}
+								{% end_dnd_row %}
+								{% dnd_row %}
+								  {% dnd_module
+									path="../../custom-modules/SR Three Col 02",
+									offset=0,
+									width=12,
+									column=[ {
+									  "add_to_lightbox" : false,
+									  "col_content" : "<p><span>Automate your copywriting to get back to scaling your biz.</span></p>",
+									  "col_image" : {
+										"height" : "100",
+										"loading" : "lazy",
+										"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/images/bulb.svg",
+										"width" : "100"
+									  },
+									  "col_media_type" : "image",
+									  "col_overlay_color" : {
+										"color" : "#000000",
+										"opacity" : 50
+									  },
+									  "col_text_align" : "center",
+									  "custom_column_size" : false,
+									  "heading" : [ {
+										"heading" : "Entrepreneurs",
+										"heading_align" : "auto",
+										"heading_color" : "auto",
+										"heading_color_custom" : {
+										  "color" : "#30343b",
+										  "opacity" : 100
+										},
+										"heading_display_size" : "auto",
+										"heading_size" : "h4"
+									  } ],
+									  "image_link" : {
+										"no_follow" : false,
+										"open_in_new_tab" : false,
+										"url" : {
+										  "type" : "EXTERNAL"
+										}
+									  },
+									  "lead_text" : false,
+									  "text_color" : "auto",
+									  "video" : {
+										"autoplay" : true,
+										"background_video_design" : "none",
+										"custom_accent_color" : {
+										  "color" : "#000000",
+										  "opacity" : 20
+										},
+										"embed_field" : {
+										  "source_type" : "oembed"
+										},
+										"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+										"loop" : true,
+										"muted" : true,
+										"oembed_thumbnail" : {
+										  "loading" : "disabled",
+										  "src" : ""
+										},
+										"placeholder_fields" : {
+										  "placeholder_description" : "Select a video type in the sidebar.",
+										  "placeholder_title" : "No video selected"
+										},
+										"show_controls" : true,
+										"style_options" : {
+										  "oembed_thumbnail_play_button_color" : {
+											"color" : "#ffffff"
+										  }
+										},
+										"video_accent_color" : "primary",
+										"video_poster" : {
+										  "alt" : "Sprocket Rocket Demo",
+										  "size_type" : "exact",
+										  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+										},
+										"video_type" : "html_video"
+									  }
+									}, {
+									  "add_to_lightbox" : false,
+									  "col_content" : "<p><span>Produce high-quality, original content Google LOVES.</span></p>",
+									  "col_image" : {
+										"height" : "100",
+										"loading" : "lazy",
+										"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/images/badge.png",
+										"width" : "100"
+									  },
+									  "col_media_type" : "image",
+									  "col_overlay_color" : {
+										"color" : "#000000",
+										"opacity" : 50
+									  },
+									  "col_text_align" : "center",
+									  "custom_column_size" : false,
+									  "heading" : [ {
+										"heading" : "SEO & Content Writers",
+										"heading_align" : "auto",
+										"heading_color" : "auto",
+										"heading_color_custom" : {
+										  "color" : "#30343b",
+										  "opacity" : 100
+										},
+										"heading_display_size" : "auto",
+										"heading_size" : "h4"
+									  } ],
+									  "image_link" : {
+										"no_follow" : false,
+										"open_in_new_tab" : false,
+										"url" : {
+										  "type" : "EXTERNAL"
+										}
+									  },
+									  "lead_text" : false,
+									  "text_color" : "auto",
+									  "video" : {
+										"autoplay" : true,
+										"background_video_design" : "none",
+										"custom_accent_color" : {
+										  "color" : "#000000",
+										  "opacity" : 20
+										},
+										"embed_field" : {
+										  "source_type" : "oembed"
+										},
+										"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+										"loop" : true,
+										"muted" : true,
+										"oembed_thumbnail" : {
+										  "loading" : "disabled",
+										  "src" : ""
+										},
+										"placeholder_fields" : {
+										  "placeholder_description" : "Select a video type in the sidebar.",
+										  "placeholder_title" : "No video selected"
+										},
+										"show_controls" : true,
+										"style_options" : {
+										  "oembed_thumbnail_play_button_color" : {
+											"color" : "#ffffff"
+										  }
+										},
+										"video_accent_color" : "primary",
+										"video_poster" : {
+										  "alt" : "Sprocket Rocket Demo",
+										  "size_type" : "exact",
+										  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+										},
+										"video_type" : "html_video"
+									  }
+									}, {
+									  "add_to_lightbox" : false,
+									  "col_content" : "<p><span>Deliver client work in warp speed with assistance from Jasper.</span></p>",
+									  "col_image" : {
+										"height" : "100",
+										"loading" : "lazy",
+										"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/images/plant.svg",
+										"width" : "100"
+									  },
+									  "col_media_type" : "image",
+									  "col_overlay_color" : {
+										"color" : "#000000",
+										"opacity" : 50
+									  },
+									  "col_text_align" : "center",
+									  "custom_column_size" : false,
+									  "heading" : [ {
+										"heading" : "Agencies",
+										"heading_align" : "auto",
+										"heading_color" : "auto",
+										"heading_color_custom" : {
+										  "color" : "#30343b",
+										  "opacity" : 100
+										},
+										"heading_display_size" : "auto",
+										"heading_size" : "h4"
+									  } ],
+									  "image_link" : {
+										"no_follow" : false,
+										"open_in_new_tab" : false,
+										"url" : {
+										  "type" : "EXTERNAL"
+										}
+									  },
+									  "lead_text" : false,
+									  "text_color" : "auto",
+									  "video" : {
+										"autoplay" : true,
+										"background_video_design" : "none",
+										"custom_accent_color" : {
+										  "color" : "#000000",
+										  "opacity" : 20
+										},
+										"embed_field" : {
+										  "source_type" : "oembed"
+										},
+										"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+										"loop" : true,
+										"muted" : true,
+										"oembed_thumbnail" : {
+										  "loading" : "disabled",
+										  "src" : ""
+										},
+										"placeholder_fields" : {
+										  "placeholder_description" : "Select a video type in the sidebar.",
+										  "placeholder_title" : "No video selected"
+										},
+										"show_controls" : true,
+										"style_options" : {
+										  "oembed_thumbnail_play_button_color" : {
+											"color" : "#ffffff"
+										  }
+										},
+										"video_accent_color" : "primary",
+										"video_poster" : {
+										  "alt" : "Sprocket Rocket Demo",
+										  "size_type" : "exact",
+										  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+										},
+										"video_type" : "html_video"
+									  }
+									} ],
+									design_settings={
+									  "background_color" : "dark",
+									  "text_color" : "white",
+									  "top_bottom_padding" : "zero"
+									},
+									heading=[ {
+									  "heading" : "Who is Boss Mode a perfect fit for?",
+									  "heading_align" : "center",
+									  "heading_color" : "auto",
+									  "heading_color_custom" : {
+										"color" : "#30343b",
+										"opacity" : 100
+									  },
+									  "heading_display_size" : "h2",
+									  "heading_size" : "h3"
+									} ]
+								  %}
+								  {% end_dnd_module %}
+								{% end_dnd_row %}
+								{% dnd_row %}
+								  {% dnd_module
+									path="../../custom-modules/SR Cards Pricing 03",
+									offset=0,
+									width=12,
+									design_settings={
+									  "background_color" : "dark",
+									  "background_option" : "color"
+									},
+									heading=[ {
+									  "heading" : "Become the boss. Crank out content, fast.",
+									  "heading_align" : "auto",
+									  "heading_color" : "auto",
+									  "heading_color_custom" : {
+										"color" : "#30343b",
+										"opacity" : 100
+									  },
+									  "heading_display_size" : "auto",
+									  "heading_size" : "h2"
+									} ],
+									pricing_card={
+									  "ctas" : [ {
+										"button_text" : "Sign Up",
+										"cta" : "",
+										"cta_size" : "md",
+										"cta_style" : "primary",
+										"cta_type" : "btn",
+										"link" : {
+										  "no_follow" : false,
+										  "open_in_new_tab" : false,
+										  "url" : {
+											"href" : "#",
+											"type" : "EXTERNAL"
+										  }
+										},
+										"modal_target" : "demo"
+									  }, {
+										"add_icon" : false,
+										"button_text" : "Upgrade",
+										"cta" : "",
+										"cta_size" : "md",
+										"cta_style" : "tertiary",
+										"cta_type" : "btn",
+										"default" : {
+										  "background" : {
+											"color" : "#0c63ff",
+											"opacity" : 100
+										  },
+										  "border" : {
+											"color" : "#0c63ff",
+											"opacity" : 100
+										  },
+										  "text" : {
+											"color" : "#fff",
+											"opacity" : 100
+										  }
+										},
+										"hover" : {
+										  "background" : {
+											"color" : "#5a93fd",
+											"opacity" : 100
+										  },
+										  "border" : {
+											"color" : "#5a93fd",
+											"opacity" : 100
+										  },
+										  "text" : {
+											"color" : "#fff",
+											"opacity" : 100
+										  }
+										},
+										"icon" : {
+										  "icon" : {
+											"name" : "arrow-right",
+											"type" : "SOLID",
+											"unicode" : "f061"
+										  },
+										  "position" : "right"
+										},
+										"link" : {
+										  "no_follow" : false,
+										  "open_in_new_tab" : false,
+										  "url" : {
+											"href" : "#",
+											"type" : "EXTERNAL"
+										  }
+										},
+										"modal_target" : "demo"
+									  } ],
+									  "pricing_description" : "<p><span>Write long content like blog articles and social media posts 5X faster.&nbsp;</span><span>7-day Money Back Guarantee</span></p>",
+									  "pricing_heading" : [ {
+										"heading" : "Boss Mode",
+										"heading_align" : "auto",
+										"heading_color" : "auto",
+										"heading_color_custom" : {
+										  "color" : "#30343b",
+										  "opacity" : 100
+										},
+										"heading_display_size" : "auto",
+										"heading_size" : "h4"
+									  } ],
+									  "pricing_value" : "$59/mo"
+									}
+								  %}
+									{% module_attribute "description" %}
+
+									{% end_module_attribute %}
+									{% module_attribute "features_description" %}
+									  <p><img src="https://assets-global.website-files.com/60e5f2de011b86acebc30db7/60e5f2de011b860416c31097_Reviews%20Stars.svg" loading="lazy" alt="" width="200" style="width: 200px; height: auto; max-width: 100%;" height="17"></p>
+									  <div>Rated 4.9/5 stars in 3,000+ reviews</div>
+									{% end_module_attribute %}
+								  {% end_dnd_module %}
+								{% end_dnd_row %}
+								{% dnd_row %}
+								  {% dnd_module
+									path="../../custom-modules/SR FAQ 01",
+									offset=0,
+									width=12,
+									design_settings={
+									  "background_color" : "dark",
+									  "text_color" : "white",
+									  "top_bottom_padding" : "zero"
+									},
+									heading=[ {
+									  "heading" : "Questions? Answers.",
+									  "heading_align" : "auto",
+									  "heading_color" : "auto",
+									  "heading_color_custom" : {
+										"color" : "#30343b",
+										"opacity" : 100
+									  },
+									  "heading_display_size" : "auto",
+									  "heading_size" : "h2"
+									} ]
+								  %}
+									{% module_attribute "description" %}
+									  <p><span>Don't see your question? Email hey@jasper.ai</span></p>
+									{% end_module_attribute %}
+								  {% end_dnd_module %}
+								{% end_dnd_row %}
+								{% dnd_row %}
+								  {% dnd_module
+									path="../../custom-modules/SR Cards Slider 01",
+									offset=0,
+									width=12,
+									design_settings={
+									  "background_color" : "dark",
+									  "text_color" : "white"
+									},
+									heading=[ {
+									  "heading" : "REAL CUSTOMER STORIES",
+									  "heading_align" : "auto",
+									  "heading_color" : "black",
+									  "heading_color_custom" : {
+										"color" : "#30343b",
+										"opacity" : 100
+									  },
+									  "heading_display_size" : "p",
+									  "heading_size" : "h6"
+									}, {
+									  "heading" : "Customer LOVE BossMode for speed, scale, and SEO",
+									  "heading_align" : "auto",
+									  "heading_color" : "black",
+									  "heading_color_custom" : {
+										"color" : "#30343b",
+										"opacity" : 100
+									  },
+									  "heading_display_size" : "auto",
+									  "heading_size" : "h3"
+									} ],
+									slides=[ {
+										"content" : "<p><img src='https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/testimonial1.jpeg' alt='testimonial1' width='500' height='585' loading='lazy' style='height: auto; max-width: 100%; width: 500px;'></p>\n<p>&nbsp;</p>",
+										"header" : "",
+										"image" : {
+										  "src" : ""
+										}
+									  }, {
+										"content" : "<p><img src='https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/testimonial1.jpeg' alt='testimonial1' width='500' height='585' loading='lazy' style='height: auto; max-width: 100%; width: 500px;'></p>\n<p>&nbsp;</p>",
+										"header" : "",
+										"image" : {
+										  "src" : ""
+										}
+									  }, {
+										"content" : "<p><img src='https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/testimonial1.jpeg' alt='testimonial1' width='500' height='585' loading='lazy' style='height: auto; max-width: 100%; width: 500px;'></p>\n<p>&nbsp;</p>",
+										"header" : "",
+										"image" : {
+										  "src" : ""
+										}
+									  } ]
+								  %}
+									{% module_attribute "description" %}
+									  <p><span style="color: #000000;">Read reviews why 50,000+ marketers, writers, and entrepreneurs say their favorite content tool is Jasper.</span></p>
+									  <div><a href="https://www.trustpilot.com/review/www.jasper.ai" target="_blank" rel="noopener"><img src="https://assets-global.website-files.com/60e5f2de011b86acebc30db7/612d2c627b57360e314bce37_Trustpilot%20Reviews.svg" loading="lazy" alt="Jarvis Trustpilot Reviews" width="150" style="width: 150px; height: auto; max-width: 100%;" height="31"></a></div>
+									  <div><a href="https://www.g2.com/products/jasper-ai/reviews" target="_blank" rel="noopener"><img src="https://assets-global.website-files.com/60e5f2de011b86acebc30db7/612d30c67782b4244a3193d1_G2%20Review.png" loading="lazy" srcset="https://assets-global.website-files.com/60e5f2de011b86acebc30db7/612d30c67782b4244a3193d1_G2%20Review-p-500.png 500w, https://assets-global.website-files.com/60e5f2de011b86acebc30db7/612d30c67782b4244a3193d1_G2%20Review.png 562w" sizes="100vw" alt="Jarvis G2 Reviews" width="150" style="width: 150px; height: auto; max-width: 100%;" height="32"></a></div>
+									  <div><a href="https://www.capterra.com/p/217242/Jasper/" target="_blank" rel="noopener"><img src="https://assets-global.website-files.com/60e5f2de011b86acebc30db7/612d2c62603b5e3ba3e7acc9_Capterra%20Reviews.svg" loading="lazy" alt="Jarvis Capterra Reviews" width="150" style="width: 150px; height: auto; max-width: 100%;" height="32"></a></div>
+									{% end_module_attribute %}
+								  {% end_dnd_module %}
+								{% end_dnd_row %}
+								{% dnd_row %}
+								  {% dnd_module
+									path="../../custom-modules/SR One Col 01",
+									offset=0,
+									width=12,
+									column=[ {
+									  "add_to_lightbox" : false,
+									  "col_content" : "<p><span>No other AI writing assistants have the ability to write blog content. Activate</span><br><span>the full power of Jasper by upgrading to BossMode.</span></p>",
+									  "col_media_type" : "none",
+									  "col_overlay_color" : {
+										"color" : "#000000",
+										"opacity" : 50
+									  },
+									  "col_text_align" : "auto",
+									  "ctas" : [ {
+										"add_icon" : false,
+										"button_text" : "Get a Demo",
+										"cta_size" : "md",
+										"cta_style" : "primary",
+										"cta_type" : "btn",
+										"default" : {
+										  "background" : {
+											"color" : "#0c63ff",
+											"opacity" : 100
+										  },
+										  "border" : {
+											"color" : "#0c63ff",
+											"opacity" : 100
+										  },
+										  "text" : {
+											"color" : "#fff",
+											"opacity" : 100
+										  }
+										},
+										"hover" : {
+										  "background" : {
+											"color" : "#5a93fd",
+											"opacity" : 100
+										  },
+										  "border" : {
+											"color" : "#5a93fd",
+											"opacity" : 100
+										  },
+										  "text" : {
+											"color" : "#fff",
+											"opacity" : 100
+										  }
+										},
+										"icon" : {
+										  "icon" : {
+											"name" : "arrow-right",
+											"type" : "SOLID",
+											"unicode" : "f061"
+										  },
+										  "position" : "right"
+										},
+										"link" : {
+										  "no_follow" : false,
+										  "open_in_new_tab" : false,
+										  "url" : {
+											"href" : "#",
+											"type" : "EXTERNAL"
+										  }
+										},
+										"modal_target" : "demo"
+									  } ],
+									  "custom_column_size" : false,
+									  "heading" : [ {
+										"heading" : "Try the only AI that can write high-quality long content",
+										"heading_align" : "center",
+										"heading_color" : "auto",
+										"heading_color_custom" : {
+										  "color" : "#30343b",
+										  "opacity" : 100
+										},
+										"heading_display_size" : "h1",
+										"heading_size" : "h2"
+									  } ],
+									  "image_link" : {
+										"no_follow" : false,
+										"open_in_new_tab" : false,
+										"url" : {
+										  "type" : "EXTERNAL"
+										}
+									  },
+									  "lead_text" : false,
+									  "text_color" : "auto",
+									  "video" : {
+										"autoplay" : true,
+										"background_video_design" : "none",
+										"custom_accent_color" : {
+										  "color" : "#000000",
+										  "opacity" : 20
+										},
+										"embed_field" : {
+										  "source_type" : "oembed"
+										},
+										"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+										"loop" : true,
+										"muted" : true,
+										"oembed_thumbnail" : {
+										  "loading" : "disabled",
+										  "src" : ""
+										},
+										"placeholder_fields" : {
+										  "placeholder_description" : "Select a video type in the sidebar.",
+										  "placeholder_title" : "No video selected"
+										},
+										"show_controls" : true,
+										"style_options" : {
+										  "oembed_thumbnail_play_button_color" : {
+											"color" : "#ffffff"
+										  }
+										},
+										"video_accent_color" : "primary",
+										"video_poster" : {
+										  "alt" : "Sprocket Rocket Demo",
+										  "size_type" : "exact",
+										  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+										},
+										"video_type" : "html_video"
+									  }
+									} ],
+									design_settings={
+									  "background_color" : "dark",
+									  "container_width" : "wide",
+									  "spacing" : {
+										"margin" : {
+										  "bottom" : {
+											"units" : "rem",
+											"value" : 0
+										  },
+										  "top" : {
+											"units" : "rem",
+											"value" : 0
+										  }
+										},
+										"padding" : {
+										  "bottom" : {
+											"units" : "rem",
+											"value" : 6.25
+										  },
+										  "left" : {
+											"units" : "rem",
+											"value" : 0
+										  },
+										  "right" : {
+											"units" : "rem",
+											"value" : 0
+										  },
+										  "top" : {
+											"units" : "px",
+											"value" : 0
+										  }
+										}
+									  },
+									  "text_align" : {
+										"text_align" : "CENTER"
+									  },
+									  "text_color" : "white",
+									  "top_bottom_padding" : "custom"
+									}
+								  %}
+								  {% end_dnd_module %}
+								{% end_dnd_row %}
+							  {% end_dnd_column %}
+							{% end_dnd_section %}
+			{% end_dnd_area %}
+		{% endblock body %}
+
+		{% block footer %}
+			{% boolean "enabled_site_footer" label='Enable Global Site Footer', value=true, export_to_template_context=True %}
+			{% if widget_data.enabled_site_footer.value %}
+				{% global_partial path="../partials/site_footer.html" %}
+			{% endif %}
+		{% endblock footer %}
+
+		{% include '../footer-includes.html' %}
+	</body>
+</html>

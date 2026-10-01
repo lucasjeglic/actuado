@@ -1,0 +1,23 @@
+{
+  "label" : "sprocket-rocket-pro child",
+  "preview_path" : null,
+  "screenshot_path" : "./images/sr-app.jpg",
+  "enable_domain_stylesheets" : false,
+  "is_available_for_new_content" : true,
+  "extends" : "sprocket-rocket-pro",
+  "responsive_breakpoints" : [ {
+    "mediaQuery" : "@media (max-width: 767px)",
+    "messages" : { },
+    "name" : "mobile",
+    "previewWidth" : {
+      "units" : "px",
+      "value" : 540
+    }
+  } ],
+  "version" : "2.0",
+  "author" : {
+    "name" : "",
+    "email" : ""
+  },
+  "hide_all_default_modules" : false
+}

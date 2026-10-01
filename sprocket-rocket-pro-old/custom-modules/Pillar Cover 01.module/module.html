@@ -1,0 +1,154 @@
+{% if module.enabled %}
+
+	{% import "../../templates/macros.html" as macros %}
+
+	{% set width_class =
+		module.design_settings.container_width == 'min' ? 'col-lg-6 offset-lg-3' :
+		module.design_settings.container_width == 'narrow' ? 'col-lg-8 offset-lg-2' :
+		module.design_settings.container_width == 'wide' ? 'col-lg-10 offset-lg-1' :
+		'col-lg-12'
+	%}
+
+	{% require_css %}
+		<style>
+			{{ macros.design_settings(name, module.design_settings) }}
+			.{{ name }} .sr-card {
+				{{ module.design_settings.card_styles.spacing.css }};
+				{%- if module.design_settings.card_styles.background_color == "gradient" -%}
+				background: {{ module.design_settings.card_styles.background_gradient.css }};
+				{%- elif module.design_settings.card_styles.background_color == "custom" -%}
+				background-color: {{ module.design_settings.card_styles.background_custom.css }};
+				{%- elif module.design_settings.card_styles.background_color != "auto" -%}
+				background-color: var(--{{ module.design_settings.card_styles.background_color }});
+				{%- endif -%}
+				{%- if module.design_settings.card_styles.text_color == "custom" %}
+				color: {{ module.design_settings.card_styles.text_color_custom.css }};
+				{%- endif -%}
+				{% if module.design_settings.card_styles.border.css %}
+				{{ module.design_settings.card_styles.border.css }};
+				{% endif %}
+				{% if module.design_settings.card_styles.border_radius >= 0 %}
+				border-radius: {{ module.design_settings.card_styles.border_radius }}px;
+				{% endif %}
+				{% if module.design_settings.card_styles.shadow %}
+				box-shadow: {{ "inset" if module.design_settings.card_styles.inset }} {{ module.design_settings.card_styles.horizontal ~ "px" }} {{ module.design_settings.card_styles.vertical ~ "px" }} {{ module.design_settings.card_styles.blur ~ "px" }} {{ module.design_settings.card_styles.spread ~ "px" }} {{ module.design_settings.card_styles.color.css }};
+				{% endif %}
+			}
+			.pillar-cover-01.{{ name }} label {
+				background: transparent;
+				position: relative;
+				padding: 1rem 1.813rem 1rem 1.813rem;
+				text-align: center;
+				font-size: 1rem;
+				border-radius: 3px;
+				overflow: hidden;
+				font-weight: 600;
+				border-top: 1px solid #F7751F;
+				border-left: 1px solid #F7751F;
+				border-right: 1px solid #F7751F;
+				margin-bottom:1.25rem;
+				{% if module.label_color == 'primary' %}
+				color: var(--primary);
+				border-color: var(--primary);
+				{% elif module.label_color == 'white' %}
+				color: #fff;
+				border-color: #fff;
+				{% elif module.label_color == 'light' %}
+				color: var(--light);
+				border-color: var(--light);
+				{% elif module.label_color == 'dark' %}
+				color: var(--dark);
+				border-color: var(--dark);
+				{% elif module.label_color == 'secondary' %}
+				color: var(--secondary);
+				border-color: var(--secondary);
+				{% else %}
+				color: #33323D;
+				border-color: #33323D;
+				{% endif %}
+			}
+			.pillar-cover-01.{{ name }} label:before,
+			.pillar-cover-01.{{ name }} label:after {
+				content: "";
+				width: 1.75rem;
+				height: 1px;
+				position: absolute;
+				bottom: 0;
+				background: #F7751F;
+				{% if module.label_color == 'primary' %}
+				background: var(--primary);
+				{% elif module.label_color == 'white' %}
+				background: #fff;
+				{% elif module.label_color == 'light' %}
+				background: var(--light);
+				{% elif module.label_color == 'dark' %}
+				background: var(--dark);
+				{% elif module.label_color == 'secondary' %}
+				background: var(--secondary);
+				{% else %}
+				background: #33323D;
+				{% endif %}
+			}
+			@media only screen and (min-width: 768px) {
+				{% if module.design_settings.full_height %}
+					.{{ name }} {
+						min-height: 100vh;
+					}
+				{% endif %}
+			}
+
+		</style>
+	{% end_require_css %}
+
+	<div class="pillar-cover-01 pillar-chapter-title {% if module.skip %}skip-toc{% endif %} {{ name }} d-flex align-items-center {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} text-{{ module.design_settings.text_color }} {{ macros.text_align(module.design_settings) }} prototype-no-background {% if module.class %}{{ module.class }}{% endif %} sr_module"  data-image="{{ module.design_settings.background_image.src }}" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+		{{ macros.module_bg_video(module) }}
+
+		<div class="{{ module.design_settings.layout }}">
+			{% if module.design_settings.container_width != 'max' %}
+			<div class="row">
+				<div class="{{ width_class }}">
+			{% endif %}
+
+					<div class="pillar-cover-inner-column sr-card sr-border">
+						<div class="row">
+							<div class="col-lg-10 offset-lg-1">
+								<label class="section-label">{{ module.chapter_label }}</label>
+								{% if module.heading || module.description || module.author_name %}
+								<div class="pillar-cover-text">
+									{{ macros.heading(module.heading)}}
+									{% if module.description %}
+									<div class="description {% if module.lead_text %} lead{% endif %}">{{ module.description}}</div>
+									{% endif %}
+									{{ macros.cta(module.ctas, 'sr-spacer-top-25') }}
+
+									{% if module.author_name %}
+									<div class="author-info">by
+										{% if module.author_link.url.href %}
+										<a {{ macros.link(module.author_link) }}>
+										{% endif %}
+
+										{{ module.author_name}}
+
+										{% if module.author_link.url.href %}
+										</a>
+										{% endif %}
+										{% if module.date %}
+										/ {{ module.date }}{% endif %}</div>
+										{% endif %}
+								</div>
+								{% endif %}
+							</div>
+						</div>
+
+
+					</div>
+
+
+
+			{% if module.design_settings.container_width != 'max' %}
+				</div>
+			</div>
+			{% endif %}
+		</div>
+	</div>
+{% endif %}

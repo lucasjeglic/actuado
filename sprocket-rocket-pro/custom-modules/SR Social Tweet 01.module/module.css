@@ -1,0 +1,47 @@
+.sr-social-tweet-01-content {
+    border-style: solid;
+    border-width: 1px;
+}
+
+.sr-social {
+  display: flex;
+  gap: 6px;
+  list-style: none;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.sr-social.horizontal {
+  flex-direction: row;
+}
+
+.sr-social.vertical {
+  flex-direction: column;
+}
+
+.sr-social a {
+  opacity: 1;
+  display: inline-flex;
+  transition: opacity .25s ease-in-out;
+  will-change: opacity;
+}
+
+.sr-social a:hover {
+  opacity: .75;
+}
+
+.sr-social :is(svg,g,path) {
+  color: var(--f);
+  fill: var(--f)
+}
+
+.icon-bg {
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  background: var(--b);
+  height: var(--h);
+  width: var(--w)
+}

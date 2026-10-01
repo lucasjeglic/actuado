@@ -1,0 +1,79 @@
+{% if module.enabled %}
+
+	{% import "../../templates/macros.html" as macros %}
+
+	{% set width_class =
+		module.design_settings.container_width == 'min' ? 'col-lg-6 offset-lg-3' :
+		module.design_settings.container_width == 'narrow' ? 'col-lg-8 offset-lg-2' :
+		module.design_settings.container_width == 'wide' ? 'col-lg-10 offset-lg-1' :
+		'col-lg-12'
+	%}
+
+	{% require_css %}
+	<style>
+		{{ macros.design_settings(name, module.design_settings) }}
+	</style>
+	{% end_require_css %}
+
+	<div class="sr-cards-team-03 {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+
+		{{ macros.module_bg_video(module) }}
+
+		<div class="{{ module.design_settings.layout }}">
+			{% if module.design_settings.container_width != 'max' %}
+			<div class="row">
+				<div class="{{ width_class }}">
+			{% endif %}
+					{% if module.heading || module.description || module.cta.cta_type != 'none'%}
+					<div class="intro-section sr-spacer-bottom-75 text-{{ module.design_settings.text_color }} {{ macros.text_align(module.design_settings) }}">
+						{{ macros.heading(module.heading) }}
+						{% if module.description %}
+						<div class="description{% if module.lead_text %} lead{% endif %}">{{ module.description}}</div>
+						{% endif %}
+						{{ macros.cta(module.ctas, 'sr-spacer-top-25') }}
+					</div>
+					{% endif %}
+					<div class="section-content">
+						<div class="row">
+							{% for item in module.card %}
+							<div class="{{ module.column_size }}">
+								<div class="team-card" tabindex="0">
+									<div class="card-user-img" role="img" aria-label="{{ item.team_name }}'s profile picture" style="background-image: url({{ item.team_image.src }})"></div>
+									<div class="card-text-wrapper">
+										<div class="card-content-wrapper text-left d-flex flex-column h-100 p-3">
+											{% if item.social_icons|length %}
+											<div class="social-links">
+												<ul class="social mb-3">
+													{% for item2 in item.social_icons %}
+													<li>
+														<a class="no-decoration" {{ macros.link(item2.social_link) }} role="link" aria-label="{{ item2.social_link.aria_label }}{{ ' (Opens in new tab)' if item2.social_link.open_in_new_tab }}">
+															{% icon
+															name="{{ item2.icon_field.name }}"
+															style="{{ item2.icon_field.type }}"
+															unicode="{{ item2.icon_field.unicode }}"
+															icon_set="{{ item2.icon_field.icon_set }}"
+															%}
+														</a>
+													</li>
+													{% endfor %}
+												</ul>
+											</div>
+											{% endif %}
+											<div class="mt-auto">
+												<h3 class="card-title h5">{{ item.team_name }}</h3>
+												<div class="card-text">{{ item.team_title }}</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+					{% if module.design_settings.container_width != 'max' %}
+				</div>
+			</div>
+			{% endif %}
+		</div>
+	</div>
+{% endif %}

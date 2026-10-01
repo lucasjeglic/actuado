@@ -1,0 +1,116 @@
+.sr-cards-team-04 .blaze-slider {
+	--slides-to-show: 3;
+	--slide-gap: 20px;
+}
+
+@media (max-width: 992px) {
+	.sr-cards-team-04 .blaze-slider.slider-false {
+		--slides-to-show: 3;
+	}
+	.sr-cards-team-04 .blaze-slider .blaze-track {
+		--slide-width: calc(33% - var(--slide-gap));
+        align-items: center;
+        justify-content: center;
+	}
+}
+
+@media (max-width: 767px) {
+	.sr-cards-team-04 .blaze-slider.slider-false {
+		--slides-to-show: 1;
+	}
+	.sr-cards-team-04 .blaze-slider .blaze-track {
+		--slide-width: 100%;
+	}
+}
+
+.sr-cards-team-04 .blaze-arrow {
+	color: var(--primary);
+	border-radius: 100%;
+	border: 2px solid var(--primary);
+	width: 2rem;
+	height: 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 500ms ease;
+	background: none;
+	background-color: #fff;
+	appearance: none;
+    -webkit-appearance: none;
+    padding: 0;
+}
+
+.sr-cards-team-04 .blaze-arrow {
+	position: absolute;
+	top: 50%;
+	font-size: 30px;
+	z-index: 1;
+	cursor: pointer;
+}
+
+.sr-cards-team-04 .blaze-arrow svg {
+	color: var(--primary);
+}
+
+.sr-cards-team-04 .blaze-arrow:hover svg {
+	color: #fff;
+}
+
+.sr-cards-team-04 .blaze-arrow:hover {
+	color: #fff;
+	background-color: var(--primary);
+}
+
+.sr-cards-team-04 .chevron-left {
+	left: 0;
+	transform: translateY(-50%) translateX(-50%);
+}
+
+.sr-cards-team-04 .chevron-right {
+	right: 0;
+	transform: translateY(-50%) translateX(50%);
+}
+
+.sr-cards-team-04 .sr-cards-team__name {
+	font-weight: 600;
+	margin-bottom: .625rem;
+	color: var(--heading);
+}
+
+.sr-cards-team-04 .content-wrapper > a {
+	color: inherit
+}
+
+.sr-cards-team-04 .sr-cards-team__image {
+	position: relative;
+}
+
+.sr-cards-team-04 .blaze-pagination button {
+	padding: 0 !important;
+}
+
+.sr-cards-team-04 .sr-cards-team__info {
+	background: rgba(255, 255, 255, .9);
+	border-radius: 3px;
+	position: absolute;
+	bottom: .625rem;
+	width: calc(100% - 1.25rem);
+	left: 0;
+	right: 0;
+	margin: auto;
+	text-align: center;
+	padding: .625rem;
+}
+
+.sr-cards-team-04 .blaze-track .sr-cards-team__image,
+.sr-cards-team-04 .blaze-track .content-wrapper,
+.sr-cards-team-04 .blaze-track .content-wrapper>a {
+	height: 100%;
+	display: block
+}
+
+.sr-cards-team-04 .sr-cards-team__image img {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+}

@@ -1,0 +1,114 @@
+
+{% if module.enabled %}
+
+    {% import "../../templates/macros.html" as macros %}
+    
+    <div class="sr-video-slider-01 {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} text-{{ module.design_settings.text_color }} {{ macros.text_align(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+    
+        {{ macros.module_bg_video(module) }}
+    
+        <div class="container silder-container slides-{{ module.slides|length }}">
+            <div class="row">
+                <div class="col-md-12">
+    
+                    {% if module.heading ||  module.description %}
+                    <div class="sr-spacer-bottom-50">
+                        {{ macros.heading(module.heading) }}
+    
+                        {% if module.description %}
+                            <div class="description{% if module.lead_text %} lead{% endif %}">{{ module.description}}</div>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+    
+                    <div class="blaze-slider slider" data-autoplay="{{ module.autoplay }}" data-autoplayspeed="{{ module.autoplay_speed }}"  style="--arrows-color:{{module.design_settings.slide_styles.arrows_color.css}}">
+                        <div class="blaze-container">
+    
+                            <div class="blaze-track-container">
+                                <div class="blaze-track">
+                                    {% for item2 in module.slides %}
+                                    <div class="all {{ item2.filters }} video-slide">
+    
+                                        <div class="slide-image">
+                                            <div class="scaler">
+    
+                                                <button type="button" class="playBtn" data-toggle="modal" data-target="#videoModal-{{ name }}" data-theVideo="{{ item2.video }}" aria-label="Play Video" title="Play Video">
+                                                    <span class="icon-wrapper bg-primary" aria-hidden="true">
+                                                        {% icon
+                                                            name="play"
+                                                            style="SOLID"
+                                                            unicode="f04b"
+                                                            icon_set="fontawesome-5.14.0"
+                                                            height="15"
+                                                            no_wrapper=true
+                                                        %}
+                                                    </span>
+                                                </button>
+    
+                                                <video class="slider-video" muted data-src="{{ item2.video }}">
+                                                </video>
+    
+                                                {{ macros.image(item2.image) }}
+                                            </div>
+    
+                                            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                                        </div>
+    
+                                        <div class="text-center sr-spacer-top-25 caption">
+                                            {% if item2.description %}
+                                                <div class="description{% if item2.lead_text %} lead{% endif %}">{{ item2.description}}</div>
+                                            {% endif %}
+                                            {{ macros.cta(item2.ctas, 'sr-spacer-top-25') }}
+                                        </div>
+    
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <span>
+                                <button aria-label="Previous Slide" type="button" class="blaze-arrow blaze-prev chevron-left prevV arrow">
+                                    {{macros.icon(module.design_settings.slide_styles.arrow_left_icon, 30)}}
+                                </button>
+                                <button aria-label="Next Slide" type="button" class="blaze-arrow blaze-next chevron-right nextV arrow">
+                                    {{macros.icon(module.design_settings.slide_styles.arrow_right_icon, 30)}}
+                                </button>
+                            </span>
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    
+    
+        <div class="modal fade" id="videoModal-{{ name }}" tabindex="-1" role="dialog" aria-labelledby="videoModal-{{ name }}" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close bg-primary" data-dismiss="modal" role="button" aria-label="Close Video" tabindex="0" title="Close video modal">
+                            <span role="presentation">&times;</span>
+                        </button>
+                        <div>
+                            <video class="modal-video" controls>
+                                <source type="video/mp4">
+                                Your browser does not support HTML video.
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    
+    </div>
+    
+    {{ require_css(get_asset_url('../../css/blaze-slider.css')) }}
+    {{ require_js(get_asset_url('../../js/blaze-slider.js'), { position: 'head', defer: true }) }}
+    {% require_css %}
+    <style>
+        {{ macros.design_settings(name, module.design_settings) }}
+    </style>
+    {% end_require_css %}
+    
+    {% endif %}

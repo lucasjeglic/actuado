@@ -1,0 +1,144 @@
+{% if module.enabled %}
+
+	{% import "../../templates/macros.html" as macros %}
+
+	{% set width_class =
+		module.design_settings.container_width == 'min' ? 'col-lg-6 offset-lg-3' :
+		module.design_settings.container_width == 'narrow' ? 'col-lg-8 offset-lg-2' :
+		module.design_settings.container_width == 'wide' ? 'col-lg-10 offset-lg-1' :
+		'col-lg-12'
+	%}
+
+	<div class="sr-cards-steps-02 {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} text-{{ module.design_settings.text_color }} {{ macros.text_align(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+
+		{{ macros.module_bg_video(module) }}
+
+		<div class="{{ module.design_settings.layout }}">
+			{% if module.design_settings.container_width != 'max' %}
+				<div class="row">
+					<div class="{{ width_class }}">
+			{% endif %}
+
+						{% if module.heading || module.description %}
+						<div class="sr-spacer-bottom-50 {% if module.text_align != 'auto' %} text-{{ module.text_align }}{% endif %} {% if module.text_color != 'auto' %}text-{{ module.text_color }}{% endif %}">
+
+							{{ macros.heading(module.heading) }}
+
+							{% if module.description %}
+								<div class="description{% if module.lead_text %} lead{% endif %}">
+									{{ module.description }}
+								</div>
+							{% endif %}
+
+						</div>
+						{% endif %}
+
+						<div class="cards row row-gap">
+							{% for item in module.column %}
+									<div class="card col-md-3" style="--card-accent: {{ macros.color(item.accent_color) }};--card-accent-hover: {{ macros.color(item.accent_color_hover) }};">
+										<div class="card-inner">
+
+											<div class="step-num-wrap">
+												<span class="line" aria-hidden="true"></span>
+												<div class="step-circle">
+													<div class="step-text">{{ item.col_step_text }}</div>
+												</div>
+											</div>
+
+											<div class="card-content {% if item.text_color != 'auto' %}text-{{ item.text_color }}{% endif %} {% if item.background_option == 'color' %}bg-{{ item.background_color }}{% endif %}" {% if item.background_option == 'custom' %}style="background: rgba({{ item.background_custom.color|convert_rgb }}, {% if item.background_custom.opacity != '100' %}0.{% endif %}{{ item.background_custom.opacity }});"{% endif %}>
+
+												<div class="sr-spacer-top-25">
+													{{ macros.heading(item.heading) }}
+												</div>
+
+												{% if item.col_text %}
+													<div>{{ item.col_text }}</div>
+												{% endif %}
+
+												{{ macros.cta(item.ctas) }}
+
+											</div>
+
+										</div>
+									</div>
+							{% endfor %}
+						</div>
+
+			{% if module.design_settings.container_width != 'max' %}
+					</div>
+				</div>
+			{% endif %}
+
+		</div>
+	</div>
+
+	{{ require_css('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css') }}
+	{% require_css %}
+		<style>
+			{{ macros.design_settings(name, module.design_settings) }}
+			@media only screen and (min-width: 768px)  {
+				{% if module.column|length == 1 %}
+				.{{name}} .cards.row {
+					-webkit-box-pack: center;
+					-ms-flex-pack: center;
+					justify-content: center;
+				}
+				{% endif %}
+				{% if module.column|length == 2 %}
+				.{{name}}  .card:after {
+					display: block;
+					content: "\f105";
+					font-family: FontAwesome;
+					font-size: 50px;
+					right: -37.5%;
+					top: 50%;
+					transform: translateY(-50%);
+					position: absolute;
+					color: {{ module.arrow_color.css }};
+				}
+				.{{name}} .cards.row {
+					-webkit-box-pack: space-evenly;
+					-ms-flex-pack: space-evenly;
+					justify-content: space-evenly;
+				}
+				{% endif %}
+				{% if module.column|length == 3 %}
+				.{{name}} .card:after {
+					display: block;
+					content: "\f105";
+					font-family: FontAwesome;
+					font-size: 50px;
+					right: -25%;
+					top: 50%;
+					transform: translateY(-50%);
+					position: absolute;
+					color: {{macros.color(module.arrow_color)}};
+				}
+				.{{name}} .cards.row {
+					-webkit-box-pack: justify;
+					-ms-flex-pack: justify;
+					justify-content: space-between;
+				}
+				{% endif %}
+				{% if module.column|length > 3 %}
+				.{{name}} .card:after {
+					display: block;
+					content: "\f105";
+					font-family: FontAwesome;
+					font-size: 35px;
+					right: -2.5%;
+					top: 50%;
+					transform: translateY(-50%);
+					position: absolute;
+					color: {{macros.color(module.arrow_color)}};
+				}
+				.{{name}} .cards.row {
+					-webkit-box-pack: justify;
+					-ms-flex-pack: justify;
+					justify-content: space-between;
+				}
+				{% endif %}
+			}
+		</style>
+	{% end_require_css %}
+{% endif %}

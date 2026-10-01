@@ -1,0 +1,608 @@
+<!--
+templateType: page
+isAvailableForNewContent: true
+label: Services 01
+screenshotPath: ../../images/services-01.jpg
+-->
+
+	{% include '../header.html' %}
+
+		<body class="pre-built {{ widget_data.body_class.value }} {{ builtin_body_classes }} {% set theme_name = content.template_path|split('/')|first %}{{ theme_name }} {% set template_name = content.template_path|split('/')|last %}{{ template_name[:-5] if template_name }}">
+
+		{% block header %}
+			{% boolean "enabled_site_header" label='Enable Global Site Header', value=true, export_to_template_context=True %}
+			{% if widget_data.enabled_site_header.value %}
+				{% global_partial path="../partials/site_header.html" %}
+			{% endif %}
+		{% endblock header %}
+
+		{% block body %}
+
+			{% dnd_area "body_dnd_area", class='body_dnd_area' label="Main Content" %}
+
+				{% dnd_section %}
+					{% dnd_column
+						offset=0,
+						width=12
+					%}
+
+						{% dnd_row %}
+						{% dnd_module
+							path="../../custom-modules/SR Two Col 03",
+							offset=0,
+							width=12,
+							column=[ {
+							"add_to_lightbox" : false,
+							"col_content" : "<p>Get the most out of the HubSpot CMS with Sprocket Rocket's stackable modules.&nbsp;</p>",
+							"col_media_type" : "none",
+							"col_overlay_color" : {
+								"color" : "#000000",
+								"opacity" : 50
+							},
+							"col_text_align" : "auto",
+							"column_size" : [ {
+								"column_breakpoint" : "lg",
+								"column_offset" : "0",
+								"column_width" : "5"
+							} ],
+							"ctas" : [ {
+								"add_icon" : true,
+								"button_text" : "Start Building",
+								"cta_size" : "md",
+								"cta_style" : "primary",
+								"cta_type" : "btn",
+								"icon" : {
+								"icon" : {
+									"name" : "play",
+									"type" : "SOLID",
+									"unicode" : "f04b"
+								}
+								},
+								"link" : {
+								"no_follow" : false,
+								"open_in_new_tab" : false,
+								"url" : {
+									"href" : "https://app.hubspot.com/ecosystem/21669159/marketplace/website/sprocket-rocket-theme-by-sprocket-rocket",
+									"type" : "EXTERNAL"
+								}
+								},
+								"modal_target" : "demo"
+							} ],
+							"custom_column_size" : true,
+							"heading" : [ {
+								"heading" : "The Ultimate HubSpot CMS Design Tool",
+								"heading_align" : "auto",
+								"heading_color" : "auto",
+								"heading_color_custom" : {
+								"color" : "#30343b",
+								"opacity" : 100
+								},
+								"heading_display_size" : "display-4",
+								"heading_size" : "h1"
+							} ],
+							"image_link" : {
+								"no_follow" : false,
+								"open_in_new_tab" : false,
+								"url" : {
+								"type" : "EXTERNAL"
+								}
+							},
+							"lead_text" : false,
+							"text_color" : "auto",
+							"video" : {
+								"autoplay" : true,
+								"background_video_design" : "none",
+								"custom_accent_color" : {
+								"color" : "#000000",
+								"opacity" : 20
+								},
+								"embed_field" : {
+								"source_type" : "oembed"
+								},
+								"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+								"loop" : true,
+								"muted" : true,
+								"oembed_thumbnail" : {
+								"loading" : "disabled",
+								"src" : ""
+								},
+								"placeholder_fields" : {
+								"placeholder_description" : "Select a video type in the sidebar.",
+								"placeholder_title" : "No video selected"
+								},
+								"show_controls" : true,
+								"style_options" : {
+								"oembed_thumbnail_play_button_color" : {
+									"color" : "#ffffff"
+								}
+								},
+								"video_accent_color" : "primary",
+								"video_poster" : {
+								"alt" : "Sprocket Rocket Demo",
+								"size_type" : "exact",
+								"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+								},
+								"video_type" : "html_video"
+							}
+							}, {
+							"add_to_lightbox" : false,
+							"class" : "pt-4 pt-md-0",
+							"col_image" : {
+								"alt" : "Group-1 (1)",
+								"height" : 604,
+								"loading" : "lazy",
+								"max_height" : 1208,
+								"max_width" : 1505,
+								"src" : "https://www.lean-labs.com/hubfs/Group-1%20(1).png",
+								"width" : 753
+							},
+							"col_media_type" : "image",
+							"col_overlay_color" : {
+								"color" : "#000000",
+								"opacity" : 50
+							},
+							"col_text_align" : "auto",
+							"column_size" : [ {
+								"column_breakpoint" : "lg",
+								"column_offset" : "1",
+								"column_width" : "6"
+							} ],
+							"custom_column_size" : true,
+							"image_link" : {
+								"no_follow" : false,
+								"open_in_new_tab" : false,
+								"url" : {
+								"type" : "EXTERNAL"
+								}
+							},
+							"lead_text" : false,
+							"text_color" : "auto",
+							"video" : {
+								"autoplay" : true,
+								"background_video_design" : "none",
+								"custom_accent_color" : {
+								"color" : "#000000",
+								"opacity" : 20
+								},
+								"embed_field" : {
+								"source_type" : "oembed"
+								},
+								"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+								"loop" : true,
+								"muted" : true,
+								"oembed_thumbnail" : {
+								"loading" : "disabled",
+								"src" : ""
+								},
+								"placeholder_fields" : {
+								"placeholder_description" : "Select a video type in the sidebar.",
+								"placeholder_title" : "No video selected"
+								},
+								"show_controls" : true,
+								"style_options" : {
+								"oembed_thumbnail_play_button_color" : {
+									"color" : "#ffffff"
+								}
+								},
+								"video_accent_color" : "primary",
+								"video_poster" : {
+								"alt" : "Sprocket Rocket Demo",
+								"size_type" : "exact",
+								"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+								},
+								"video_type" : "html_video"
+							}
+							} ],
+							design_settings={
+							"background_custom" : {
+								"color" : "#060f1e",
+								"opacity" : 100
+							},
+							"background_option" : "custom",
+							"layout" : "container",
+							"text_color" : "white"
+							}
+						%}
+						{% end_dnd_module %}
+						{% end_dnd_row %}
+
+					{% end_dnd_column %}
+				{% end_dnd_section %}
+
+				{% dnd_section %}
+					{% dnd_module path='../../custom-modules/SR Three Col 03', overrideable=True, widget_name='SR Three Col 03', label='SR Three Col 03' %}{% end_dnd_module %}
+				{% end_dnd_section %}
+
+				{% dnd_section %}
+					{% dnd_column
+						offset=0,
+						width=12
+					%}
+						{% dnd_row %}
+						{% dnd_module
+							path="../../custom-modules/SR Two Col 03",
+							offset=0,
+							width=12,
+							column=[ {
+							"add_to_lightbox" : false,
+							"class" : "p-0",
+							"col_content" : "",
+							"col_image" : {
+								"alt" : "mobile-modules",
+								"height" : 1312,
+								"loading" : "lazy",
+								"max_height" : 1312,
+								"max_width" : 1400,
+								"src" : "https://www.lean-labs.com/hubfs/sprocket-rocket/images/mobile-modules.jpg",
+								"width" : 1400
+							},
+							"col_media_type" : "image",
+							"col_overlay_color" : {
+								"color" : "#000000",
+								"opacity" : 50
+							},
+							"col_text_align" : "auto",
+							"column_size" : [ {
+								"column_breakpoint" : "md",
+								"column_offset" : "0",
+								"column_width" : "12"
+							} ],
+							"custom_column_size" : false,
+							"image_link" : {
+								"no_follow" : false,
+								"open_in_new_tab" : false,
+								"url" : {
+								"type" : "EXTERNAL"
+								}
+							},
+							"lead_text" : false,
+							"text_color" : "auto",
+							"video" : {
+								"autoplay" : true,
+								"background_video_design" : "none",
+								"custom_accent_color" : {
+								"color" : "#000000",
+								"opacity" : 20
+								},
+								"embed_field" : {
+								"source_type" : "oembed"
+								},
+								"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+								"loop" : true,
+								"muted" : true,
+								"oembed_thumbnail" : {
+								"loading" : "disabled",
+								"src" : ""
+								},
+								"placeholder_fields" : {
+								"placeholder_description" : "Select a video type in the sidebar.",
+								"placeholder_title" : "No video selected"
+								},
+								"show_controls" : true,
+								"style_options" : {
+								"oembed_thumbnail_play_button_color" : {
+									"color" : "#ffffff"
+								}
+								},
+								"video_accent_color" : "primary",
+								"video_poster" : {
+								"alt" : "Sprocket Rocket Demo",
+								"size_type" : "exact",
+								"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+								},
+								"video_type" : "html_video"
+							}
+							}, {
+							"add_to_lightbox" : false,
+							"class" : "p-4 p-md-0",
+							"col_content" : "<p>Numerous options for navigations, footers, hero sections, columns, tabs, cards, stats, carousels, and more.</p>",
+							"col_media_type" : "none",
+							"col_overlay_color" : {
+								"color" : "#000000",
+								"opacity" : 50
+							},
+							"col_text_align" : "auto",
+							"column_size" : [ {
+								"column_breakpoint" : "md",
+								"column_offset" : "1",
+								"column_width" : "4"
+							} ],
+							"ctas" : [ {
+								"button_text" : "Watch Demo",
+								"cta_size" : "md",
+								"cta_style" : "secondary",
+								"cta_type" : "btn",
+								"link" : {
+								"no_follow" : false,
+								"open_in_new_tab" : false,
+								"url" : {
+									"href" : "#",
+									"type" : "EXTERNAL"
+								}
+								},
+								"modal_target" : "demo"
+							} ],
+							"custom_column_size" : true,
+							"heading" : [ {
+								"heading" : "Mix and match modules to create beautiful, on-brand pages with ease.",
+								"heading_align" : "auto",
+								"heading_color" : "auto",
+								"heading_color_custom" : {
+								"color" : "#30343b",
+								"opacity" : 100
+								},
+								"heading_display_size" : "auto",
+								"heading_size" : "h3"
+							} ],
+							"image_link" : {
+								"no_follow" : false,
+								"open_in_new_tab" : false,
+								"url" : {
+								"type" : "EXTERNAL"
+								}
+							},
+							"lead_text" : false,
+							"text_color" : "white",
+							"video" : {
+								"autoplay" : true,
+								"background_video_design" : "none",
+								"custom_accent_color" : {
+								"color" : "#000000",
+								"opacity" : 20
+								},
+								"embed_field" : {
+								"source_type" : "oembed"
+								},
+								"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+								"loop" : true,
+								"muted" : true,
+								"oembed_thumbnail" : {
+								"loading" : "disabled",
+								"src" : ""
+								},
+								"placeholder_fields" : {
+								"placeholder_description" : "Select a video type in the sidebar.",
+								"placeholder_title" : "No video selected"
+								},
+								"show_controls" : true,
+								"style_options" : {
+								"oembed_thumbnail_play_button_color" : {
+									"color" : "#ffffff"
+								}
+								},
+								"video_accent_color" : "primary",
+								"video_poster" : {
+								"alt" : "Sprocket Rocket Demo",
+								"size_type" : "exact",
+								"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+								},
+								"video_type" : "html_video"
+							}
+							} ],
+							column_horizontal_align="flex-start",
+							column_vertical_align="center",
+							design_settings={
+							"background_custom" : {
+								"color" : "#060f1e",
+								"opacity" : 100
+							},
+							"background_option" : "custom",
+							"layout" : "container-fluid",
+							"top_bottom_padding" : "zero"
+							},
+							enabled=true
+						%}
+						{% end_dnd_module %}
+						{% end_dnd_row %}
+					{% end_dnd_column %}
+				{% end_dnd_section %}
+
+				{% dnd_section %}
+					{% dnd_column
+						offset=0,
+						width=12
+					%}
+						{% dnd_row %}
+						{% dnd_module
+							path="../../custom-modules/SR Two Col 04",
+							offset=0,
+							width=12,
+							column=[ {
+							"add_to_lightbox" : false,
+							"class" : "p-4 p-md-0",
+							"col_content" : "<p>SR App is a visual layout builder that shows you exactly what you're building in the moment.&nbsp;</p>\n<p>Once you're ready, just push the layout into your portal to adopt your theme settings.</p>",
+							"col_media_type" : "none",
+							"col_overlay_color" : {
+								"color" : "#000000",
+								"opacity" : 50
+							},
+							"col_text_align" : "auto",
+							"column_size" : [ {
+								"column_breakpoint" : "md",
+								"column_offset" : "1",
+								"column_order" : 1,
+								"column_width" : "4"
+							} ],
+							"ctas" : [ {
+								"button_text" : "Watch Demo",
+								"cta_size" : "md",
+								"cta_style" : "primary",
+								"cta_type" : "btn",
+								"link" : {
+								"no_follow" : false,
+								"open_in_new_tab" : false,
+								"url" : {
+									"href" : "https://share.vidyard.com/watch/yC3EAs8yewPvkGUVAqrfKt?",
+									"type" : "EXTERNAL"
+								}
+								},
+								"modal_target" : "demo"
+							} ],
+							"custom_column_size" : true,
+							"heading" : [ {
+								"heading" : "Sprocket Rocket App makes page creation a breeze.",
+								"heading_align" : "auto",
+								"heading_color" : "auto",
+								"heading_color_custom" : {
+								"color" : "#30343b",
+								"opacity" : 100
+								},
+								"heading_display_size" : "auto",
+								"heading_size" : "h3"
+							} ],
+							"image_link" : {
+								"no_follow" : false,
+								"open_in_new_tab" : false,
+								"url" : {
+								"type" : "EXTERNAL"
+								}
+							},
+							"lead_text" : false,
+							"text_color" : "dark",
+							"video" : {
+								"autoplay" : true,
+								"background_video_design" : "none",
+								"custom_accent_color" : {
+								"color" : "#000000",
+								"opacity" : 20
+								},
+								"embed_field" : {
+								"source_type" : "oembed"
+								},
+								"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+								"loop" : true,
+								"muted" : true,
+								"oembed_thumbnail" : {
+								"loading" : "disabled",
+								"src" : ""
+								},
+								"placeholder_fields" : {
+								"placeholder_description" : "Select a video type in the sidebar.",
+								"placeholder_title" : "No video selected"
+								},
+								"show_controls" : true,
+								"style_options" : {
+								"oembed_thumbnail_play_button_color" : {
+									"color" : "#ffffff"
+								}
+								},
+								"video_accent_color" : "primary",
+								"video_poster" : {
+								"alt" : "Sprocket Rocket Demo",
+								"size_type" : "exact",
+								"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+								},
+								"video_type" : "html_video"
+							}
+							}, {
+							"add_to_lightbox" : false,
+							"class" : "p-0",
+							"col_content" : "",
+							"col_image" : {
+								"alt" : "sr-new-build",
+								"height" : 1012,
+								"loading" : "lazy",
+								"max_height" : 1012,
+								"max_width" : 1785,
+								"src" : "https://www.lean-labs.com/hubfs/sprocket-rocket/GIFs/sr-new-build.gif",
+								"width" : 1785
+							},
+							"col_media_type" : "image",
+							"col_overlay_color" : {
+								"color" : "#000000",
+								"opacity" : 50
+							},
+							"col_text_align" : "auto",
+							"column_size" : [ {
+								"column_breakpoint" : "md",
+								"column_offset" : "1",
+								"column_order" : 2,
+								"column_width" : "6"
+							}, {
+								"column_breakpoint" : "sm",
+								"column_offset" : "0",
+								"column_order" : 1,
+								"column_width" : "12"
+							} ],
+							"custom_column_size" : true,
+							"image_link" : {
+								"no_follow" : false,
+								"open_in_new_tab" : false,
+								"url" : {
+								"type" : "EXTERNAL"
+								}
+							},
+							"lead_text" : false,
+							"text_color" : "auto",
+							"video" : {
+								"autoplay" : true,
+								"background_video_design" : "none",
+								"custom_accent_color" : {
+								"color" : "#000000",
+								"opacity" : 20
+								},
+								"embed_field" : {
+								"source_type" : "oembed"
+								},
+								"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+								"loop" : true,
+								"muted" : true,
+								"oembed_thumbnail" : {
+								"loading" : "disabled",
+								"src" : ""
+								},
+								"placeholder_fields" : {
+								"placeholder_description" : "Select a video type in the sidebar.",
+								"placeholder_title" : "No video selected"
+								},
+								"show_controls" : true,
+								"style_options" : {
+								"oembed_thumbnail_play_button_color" : {
+									"color" : "#ffffff"
+								}
+								},
+								"video_accent_color" : "primary",
+								"video_poster" : {
+								"alt" : "Sprocket Rocket Demo",
+								"size_type" : "exact",
+								"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+								},
+								"video_type" : "html_video"
+							}
+							} ],
+							design_settings={
+							"background_color" : "light",
+							"background_custom" : {
+								"color" : "#f5f7f9",
+								"opacity" : 100
+							},
+							"background_option" : "custom",
+							"layout" : "container-fluid",
+							"top_bottom_padding" : "half"
+							},
+							enabled=true
+						%}
+						{% end_dnd_module %}
+						{% end_dnd_row %}
+					{% end_dnd_column %}
+				{% end_dnd_section %}
+
+				{% dnd_section %}
+					{% dnd_module path='../../custom-modules/SR Offer Bar 06', widget_name='SR Offer Bar 06', label='SR Offer Bar 06' %}{% end_dnd_module %}
+				{% end_dnd_section %}
+
+
+			{% end_dnd_area %}
+
+		{% endblock body %}
+
+		{% block footer %}
+			{% boolean "enabled_site_footer" label='Enable Global Site Footer', value=true, export_to_template_context=True %}
+			{% if widget_data.enabled_site_footer.value %}
+				{% global_partial path="../partials/site_footer.html" %}
+			{% endif %}
+		{% endblock footer %}
+
+		{% include '../footer-includes.html' %}
+	</body>
+</html>

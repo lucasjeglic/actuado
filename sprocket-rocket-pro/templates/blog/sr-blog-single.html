@@ -1,0 +1,520 @@
+<!--
+templateType: blog_post
+isAvailableForNewContent: true
+label: SR Blog Post
+screenshotPath: ../../images/sr-blog-post.jpg
+-->
+    {% include '../header.html' %}
+
+    {{ require_css(get_asset_url('./css/sr-blog.css')) }}
+
+    <body class="blog blog-post {{ widget_data.body_class.value }}{% if module.class %} {{ md.module.class }}{% endif %}" {% if md.module.sr_module_id %}id="{{ md.module.sr_module_id }}"{% endif %}>
+
+        {% block header %}
+        {% boolean "enabled_site_header" label='Enable Global Site Header', value=true, export_to_template_context=True %}
+        {% if widget_data.enabled_site_header.value %}
+        {% global_partial path="../../templates/partials/site_header.html" %}
+        {% endif %}
+        {% global_partial path="./partials/blog_header.html" %}
+        {% endblock header %}
+        {% block body %}
+
+        {% set md = namespace() %}
+        {% module "blog_post" path='./custom-modules/Blog Post', label="Blog Post Settings" %}
+        {% if md.module.enabled %}
+        {% import "../../templates/macros.html" as macros %}
+
+        {% if md.module.design_settings.container_width == 'min' %}
+            {% set width_class = 'col-md-6 offset-md-3' %}
+        {% elif md.module.design_settings.container_width == 'narrow' %}
+            {% set width_class = 'col-md-8 offset-md-2' %}
+        {% elif md.module.design_settings.container_width == 'wide' %}
+            {% set width_class = 'col-md-10 offset-md-1' %}
+        {% else %}
+            {% set width_class = 'col-md-12' %}
+        {% endif %}
+
+        {% if md.module.hero.enabled %}
+        <div class="featured-image-hero justify-content-{{ md.module.hero.heading_align }}">
+            <div class="container hero-container">
+                <div class="row hero-row sr-spacer-50">
+                    {% if md.module.heading.position == "hero" %}
+                    <div class="col-12 hero-content text-{{ md.module.hero.text_color }}">
+                        {% set heading = md.module.heading %}
+                        <{{heading.heading_size|int ? 'h' ~ heading.heading_size : heading.heading_size}} class="heading{% if class %} {{class}}{% endif %}{% if heading.class %} {{heading.class}}{% endif %}{% if heading.heading_display_size != 'auto' %} {{ heading.heading_display_size }}{% endif %}{% if heading.heading_color != 'auto' %} text-{{ heading.heading_color }}{% endif %} {% if heading.heading_align != 'auto' %} text-{{ heading.heading_align }}{% endif %}" {% if heading.heading_color == 'custom' %}style="color: {{ macros.color(heading.heading_color_custom) }}"{% endif %}>{{ content.name }}</{{heading.heading_size|int ? 'h' ~ heading.heading_size : heading.heading_size}}>
+                        <div class="author author-inline mt-3">
+                            <div class="d-flex align-items-center">
+                                {% if content.blog_post_author.avatar %}
+                                <div class="avatar mr-2">
+                                    <img src="{{ content.blog_post_author.avatar }}" alt="{{ content.blog_post_author.full_name }}" width="50" height="50" loading=lazy />
+                                </div>
+                                {% endif %}
+                                <div class="">
+                                    {% if content.blog_post_author && md.module.hero.author %}
+                                    {{ md.module.hero.author_prefix }}<a class="author-link" href="{{ blog_author_url(group.id, content.blog_post_author.slug) }}">{{ content.blog_post_author.full_name }}</a>
+                                    {% endif %}
+
+                                    {% if md.module.hero.date %}
+                                    <div>{{md.module.hero.date_prefix}}{{ content.publish_date_localized }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% set template_class = name|lower|replace(" ","-")|replace("(","")|replace(")","")|regex_replace("[?,.!@#$%&*^<>;:'+=]", "")|regex_replace("[ˆ0-9]","") %}
+        <div class="sr-blog-post {{ template_class }} {% if md.module.design_settings.background_option == 'color' %} bg-{{ md.module.design_settings.background_color }}{% endif %} {{ macros.padding(md.module.design_settings) }} text-{{ md.module.design_settings.text_color }} {{ macros.text_align(md.module.design_settings) }} prototype-no-background{% if md.module.class %} {{ md.module.class }}{% endif %}" {% if md.module.sr_module_id %}id="{{ md.module.sr_module_id }}"{% endif %}>
+
+            {% if md.module.design_settings.background_option == 'video' %}
+            {{macros.bg_video(md.module.background_video, md.module.design_settings.background_image.src)}}
+            {% endif %}
+
+            <div class="{{ md.module.design_settings.layout }}">
+                {% if md.module.design_settings.container_width != 'max' %}
+                <div class="row">
+                    <div class="{{ width_class }}">
+                {% endif %}
+                        {% if md.module.enabled_sidebar %}
+                        <div class="row">
+                            <div class="col-md-7 blog-col">
+                        {% endif %}
+                                <article>
+                                    {% if md.module.show_post_tags && md.module.tags_position == "before" %}
+                                    <div class="tags {{ "mb-2" if md.module.show_post_author_info && md.module.author_position == "before" else "mb-4" }}">
+                                        {% if md.module.tags_prefix %}
+                                        <p class="d-inline-block mb-0"><strong>{{ md.module.tags_prefix }}</strong></p>
+                                        {% endif %}
+                                        {% for topic in content.topic_list %}
+                                        <a href="{{ blog_tag_url(group.id, topic.slug) }}">{{ topic.name }}{% if !loop.last %}, {% endif %}</a>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                    {% if md.module.show_post_author_info && md.module.author_position == "before" %}
+                                    <div class="author-section {{ "bg" if "background" in md.module.author_options }} mb-5">
+                                        <div class="d-flex align-items-center">
+                                            {% if content.blog_post_author.avatar && "avatar" in md.module.author_options %}
+                                            <div class="avatar">
+                                                <img src="{{ content.blog_post_author.avatar }}" alt="{{ content.blog_post_author.full_name }}" width="50" height="50" loading=lazy />
+                                            </div>
+                                            {% endif %}
+                                            <div class="meta {% if content.blog_post_author.avatar && 'avatar' in md.module.author_options %}ml-2{% endif %}">
+                                                {% if content.blog_post_author %}
+                                                <span class="author">{{ md.module.author_prefix }}<a class="author-link" href="{{ group.absolute_url }}/author/{{ content.blog_post_author.slug }}">{{ content.blog_post_author.display_name }}</a></span><br>
+                                                {% endif %}
+                                                {% if "date" in md.module.author_options %}
+                                                {{ content.publish_date_localized }}
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        {% if content.blog_post_author.bio && "bio" in md.module.author_options %}
+                                        <div class="mt-2">
+                                            {{content.blog_post_author.bio}}
+                                        </div>
+                                        {% endif %}
+                                        {% if content.blog_post_author.has_social_profiles && "social" in md.module.author_options %}
+                                        <div class="author-social-links mt-2">
+                                            {% if content.blog_post_author.website %}
+                                            <a href="{{ content.blog_author.website }}" target="_blank" rel="noopener">{% icon name='link', purpose='semantic', style='SOLID', title='Follow me on my website', width='16' %}</a>
+                                            {% endif %}
+                                            {% if content.blog_post_author.facebook %}
+                                            <a href="{{ content.blog_author.facebook }}" target="_blank" rel="noopener"> {% icon name='facebook-f', purpose='semantic', style='SOLID', title='Follow me on Facebook', width='16' %} </a>
+                                            {% endif %}
+                                            {% if content.blog_post_author.linkedin %}
+                                            <a href="{{ content.blog_author.linkedin }}" target="_blank" rel="noopener"> {% icon name='linkedin-in', purpose='semantic', style='SOLID', title='Follow me on LinkedIn', width='16' %} </a>
+                                            {% endif %}
+                                            {% if content.blog_post_author.twitter %}
+                                            <a href="{{ content.blog_author.twitter }}" target="_blank" rel="noopener"> {% icon name='twitter', purpose='semantic', style='SOLID', title='Follow me on Twitter', width='16' %} </a>
+                                            {% endif %}
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                    {% endif %}
+                                    {% if !md.module.hero.enabled || md.module.heading.position == "post" %}
+                                    {% set heading = md.module.heading %}
+                                    <{{heading.heading_size|int ? 'h' ~ heading.heading_size : heading.heading_size}} class="heading{% if class %} {{class}}{% endif %}{% if heading.class %} {{heading.class}}{% endif %}{% if heading.heading_display_size != 'auto' %} {{ heading.heading_display_size }}{% endif %}{% if heading.heading_color != 'auto' %} text-{{ heading.heading_color }}{% endif %} {% if heading.heading_align != 'auto' %} text-{{ heading.heading_align }}{% endif %}" {% if heading.heading_color == 'custom' %}style="color: {{ macros.color(heading.heading_color_custom) }}"{% endif %}>{{ page_meta.name }}</{{heading.heading_size|int ? 'h' ~ heading.heading_size : heading.heading_size}}>
+                                    {% if content.featured_image && md.module.featured_image %}
+                                    <div class="featured-image-wrapper mb-4">
+                                        <img class="featured-image " src="{{ content.featured_image }}" alt="{{ page_meta.name }}">
+                                    </div>
+                                    {% endif %}
+                                    {% if md.module.hero.author || md.module.hero.date %}
+                                    <div class="author author-inline mt-3 mb-5">
+                                        <div class="d-flex align-items-center">
+                                            {% if content.blog_post_author.avatar %}
+                                            <div class="avatar mr-2">
+                                                <img src="{{ content.blog_post_author.avatar }}" alt="{{ content.blog_post_author.full_name }}" width="50" height="50" loading=lazy />
+                                            </div>
+                                            {% endif %}
+                                            <div class="">
+                                                {% if content.blog_post_author && md.module.hero.author %}
+                                                {{ md.module.hero.author_prefix }}<a class="author-link" href="{{ blog_author_url(group.id, content.blog_post_author.slug) }}">{{ content.blog_post_author.full_name }}</a>
+                                                {% endif %}
+
+                                                {% if md.module.hero.date %}
+                                                <div>{{md.module.hero.date_prefix}}{{ content.publish_date_localized }}</div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    {% endif %}
+                                    <div class="blog-content">
+                                        {{ content.post_body }}
+                                    </div>
+                                    {% if md.module.show_post_tags && md.module.tags_position == "after" %}
+                                    <div class="tags {{ "mb-2" if md.module.show_post_author_info && md.module.author_position == "after" }}">
+                                        {% if md.module.tags_prefix %}
+                                        <p class="d-inline-block"><strong>{{ md.module.tags_prefix }}</strong></p>
+                                        {% endif %}
+                                        {% for topic in content.topic_list %}
+                                        <a href="{{ blog_tag_url(group.id, topic.slug) }}">{{ topic.name }}{% if !loop.last %}, {% endif %}</a>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                    {% if md.module.show_post_author_info && md.module.author_position == "after" %}
+                                    <div class="author-section {{ "bg" if "background" in md.module.author_options }}">
+                                        <div class="d-flex align-items-center">
+                                            {% if content.blog_post_author.avatar && "avatar" in md.module.author_options %}
+                                            <div class="avatar">
+                                                <img src="{{ content.blog_post_author.avatar }}" alt="{{ content.blog_post_author.full_name }}" width="50" height="50" loading=lazy />
+                                            </div>
+                                            {% endif %}
+                                            <div class="meta {% if content.blog_post_author.avatar && 'avatar' in md.module.author_options %}ml-2{% endif %}">
+                                                {% if content.blog_post_author %}
+                                                <span class="author">{{ md.module.author_prefix }}<a class="author-link" href="{{ group.absolute_url }}/author/{{ content.blog_post_author.slug }}">{{ content.blog_post_author.display_name }}</a></span><br>
+                                                {% endif %}
+                                                {% if "date" in md.module.author_options %}
+                                                {{ content.publish_date_localized }}
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        {% if content.blog_post_author.bio && "bio" in md.module.author_options %}
+                                        <div class="mt-2">
+                                            {{content.blog_post_author.bio}}
+                                        </div>
+                                        {% endif %}
+                                        {% if content.blog_post_author.has_social_profiles && "social" in md.module.author_options %}
+                                        <div class="author-social-links mt-2">
+                                            {% if content.blog_post_author.website %}
+                                            <a href="{{ content.blog_author.website }}" target="_blank" rel="noopener">{% icon name='link', purpose='semantic', style='SOLID', title='Follow me on my website', width='16' %}</a>
+                                            {% endif %}
+                                            {% if content.blog_post_author.facebook %}
+                                            <a href="{{ content.blog_author.facebook }}" target="_blank" rel="noopener"> {% icon name='facebook-f', purpose='semantic', style='SOLID', title='Follow me on Facebook', width='16' %} </a>
+                                            {% endif %}
+                                            {% if content.blog_post_author.linkedin %}
+                                            <a href="{{ content.blog_author.linkedin }}" target="_blank" rel="noopener"> {% icon name='linkedin-in', purpose='semantic', style='SOLID', title='Follow me on LinkedIn', width='16' %} </a>
+                                            {% endif %}
+                                            {% if content.blog_post_author.twitter %}
+                                            <a href="{{ content.blog_author.twitter }}" target="_blank" rel="noopener"> {% icon name='twitter', purpose='semantic', style='SOLID', title='Follow me on Twitter', width='16' %} </a>
+                                            {% endif %}
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                    {% endif %}
+                                    {% if md.module.related.enabled %}
+                                    <div class="related-posts-section sr-spacer-top-50">
+                                        {{ macros.heading(md.module.related.heading) }}
+                                        <div class="related-posts-container row">
+                                            {%- set tag = content.topic_list[0] -%}
+                                            {%- set posts_limit =  md.module.related.limit + 1 -%}
+                                            {%- set related_posts = blog_recent_tag_posts(group.id, tag.slug, posts_limit) -%}
+                                            {% for post in related_posts %}
+                                            {% unless content.absolute_url == post.absolute_url %}
+                                            <div class="related-post col-lg-6">
+                                                <a class="related-post-link sr-border" href="{{ post.absolute_url }}" aria-label="Link to {{ post.name }}">
+                                                    <div class="related-post-meta mb-2">
+                                                        <div class="featured-image mb-3">
+                                                            {% if post.featured_image %}
+                                                            <img src="{{ post.featured_image }}" width="520" height="294"  loading="lazy" alt="{{ post.name }}">
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="meta">
+                                                            {% if post.topic_list[0] %}
+                                                            <div class="tag sr-border">
+                                                                {% for topic in post.topic_list %}
+                                                                {% if loop.first %}
+                                                                {{ topic.name }}
+                                                                {% endif %}
+                                                                {% endfor %}
+                                                            </div>
+                                                            <span class="px-2">•</span>
+                                                            {% endif %}
+                                                            <small class="date">{{ post.publish_date_localized }}</small>
+                                                        </div>
+                                                    </div>
+                                                    <h5>
+                                                        {{ post.name }}
+                                                    </h5>
+                                                    <p>
+                                                        {% set str = post.post_body %}
+                                                        {% set img_count = str|split('<img')|length %}
+                                                        {% set img_minutes = ((img_count * 12) / 60)|round(0, 'common') %}
+                                                        {% set read_time = (str|striptags|wordcount / 275)|round(0, 'common') + img_minutes %}
+                                                        {{ md.module.related.read_time|replace('%N', read_time) }}
+                                                    </p>
+                                                </a>
+                                            </div>
+                                            {% endunless %}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    {% if group.allow_comments %}
+                                    <div class="blog-comments btn-wrapper btn-primary-wrapper sr-spacer-top-50">
+                                        <h3>Comments</h3>
+                                        <div class="blog-comments-wrapper">
+                                            {% blog_comments "blog_comments" overrideable=true, label='Blog Comments' %}
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                </article>
+                    {% if md.module.enabled_sidebar %}
+                        </div>
+                        <div class="col-md-4 offset-md-1 sidebar mt-5 mt-md-0">
+                            <div class="sidebar-wrapper">
+                                {% module "sidebar" path='./custom-modules/Blog Post', label="Sidebar Settings" %}
+                                {% set ns = namespace() %}
+
+                                {% for item in md.module.offer %}
+                                {% if content.topic_list[0].slug == item.tag_field && !ns.offer %}
+                                {% set ns.offer = item %}
+                                {% endif %}
+                                {% endfor %}
+
+                                {% if !ns.offer %}
+                                {% set ns.offer = md.module.offer[0] %}
+                                {% endif %}
+                                {% if ns.offer %}
+                                <div data-tag="{{ ns.offer.tag }}">
+                                    {% if ns.offer.image.src %}
+                                    <div class="text-center">
+                                        {{ macros.image(ns.offer.image, 'class="mb-4"') }}
+                                    </div>
+                                    {% endif %}
+                                    {% if ns.offer.heading || ns.offer.description %}
+                                    <div class="mb-4">
+                                        {{ macros.heading(ns.offer.heading) }}
+                                        {% if ns.offer.description %}
+                                        <div class="description{% if ns.offer.lead_text %} lead{% endif %}">{{ ns.offer.description}}</div>
+                                        {% endif %}
+                                    </div>
+                                    {% endif %}
+                                    {% if ns.offer.form.enabled %}
+                                    <div class="sr-form sr-blog-form {{class}} btn-wrapper text-{{ ns.offer.form.styles.text_color }} btn-{{ ns.offer.form.styles.button.style }}-wrapper{% if ns.offer.form.styles.button.block %} btn-block-wrapper{% endif %} btn-wrapper-{{ ns.offer.form.styles.button.size}} btn-{{ ns.offer.form.styles.button.align}}">
+                                        {% if ns.offer.form.form.form_id %}
+                                        {% form
+                                            form_to_use='{{ ns.offer.form.form.form_id }}',
+                                            no_title='True',
+                                            follow_up_type_simple='{{ ns.offer.form.form.follow_up_type_simple }}',
+                                            simple_email_for_live_id='{{ ns.offer.form.form.simple_email_for_live_id }}',
+                                            follow_up_type_automation='{{ ns.offer.form.form.follow_up_type_automation }}',
+                                            form_follow_ups_workflow_id='{{ ns.offer.form.form.form_follow_ups_workflow_id }}',
+                                            response_response_type='{{ ns.offer.form.form.response_type }}',
+                                            response_redirect_id='{{ ns.offer.form.form.redirect_id }}',
+                                            response_redirect_url='{{ ns.offer.form.form.redirect_url }}',
+                                            response_message='{{ ns.offer.form.form.message }}',
+                                            notifications_are_overridden='{{ ns.offer.form.form.notifications_are_overridden }}',
+                                            notifications_override_email_addresses='{{ ns.offer.form.form.notifications_override_email_addresses }}'
+                                            gotowebinar_webinar_key='{{ ns.offer.form.form.gotowebinar_webinar_key }}'
+                                            sfdc_campaign='{{ ns.offer.form.form.sfdc_campaign }}'
+                                        %}
+                                        {% else %}
+                                        {% if !hide_placeholder %}
+                                        <form class="hs-form stacked hs-custom-form">
+                                            {% if !one_field %}
+                                            <fieldset class="form-columns-2">
+                                                <div class="hs_firstname field hs-form-field">
+                                                    <label>
+                                                        <span>First Name</span>
+                                                    </label>
+                                                    <div class="input">
+                                                        <input class="hs-input" name="firstname" placeholder="First Name" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="hs_lastname field hs-form-field">
+                                                    <label>
+                                                        <span>Last Name</span>
+                                                    </label>
+                                                    <div class="input">
+                                                        <input class="hs-input" name="lastname" placeholder="Last Name" type="text">
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                            {% endif %}
+                                            {% if !one_field %}
+                                            <fieldset class="form-columns-1">
+                                                {% endif %}
+                                                <div class="hs_email hs-email hs-fieldtype-text field hs-form-field" >
+                                                    <label placeholder="Enter your Email" for="email">
+                                                        <span>Email</span>
+                                                        <span class="hs-form-required" >*</span>
+                                                    </label>
+                                                    <div class="input" >
+                                                        <input id="email" class="hs-input" type="email" name="email" required="" placeholder="team@sprocketrocket.co" value="" autocomplete="email" inputmode="email">
+                                                    </div>
+                                                </div>
+                                                {% if !one_field %}
+                                            </fieldset>
+                                            {% endif %}
+                                            <div class="hs_submit">
+                                                <div class="actions">
+                                                    <input class="hs-button primary large" type="submit" value="{{button_text || 'Get Started'}}">
+                                                </div>
+                                            </div>
+                                        </form>
+                                        {% else %}
+                                        {% form %}
+                                        {% endif %}
+                                        {% endif %}
+                                        {% require_css %}
+                                        <style>
+                                            .sr-blog-form {
+                                                {%- if ns.offer.form.styles.background_color.opacity != 0 -%}
+                                                background-color: {{ macros.color(ns.offer.form.styles.background_color) }};
+                                                {%- endif -%}
+                                                {%- if ns.offer.form.styles.text_color == 'custom' -%}
+                                                color: {{ macros.color(ns.offer.form.styles.text_color_custom) }};
+                                                {% endif %}
+                                                {%- if ns.offer.form.styles.padding.top -%}
+                                                padding-top: {{ ns.offer.form.styles.padding.top / 16 ~ 'rem' }};
+                                                {%- endif -%}
+                                                {%- if ns.offer.form.styles.padding.bottom -%}
+                                                padding-bottom: {{ ns.offer.form.styles.padding.bottom / 16 ~ 'rem' }};
+                                                {%- endif -%}
+                                                {%- if ns.offer.form.styles.padding.left -%}
+                                                padding-left: {{ ns.offer.form.styles.padding.left / 16 ~ 'rem' }};
+                                                {%- endif -%}
+                                                {%- if ns.offer.form.styles.padding.right -%}
+                                                padding-right: {{ ns.offer.form.styles.padding.right / 16 ~ 'rem' }};
+                                                {%- endif -%}
+                                                {%- if ns.offer.form.styles.border.radius -%}
+                                                border-radius: {{ ns.offer.form.styles.border.radius ~ 'px' }};
+                                                {%- endif -%}
+                                                {%- if ns.offer.form.styles.border.style != 'none' -%}
+                                                {%- if ns.offer.form.styles.border.top && ns.offer.form.styles.border.bottom && ns.offer.form.styles.border.left && ns.offer.form.styles.border.right -%}
+                                                border: {{ns.offer.form.styles.border.width ~ 'px'}} {{ns.offer.form.styles.border.style}} {{ macros.color(ns.offer.form.styles.border.color) }};
+                                                {%- else -%}
+                                                {%- if ns.offer.form.styles.border.top -%}
+                                                border-top: {{ns.offer.form.styles.border.width ~ 'px'}} {{ns.offer.form.styles.border.style}} {{ macros.color(ns.offer.form.styles.border.color) }};
+                                                {%- endif -%}
+                                                {%- if ns.offer.form.styles.border.bottom -%}
+                                                border-bottom: {{ns.offer.form.styles.border.width ~ 'px'}} {{ns.offer.form.styles.border.style}} {{ macros.color(ns.offer.form.styles.border.color) }};
+                                                {%- endif -%}
+                                                {%- if ns.offer.form.styles.border.left -%}
+                                                border-left: {{ns.offer.form.styles.border.width ~ 'px'}} {{ns.offer.form.styles.border.style}} {{ macros.color(ns.offer.form.styles.border.color) }};
+                                                {%- endif -%}
+                                                {%- if ns.offer.form.styles.border.right -%}
+                                                border-right: {{ns.offer.form.styles.border.width ~ 'px'}} {{ns.offer.form.styles.border.style}} {{ macros.color(ns.offer.form.styles.border.color) }};
+                                                {%- endif -%}
+                                                {%- endif -%}
+                                                {%- endif -%}
+                                            }
+                                            {% if ns.offer.form.styles.hide_label %}
+                                            .sr-blog-form label {
+                                                display: none;
+                                            }
+                                            {% endif %}
+                                        </style>
+                                        {% end_require_css %}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                {% endif %}
+
+                                {% if md.module.tags.enabled  %}
+                                <div class="sidebar-menu tags sr-spacer-top-25">
+                                    {% set tag_heading = md.module.tags.heading %}
+                                    {{macros.heading(tag_heading, "sidebar-heading")}}
+                                    {% set tags = blog_tags(md.module.tags.blog, md.module.tags.limit) %}
+                                    <ul>
+                                        {% for item in tags %}
+                                        <li><a href="{{ blog_tag_url(md.module.tags.blog, item.slug) }}" class="sr-border">{{ item }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                {% endif %}
+
+                                {% if md.module.recent.enabled %}
+                                <div class="sidebar-menu recent sr-spacer-top-25">
+                                    {% set recent_heading = md.module.recent.heading %}
+                                    {{macros.heading(recent_heading, "sidebar-heading")}}
+
+                                    {% for topic in content.topic_list %}
+                                    {% if loop.first %}
+                                    {% set recent_posts = blog_recent_posts(md.module.recent.blog, md.module.recent.limit )%}
+                                    <ul>
+                                        {% for post in recent_posts %}
+                                        {% unless content.absolute_url == post.absolute_url %}
+                                        <li><a class="post-link" href="{{ post.absolute_url }}">{{post.name}}</a></li>
+                                        {% endunless %}
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% if md.module.design_settings.container_width != 'max' %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+
+        {% require_css %}
+        <style>
+            {{ macros.design_settings(template_class, md.module.design_settings) }}
+            .featured-image-hero {
+                position: relative;
+                {% if md.module.hero.enable_featured_image %}
+                --background: {{ md.module.hero.overlay.css }};
+                background-size: cover;
+                background-position: center;
+                min-height: {{ md.module.hero.height }}px;
+                background-image:url('{{ content.featured_image }}');
+                {% if md.module.hero.parallax %}
+                background-attachment: fixed;
+                {% endif %}
+                {% else %}
+                background-color: {{ md.module.hero.background_color.css }};
+                {% endif %}
+            }
+            .related-post:nth-child(n+{{ posts_limit}}) {
+                display: none;
+            }
+            @media(max-width:993px) {
+                .featured-image-hero {
+                    min-height: auto !important;
+                }
+            }
+            {% if md.module.hero.text_color == "custom" %}
+            .hero-content {
+                color: {{ md.module.hero.text_color_custom.css }};
+            }
+            {% endif %}
+        </style>
+        {% end_require_css %}
+        {% endif %}
+        {% endblock body %}
+
+        {% block footer %}
+        {% global_partial path="./partials/blog_footer.html" %}
+        {% boolean "enabled_site_footer" label='Enable Global Site Footer', value=true, export_to_template_context=True %}
+        {% if widget_data.enabled_site_footer.value %}
+        {% global_partial path="../../templates/partials/site_footer.html" %}
+        {% endif %}
+        {% endblock footer %}
+
+        {% include '../footer-includes.html' %}
+    </body>
+</html>

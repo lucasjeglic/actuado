@@ -1,0 +1,291 @@
+/* ==========================================================================
+   Actuado Services Grid 01
+   Split layout: text rail + hairline card grid.
+   Colours and type inherit from theme settings; only the sand hover tint and
+   divider are module-level, and both are editable in Design Settings.
+   Vertical padding is owned by the SR section padding classes - never set
+   padding-top / padding-bottom here.
+   ========================================================================== */
+
+/* ---------- Layout ---------- */
+
+/* The intro carries sr-spacer-bottom-50 so the gap to the cards is the same as
+   in every other module once the two stack - which is always the case below
+   992px, whatever the Intro Position is set to. Side by side there is nothing
+   below the intro, so the spacer's padding is dropped at that breakpoint. */
+@media (min-width: 992px) {
+	.ac-services-grid-01 .ac-services-intro--side {
+		padding-bottom: 0;
+	}
+}
+
+/* Horizontal separation between the rail and the cards. Bootstrap columns are
+   flex: 0 0 <pct> - they never grow - so the gap has to be explicit padding
+   rather than free space. Padding keeps it constant at every viewport width,
+   unlike relying on the copy's max-width to run out. */
+@media (min-width: 992px) {
+	.ac-services-grid-01 .ac-services-intro {
+		padding-right: var(--ac-column-gap, 3rem);
+	}
+
+	/* Mirror it when the rail is moved to the right-hand side. */
+	.ac-services-grid-01 .ac-services-intro.order-lg-2 {
+		padding-right: 0;
+		padding-left: var(--ac-column-gap, 3rem);
+	}
+}
+
+/* The intro rail is always left-aligned, matching the design. The section's
+   own text-align setting governs the section, not this rail, so we defend
+   against inherited Bootstrap text-* utilities landing on the column. */
+
+/* ---------- Eyebrow ---------- */
+
+/* The description has a measure cap, so the box itself needs centring or the
+   text only centres inside a left-pinned block. (The eyebrow rule is handled
+   centrally in child.css.) */
+.ac-services-grid-01 .ac-services-intro.text-center .ac-services-description {
+	margin-inline: auto;
+}
+
+/* ---------- Intro copy ---------- */
+
+.ac-services-grid-01 .ac-services-heading {
+	margin-bottom: 0;
+}
+
+.ac-services-grid-01 .ac-services-description {
+	margin-top: 0;
+	/* Caps the measure on very wide rails; the column gap above does the
+	   separating, so this only guards line length. */
+	max-width: 32rem;
+}
+
+.ac-services-grid-01 .ac-services-description > *:last-child {
+	margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Card grid
+   1px gap over a divider-coloured bed produces exact hairline rules with no
+   double borders and no edge overhang, at any card count.
+   ========================================================================== */
+
+.ac-services-grid-01 .ac-grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 1px;
+	background-color: var(--ac-divider);
+	border-radius: var(--ac-radius);
+	overflow: hidden;
+	/* Hairlines are the gap showing through; this keeps the outer edge crisp */
+	box-shadow: 0 0 0 1px var(--ac-divider);
+}
+
+@media (min-width: 576px) {
+	.ac-services-grid-01 .ac-grid--2 { grid-template-columns: repeat(2, 1fr); }
+	.ac-services-grid-01 .ac-grid--3 { grid-template-columns: repeat(2, 1fr); }
+	.ac-services-grid-01 .ac-grid--4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 992px) {
+	.ac-services-grid-01 .ac-grid--3 { grid-template-columns: repeat(3, 1fr); }
+	.ac-services-grid-01 .ac-grid--4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ---------- Card ---------- */
+
+.ac-services-grid-01 .ac-card {
+	/* Inherits the section's background so changing it in Design Settings is
+	   visible. Hardcoding --body_bg meant the cards stayed white and covered
+	   the section colour entirely. */
+	background-color: var(--ac-card-bg, var(--body_bg, #fff));
+	padding: 2rem;
+	transition: background-color 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@media (min-width: 992px) {
+	.ac-services-grid-01 .ac-card {
+		padding: 2.5rem;
+	}
+}
+
+.ac-services-grid-01 .ac-card:hover {
+	background-color: var(--ac-card-hover);
+}
+
+.ac-services-grid-01 .ac-card__number {
+	display: block;
+	line-height: 1;
+	opacity: 0.55;
+	/* Numbers read as part of the editorial serif system */
+	font-family: var(--heading_font, inherit);
+}
+
+/* gap applies only BETWEEN children - never before the first or after the last -
+   so the icon, number and title space themselves whatever combination is shown.
+   This replaces a base margin-top plus three rules undoing it for the cases
+   where the title came first, which is what left a stray offset on the heading. */
+.ac-services-grid-01 .ac-card__head {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.ac-services-grid-01 .ac-card__title {
+	margin: 0;
+}
+
+.ac-services-grid-01 .ac-card__content {
+	margin-top: 1rem;
+}
+
+.ac-services-grid-01 .ac-card__content > *:last-child {
+	margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Reveal on hover (optional, desktop only)
+   Cards show the number and title, revealing the description on hover or
+   keyboard focus. Below 992px everything stays visible, so the text is never
+   unreachable on touch devices.
+   ========================================================================== */
+
+@media (min-width: 992px) {
+	/* Every card is sized by its expanded content at all times: the
+	   description keeps its space reserved and is hidden with
+	   visibility/opacity rather than by collapsing height. The grid is
+	   therefore a constant size and nothing shifts on hover. */
+	.ac-services-grid-01 .ac-grid--reveal .ac-card {
+		display: flex;
+		flex-direction: column;
+	}
+
+	/* The head sits directly above the reserved description space, so the
+	   layout is identical whether the text is showing or not. */
+	.ac-services-grid-01 .ac-grid--reveal .ac-card__head {
+		flex: none;
+	}
+
+	/* Hidden with visibility/opacity rather than by collapsing height, so the
+	   space stays reserved and the card never changes size. */
+	.ac-services-grid-01 .ac-grid--reveal .ac-card__content {
+		flex: none;
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(6px);
+		transition:
+			opacity 0.4s ease,
+			transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+			visibility 0s linear 0.4s;
+	}
+
+	.ac-services-grid-01 .ac-grid--reveal .ac-card:is(:hover, :focus-visible, :focus-within) .ac-card__content {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+		transition:
+			opacity 0.4s ease,
+			transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+			visibility 0s;
+	}
+
+	/* Keep the focus ring on the card itself rather than the default outline. */
+	.ac-services-grid-01 .ac-grid--reveal .ac-card:focus-visible {
+		outline: 2px solid var(--primary);
+		outline-offset: -2px;
+	}
+}
+
+/* ---------- Motion preferences ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+	/* Reduced motion means "do not animate", not "do not hide": the reveal
+	   still works, it just switches instantly instead of easing. */
+	.ac-services-grid-01 .ac-grid--reveal .ac-card__content {
+		transform: none;
+	}
+
+	.ac-services-grid-01 .ac-card,
+	.ac-services-grid-01 .ac-grid--reveal .ac-card,
+	.ac-services-grid-01 .ac-grid--reveal .ac-card__content {
+		transition: none;
+	}
+}
+
+/* ==========================================================================
+   Stacked intro
+   With the heading above rather than beside, the cards take the full width -
+   which suits a larger number of them. The intro then needs its own bottom
+   spacing, since the column gap no longer separates the two.
+   ========================================================================== */
+
+@media (min-width: 992px) {
+	/* Stacked, the intro spans the full width, so the column-gap padding that
+	   separated it from the cards side by side no longer applies - on either
+	   side, since the rail carries padding-left when it sits on the right. */
+	.ac-services-grid-01 .ac-services-row--stacked .ac-services-intro,
+	.ac-services-grid-01 .ac-services-row--stacked .ac-services-intro.order-lg-2 {
+		padding-right: 0;
+		padding-left: 0;
+	}
+
+	.ac-services-grid-01 .ac-services-row--stacked .ac-services-intro {
+		/* Keeps the intro at a readable measure even though its column is now
+		   the full container width. Centring the box itself matters as much as
+		   centring the text: without this the 46rem block stays pinned left and
+		   the text only centres inside it. */
+		max-width: 46rem;
+	}
+
+	.ac-services-grid-01 .ac-services-row--stacked .ac-services-intro.text-center {
+		margin-inline: auto;
+	}
+}
+
+/* ==========================================================================
+   Card icons
+   Sit above the title, no background or tile - the icon is the mark itself.
+   One colour for the whole module, set in the module's settings, defaulting
+   to the theme primary.
+   ========================================================================== */
+
+/* A fixed square slot so titles stay on a common baseline whether or not a card
+   has an icon. Size comes from the Icon Size field. */
+.ac-services-grid-01 .ac-card__icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: var(--ac-icon-width, 50px);
+	aspect-ratio: 1;
+	color: var(--ac-icon-color, var(--primary));
+	line-height: 0;
+}
+
+/* Font Awesome glyphs share a 512-unit viewBox height but differ in width, so
+   stretching to 100% x 100% distorts the wider ones. Sizing by height and
+   letting width follow keeps every glyph in proportion and at one visual size. */
+.ac-services-grid-01 .ac-card__icon svg {
+	width: auto;
+	height: var(--ac-icon-width, 50px);
+	max-width: 100%;
+	display: block;
+	/* Follows the colour set above rather than the icon's own fill. */
+	fill: currentColor;
+}
+
+.ac-services-grid-01 .ac-card__icon svg g,
+.ac-services-grid-01 .ac-card__icon svg path {
+	fill: currentColor;
+}
+
+/* The number sits beside the icon rather than pushing it down, so a card with
+   both still reads as one block. */
+.ac-services-grid-01 .ac-card__icon + .ac-card__number {
+	display: block;
+	margin-bottom: 0.75rem;
+}
+
+@media (max-width: 767px) {
+
+}

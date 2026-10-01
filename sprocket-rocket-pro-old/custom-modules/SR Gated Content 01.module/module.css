@@ -1,0 +1,18 @@
+.sr-gated-content-01 .modal-dialog {
+    max-width: 540px;
+}
+
+.sr-gated-content-01 #gated-popup .modal-header {
+    border: none;
+    padding: 0;
+}
+
+.sr-gated-content-01 #gated-popup .modal-body {
+    padding: 3rem;
+}
+
+.sr-gated-content-01 .modal-content {
+    border-color: #e5e7ea;
+    background-color: #fff;
+    border-radius: 0;
+}

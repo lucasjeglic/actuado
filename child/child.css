@@ -1,0 +1,158 @@
+/* @import url('http://example.com/example_style.css'); */
+
+/***********************************************/
+/* CSS @imports must be at the top of the file */
+/* Add them above this section                 */
+/***********************************************/
+
+/*****************************************/
+/* Start your style declarations here    */
+/*****************************************/
+
+/* Everything below sits in the custom-styles layer, which the theme declares
+   last (@layer base, base-overrides, modules, custom-styles). Unlayered rules
+   here lose to the theme's own !important utilities no matter how specific
+   they are, so anything added to this file belongs inside the layer. */
+
+@layer custom-styles {
+
+	/* ==========================================================================
+	   Heading typing animation
+	   The heading types itself in the first time it scrolls into view. JS empties
+	   the element only after confirming it can run, so if the script never
+	   executes the heading simply renders as normal text.
+	   ========================================================================== */
+
+	/* Visible only to screen readers: carries the full heading so assistive tech
+	   announces it once, rather than character by character as it types. */
+	.ac-sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+
+	/* The untyped remainder stays in the flow at full size but invisible, so the
+	   heading occupies its final space - and wraps to its final line breaks -
+	   from the very first character. Nothing reflows as it types. */
+	.ac-animate-words .ac-typed__rest {
+		visibility: hidden;
+	}
+
+	/* The caret blinks while typing, then fades out once the line is finished. */
+	.ac-caret {
+		display: none;
+		width: 0.06em;
+		height: 0.85em;
+		margin-left: 0.04em;
+		margin-right: -0.1em;
+		background: var(--primary);
+		vertical-align: baseline;
+		transform: translateY(0.06em);
+	}
+
+	.ac-animate-words.is-typing .ac-caret {
+		display: inline-block;
+		animation: ac-caret-blink 0.9s steps(1, end) infinite;
+	}
+
+	.ac-animate-words.is-done .ac-caret {
+		animation: none;
+		opacity: 0;
+		transition: opacity 0.4s ease 0.2s;
+	}
+
+	@keyframes ac-caret-blink {
+		0%, 50%   { opacity: 1; }
+		50.01%, 100% { opacity: 0; }
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.ac-caret {
+			display: none;
+		}
+
+		.ac-animate-words .ac-typed__rest {
+			visibility: visible;
+		}
+	}
+
+	/* ==========================================================================
+	   Section eyebrow
+	   The small uppercase label above a section heading, with an optional gold
+	   rule above it. Markup comes from ac.eyebrow() in templates/ac-macros.html,
+	   so both the markup and these styles are defined once for every Actuado
+	   module rather than repeated per module.
+	   ========================================================================== */
+
+	/* Size, font and line-height come from the theme's `small` type slot (the
+	   .small class in the markup), so the eyebrow scales with theme settings.
+	   Only the uppercase treatment is set here. The gap below comes from an
+	   .sr-spacer-* class, so the element's own margin is dropped to stop the
+	   two stacking. */
+	.ac-eyebrow {
+		font-weight: 500;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		margin-bottom: 0;
+	}
+
+	.ac-eyebrow--rule::before {
+		content: "";
+		display: block;
+		width: 2.5rem;
+		height: 2px;
+		background: var(--primary);
+		margin-bottom: 1.25rem;
+	}
+
+	/* With no eyebrow text the element exists only to carry the rule, so the gap
+	   the rule reserves for the text below it would be left dangling. */
+	.ac-eyebrow:empty::before {
+		margin-bottom: 0;
+	}
+
+	/* The rule is a block-level pseudo-element, so it keeps its own left edge
+	   and would sit off to the side while the text centres. */
+	.text-center > .ac-eyebrow--rule::before,
+	.text-center .ac-eyebrow--rule::before {
+		margin-inline: auto;
+	}
+
+	/* ==========================================================================
+	   Navigation over the split hero
+	   Actuado Hero 01 is a 50/50 split: a navy text panel on one side and the
+	   image on the other. The nav overlays it so the image can run to the top
+	   of the page, and the links read better sitting wholly over the image
+	   rather than straddling the panel edge.
+
+	   Scoped with :has() so only pages that actually contain the split hero are
+	   affected - every other page keeps the nav exactly as it is. The nav is a
+	   global partial rendered before the body, so a descendant selector could
+	   not reach it from the module; :has() on <body> can. The logo is left
+	   alone, only the link container moves.
+	   ========================================================================== */
+	@media (min-width: 992px) {
+		/* Image on the right (the default - there is no --media-right class,
+		   only --media-left), so the panel is the left half and the links are
+		   pushed past it. padding-left rather than margin-left: the menu is
+		   right-aligned inside its own box, so a margin would move the box but
+		   let the first link sit back over the panel; padding shrinks the space
+		   the links can occupy instead. */
+		body:has(.ac-hero-01 .ac-hero):not(:has(.ac-hero-01 .ac-hero--media-left)) .header__menu--desktop {
+			padding-left: 50vw;
+		}
+
+		/* Mirrored when the image is moved to the left: the panel is then the
+		   right half, so the links stop short of it instead. */
+		body:has(.ac-hero-01 .ac-hero--media-left) .header__menu--desktop {
+			padding-right: 50vw;
+		}
+	}
+
+}

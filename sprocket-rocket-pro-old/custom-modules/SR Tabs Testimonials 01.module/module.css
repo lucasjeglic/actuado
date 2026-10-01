@@ -1,0 +1,23 @@
+.sr-tabs-testimonials-01-thumbs ul {
+  gap: 6px;
+}
+
+.sr-tabs-testimonials-01-thumbs .nav-link {
+  border-radius: 50%;
+  opacity: .25;
+  overflow: hidden;
+  border: none;
+  background: none;
+}
+
+.sr-tabs-testimonials-01-thumbs .nav-link.active {
+  opacity: 1;
+}
+
+.sr-tabs-testimonials-01-thumbs img {
+  border-radius: 50%;
+}
+
+.sr-tabs-testimonials-01 svg {
+  color: var(--icon-color);
+}

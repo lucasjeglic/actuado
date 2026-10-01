@@ -1,0 +1,80 @@
+[ {
+  "id" : "b1dd8645-30ad-0e6b-0a4c-795cce97f63c",
+  "name" : "heading",
+  "label" : "Heading",
+  "required" : false,
+  "locked" : false,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null,
+  "default" : "Blog Authors"
+}, {
+  "id" : "8ff92864-bda4-c17d-8c34-a100068b3c30",
+  "name" : "heading_size",
+  "label" : "Heading Size",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : "b1dd8645-30ad-0e6b-0a4c-795cce97f63c",
+    "controlling_field_path" : null,
+    "controlling_value_regex" : null,
+    "property" : null,
+    "operator" : null,
+    "access" : null
+  },
+  "display" : "select",
+  "choices" : [ [ "1", "H1" ], [ "2", "H2" ], [ "3", "H3" ], [ "4", "H4" ], [ "5", "H5" ], [ "h6", "H6" ] ],
+  "multiple" : false,
+  "reordering_enabled" : true,
+  "preset" : null,
+  "type" : "choice",
+  "display_width" : null,
+  "default" : "1"
+}, {
+  "id" : "8203b48f-c711-017f-d382-dde4eac435fc",
+  "name" : "blog",
+  "label" : "Blog",
+  "required" : false,
+  "locked" : false,
+  "type" : "blog",
+  "display_width" : null,
+  "default" : 38745112649
+}, {
+  "id" : "c053b7b1-0e65-a47f-58b1-943a99f22c4e",
+  "name" : "authors_per_row",
+  "label" : "Authors Per Row",
+  "required" : true,
+  "locked" : false,
+  "display" : "select",
+  "choices" : [ [ "6", "2" ], [ "4", "3" ], [ "3", "4" ] ],
+  "multiple" : false,
+  "reordering_enabled" : true,
+  "preset" : null,
+  "type" : "choice",
+  "display_width" : null,
+  "default" : "4"
+}, {
+  "id" : "e652a8d7-b0b8-2377-de5f-6de322bdbe35",
+  "name" : "background_color",
+  "label" : "Background Color",
+  "required" : false,
+  "locked" : false,
+  "type" : "color",
+  "display_width" : null,
+  "default" : {
+    "color" : "#ebeef1",
+    "opacity" : 100
+  }
+}, {
+  "id" : "09d0df26-ed69-238a-def8-5f16e7b00c70",
+  "name" : "background_hover_color",
+  "label" : "Background Hover Color",
+  "required" : false,
+  "locked" : false,
+  "type" : "color",
+  "display_width" : null,
+  "default" : {
+    "color" : "#7B7983",
+    "opacity" : 30
+  }
+} ]

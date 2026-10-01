@@ -1,0 +1,780 @@
+/* ==========================================================================
+   Actuado Timeline 01 - horizontal scroll
+   The section pins and the milestones travel sideways as the visitor scrolls
+   down, with a gold line filling across the track. The active milestone is
+   full strength; the rest are dimmed.
+
+   Without JS the track is simply a horizontally scrollable list, so the
+   content is always reachable.
+   ========================================================================== */
+
+.ac-timeline-01 .ac-htl-heading {
+	margin-bottom: 0;
+	/* Caps the line length when the heading has the full container to itself.
+	   Beside an image the grid column is already the constraint, so the cap is
+	   lifted there - otherwise it wraps far narrower than its column. */
+	max-width: 26ch;
+}
+
+@media (min-width: 992px) {
+	.ac-timeline-01 .ac-htl-head--split .ac-htl-heading {
+		max-width: none;
+	}
+}
+
+/* ---------- Track ---------- */
+
+.ac-timeline-01 .ac-htl-viewport {
+	position: relative;
+	overflow: hidden;
+}
+
+/* Fallback before JS takes over: a normal horizontal scroller. */
+.ac-timeline-01:not(.is-horizontal) .ac-htl-viewport {
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+.ac-timeline-01 .ac-htl-track {
+	position: relative;
+	/* No transitions on an element GSAP transforms every frame. */
+	transition: none;
+	/* Establishes the stacking context the dots' z-index resolves against. */
+	z-index: 2;
+	will-change: transform;
+	/* Both gutters are measured from the real container by the script and set
+	   as --ac-gutter, so the first milestone lines up with the heading and the
+	   last one stops on the container's right edge. The fallback only applies
+	   before the script runs. */
+	padding-left: var(--ac-gutter, 1.5rem);
+	padding-right: var(--ac-gutter, 1.5rem);
+}
+
+/* ---------- Progress line ---------- */
+
+/* Fixed within the viewport and run edge to edge, so the timeline reads as a
+   continuous line crossing the whole section rather than a bar sitting inside
+   the content column. Fills left to right as the milestones move beneath it. */
+.ac-timeline-01 .ac-htl-line {
+	position: absolute;
+	top: var(--ac-line-top, 0.5rem);
+	left: 0;
+	right: 0;
+	height: 1px;
+	background: var(--ac-divider, var(--borders));
+	z-index: 1;
+}
+
+/* Full width and scaled from 0, so progress is a compositor transform rather
+   than a per-frame width change. */
+.ac-timeline-01 .ac-htl-line__fill {
+	display: block;
+	height: 100%;
+	width: 100%;
+	background: var(--primary);
+	transform: scaleX(0);
+	transform-origin: left center;
+	will-change: transform;
+}
+
+/* ---------- Items ---------- */
+
+.ac-timeline-01 .ac-htl {
+	--ac-line-top: 0.5rem;
+	--ac-items-pad: 2.5rem;
+}
+
+.ac-timeline-01 .ac-htl-items {
+	display: flex;
+	align-items: flex-start;
+	gap: 3rem;
+	list-style: none;
+	margin: 0;
+	/* Leaves room for the line and dots above the milestones. */
+	padding: var(--ac-items-pad, 2.5rem) 0 0;
+}
+
+.ac-timeline-01 .ac-htl-item {
+	position: relative;
+	flex: 0 0 auto;
+	/* Sized from the measured container so the chosen number of milestones
+	   exactly fills it, gaps included. */
+	width: calc(
+		(var(--ac-container, 1140px) - (var(--ac-in-view) - 1) * 3rem)
+		/ var(--ac-in-view)
+	);
+	opacity: 0.35;
+	transition: opacity 0.3s ease;
+}
+
+.ac-timeline-01 .ac-htl-item.is-active {
+	opacity: 1;
+}
+
+/* Centred on the line: the items' top padding places the milestone below the
+   line, so pulling the dot up by that padding puts it level with the line, and
+   translateY(-50%) centres it on the 1px rule exactly. */
+.ac-timeline-01 .ac-htl-item__dot {
+	position: absolute;
+	top: calc(var(--ac-line-top, 0.5rem) - var(--ac-items-pad, 2.5rem));
+	left: 0;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: var(--body_bg, #fff);
+	border: 1px solid var(--ac-divider, var(--borders));
+	margin-top: -5px;
+	/* Above the progress line, so the rule passes behind the dot. */
+	z-index: 2;
+	transition: background-color 0.45s ease, border-color 0.45s ease, transform 0.45s ease;
+}
+
+.ac-timeline-01 .ac-htl-item.is-active .ac-htl-item__dot {
+	background: var(--primary);
+	border-color: var(--primary);
+	transform: scale(1.25);
+}
+
+.ac-timeline-01 .ac-htl-item__year {
+	font-family: var(--heading_font, inherit);
+	font-size: clamp(2rem, 3.4vw, 3rem);
+	line-height: 1;
+	letter-spacing: -0.02em;
+	color: var(--heading);
+	margin: 0 0 1.25rem;
+}
+
+.ac-timeline-01 .ac-htl-item__title {
+	margin-bottom: 0;
+}
+
+.ac-timeline-01 .ac-htl-item__text {
+	margin-top: 0.75rem;
+}
+
+.ac-timeline-01 .ac-htl-item__text > *:last-child {
+	margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Below the desktop breakpoint the track stops moving sideways and becomes a
+   vertical timeline: a spine with milestones down it, alternating either side
+   on tablet where there is room, and a single column on phones.
+   ========================================================================== */
+
+@media (max-width: 991px) {
+	/* Beats the :not(.is-horizontal) fallback rule, which would otherwise
+	   leave a stray horizontal scrollbar in the vertical layout. */
+	.ac-timeline-01:not(.is-horizontal) .ac-htl-viewport,
+	.ac-timeline-01 .ac-htl-viewport {
+		overflow: visible;
+	}
+
+	.ac-timeline-01 .ac-htl-track {
+		/* The track is never translated at these widths. */
+		transform: none !important;
+		padding-left: 0;
+		padding-right: 0;
+		will-change: auto;
+	}
+
+	.ac-timeline-01 .ac-htl-items {
+		display: block;
+		position: relative;
+		padding: 0;
+	}
+
+	.ac-timeline-01 .ac-htl-item {
+		width: auto;
+		opacity: 1;
+		padding-bottom: 3rem;
+	}
+
+	.ac-timeline-01 .ac-htl-item:last-child {
+		padding-bottom: 0;
+	}
+
+	.ac-timeline-01 .ac-htl-item__year {
+		font-size: clamp(1.75rem, 5vw, 2.25rem);
+		margin-bottom: 0.75rem;
+	}
+
+	.ac-timeline-01 .ac-htl-item__text {
+		max-width: none;
+	}
+
+	/* The spine replaces the horizontal rule. Inset top and bottom by the dot
+	   offset so it starts at the centre of the first dot and ends at the centre
+	   of the last, with no bare line hanging off either end. */
+	.ac-timeline-01 .ac-htl-line {
+		top: var(--ac-dot-offset, 0.55rem);
+		bottom: auto;
+		right: auto;
+		width: 1px;
+		height: calc(100% - var(--ac-dot-offset, 0.55rem) - var(--ac-last-gap, 0px));
+	}
+
+	.ac-timeline-01 .ac-htl-line__fill {
+		width: 100%;
+		height: 100%;
+		transform: scaleY(0);
+		transform-origin: top center;
+	}
+
+	.ac-timeline-01 .ac-htl-items {
+		--ac-dot-offset: 0.55rem;
+	}
+
+	/* Hidden up front so a milestone is never visible in its final position
+	   before the reveal starts - that flash is what reads as the text jumping
+	   in from outside. The class is added by the script, so nothing is hidden
+	   if JS never runs. */
+	.ac-timeline-01.is-revealing .ac-htl-item__dot,
+	.ac-timeline-01.is-revealing .ac-htl-item__year,
+	.ac-timeline-01.is-revealing .ac-htl-item__title,
+	.ac-timeline-01.is-revealing .ac-htl-item__text {
+		visibility: hidden;
+	}
+
+	.ac-timeline-01.is-revealing .ac-htl-item.is-revealed .ac-htl-item__dot,
+	.ac-timeline-01.is-revealing .ac-htl-item.is-revealed .ac-htl-item__year,
+	.ac-timeline-01.is-revealing .ac-htl-item.is-revealed .ac-htl-item__title,
+	.ac-timeline-01.is-revealing .ac-htl-item.is-revealed .ac-htl-item__text {
+		visibility: visible;
+	}
+
+	.ac-timeline-01 .ac-htl-item__dot {
+		top: var(--ac-dot-offset, 0.55rem);
+		margin-top: 0;
+	}
+
+	/* GSAP sets an inline transform on these dots when they reveal, so the
+	   active state changes colour only - a CSS scale here would fight it. */
+	.ac-timeline-01 .ac-htl-item.is-active .ac-htl-item__dot {
+		transform: none;
+	}
+}
+
+/* ---------- Alternating either side of a centred spine ---------- */
+
+@media (max-width: 991px) {
+	.ac-timeline-01 .ac-htl-line {
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	.ac-timeline-01 .ac-htl-item {
+		width: 50%;
+		padding-bottom: 3.5rem;
+		/* The gutter padding must sit inside the 50%, or each column becomes
+		   50% + padding and overflows the container. */
+		box-sizing: border-box;
+		/* Long words - URLs, partner names - cannot widen a fixed column. */
+		overflow-wrap: break-word;
+		word-wrap: break-word;
+		min-width: 0;
+	}
+
+	/* Odd milestones sit left of the spine, ranged towards it. */
+	.ac-timeline-01 .ac-htl-item:nth-child(odd) {
+		margin-left: 0;
+		padding-right: 2.5rem;
+		text-align: right;
+	}
+
+	.ac-timeline-01 .ac-htl-item:nth-child(even) {
+		margin-left: 50%;
+		padding-left: 2.5rem;
+		text-align: left;
+	}
+
+	/* Dots straddle the spine from whichever side their entry is on. */
+	.ac-timeline-01 .ac-htl-item:nth-child(odd) .ac-htl-item__dot {
+		left: auto;
+		right: -5px;
+	}
+
+	.ac-timeline-01 .ac-htl-item:nth-child(even) .ac-htl-item__dot {
+		left: -5px;
+		right: auto;
+	}
+}
+
+/* ---------- Phone: same alternation, tightened up ---------- */
+
+@media (max-width: 767px) {
+	.ac-timeline-01 .ac-htl-item {
+		padding-bottom: 2.5rem;
+	}
+
+	.ac-timeline-01 .ac-htl-item:nth-child(odd) {
+		padding-right: 1.25rem;
+	}
+
+	.ac-timeline-01 .ac-htl-item:nth-child(even) {
+		padding-left: 1.25rem;
+	}
+
+	.ac-timeline-01 .ac-htl-item__year {
+		font-size: clamp(1.375rem, 6vw, 1.75rem);
+		margin-bottom: 0.5rem;
+	}
+
+	/* Titles and copy tighten so two columns stay readable at phone widths. */
+	.ac-timeline-01 .ac-htl-item__title {
+		font-size: 1rem;
+		line-height: 1.3;
+	}
+
+	.ac-timeline-01 .ac-htl-item__text {
+		font-size: 0.8125rem;
+		line-height: 1.55;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.ac-timeline-01 .ac-htl-item {
+		opacity: 1;
+		transition: none;
+	}
+}
+
+/* ==========================================================================   Vertical layout on desktop
+   The same rules as the sub-992px layout, re-scoped to the Vertical class so
+   they apply at any width. Kept separate rather than widening the media
+   queries, so mobile behaviour is unchanged.
+   ========================================================================== */
+	/* Beats the :not(.is-horizontal) fallback rule, which would otherwise
+	   leave a stray horizontal scrollbar in the vertical layout. */
+	.ac-timeline-01.ac-timeline--vertical:not(.is-horizontal) .ac-htl-viewport,
+	.ac-timeline-01.ac-timeline--vertical .ac-htl-viewport {
+		overflow: visible;
+	}
+
+	.ac-timeline-01.ac-timeline--vertical .ac-htl-track {
+		/* The track is never translated at these widths. */
+		transform: none !important;
+		padding-left: 0;
+		padding-right: 0;
+		will-change: auto;
+	}
+
+	.ac-timeline-01.ac-timeline--vertical .ac-htl-items {
+		display: block;
+		position: relative;
+		padding: 0;
+	}
+
+	.ac-timeline-01.ac-timeline--vertical .ac-htl-item {
+		width: auto;
+		opacity: 1;
+		padding-bottom: 3rem;
+	}
+
+	.ac-timeline-01.ac-timeline--vertical .ac-htl-item:last-child {
+		padding-bottom: 0;
+	}
+
+	.ac-timeline-01.ac-timeline--vertical .ac-htl-item__year {
+		font-size: clamp(1.75rem, 5vw, 2.25rem);
+		margin-bottom: 0.75rem;
+	}
+
+	.ac-timeline-01.ac-timeline--vertical .ac-htl-item__text {
+		max-width: none;
+	}
+
+	/* The spine replaces the horizontal rule. Inset top and bottom by the dot
+	   offset so it starts at the centre of the first dot and ends at the centre
+	   of the last, with no bare line hanging off either end. */
+	.ac-timeline-01.ac-timeline--vertical .ac-htl-line {
+		top: var(--ac-dot-offset, 0.55rem);
+		bottom: auto;
+		right: auto;
+		width: 1px;
+		height: calc(100% - var(--ac-dot-offset, 0.55rem) - var(--ac-last-gap, 0px));
+	}
+
+	.ac-timeline-01.ac-timeline--vertical .ac-htl-line__fill {
+		width: 100%;
+		height: 100%;
+		transform: scaleY(0);
+		transform-origin: top center;
+	}
+
+	.ac-timeline-01.ac-timeline--vertical .ac-htl-items {
+		--ac-dot-offset: 0.55rem;
+	}
+
+	/* Hidden up front so a milestone is never visible in its final position
+	   before the reveal starts - that flash is what reads as the text jumping
+	   in from outside. The class is added by the script, so nothing is hidden
+	   if JS never runs. */
+	.ac-timeline-01.ac-timeline--vertical.is-revealing .ac-htl-item__dot,
+	.ac-timeline-01.ac-timeline--vertical.is-revealing .ac-htl-item__year,
+	.ac-timeline-01.ac-timeline--vertical.is-revealing .ac-htl-item__title,
+	.ac-timeline-01.ac-timeline--vertical.is-revealing .ac-htl-item__text {
+		visibility: hidden;
+	}
+
+	.ac-timeline-01.ac-timeline--vertical.is-revealing .ac-htl-item.is-revealed .ac-htl-item__dot,
+	.ac-timeline-01.ac-timeline--vertical.is-revealing .ac-htl-item.is-revealed .ac-htl-item__year,
+	.ac-timeline-01.ac-timeline--vertical.is-revealing .ac-htl-item.is-revealed .ac-htl-item__title,
+	.ac-timeline-01.ac-timeline--vertical.is-revealing .ac-htl-item.is-revealed .ac-htl-item__text {
+		visibility: visible;
+	}
+
+	.ac-timeline-01.ac-timeline--vertical .ac-htl-item__dot {
+		top: var(--ac-dot-offset, 0.55rem);
+		margin-top: 0;
+	}
+
+	/* GSAP sets an inline transform on these dots when they reveal, so the
+	   active state changes colour only - a CSS scale here would fight it. */
+	.ac-timeline-01.ac-timeline--vertical .ac-htl-item.is-active .ac-htl-item__dot {
+		transform: none;
+	}
+	.ac-timeline-01.ac-timeline--vertical .ac-htl-line {
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	.ac-timeline-01.ac-timeline--vertical .ac-htl-item {
+		width: 50%;
+		padding-bottom: 3.5rem;
+		/* The gutter padding must sit inside the 50%, or each column becomes
+		   50% + padding and overflows the container. */
+		box-sizing: border-box;
+		/* Long words - URLs, partner names - cannot widen a fixed column. */
+		overflow-wrap: break-word;
+		word-wrap: break-word;
+		min-width: 0;
+	}
+
+	/* Odd milestones sit left of the spine, ranged towards it. */
+	.ac-timeline-01.ac-timeline--vertical .ac-htl-item:nth-child(odd) {
+		margin-left: 0;
+		padding-right: 2.5rem;
+		text-align: right;
+	}
+
+	.ac-timeline-01.ac-timeline--vertical .ac-htl-item:nth-child(even) {
+		margin-left: 50%;
+		padding-left: 2.5rem;
+		text-align: left;
+	}
+
+	/* Dots straddle the spine from whichever side their entry is on. */
+	.ac-timeline-01.ac-timeline--vertical .ac-htl-item:nth-child(odd) .ac-htl-item__dot {
+		left: auto;
+		right: -5px;
+	}
+
+	.ac-timeline-01.ac-timeline--vertical .ac-htl-item:nth-child(even) .ac-htl-item__dot {
+		left: -5px;
+		right: auto;
+	}
+
+/* ==========================================================================
+   Vertical layout - line lengths
+   Half a wide container is far too wide for comfortable reading, so the copy
+   is capped and pulled towards the spine on each side.
+   ========================================================================== */
+
+@media (min-width: 992px) {
+	.ac-timeline-01.ac-timeline--vertical .ac-htl-item__title,
+	.ac-timeline-01.ac-timeline--vertical .ac-htl-item__text {
+		max-width: 34ch;
+	}
+
+	/* Ranged towards the centre line, so the two columns stay tied to it
+	   rather than drifting to the outer edges. */
+	.ac-timeline-01.ac-timeline--vertical .ac-htl-item:nth-child(odd) .ac-htl-item__title,
+	.ac-timeline-01.ac-timeline--vertical .ac-htl-item:nth-child(odd) .ac-htl-item__text {
+		margin-left: auto;
+		margin-right: 0;
+	}
+
+	.ac-timeline-01.ac-timeline--vertical .ac-htl-item:nth-child(even) .ac-htl-item__title,
+	.ac-timeline-01.ac-timeline--vertical .ac-htl-item:nth-child(even) .ac-htl-item__text {
+		margin-left: 0;
+		margin-right: auto;
+	}
+
+	/* A little more room between the columns and the spine at desktop widths. */
+	.ac-timeline-01.ac-timeline--vertical .ac-htl-item:nth-child(odd) {
+		padding-right: 4rem;
+	}
+
+	.ac-timeline-01.ac-timeline--vertical .ac-htl-item:nth-child(even) {
+		padding-left: 4rem;
+	}
+}
+
+/* ==========================================================================
+   Vertical layout - container alignment
+   The viewport sits outside .content-wrapper so the horizontal track can run
+   edge to edge. In the vertical layout there is no track to bleed, so the
+   theme's container padding is applied here instead - otherwise the
+   milestones sit hard against the screen edge while the heading above them
+   is correctly indented.
+   ========================================================================== */
+
+@media (max-width: 991px) {
+	.ac-timeline-01 .ac-htl-viewport {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+}
+
+@media (min-width: 992px) {
+	.ac-timeline-01.ac-timeline--vertical .ac-htl-viewport {
+		width: 100%;
+		max-width: var(--ac-container, none);
+		margin-left: auto;
+		margin-right: auto;
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+}
+
+/* ==========================================================================
+   Milestone images
+   Every image occupies the same box, stacked and cross-faded, so the panel is
+   a constant size no matter which milestone is active. On desktop it sits
+   beside the heading, in the space the intro leaves empty.
+   ========================================================================== */
+
+.ac-timeline-01 .ac-htl-media {
+	position: relative;
+	/* Landscape rather than portrait, and capped, so the panel sits within the
+	   heading's height instead of towering over it. Reserving the ratio also
+	   stops anything shifting before the first image loads. */
+	aspect-ratio: 3 / 2;
+	width: 100%;
+	overflow: hidden;
+	border-radius: 12px;
+	background: var(--secondary);
+}
+
+/* All images are stacked and fully opaque; which one shows is decided by
+   z-index, not opacity. Clipping the inactive ones keeps them out of sight
+   without ever making the panel translucent. */
+.ac-timeline-01 .ac-htl-media__item {
+	position: absolute;
+	inset: 0;
+	margin: 0;
+	z-index: 0;
+}
+
+/* The first image sits on top before the script runs, so the panel is never
+   empty if JS fails. */
+.ac-timeline-01 .ac-htl-media__item.is-current {
+	z-index: 1;
+}
+
+.ac-timeline-01 .ac-htl-media__item img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	/* GSAP scales this for the drift, so give the compositor a hint. */
+	will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.ac-timeline-01 .ac-htl-media__item img {
+		transform: none !important;
+		will-change: auto;
+	}
+}
+
+/* ---------- Desktop: image beside the heading ---------- */
+
+@media (min-width: 992px) {
+	/* Both columns sit on the same bottom edge, a fixed distance above the
+	   timeline rule. Centring them against each other instead left the image
+	   floating with no relationship to the heading or the track below. */
+	/* Top-aligned: the heading and the image start on the same line, which
+	   gives them a shared edge to read against. */
+	.ac-timeline-01 .ac-htl-head--split {
+		display: grid;
+		grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+		align-items: start;
+		gap: 3rem;
+		margin-bottom: 4rem;
+	}
+
+	.ac-timeline-01 .ac-htl-head--split .ac-htl-intro {
+		margin-bottom: 0;
+	}
+
+	/* Sized by its own ratio and capped, so the panel stays a supporting note
+	   beside the heading rather than the dominant element. */
+	.ac-timeline-01 .ac-htl-head--split .ac-htl-media {
+		aspect-ratio: 3 / 2;
+		height: auto;
+		min-height: 0;
+		max-height: 240px;
+	}
+
+}
+
+/* ---------- Below desktop: image above the milestones ---------- */
+
+@media (max-width: 991px) {
+	.ac-timeline-01 .ac-htl-media {
+		margin-bottom: 3rem;
+		aspect-ratio: 16 / 10;
+	}
+}
+
+/* ==========================================================================
+   Per-milestone images (below desktop)
+   The head panel is a desktop device: there the image sits beside the heading
+   and cross-fades. Below the breakpoint each milestone carries its own image,
+   placed across the spine from its text so the two alternate down the page.
+   ========================================================================== */
+
+/* Desktop uses the cross-fading head panel instead. */
+@media (min-width: 992px) {
+	.ac-timeline-01 .ac-htl-item__media {
+		display: none;
+	}
+}
+
+@media (max-width: 991px) {
+	/* The head panel is redundant once every milestone has its own image. */
+	.ac-timeline-01 .ac-htl-media {
+		display: none;
+	}
+
+	.ac-timeline-01 .ac-htl-item__media {
+		margin: 1.25rem 0 0;
+		overflow: hidden;
+		border-radius: 10px;
+		background: var(--secondary);
+		aspect-ratio: 3 / 2;
+	}
+
+	.ac-timeline-01 .ac-htl-item__media img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+}
+
+/* ---------- Below desktop: image across the spine from its text ---------- */
+
+@media (max-width: 991px) {
+	/* The milestone spans both columns so its text can stay on its own side
+	   while the image sits opposite, with the spine running between them. */
+	.ac-timeline-01 .ac-htl-item {
+		width: 100%;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		column-gap: 5rem;
+		align-items: start;
+	}
+
+	.ac-timeline-01 .ac-htl-item:nth-child(odd),
+	.ac-timeline-01 .ac-htl-item:nth-child(even) {
+		margin-left: 0;
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	/* Odd: text left of the spine, image right. */
+	.ac-timeline-01 .ac-htl-item:nth-child(odd) .ac-htl-item__year,
+	.ac-timeline-01 .ac-htl-item:nth-child(odd) .ac-htl-item__title,
+	.ac-timeline-01 .ac-htl-item:nth-child(odd) .ac-htl-item__text {
+		grid-column: 1;
+		text-align: right;
+	}
+
+	.ac-timeline-01 .ac-htl-item:nth-child(odd) .ac-htl-item__media {
+		grid-column: 2;
+		grid-row: 1 / span 3;
+	}
+
+	/* Even: image left of the spine, text right. */
+	.ac-timeline-01 .ac-htl-item:nth-child(even) .ac-htl-item__year,
+	.ac-timeline-01 .ac-htl-item:nth-child(even) .ac-htl-item__title,
+	.ac-timeline-01 .ac-htl-item:nth-child(even) .ac-htl-item__text {
+		grid-column: 2;
+		text-align: left;
+	}
+
+	.ac-timeline-01 .ac-htl-item:nth-child(even) .ac-htl-item__media {
+		grid-column: 1;
+		grid-row: 1 / span 3;
+	}
+
+	.ac-timeline-01 .ac-htl-item__media {
+		margin-top: 0;
+	}
+}
+
+/* ---------- Phone: same alternation, tighter ---------- */
+
+@media (max-width: 767px) {
+	.ac-timeline-01 .ac-htl-item {
+		column-gap: 2rem;
+	}
+
+	.ac-timeline-01 .ac-htl-item__media {
+		aspect-ratio: 1 / 1;
+	}
+}
+
+/* ==========================================================================
+   Milestone image reveal
+   The image wipes in from the spine outwards, so it reads as unfolding from
+   the line rather than arriving from off-screen. Hidden up front only once
+   the script confirms it can run.
+   ========================================================================== */
+
+@media (max-width: 991px) {
+	.ac-timeline-01.is-revealing .ac-htl-item__media {
+		visibility: hidden;
+	}
+
+	.ac-timeline-01.is-revealing .ac-htl-item.is-revealed .ac-htl-item__media {
+		visibility: visible;
+	}
+}
+
+/* ==========================================================================
+   Year size
+   A company timeline wants the year to lead; a process wants the step name to
+   lead, with the number as a quiet marker. The setting swaps which of the two
+   carries the weight.
+   ========================================================================== */
+
+.ac-timeline-01.ac-year-md .ac-htl-item__year {
+	font-size: clamp(1.5rem, 2.4vw, 2rem);
+}
+
+.ac-timeline-01.ac-year-sm .ac-htl-item__year {
+	font-size: clamp(1rem, 1.4vw, 1.125rem);
+	letter-spacing: 0.08em;
+	opacity: 0.65;
+	margin-bottom: 0.75rem;
+}
+
+/* With a small number the title becomes the heading of the entry, so it takes
+   the size the year has given up. */
+.ac-timeline-01.ac-year-sm .ac-htl-item__title {
+	font-size: clamp(1.125rem, 1.8vw, 1.5rem);
+}
+
+@media (max-width: 991px) {
+	.ac-timeline-01.ac-year-md .ac-htl-item__year {
+		font-size: clamp(1.375rem, 4vw, 1.75rem);
+	}
+
+	.ac-timeline-01.ac-year-sm .ac-htl-item__year {
+		font-size: 1rem;
+	}
+}

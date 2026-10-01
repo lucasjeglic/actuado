@@ -1,0 +1,269 @@
+<!--
+templateType: blog_listing
+isAvailableForNewContent: true
+label: Blog Charlie Listing
+-->
+{% include './header.html' %}
+
+{{ require_css(get_asset_url('../css/blog-charlie.css'), { async: true }) }}
+
+{% set show_hero = true %}
+
+<body class="blog blog-listing {{ widget_data.body_class.value }} {{ builtin_body_classes }} {% set theme_name = content.template_path|split('/')|first %}{{ theme_name }} {% set template_name = content.template_path|split('/')|last %}{{ template_name[:-5] if template_name }}">
+
+	{% block header %}
+	{% boolean "enabled_site_header" label='Enable Global Site Header', value=true, export_to_template_context=True %}
+	{% if widget_data.enabled_site_header.value %}
+	{% global_partial path="../templates/partials/site_header.html" %}
+	{% endif %}
+	{% endblock header %}
+
+	{% block body %}
+	{# Breadcrumbs #}
+	<div class="sr-sticky-breadcrumb">
+		<div class="sr-sticky-breadcrumb-heading">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-10 offset-lg-1">
+						<div class="row d-flex justify-content-between">
+							<div class="col-auto">
+								<a href="{{ group.absolute_url }}">{{ group.public_title }}</a>
+							</div>
+							<div class="col-auto">
+								<a href="#" class="sr-sticky-breadcrumb-trigger">
+									Categories
+									{% icon name="chevron-down" style="SOLID" unicode="f078" icon_set="fontawesome-5.14.0" width="10" %}
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="sr-sticky-breadcrumb-categories">
+			<div class="container">
+				{% set blog_tags = blog_tags(group.id, 250) %}
+				<ul>
+					{% for item in blog_tags %}
+					<li><a href="{{ blog_tag_url(group.id, item.slug) }}">{{ item.name }}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	{# If Author Page #}
+	{% if blog_author %}
+	<div class="author-profile">
+		<div class="blog-container">
+			<div class="row">
+				<div class="col-12 col-lg-8 offset-lg-2 author-content">
+
+					<div class="row align-items-center">
+						<div class="col-lg-2">
+							<div class="author-profile-info">
+								{% if blog_author.avatar %}
+								<img src="{{ blog_author.avatar }}" alt="{{ blog_author.display_name }}" class="avatar" />
+								{% endif %}
+							</div>
+						</div>
+						<div class="{{"col-lg-8" if blog_author.has_social_profiles else "col-lg-10"}}">
+							<div class="author-profile-bio">
+								<h2 class="author-name">{{ blog_author.display_name }}</h2>
+								{{ blog_author.bio }}
+							</div>
+						</div>
+						{% if blog_author.has_social_profiles %}
+						<div class="col-lg-2">
+							<div class="author-profile-socials text-lg-right">
+								<div class="social-profiles">
+									{% if blog_author.twitter %}
+									<a href="{{ blog_author.twitter }}" target="_blank" class="no-decoration">
+										{% icon  name="Twitter Square" style="REGULAR" unicode="f081" icon_set="fontawesome-5.14.0" width="25" %}
+									</a>
+									{% endif %}
+									{% if blog_author.facebook %}
+									<a href="{{ blog_author.facebook }}" target="_blank" class="no-decoration">
+										{% icon name="Facebook" style="REGULAR" unicode="f09a" icon_set="fontawesome-5.14.0" width="25" %}
+									</a>
+									{% endif %}
+									{% if blog_author.linkedin %}
+									<a href="{{ blog_author.linkedin }}" target="_blank" class="no-decoration">
+										{% icon  name="LinkedIn" style="REGULAR" unicode="f08c" icon_set="fontawesome-5.14.0" width="25" %}
+									</a>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endif %}
+
+	{# Blog Hero Post #}
+	{% if is_listing_view && !blog_author && current_page_num == 1 && show_hero %}
+	{% for content in contents %}
+	{% if loop.index == 1 %}
+	<div class="blog-hero d-flex align-items-end" style="background-image:url('{{ content.featured_image }}');">
+		<div class="blog-container">
+			<div class="row">
+				<div class="col-12 col-lg-6">
+					<div class="blog-hero-content text-white">
+						{% for topic in content.topic_list %}
+						<div class="tag">
+							<a class="text-white" href="{{ blog_tag_url(group.id, topic.slug) }}">{{ topic.name }}</a>{% if !loop.last %},{% endif %}
+						</div>
+						{% endfor %}
+						<h2><a href="{{ content.absolute_url }}" class="text-white">{{ content.name }}</a></h2>
+					</div>
+				</div>
+				<div class="col-12 col-lg-6">
+					<div class="blog-hero-content text-white">
+						<div class="data mb-3">
+							{% if content.blog_post_author.avatar %}
+							<div class="avatar">
+								<img src="{{ content.blog_post_author.avatar }}" alt="{{ content.blog_post_author.full_name }}" />
+							</div>
+							{% endif %}
+
+							<div class="meta">
+								{% if content.blog_post_author %}
+								By <a class="author-link text-white" href="{{ blog_author_url(group.id, content.blog_post_author.slug) }}">{{ content.blog_post_author.full_name }}</a>
+								<br>on
+								{% endif %}
+								{{ content.publish_date_local_time|datetimeformat('%B %d, %Y') }}
+							</div>
+
+						</div>
+						<div class="content">
+							{{ content.post_list_content|striptags|truncate(200) }}
+							<div class="btn-wrapper btn-primary-wrapper sr-spacer-top-25">
+								<a href="{{ content.absolute_url }}" class="cta-button">Read More</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endif %}
+	{% endfor %}
+	{% endif %}
+
+	{# Blog Listing #}
+	<div class="articles-list">
+		<div class="container">
+
+			{% if blog_author %}
+			<div class="text-center">
+				<h4 class="more-author">
+					More from {{ blog_author.display_name }}
+				</h4>
+			</div>
+			{% endif %}
+
+			<div class="row latest-posts">
+				{% for content in contents %}
+				{% if current_page_num == 1 && !blog_author && show_hero %}
+				{% set loopIndex = 1 %}
+				{% else %}
+				{% set loopIndex = 0 %}
+				{% endif %}
+				{% if loop.index > loopIndex %}
+				<div class="col-lg-10 offset-lg-1">
+					<div class="article-panel">
+						{% if content.featured_image %}
+						<div class="article-img">
+							<a href="{{ content.absolute_url }}">
+								<img src="{{ content.featured_image }}" alt="{{ content.featured_image.alt }}" class="img-fluid">
+							</a>
+						</div>
+						{% endif %}
+						<div class="article-content">
+							<div class="row">
+								<div class="col-lg-6">
+									<div class="tags">
+										{% for topic in content.topic_list %}
+										<div class="tag">
+											<a href="{{ blog_tag_url(group.id, topic.slug) }}">{{ topic.name }}{{", " if not loop.last}}</a>
+										</div>
+										{% endfor %}
+									</div>
+									<h3><a href="{{ content.absolute_url }}">{{ content.name }}</a></h3>
+								</div>
+								<div class="col-lg-6">
+									<div class="data mb-3">
+										{% if content.blog_post_author.avatar %}
+										<div class="avatar">
+											<img src="{{ content.blog_post_author.avatar }}" alt="{{ content.blog_post_author.full_name }}" />
+										</div>
+										{% endif %}
+
+										<div class="meta">
+											{% if content.blog_post_author %}
+											By <a class="author-link" href="{{ blog_author_url(group.id, content.blog_post_author.slug) }}">{{ content.blog_post_author.full_name }}</a>
+											<br>on
+											{% endif %}
+											{{ content.publish_date_local_time|datetimeformat('%B %d, %Y') }}
+										</div>
+
+									</div>
+									{{ content.post_list_content|striptags|truncate(200) }}
+									<div class="btn-wrapper btn-primary-wrapper sr-spacer-top-25">
+										<a href="{{ content.absolute_url }}" class="cta-button">Read More</a>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				{% endif %}
+				{% endfor %}
+			</div>
+
+			{% if not simple_list_page %}
+			<div class="blog-pagination row">
+				<div class="col">
+					{% if last_page_num %}
+					<a class="previous-posts-link" href="{{ blog_page_link(last_page_num) }}">Prev</a>
+					{% endif %}
+					<a class="all-posts-link" href="{{ group.absolute_url }}/all">All posts</a>
+					{% if next_page_num %}
+					<a class="next-posts-link" href="{{ blog_page_link(next_page_num) }}">Next</a>
+					{% endif %}
+				</div>
+			</div>
+			{% endif %}
+
+		</div>
+	</div>
+	{% endblock body %}
+
+
+
+	{% block footer %}
+	{% boolean "enabled_site_footer" label='Enable Global Site Footer', value=true, export_to_template_context=True %}
+	{% if widget_data.enabled_site_footer.value %}
+	{% global_partial path="../templates/partials/site_footer.html" %}
+	{% endif %}
+	{% endblock footer %}
+
+	{% require_js %}
+	<script defer>
+		// Slide on click
+		if($('.sr-sticky-breadcrumb-trigger').length) {
+			$('.sr-sticky-breadcrumb-trigger').click(function(e){
+				$('.sr-sticky-breadcrumb-categories').slideToggle();
+				e.preventDefault();
+			});
+		}
+	</script>
+	{% end_require_js %}
+
+	{% include './footer-includes.html' %}
+</body>
+</html>

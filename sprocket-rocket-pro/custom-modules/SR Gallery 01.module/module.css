@@ -1,0 +1,138 @@
+.sr-gallery-01 .row.image-row a {
+  background-size: cover;
+  background-position: 50% 50%;
+  position: relative;
+}
+
+.sr-gallery-01 .image-col a {
+  background: #333;
+  display: inline-block;
+  width: 100%;
+  height: 300px;
+  margin: 5px 0;
+  max-width: 100%
+}
+
+.sr-gallery-01 .row.image-row a:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.sr-gallery-01 .plus {
+  text-align: center;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.sr-gallery-01 .plus svg {
+  color: #fff;
+}
+
+.sr-gallery-01 .row.image-row a .icon-wrapper {
+  opacity: 0;
+  border-radius: 50%;
+  height: 3rem;
+  width: 3rem;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sr-gallery-01 .row.image-row a:hover .icon-wrapper,
+.sr-gallery-01 .row.image-row a:active .icon-wrapper,
+.sr-gallery-01 .row.image-row a:focus .icon-wrapper {
+  opacity: 1;
+}
+
+.sr-gallery-01 .row.image-row {
+  padding: 13px 0;
+}
+
+.sr-gallery-01 .col1 {
+  -ms-flex-item-align: end;
+  align-self: flex-end;
+}
+
+.sr-gallery-01 .col1 a {
+  height: 216px;
+  width: 260px;
+}
+
+.sr-gallery-01 .col2 a {
+  height: 280px;
+  width: 433px;
+}
+
+.sr-gallery-01 .col3 a {
+  height: 216px;
+  width: 260px;
+}
+
+.sr-gallery-01 .col4 a {
+  height: 160px;
+  width: 160px;
+}
+
+.sr-gallery-01 .col3 {
+  padding-right: 0 !important;
+}
+
+.sr-gallery-01 .col4 {
+  padding-left: 30px !important;
+}
+
+@media (max-width: 768px) {
+  .sr-gallery-01 .image-col {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .sr-gallery-01 .row.image-row {
+    padding: 2px 0;
+  }
+
+  .sr-gallery-01 .col4 {
+    padding-left: 16px !important;
+  }
+
+  .sr-gallery-01 .col1 a {
+    height: 140px;
+  }
+
+  .sr-gallery-01 .col2 a {
+    height: 180px;
+  }
+
+  .sr-gallery-01 .col3 a {
+    height: 140px;
+  }
+
+  .sr-gallery-01 .col4 a {
+    height: 100px;
+  }
+}
+
+@media (max-width: 567px) {
+  .sr-gallery-01 .col1 a {
+    height: 100px;
+  }
+
+  .sr-gallery-01 .col2 a {
+    height: 120px;
+  }
+
+  .sr-gallery-01 .col3 a {
+    height: 100px;
+  }
+
+  .sr-gallery-01 .col4 a {
+    height: 70px;
+  }
+}

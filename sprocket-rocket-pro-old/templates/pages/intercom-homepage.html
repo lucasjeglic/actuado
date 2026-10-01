@@ -1,0 +1,341 @@
+<!--
+templateType: page
+isAvailableForNewContent: true
+label: Intercom Homepage
+screenshotPath: ../../images/intercom-homepage.jpg
+-->
+
+	{% include '../header.html' %}
+
+		<body class="pre-built {{ widget_data.body_class.value }} {{ builtin_body_classes }} {% set theme_name = content.template_path|split('/')|first %}{{ theme_name }} {% set template_name = content.template_path|split('/')|last %}{{ template_name[:-5] if template_name }}">
+
+		{% block header %}
+			{% boolean "enabled_site_header" label='Enable Global Site Header', value=true, export_to_template_context=True %}
+			{% if widget_data.enabled_site_header.value %}
+				{% global_partial path="../partials/site_header.html" %}
+			{% endif %}
+		{% endblock header %}
+
+		{% block body %}
+			{% dnd_area "body_dnd_area", class='body_dnd_area' label="Main Content" %}
+				{% dnd_section %}
+				  {% dnd_column
+					offset=0,
+					width=12
+				  %}
+					{% dnd_row %}
+					  {% dnd_module
+						path="../../custom-modules/SR Hero 01",
+						offset=0,
+						width=12,
+						design_settings={
+						  "background_color" : "dark",
+						  "background_custom" : {
+							"color" : "#051626",
+							"opacity" : 100
+						  },
+						  "background_option" : "color"
+						},
+						heading=[ {
+						  "heading" : "Support customers at exactly the right moment",
+						  "heading_align" : "auto",
+						  "heading_color" : "auto",
+						  "heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+						  },
+						  "heading_display_size" : "display-4",
+						  "heading_size" : "h1"
+						}, {
+						  "heading" : "Faster resolution times and happier customers are just the beginning. Welcome to a whole new way to support your customers.",
+						  "heading_align" : "auto",
+						  "heading_color" : "auto",
+						  "heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+						  },
+						  "heading_display_size" : "h4",
+						  "heading_size" : "h2"
+						} ],
+						height="medium"
+					  %}
+						{% module_attribute "description" %}
+
+						{% end_module_attribute %}
+					  {% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					  {% dnd_module
+						path="../../custom-modules/SR Clients 01",
+						offset=0,
+						width=12,
+						design_settings={
+						  "spacing" : {
+							"margin" : {
+							  "bottom" : {
+								"units" : "rem",
+								"value" : 0
+							  },
+							  "top" : {
+								"units" : "rem",
+								"value" : 0
+							  }
+							},
+							"padding" : {
+							  "bottom" : {
+								"units" : "px",
+								"value" : 0
+							  },
+							  "left" : {
+								"units" : "rem",
+								"value" : 0
+							  },
+							  "right" : {
+								"units" : "rem",
+								"value" : 0
+							  },
+							  "top" : {
+								"units" : "rem",
+								"value" : 6.25
+							  }
+							}
+						  },
+						  "top_bottom_padding" : "custom"
+						},
+						heading=[ {
+						  "heading" : "TRUSTED BY 25K+ BUSINESSES",
+						  "heading_align" : "auto",
+						  "heading_color" : "auto",
+						  "heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+						  },
+						  "heading_display_size" : "h6",
+						  "heading_size" : "h2"
+						} ]
+					  %}
+					  {% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					  {% dnd_module
+						path="../../custom-modules/SR Tabs 01",
+						offset=0,
+						width=12,
+						design_settings={
+						  "text_align" : {
+							"text_align" : "CENTER"
+						  }
+						},
+						heading=[ {
+						  "heading" : "A better customer experience across<br> support, marketing, and sales",
+						  "heading_align" : "auto",
+						  "heading_color" : "auto",
+						  "heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+						  },
+						  "heading_display_size" : "h1",
+						  "heading_size" : "h2"
+						} ],
+						tabs=[
+							{
+								"tab_content": "<h3>Support customers at scale</h3>\n<p>Provide personalized help at scale with proactive, self-serve, and human support.</p>\n<p><strong><a href='#' rel='noopener'>Start using next-generation support today</a></strong></p>\n<p><img src='https://9427732.fs1.hubspotusercontent-na1.net/hubfs/9427732/intercom-home-support.webp' alt='intercom-home-support' width='750' height='750' loading='lazy' style='height: auto; max-width: 100%; width: 750px;'></p>\n<p>&nbsp;</p>",
+								"tab_label": "Support teams"
+							},
+							{
+								"tab_content": "<h3>Convert more customers</h3>\n<p>Accelerate conversion and acquire more customers with ABM, chatbots, and automated meeting scheduling.&nbsp;</p>\n<p><strong><a href='#' rel='noopener'>Start converting customers faster</a></strong></p>\n<p><strong><img src='https://9427732.fs1.hubspotusercontent-na1.net/hubfs/9427732/intercom-home-image.webp' alt='intercom-home-image' width='750' height='750' loading='lazy' style='height: auto; max-width: 100%; width: 750px;'></strong></p>\n<p>&nbsp;</p>",
+								"tab_label": "Sales teams"
+							},
+							{
+								"tab_content": "<h3>Engage across every touchpoint</h3>\n<p>Drive activation and engagement with in-product and multi-channel campaigns, tours, and surveys.</p>\n<p><strong><a href='#' rel='noopener'>Start growing business non-stop</a></strong></p>\n<p><strong><img src='https://9427732.fs1.hubspotusercontent-na1.net/hubfs/9427732/intercom-home-marketing.webp' alt='intercom-home-marketing' width='750' height='750' loading='lazy' style='height: auto; max-width: 100%; width: 750px;'></strong></p>\n<p>&nbsp;</p>",
+								"tab_label": "Marketing teams"
+							}
+						]
+					  %}
+					  {% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					  {% dnd_module
+						path="../../custom-modules/SR Cards Image 01",
+						offset=0,
+						width=12,
+						cards=[ {
+						  "card_description" : "",
+						  "card_heading" : [ {
+							"heading" : "Atlassian powers sales and support at scale with intercom",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							  "color" : "#30343b",
+							  "opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h5"
+						  } ],
+						  "card_logo" : {
+							"height" : "100",
+							"loading" : "lazy",
+							"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/pattern-library/sr-cards-image-01/sr-cards-image-01-1.jpg",
+							"width" : "100"
+						  },
+						  "ctas" : [ {
+							"button_text" : "Learn More",
+							"cta" : "",
+							"cta_size" : "md",
+							"cta_style" : "outline-primary",
+							"cta_type" : "btn",
+							"link" : {
+							  "no_follow" : false,
+							  "open_in_new_tab" : false,
+							  "url" : {
+								"href" : "#",
+								"type" : "EXTERNAL"
+							  }
+							},
+							"modal_target" : "demo"
+						  } ]
+						}, {
+						  "card_description" : "",
+						  "card_heading" : [ {
+							"heading" : "Living Spaces creates a unified experience across the customer journey.",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							  "color" : "#30343b",
+							  "opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h5"
+						  } ],
+						  "card_logo" : {
+							"height" : "100",
+							"loading" : "lazy",
+							"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/pattern-library/sr-cards-image-01/sr-cards-image-01-2.jpg",
+							"width" : "100"
+						  },
+						  "ctas" : [ {
+							"button_text" : "Learn More",
+							"cta" : "",
+							"cta_size" : "md",
+							"cta_style" : "outline-primary",
+							"cta_type" : "btn",
+							"link" : {
+							  "no_follow" : false,
+							  "open_in_new_tab" : false,
+							  "url" : {
+								"href" : "#",
+								"type" : "EXTERNAL"
+							  }
+							},
+							"modal_target" : "demo"
+						  } ]
+						}, {
+						  "card_description" : "",
+						  "card_heading" : [ {
+							"heading" : "Appliances Online converts 200% more leads with Intercom.",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							  "color" : "#30343b",
+							  "opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h5"
+						  } ],
+						  "card_logo" : {
+							"height" : "100",
+							"loading" : "lazy",
+							"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/pattern-library/sr-cards-image-01/sr-cards-image-01-3.jpg",
+							"width" : "100"
+						  },
+						  "ctas" : [ {
+							"button_text" : "Learn More",
+							"cta" : "",
+							"cta_size" : "md",
+							"cta_style" : "outline-primary",
+							"cta_type" : "btn",
+							"link" : {
+							  "no_follow" : false,
+							  "open_in_new_tab" : false,
+							  "url" : {
+								"href" : "#",
+								"type" : "EXTERNAL"
+							  }
+							},
+							"modal_target" : "demo"
+						  } ]
+						} ],
+						heading=[ {
+						  "heading" : "Customer stories",
+						  "heading_align" : "auto",
+						  "heading_color" : "auto",
+						  "heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+						  },
+						  "heading_display_size" : "h1",
+						  "heading_size" : "h3"
+						} ]
+					  %}
+						{% module_attribute "description" %}
+						  <h5><span>See how game-changing companies are making the most of every engagement with Intercom.</span></h5>
+						{% end_module_attribute %}
+					  {% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					  {% dnd_module
+						path="../../custom-modules/SR Offer Bar 03",
+						offset=0,
+						width=12,
+						ctas=[ {
+						  "button_text" : "Download Guide",
+						  "cta" : "",
+						  "cta_size" : "md",
+						  "cta_style" : "primary",
+						  "cta_type" : "btn",
+						  "link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+							  "href" : "#",
+							  "type" : "EXTERNAL"
+							}
+						  },
+						  "modal_target" : "demo"
+						} ],
+						design_settings={
+						  "background_color" : "dark",
+						  "container_width" : "wide"
+						},
+						heading=[ {
+						  "heading" : "Start making the most of every engagement",
+						  "heading_align" : "auto",
+						  "heading_color" : "auto",
+						  "heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+						  },
+						  "heading_display_size" : "auto",
+						  "heading_size" : "h3"
+						} ]
+					  %}
+						{% module_attribute "description" %}
+
+						{% end_module_attribute %}
+					  {% end_dnd_module %}
+					{% end_dnd_row %}
+				  {% end_dnd_column %}
+				{% end_dnd_section %}
+			{% end_dnd_area %}
+		{% endblock body %}
+
+		{% block footer %}
+			{% boolean "enabled_site_footer" label='Enable Global Site Footer', value=true, export_to_template_context=True %}
+			{% if widget_data.enabled_site_footer.value %}
+				{% global_partial path="../partials/site_footer.html" %}
+			{% endif %}
+		{% endblock footer %}
+
+		{% include '../footer-includes.html' %}
+	</body>
+</html>

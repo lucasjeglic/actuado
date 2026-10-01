@@ -1,0 +1,136 @@
+.custom-footer .social-icons-list {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+}
+
+.custom-footer .social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: var(--social-icon-bg, #000);
+}
+
+.custom-footer .social-icon svg {
+    fill: var(--social-icon-color, #fff);
+    width: 16px;
+    height: 16px;
+}
+
+.custom-footer .logo-wrapper {
+    margin-top: auto;
+}
+
+.custom-footer .footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.custom-footer .footer-column {
+  padding: 15px;
+  flex: 1;
+}
+
+.custom-footer .footer-column h4 {
+  margin-top: 0;
+}
+
+.custom-footer .footer-column .richtext {
+  margin-top: 10px;
+}
+
+.custom-footer .footer-column .richtext p {
+  margin-bottom: 0;
+}
+
+.custom-footer .footer-column a.link-text {
+  display: block;
+  margin-top: 10px;
+}
+
+.custom-footer .footer-column .social-icons-list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 10px;
+}
+
+.custom-footer .footer-column .social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.custom-footer .social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: var(--social-icon-bg, #000);
+}
+
+.custom-footer .social-icon svg {
+  fill: var(--social-icon-color, #fff);
+  width: 16px;
+  height: 16px;
+}
+
+.custom-footer .footer-column .social-icon:hover {
+  filter: brightness(0.8);
+}
+
+.custom-footer .footer-column .button {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-top: 15px;
+  transition: all 0.3s ease;
+}
+
+.custom-footer .logo-wrapper {
+  margin-top: auto;
+}
+
+.custom-footer .footer-column .button:hover {
+  opacity: 0.8;
+}
+
+/* Responsive Styles */
+@media (min-width: 992px) {
+  .custom-footer {
+    padding: 0 30px;
+  }
+  .wide-first-column-enabled .footer-column:first-child {
+    flex: 0 0 33.33%;
+  }
+}
+
+@media (max-width: 991px) {
+  .custom-footer .footer-column {
+    flex: 1 1 50%;
+  }
+}
+
+@media (max-width: 767px) {
+  .custom-footer .footer-row {
+    flex-direction: column;
+  }
+  .custom-footer .footer-column {
+    flex: 1 1 100%;
+    margin-bottom: 20px;
+  }
+}

@@ -1,0 +1,117 @@
+{% if module.enabled %}
+
+	{% import "../../templates/macros.html" as macros %}
+	{% import "../../templates/ac-macros.html" as ac %}
+
+	{% set divider = module.design_settings.divider_color.color ? macros.color(module.design_settings.divider_color) : 'var(--borders)' %}
+
+	{% require_css %}
+	<style>
+		{{ macros.design_settings(name, module.design_settings) }}
+
+		.{{ name }} .ac-ql {
+			--ac-divider: {{ divider }};
+			--ac-icon-width: {{ module.icon_size|int }}px;
+		}
+
+		{% if module.icon_color.color %}
+		.{{ name }} .ac-ql__icon {
+			--ac-icon-color: {{ macros.color(module.icon_color) }};
+		}
+		{% endif %}
+	</style>
+	{% end_require_css %}
+
+	{% set width_class =
+		module.design_settings.container_width == 'min' ? 'col-lg-6 offset-lg-3' :
+		module.design_settings.container_width == 'narrow' ? 'col-lg-8 offset-lg-2' :
+		module.design_settings.container_width == 'wide' ? 'col-lg-10 offset-lg-1' :
+		'col-lg-12'
+	%}
+
+	{# Default geometry matches SR's two-column sections: a 6-wide intro, then a
+	   1-column gutter before a 5-wide second column (col-lg-5 offset-lg-1). That
+	   gutter is what stops the right-hand column running to the container edge.
+	   The custom size fields override both, through SR's own col_size() macro. #}
+	{% set intro_default = 'col-lg-6' %}
+	{% set rows_default  = 'col-lg-5 offset-lg-1' %}
+
+	{# Only emit a text colour class when one is actually set; "auto" is not a class. #}
+	{% set text_color_class = module.design_settings.text_color != 'auto' ? 'text-' ~ module.design_settings.text_color : '' %}
+
+	<div class="ac-question-list-01 {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} {{ text_color_class }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+
+		{{ macros.module_bg_video(module) }}
+
+		<div class="{{ module.design_settings.layout }}">
+			{% if module.design_settings.container_width != 'max' %}
+			<div class="row">
+				<div class="{{ width_class }}">
+			{% endif %}
+
+					{# No .row-gap: the intro carries sr-spacer-bottom-50 instead, so the
+					   gap to the rows once the columns stack matches every other module
+					   rather than being Bootstrap's fixed 30px. #}
+					<div class="row ac-ql sr-valign-{{ module.column_vertical_align }}">
+
+						{# ---------- Intro ---------- #}
+						<div class="{% if module.custom_column_size %}{{ macros.col_size([module.intro_column_size]) }}{% else %}{{ intro_default }}{% endif %} sr-col ac-ql__intro sr-spacer-bottom-50">
+							<div class="content-wrapper">
+
+							{{ ac.eyebrow(module, '{% if module.heading.heading_text || module.description %}sr-spacer-bottom-25{% endif %}') }}
+
+							{% if module.heading.heading_text %}
+							{% set h = module.heading %}
+							<{{ h.heading_size }} class="heading ac-ql__heading{% if h.heading_display_size != 'auto' %} {{ h.heading_display_size }}{% endif %}{% if module.description %} sr-spacer-bottom-25{% endif %}{% if module.animate_heading %} ac-animate-words{% endif %}">{{ h.heading_text }}</{{ h.heading_size }}>
+							{% endif %}
+
+							{% if module.description %}
+							<div class="description ac-ql__description">{{ module.description }}</div>
+							{% endif %}
+
+							</div>
+						</div>
+
+						{# ---------- Rows ---------- #}
+						<div class="{% if module.custom_column_size %}{{ macros.col_size([module.rows_column_size]) }}{% else %}{{ rows_default }}{% endif %} sr-col ac-ql__rows-col">
+							<div class="content-wrapper">
+							<ul class="ac-ql__list{% if module.show_rules %} ac-ql__list--ruled{% endif %}{% if module.animate_rows %} ac-ql__list--animate is-revealing{% endif %}">
+								{% for item in module.rows %}
+								{% if item.text %}
+								<li class="ac-ql__item sr-spacer-{{ module.row_spacing|int }}">
+									{% if item.icon.name %}
+									<span class="ac-ql__icon" aria-hidden="true">{# The macro always emits width="{{size}}", so an empty size renders
+									   width="" and the icon does not draw at all. Pass the size and let
+									   the .ac-ql__icon box normalise the differing glyph ratios. #}
+									{{ macros.icon(item.icon, module.icon_size|int) }}</span>
+									{% endif %}
+									<span class="ac-ql__text heading{% if module.row_text_size != 'auto' %} {{ module.row_text_size }}{% endif %}">{{ item.text }}</span>
+								</li>
+								{% endif %}
+								{% endfor %}
+							</ul>
+							</div>
+						</div>
+
+					</div>
+
+			{% if module.design_settings.container_width != 'max' %}
+				</div>
+			</div>
+			{% endif %}
+
+		</div>
+	</div>
+
+	{% if module.animate_heading %}
+	{{ require_js(get_asset_url('../../js/gsap.js'), { defer: true, position: head }) }}
+	{{ require_js(get_asset_url('../../js/TextPlugin.js'), { defer: true, position: head }) }}
+	{{ require_js(get_asset_url('../../js/ac-type-on-scroll.js'), { defer: true }) }}
+	{% endif %}
+
+	{% if module.animate_rows %}
+	{{ require_js(get_asset_url('../../js/gsap.js'), { defer: true, position: head }) }}
+	{{ require_js(get_asset_url('../../js/ac-question-reveal.js'), { defer: true }) }}
+	{% endif %}
+
+{% endif %}

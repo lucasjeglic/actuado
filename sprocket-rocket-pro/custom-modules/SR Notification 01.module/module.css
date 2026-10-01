@@ -1,0 +1,339 @@
+#notification {
+  position: fixed;
+  -webkit-transition: all 0.6s ease;
+  -o-transition: all 0.6s ease;
+  transition: all 0.6s ease;
+  z-index: 1000;
+  margin-bottom: 0;
+}
+
+#notification.linked:hover {
+  margin-bottom: 0.25rem;
+}
+
+#notification.tl {
+  top: 2rem;
+  left: 2rem;
+}
+
+#notification.tr {
+  top: 2rem;
+  right: 2rem;
+}
+
+#notification.bl {
+  bottom: 2rem;
+  left: 2rem;
+}
+
+#notification.br {
+  bottom: 2rem;
+  right: 2rem;
+}
+
+.notification-wrapper {
+  -webkit-box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .08), 0 4px 6px -2px rgba(0, 0, 0, .04);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .08), 0 4px 6px -2px rgba(0, 0, 0, .04);
+  padding: 0.75rem;
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+#notification.linked .notification-wrapper:hover {
+  -webkit-box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .20), 0 4px 6px -2px rgba(0, 0, 0, .16);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .20), 0 4px 6px -2px rgba(0, 0, 0, .16);
+}
+
+#notification {
+  max-width: 400px;
+  min-width: 250px;
+}
+
+#notification .notification-close {
+  position: absolute;
+  top: 2px;
+  right: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  font-size: 10px;
+  z-index: 99999;
+  background: none;
+  opacity: .2;
+}
+
+.notification-content *:not(img):not(input):empty,
+.notification-content img[src=""] {
+  display: none;
+  visibility: hidden;
+}
+
+#notification .notification-footer {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  font-size: .7rem;
+}
+
+#notification .notification-header {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+#notification .notification-content,
+#notification .notification-content>a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: .8rem;
+  line-height: 1.25rem;
+}
+
+#notification[data-type="conversion"] .notification-title,
+#notification[data-type="information"] .notification-title,
+#notification[data-type="review"] .notification-title {
+  font-size: 0.9rem;
+}
+
+#notification[data-type="conversion"] .notification-content img,
+#notification[data-type="information"] .notification-content img,
+#notification[data-type="review"] .notification-content img {
+  max-width: 100px;
+  height: auto;
+  margin-right: 0.75rem;
+}
+
+#notification[data-type="conversion"] .notification-content img,
+#notification[data-type="review"] .notification-content img {
+  border-radius: 50%;
+}
+
+#notification[data-type="conversion"] .notification-content p,
+#notification[data-type="information"] .notification-content p,
+#notification[data-type="review"] .notification-content p {
+  margin: 0;
+}
+
+#notification[data-type="email"] .notification-wrapper {
+  padding: 1rem;
+}
+
+#notification[data-type="email"] form,
+#notification[data-type="countdown"] form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex
+}
+
+#notification[data-type="email"] .field>label,
+#notification[data-type="countdown"] .field>label,
+#notification[data-type="email"] .hs-form .hs-error-msgs,
+#notification[data-type="countdown"] .hs-form .hs-error-msgs {
+  display: none !important;
+}
+
+#notification[data-type="email"] .hs_submit,
+#notification[data-type="countdown"] .hs_submit {
+  margin: 0;
+}
+
+#notification[data-type="email"] .hs-button,
+#notification[data-type="countdown"] .hs-button {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+#notification[data-type="email"] .hs_email {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+#notification[data-type="review"] #review-stars {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+#notification[data-type="review"] .notification-star {
+  color: #e1e7ef;
+}
+
+#notification[data-type="review"] .notification-description {
+  font-style: italic;
+}
+
+#notification[data-type="review"] #review-stars.stars-0 {
+  display: none;
+}
+
+#notification[data-type="review"] #review-stars.stars-1 .notification-star:nth-child(-n+1),
+#notification[data-type="review"] #review-stars.stars-2 .notification-star:nth-child(-n+2),
+#notification[data-type="review"] #review-stars.stars-3 .notification-star:nth-child(-n+3),
+#notification[data-type="review"] #review-stars.stars-4 .notification-star:nth-child(-n+4),
+#notification[data-type="review"] #review-stars.stars-5 .notification-star:nth-child(-n+5) {
+  color: #FF9D28;
+}
+
+#notification[data-type="social"] .notification-share-buttons {
+  display: block;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  width: 100%;
+  margin: 1rem 0;
+}
+
+#notification[data-type="social"] .share-button {
+  background: #000;
+  color: #fff;
+  display: inline-block;
+  border-radius: 4px;
+  margin: 0.25rem;
+  padding: 6px 10px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-bottom: 2px #00000014 solid;
+  border-right: 2px #00000014 solid;
+}
+
+#notification[data-type="social"] .share-button.share-facebook {
+  background: #3c5a99 !important;
+}
+
+#notification[data-type="social"] .share-button.share-twitter {
+  background: #1da1f2 !important;
+}
+
+#notification[data-type="social"] .share-button.share-linkedin {
+  background: #0077b5 !important;
+}
+
+#notification[data-type="countdown"] p.notification-teaser {
+  font-size: .8rem;
+  text-decoration: underline;
+  margin-bottom: 1rem;
+}
+
+#notification[data-type="countdown"] ul#countdown-date {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  width: 100%;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  list-style: none;
+  padding: 0;
+}
+
+#notification[data-type="countdown"] ul#countdown-date li {
+  font-size: .75rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+#notification[data-type="countdown"] ul#countdown-date li span {
+  padding: 4px 8px;
+  font-size: 1rem;
+  border-radius: 3px;
+  width: 35px;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+}
+
+#notification[data-type="countdown"] input.hs-button.primary.large,
+#notification[data-type="countdown"] input,
+#notification[data-type="countdown"] .cta-button,
+#notification[data-type="email"] input.hs-button.primary.large,
+#notification[data-type="email"] input,
+#notification[data-type="email"] .cta-button {
+  height: 2.5rem !important;
+  font-size: .75rem !important;
+}
+
+@media (max-width: 401px) {
+  #notification {
+    max-width: 100%;
+    max-width: min(100%, 400px);
+    min-width: auto;
+    left: 2rem;
+    right: 2rem;
+  }
+}
+
+#notification.tl.hide,
+#notification.bl.hide {
+  -webkit-transition: all 0.6s ease;
+  -o-transition: all 0.6s ease;
+  transition: all 0.6s ease;
+  left: -500px;
+  right: auto;
+}
+
+#notification.tr.hide,
+#notification.br.hide {
+  -webkit-transition: all 0.6s ease;
+  -o-transition: all 0.6s ease;
+  transition: all 0.6s ease;
+  right: -500px;
+  left: auto;
+}
+
+@media (max-width: 768px) {
+  #notification[data-type="email"] {
+    left: 2rem;
+    right: 2rem;
+    max-width: 100%;
+  }
+
+  #notification[data-type="email"].hide {
+    left: -110%;
+  }
+}

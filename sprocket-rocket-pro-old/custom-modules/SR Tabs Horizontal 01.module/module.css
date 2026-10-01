@@ -1,0 +1,110 @@
+.sr-tabs-horizontal {
+  overflow-x: hidden;
+}
+
+.sr-tabs-horizontal [hidden] {
+  display: none;
+}
+
+.sr-tabs-horizontal .tabs-nav {
+  list-style: none;
+  padding: 0;
+  flex-direction: column;
+  display: flex;
+  margin: 0;
+}
+
+.sr-tabs-horizontal .tab-pane-content {
+  padding: 3.25rem 25px;
+}
+
+.sr-tabs-horizontal .tab-nav-image {
+  width: 50px;
+  min-width: 50px
+}
+
+.sr-tabs-horizontal .tab-nav-image .active,
+.sr-tabs-horizontal [aria-selected="true"] .tab-nav-image .default {
+  display: none;
+}
+
+.sr-tabs-horizontal [aria-selected="true"] .tab-nav-image .active {
+  display: block;
+}
+
+.sr-tabs-horizontal .tab-pane-image {
+  overflow: hidden;
+}
+
+.sr-tabs-horizontal .tab-pane-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sr-tabs-horizontal .tab-nav button {
+  -webkit-appearance: none;
+  border: none;
+  display: flex;
+  text-align: left;
+  gap: 12px;
+  padding: 30px 20px;
+  background-color: var(--bg-1);
+  color: var(--c-1);
+  border-bottom: 1px solid var(--bg-2);
+  height: 100%;
+  width: 100%;
+}
+
+.sr-tabs-horizontal .tab-nav button .tab-heading,
+.sr-tabs-horizontal .tab-nav button .tab-nav-icon {
+  color: var(--h-1);
+}
+
+.sr-tabs-horizontal .tab-nav button[data-state="active"] {
+  background-color: var(--bg-2);
+  color: var(--c-2);
+}
+
+.sr-tabs-horizontal .tab-nav button[data-state="active"] .tab-heading,
+.sr-tabs-horizontal .tab-nav button[data-state="active"] .tab-nav-icon {
+  color: var(--h-2);
+}
+
+.sr-tabs-horizontal .tab-nav-icon {
+  align-self: center;
+  margin-left: auto;
+}
+
+.sr-tabs-horizontal [role=tabpanel],
+.sr-tabs-horizontal [role=tabpanel]>.row {
+  height: 100%;
+}
+
+
+
+@media (max-width: 993px) {
+  .sr-tabs-horizontal .tab-nav button {
+    align-items: center;
+    justify-content: start;
+
+  }
+
+  .sr-tabs-horizontal .tabs-nav {
+    flex-direction: row;
+    gap: 5px;
+    white-space: nowrap;
+    overflow-x: scroll;
+    scroll-snap-type: x proximity;
+  }
+
+  .sr-tabs-horizontal .tabs-nav>li {
+    scroll-snap-align: center;
+    white-space: normal;
+    min-width: 50vw;
+  }
+}
+
+.sr-tabs-horizontal .tab-nav-title p {
+  font-size: 0.875rem;
+}

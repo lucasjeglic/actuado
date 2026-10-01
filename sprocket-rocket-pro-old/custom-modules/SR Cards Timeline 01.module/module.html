@@ -1,0 +1,99 @@
+{% if module.enabled %}
+
+    {% import "../../templates/macros.html" as macros %}
+
+    {% if module.design_settings.container_width == 'min' %}
+        {% set width_class = 'col-md-6 offset-md-3' %}
+    {% elif module.design_settings.container_width == 'narrow' %}
+        {% set width_class = 'col-md-8 offset-md-2' %}
+    {% elif module.design_settings.container_width == 'wide' %}
+        {% set width_class = 'col-md-10 offset-md-1' %}
+    {% else %}
+        {% set width_class = 'col-md-12' %}
+    {% endif %}
+
+    {{ macros.label("SR Cards Timeline 01") }}
+
+    <div class="sr-cards-timeline-01 {{ name }} {% if module.design_settings.background_option == 'color' %} bg-{{ module.design_settings.background_color }}{% endif %} {{ macros.padding(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+
+        {% if module.design_settings.background_option == 'video' %}
+        {{macros.bg_video(module.background_video, module.design_settings.background_image.src)}}
+        {% endif %}
+
+        <div class="{{ module.design_settings.layout }}">
+            {% if module.design_settings.container_width != 'max' %}
+                <div class="row">
+                    <div class="{{ width_class }}">
+            {% endif %}
+
+                        {% if module.heading ||  module.description %}
+                        <div class="text-{{ module.design_settings.text_color }} {{ macros.text_align(module.design_settings) }} sr-spacer-bottom-25">
+                            {{ macros.heading(module.heading) }}
+                            {% if module.description %}
+                                <div class="description{% if module.lead_text %} lead{% endif %}">{{ module.description}}</div>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="timeline-card-row {% if module.design_settings.text_color != 'auto' %}border-{{ module.design_settings.text_color }}{% endif %}">
+                                    {% for item in module.timeline_card %}
+                                    <div class="timeline-card card-{{loop.index}}">
+                                    <div class="timeline-arrow currentColor {% if module.design_settings.text_color != 'auto' %}text-{{ module.design_settings.text_color }}{% endif %}">
+                                        <svg width="201" height="14" viewBox="0 0 201 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12.1315 11.3453L7.22711 8.01548L200.5 8.01288V5.40741L7.81163 5.41001L12.4316 2.75894L11.1321 0.5L0.5 6.59941L10.6637 13.5L12.1315 11.3453Z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="timeline-card-inner">
+                                        <div class="timeline-image">
+                                            {{ macros.image(item.timeline_image) }}
+                                        </div>
+                                        <div class="timeline-details">
+                                            {{ macros.heading(item.timeline_heading) }}
+                                            {% if item.timeline_description %}
+                                                <div class="description">{{ item.timeline_description}}</div>
+                                            {% endif %}
+                                            {{ macros.cta(item.ctas, 'sr-spacer-top-25') }}
+                                        </div>
+                                    </div>
+                                    <div class="timeline-year {% if module.design_settings.text_color != 'auto' %}text-{{ module.design_settings.text_color }}{% endif %} {% if module.design_settings.background_option == 'color' %}bg-{{ module.design_settings.background_color }}{% endif %}">
+                                        {{item.timeline_year}}
+                                    </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+        {% if module.design_settings.container_width != 'max' %}
+                </div>
+            </div>
+        {% endif %}
+
+        </div>
+    </div>
+
+    {% require_css %}
+    <style>
+        {{ macros.design_settings(name, module.design_settings) }}
+        .sr-cards-timeline-01 .timeline-card-row:after {
+            border-color: {% if module.design_settings.text_color != 'auto' %} inherit {% else %} #000 {% endif %};
+        }
+        .sr-cards-timeline-01 .timeline-year {
+            background: {% if module.design_settings.background_option == 'custom' %} {{ module.design_settings.background_custom.color }} {% elif module.design_settings.background_option == 'image' %} {% if module.design_settings.text_color == 'white' %} #30343b {% else %} #fff {% endif %} {% else %} inherit {% endif %};
+            color: {% if module.design_settings.text_color != 'auto' %} inherit {% else %} #30343B {% endif %};
+        }
+        .sr-cards-timeline-01 svg {
+            color: {% if module.design_settings.text_color == 'auto' %}#30343B{% endif %};;
+        }
+        .sr-cards-timeline-01 .timeline-card-row:before {
+			{% if module.design_settings.text_color != 'auto' %} color: var(--{{module.design_settings.text_color}}){% else %}color: #000{% endif %};
+        }
+        {% for item in module.timeline_card %}
+        .sr-cards-timeline-01 .timeline-card.card-{{loop.index}} .timeline-image img {
+            object-fit: {{item.image_background_fit}};
+        }
+        {% endfor %}
+    </style>
+    {% end_require_css %}
+{% endif %}

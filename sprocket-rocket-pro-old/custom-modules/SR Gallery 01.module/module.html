@@ -1,0 +1,145 @@
+{% if module.enabled %}
+
+	{% import "../../templates/macros.html" as macros %}
+
+	{% require_css %}
+		<style>
+			{{ macros.design_settings(name, module.design_settings) }}
+			.{{ name }} .row .col1 a {
+				background-image: url({{ resize_image_url(module.image_one.image.image.src, '520') }})
+			}
+			.{{ name }} .row .col2 a {
+				background-image: url({{ resize_image_url(module.image_two.image.image.src, '866') }})
+			}
+			.{{ name }} .row .col3 a {
+				background-image: url({{ resize_image_url(module.image_three.image.image.src, '520') }})
+			}
+			.{{ name }} .row .col4 a {
+				background-image: url({{ resize_image_url(module.image_four.image.image.src, '320') }})
+			}
+			.{{ name }} .row .col1 a:before {
+				background: {{ module.image_one.image.overlay.css }}
+			}
+			.{{ name }} .row .col2 a:before {
+				background: {{ macros.color(module.image_two.image.overlay) }}
+			}
+			.{{ name }} .row .col3 a:before {
+				background: {{ macros.color(module.image_three.image.overlay) }}
+			}
+			.{{ name }}.row .col4 a:before {
+				background: {{ macros.color(module.image_four.image.overlay) }}
+			}
+		</style>
+	{% end_require_css %}
+
+	{% set width_class =
+		module.design_settings.container_width == 'min' ? 'col-lg-6 offset-lg-3' :
+		module.design_settings.container_width == 'narrow' ? 'col-lg-8 offset-lg-2' :
+		module.design_settings.container_width == 'wide' ? 'col-lg-10 offset-lg-1' :
+		'col-lg-12'
+	%}
+
+	<div class="sr-gallery-01 {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+
+		{{ macros.module_bg_video(module) }}
+
+		<div class="{{ module.design_settings.layout }}">
+            {% if module.design_settings.container_width != 'max' %}
+            <div class="row">
+                <div class="{{ width_class }}">
+            {% endif %}
+
+					{% if module.heading || module.description %}
+						<div class="row">
+							<div class="col-md-12 mb-6 text-{{ module.design_settings.text_color }} {{ macros.text_align(module.design_settings) }}">
+								{{ macros.heading(module.heading) }}
+								{% if module.description %}
+									<div class="description{% if module.lead_text %} lead{% endif %}">{{ module.description }}</div>
+								{% endif %}
+							</div>
+						</div>
+					{% endif %}
+
+					<div class="row image-row image-row1">
+						<div class="col-4 offset-1 text-right image-col col1">
+							<a href="{{module.image_one.image.image.src}}" data-fslightbox="gallery" class="sr-border" role="button"
+								aria-label="View larger version of image">
+								<div class="plus">
+									<span class="icon-wrapper bg-primary" aria-hidden="true">
+										{% icon
+											name="plus"
+											style="SOLID"
+											unicode="f067"
+											icon_set="fontawesome-5.14.0"
+											height="22"
+											no_wrapper=true
+										%}
+									</span>
+								</div>
+							</a>
+						</div>
+						<div class="col-6 image-col col2">
+							<a href="{{module.image_two.image.image.src}}" data-fslightbox="gallery" class="sr-border" role="button"
+								aria-label="View larger version of image">
+								<div class="plus">
+									<span class="icon-wrapper bg-primary" aria-hidden="true">
+										{% icon
+											name="plus"
+											style="SOLID"
+											unicode="f067"
+											icon_set="fontawesome-5.14.0"
+											height="22"
+											no_wrapper=true
+										%}
+									</span>
+								</div>
+							</a>
+						</div>
+					</div>
+
+					<div class="row image-row image-row2">
+						<div class="col-4 offset-2 text-right image-col col3">
+							<a href="{{module.image_three.image.image.src}}" data-fslightbox="gallery" class="sr-border" role="button"
+								aria-label="View larger version of image">
+								<div class="plus">
+									<span class="icon-wrapper bg-primary" aria-hidden="true">
+										{% icon
+											name="plus"
+											style="SOLID"
+											unicode="f067"
+											icon_set="fontawesome-5.14.0"
+											height="22"
+											no_wrapper=true
+										%}
+									</span>
+								</div>
+							</a>
+						</div>
+						<div class="col-3 image-col col4">
+							<a href="{{module.image_four.image.image.src}}" data-fslightbox="gallery" class="sr-border" role="button"
+								aria-label="View larger version of image">
+								<div class="plus">
+									<span class="icon-wrapper bg-primary" aria-hidden="true">
+										{% icon
+											name="plus"
+											style="SOLID"
+											unicode="f067"
+											icon_set="fontawesome-5.14.0"
+											height="22"
+											no_wrapper=true
+										%}
+									</span>
+								</div>
+							</a>
+						</div>
+					</div>
+			{% if module.design_settings.container_width != 'max' %}
+				</div>
+			</div>
+			{% endif %}
+		</div>
+	</div>
+
+	{{ require_js(get_asset_url('../../js/fslightbox.js'), { defer: true }) }}
+
+{% endif %}

@@ -1,0 +1,79 @@
+{% if module.enabled %}
+
+	{% import "../../templates/macros.html" as macros %}
+
+	{% require_css %}
+	<style>
+		{{ macros.design_settings(name, module.design_settings) }}
+		.{{ name }} .sr-card {
+			{{ module.design_settings.card_styles.spacing.css }}
+			{%- if module.design_settings.card_styles.background_color == "gradient" -%}
+			background: {{ module.design_settings.card_styles.background_gradient.css }};
+			{%- elif module.design_settings.card_styles.background_color == "custom" -%}
+			background-color: {{ module.design_settings.card_styles.background_custom.css }};
+			{%- elif module.design_settings.card_styles.background_color != "auto" -%}
+			background-color: var(--{{ module.design_settings.card_styles.background_color }});
+			{%- endif -%}
+			{%- if module.design_settings.card_styles.text_color == "custom" %}
+			color: {{ module.design_settings.card_styles.text_color_custom.css }};
+			{%- endif -%}
+			{% if module.design_settings.card_styles.border.css %}
+			{{ module.design_settings.card_styles.border.css }}
+			{% endif %}
+			{% if module.design_settings.card_styles.border_radius >= 0 %}
+			border-radius: {{ module.design_settings.card_styles.border_radius }}px;
+			{% endif %}
+			{% if module.design_settings.card_styles.shadow %}
+			box-shadow: {{ "inset" if module.design_settings.card_styles.inset }} {{ module.design_settings.card_styles.horizontal ~ "px" }} {{ module.design_settings.card_styles.vertical ~ "px" }} {{ module.design_settings.card_styles.blur ~ "px" }} {{ module.design_settings.card_styles.spread ~ "px" }} {{ module.design_settings.card_styles.color.css }};
+			{% endif %}
+		}
+	</style>
+	{% end_require_css %}
+
+	{% set width_class =
+		module.design_settings.container_width == 'min' ? 'col-lg-6 offset-lg-3' :
+		module.design_settings.container_width == 'narrow' ? 'col-lg-8 offset-lg-2' :
+		module.design_settings.container_width == 'wide' ? 'col-lg-10 offset-lg-1' :
+		'col-lg-12'
+	%}
+
+	<div class="sr-social-tweet-01 {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} text-{{ module.design_settings.text_color }} {{ macros.text_align(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+
+		{{ macros.module_bg_video(module) }}
+
+		<div class="{{ module.design_settings.layout }}">
+		{% if module.design_settings.container_width != 'max' %}
+			<div class="row">
+				<div class="{{ width_class }}">
+		{% endif %}
+					<div class="sr-social-tweet-01-content sr-card sr-border text-{{ module.design_settings.card_styles.text_color }}">
+						{{ macros.heading(module.heading) }}
+						{% if module.tweet %}
+						<div class="tweet{% if module.lead_text %} lead{% endif %}">{{ module.tweet }}</div>
+						{% endif %}
+
+						<ul class="sr-social {{ module.design_settings.social_icons_styles.style }} align-items-{{ module.design_settings.social_icons_styles.vertical_alignment.vertical_align|lower|replace('middle', 'center')|replace('top', 'start')|replace('bottom', 'end') }} justify-content-{{ module.design_settings.social_icons_styles.vertical_alignment.horizontal_align|lower|replace('left', 'start')|replace('right', 'end') }}" {{ "data-preview" if module_preview }}>
+							{% for item in module.social_icons %}
+							<li>
+								<a {{ macros.link(item.link) }} role="link" aria-label="{{item.aria_label}} {{ ' (Opens in new tab)' if item.link.open_in_new_tab }}"{% if item.icon_type == 'icon' && item.background.opacity != 0 %} class="icon-bg" style="--b: {{ item.background.css }}; --h: {{ item.icon_size ~ 'px' }}; --w: {{ item.icon_size ~ 'px' }}; --f: {{ item.icon_color.css }}"{% elif item.icon_type == 'icon' %}style="--f: {{ item.icon_color.css }}"{% endif %}>
+									<span aria-hidden="true">
+										{% if item.icon_type == 'icon' %}
+										{% icon name="{{ item.icon.name }}" style="{{ item.icon.type }}" unicode="{{ item.icon.unicode }}" height="{{ item.background.opacity == 0 ? item.icon_size : item.icon_size * .5 }}" no_wrapper=true %}
+										{% elif item.icon_type == 'image' %}
+										{{ macros.image(item.image) }}
+										{% elif item.icon_type == 'svg' %}
+										{{ item.svg }}
+										{% endif %}
+									</span>
+								</a>
+							</li>
+							{% endfor %}
+						</ul>
+					</div>
+		{% if module.design_settings.container_width != 'max' %}
+				</div>
+			</div>
+		{% endif %}
+		</div>
+	</div>
+{% endif %}

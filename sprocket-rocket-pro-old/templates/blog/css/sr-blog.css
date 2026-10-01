@@ -1,0 +1,112 @@
+{%- include '../../../css/_theme.css' -%}
+
+.container-fluid[class*="dnd_area"] {
+    padding: 0;
+}
+
+.sidebar-sticky>div {
+    position: sticky;
+}
+
+.sidebar-sticky__top>div {
+    top: var(--sticky-offset);
+}
+
+.sidebar-sticky__bottom {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.sidebar-sticky__bottom>div {
+    align-self: flex-end;
+    bottom: var(--sticky-offset);
+}
+
+.avatar img {
+    max-width: 50px;
+    border-radius: 100%;
+}
+
+.author-section .meta {
+    line-height: 1.2;
+}
+
+.author-section {
+    background: #f5f7f9;
+    padding: 2rem;
+}
+
+.related-posts-container {
+    list-style-type: none;
+    list-style-image: none;
+    padding: 0;
+    row-gap: 30px;
+}
+
+.related-post .related-post-link {
+    cursor: pointer;
+    padding: 20px;
+    border: 1px solid var(--borders);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 250ms ease-out;
+    height: 100%;
+}
+
+.related-post .related-post-link:hover {
+    text-decoration: none;
+    border-color: var(--primary);
+    transition: border-color 250ms ease-out;
+}
+
+.related-post-link:hover>h5 {
+    transition: text-decoration 250ms ease-out;
+}
+
+.related-post-link .related-post-meta .featured-image {
+    max-height: 170px;
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+}
+
+.related-post-link .related-post-meta .featured-image img {
+    object-fit: cover;
+}
+
+.related-post-link .related-post-meta .meta {
+    display: flex;
+    align-items: center;
+    color: var(--dark);
+}
+
+.related-post-link .related-post-meta .meta .tag {
+    padding: .5rem;
+    font-size: .9rem;
+    line-height: 1;
+    text-decoration: none;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    background: transparent;
+    transition: background 250ms ease-out, color 250ms ease-out;
+}
+
+.related-post-link:hover .related-post-meta .meta .tag {
+    background: var(--primary);
+    color: var(--white);
+    transition: background 250ms ease-out, color 250ms ease-out;
+}
+
+
+
+.hs-inline-edit #hs_cos_wrapper_post_body {
+    padding: 1rem
+}
+
+@media(max-width: 768px) {
+    input:not([type="radio"]):not([type="checkbox"]):not([type="file"]):not([type="submit"]) {
+        min-height: 2.5rem;
+    }
+}

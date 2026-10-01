@@ -1,0 +1,55 @@
+.pillar-nav-toc-02 .container {
+	position: relative;
+}
+.pillar-nav-toc-02 label {
+	font-size: 3rem;
+}
+.pillar-nav-toc-02 .heading {
+	margin-bottom: 0.8rem;
+}
+.pillar-nav-toc-02 .section-heading {
+	margin: 0 0 1.25rem;
+}
+.pillar-nav-toc-02 .pillar-nav-toc-02-list li {
+	list-style: none;
+	display: block;
+}
+.pillar-nav-toc-02 .pillar-nav-toc-02-list li + li {
+	margin-top: 1.25rem;
+}
+.pillar-nav-toc-02 .pillar-nav-toc-02-list li a {
+	border-style: solid;
+	border-width: 1px;
+	display: block;
+	color: inherit;
+	font-weight: normal;
+	line-height: normal;
+	font-size: 1.25rem;
+	position: relative;
+	transition: all ease-in-out 0.2s;
+	text-decoration: none;
+}
+.pillar-nav-toc-02 .pillar-nav-toc-02-list li a:hover {
+	box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+}
+.pillar-nav-toc-02 .pillar-nav-toc-02-list li a span {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	font-weight: 700;
+	font-size: 4.73rem;
+	color: var(--primary);
+	opacity: 0.1;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+}

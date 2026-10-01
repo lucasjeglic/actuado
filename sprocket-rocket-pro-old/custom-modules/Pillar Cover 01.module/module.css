@@ -1,0 +1,31 @@
+.pillar-cover-01 label:before {
+    left: 0;
+}
+
+.pillar-cover-01 label:after {
+    right: 0;
+}
+
+.pillar-cover-01  .author-info {
+    margin-top: .5rem;
+}
+
+.pillar-cover-inner-column {
+    padding: 0
+}
+
+.pillar-cover-01 .author-info a {
+    color: inherit;
+}
+
+@media (max-width:767px) {
+    .pillar-cover-01 label {
+        font-size: 0.903rem;
+        padding: 0.833rem 2.083rem 1.111rem 2.083rem;
+        line-height: 1.1rem;
+    }
+
+    .pillar-cover-inner-column {
+        padding: 0 1.389rem;
+    }
+}

@@ -1,0 +1,140 @@
+.sr-cards-steps-02 .card {
+  border: none;
+  border-radius: 0;
+  text-align: center;
+  background-color: transparent !important;
+  margin: 1rem 0;
+}
+
+.sr-cards-steps-02 .step-num-wrap {
+  color: #fff;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.sr-cards-steps-02 .step-num-wrap .line {
+  position: absolute;
+  left: 0;
+  top: 1.8rem;
+  height: 5px;
+  width: 100%;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.sr-cards-steps-02 .step-circle {
+  border-radius: 100%;
+  width: 4rem;
+  height: 4rem;
+  margin: 0 auto;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sr-cards-steps-02 .card .step-circle,
+.sr-cards-steps-02 .card .step-num-wrap .line {
+  background: var(--card-accent);
+}
+
+.sr-cards-steps-02 .card:hover .step-circle,
+.sr-cards-steps-02 .card:hover .step-num-wrap .line,
+.sr-cards-steps-02 .card:has(:is(.cta_button,.cta-button,[data-hubspot-cta-id]):focus) .step-circle,
+.sr-cards-steps-02 .card:has(:is(.cta_button,.cta-button,[data-hubspot-cta-id]):focus) .step-num-wrap .line {
+  background: var(--card-accent-hover);
+}
+
+.sr-cards-steps-02 .step-text {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+
+.sr-cards-steps-02 .card:hover .card-content,
+.sr-cards-steps-02 .card:has(:is(.cta_button,.cta-button,[data-hubspot-cta-id]):focus) .card-content {
+  box-shadow: 15px 25px 60px 0 rgba(0, 0, 0, 0.1);
+}
+
+.sr-cards-steps-02 .card-content {
+  background-color: #fff;
+  margin-top: 2rem;
+  border: 1px solid #e5e7ea;
+  padding: 2rem 1rem;
+}
+
+.sr-cards-steps-02 .card .cta-group {
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: all 300ms ease;
+  -moz-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+  transition: all 300ms ease;
+}
+
+.sr-cards-steps-02 .card:hover .cta-group,
+.sr-cards-steps-02 .card:has(:is(.cta_button,.cta-button,[data-hubspot-cta-id]):focus) .cta-group {
+  padding-top: 1rem;
+  max-height: 300px;
+  overflow: hidden;
+}
+
+.sr-cards-steps-02 .card:after {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.sr-cards-steps-02 .card[style]:after {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .sr-cards-steps-02 .card .cta-group {
+    padding-top: 1rem;
+  }
+  .sr-cards-steps-02 .card-content {
+    margin-top: 2.3rem;
+  }
+
+  .sr-cards-steps-02 .step-circle {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .sr-cards-steps-02 .card .cta-group {
+    max-height: 100%;
+  }
+
+  .sr-cards-steps-02 .step-num-wrap .line {
+    top: 2.3rem;
+  }
+
+  .sr-cards-steps-02 .card .cta-group {
+    margin-top: 4rem;
+  }
+
+  .sr-cards-steps-02 .description br {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .sr-cards-steps-02 .card:last-child:after {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 992px) and (min-width: 768px) {
+  .sr-cards-steps-02 .step-num-wrap {
+    margin: 0 0 1em;
+  }
+}

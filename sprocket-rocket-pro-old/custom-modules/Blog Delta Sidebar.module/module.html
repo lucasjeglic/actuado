@@ -1,0 +1,82 @@
+<div class="blog-sidebar sr-spacer-bottom-75 mt-md-0 mt-5">
+	{% if module.ad_spot.enabled %}
+	<div class="offer-spot text-center sr-spacer-bottom-25">
+		{% if module.ad_spot.image.src %}
+		{% set href = module.ad_spot.image_link.url.href %}
+		{% if module.ad_spot.image_link.url.type is equalto "EMAIL_ADDRESS" %}
+			{% set href = "mailto:" + href %}
+		{% endif %}
+		{% set rel = [] %}
+		{% if module.ad_spot.image_link.no_follow %}
+			{% do rel.append("nofollow") %}
+		{% endif %}
+		{% if module.ad_spot.image_link.open_in_new_tab %}
+			{% do rel.append("noopener") %}
+		{% endif %}
+		{% if href %}
+		<a href="{{ href }}"
+			{% if module.ad_spot.image_link.open_in_new_tab %}target="_blank"{% endif %}
+			{% if rel %}rel="{{ rel|join(" ") }}"{% endif %}
+			>
+		{% endif %}
+		{% set sizeAttrs = 'width="{{ module.ad_spot.image.width }}" height="{{ module.ad_spot.image.height }}"' %}
+		{% if module.ad_spot.image.size_type == 'auto' %}
+		{% set sizeAttrs = 'style="max-width: 100%; height: auto;"' %}
+		{% elif module.ad_spot.image.size_type == 'auto_custom_max' %}
+		{% set sizeAttrs = 'width="100%" height="auto" style="max-width: {{ module.ad_spot.image.max_width }}px; max-height: {{ module.ad_spot.image.max_height }}px"' %}
+		{% endif %}
+		{% set loadingAttr = module.ad_spot.image.loading != 'disabled' ? 'loading="{{ module.ad_spot.image.loading }}"' : '' %}
+		<img src="{{ module.ad_spot.image.src }}" alt="{{ module.ad_spot.image.alt }}" {{ loadingAttr }} {{ sizeAttrs }}>
+		{% if href %}
+		</a>
+		{% endif %}
+		{% endif %}
+
+		{% if module.ad_spot.cta.cta_type != 'none' %}
+			<div class="btn-wrapper btn-{{ module.ad_spot.cta.cta_style }}-wrapper sr-spacer-top-25">
+				{% if module.ad_spot.cta.cta_type == 'btn' %}
+					<a href="{{ module.ad_spot.cta.link }}" class="cta-button">{{ module.ad_spot.cta.button_text }}</a>
+				{% elif module.ad_spot.cta.cta_type == 'cta' %}
+					{% cta guid="{{ module.ad_spot.cta.cta }}" %}
+				{% elif module.ad_spot.cta.cta_type == 'modal' %}
+					<a type="button" class="cta-button" data-toggle="modal" data-target="#{{ module.ad_spot.cta.modal_target }}">
+						{{ module.ad_spot.cta.button_text }}
+					</a>
+				{% endif %}
+			</div>
+		{% endif %}
+	</div>
+	{% endif %}
+
+	{% if module.subscribe.enabled %}
+	<div class="sidebar-subscribe hide-label-{{module.subscribe.hide_label}} btn-wrapper btn-{{ module.subscribe.button_style }}-wrapper sr-spacer-top-25">
+		{% if module.subscribe.heading %}<h{{ module.subscribe.heading_size }} class="sibebar-heading border-primary">{{ module.subscribe.heading }}</h{{ module.subscribe.heading_size }}>{% endif %}
+		{% blog_subscribe "subscribe"
+		select_blog='{{ module.subscribe.blog }}',
+		no_title=true,
+		response_message='Thanks for Subscribing!',
+		label='Subscribe',
+		overrideable=False
+	%}
+	</div>
+	{% endif %}
+
+	{% if module.tags.enabled %}
+	<div class="sidebar-menu tags sr-spacer-top-25">
+		{% if module.tags.heading %}<h{{ module.tags.heading_size }} class="sibebar-heading border-primary">{{ module.tags.heading }}</h{{ module.tags.heading_size }}>{% endif %}
+		{% set tags = blog_tags(module.tags.blog, module.tags.limit) %}
+		<ul>
+			{% for item in tags %}
+			<li><a href="{{ blog_tag_url(module.tags.blog, item.slug) }}">{{ item }} ({{item.live_posts}})</a></li>
+			{% endfor %}
+		</ul>
+	</div>
+	{% endif %}
+
+	{% for item in module.menu %}
+	<div class="sidebar-menu menu{{loop.index}} sr-spacer-top-25">
+		{% if item.heading_size %}<h{{ item.heading_size }} class="sibebar-heading border-primary">{{ item.heading }}</h{{ item.heading_size }}>{% endif %}
+		{% simple_menu menu_tree="{{ item.menu }}" %}
+	</div>
+	{% endfor %}
+</div>

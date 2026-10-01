@@ -1,0 +1,10 @@
+{
+  "global" : true,
+  "content_types" : [ "BLOG_POST" ],
+  "smart_type" : "NOT_SMART",
+  "inline_help_text" : "<a href='https://docs.sprocketrocket.co/theme/blog-templates/post#date-format'>How to setup date format for the blog.</a>",
+  "host_template_types" : [ "BLOG_POST" ],
+  "module_id" : 172690542510,
+  "label" : "Blog Post Settings",
+  "is_available_for_new_content" : false
+}

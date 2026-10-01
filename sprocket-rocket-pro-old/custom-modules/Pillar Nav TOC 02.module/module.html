@@ -1,0 +1,94 @@
+{% if module.enabled %}
+
+	{% import "../../templates/macros.html" as macros %}
+
+	{% require_css %}
+		<style>
+			{{ macros.design_settings(name, module.design_settings) }}
+
+			{% require_css %}
+				<style>
+					{{ macros.design_settings(name, module.design_settings) }}
+					.{{ name }} .pillar-nav-toc-02-list li a {
+						{{ module.design_settings.list_styles.spacing.css }};
+						{%- if module.design_settings.list_styles.background_color == "gradient" -%}
+						background: {{ module.design_settings.list_styles.background_gradient.css }};
+						{%- elif module.design_settings.list_styles.background_color == "custom" -%}
+						background-color: {{ module.design_settings.list_styles.background_custom.css }};
+						{%- elif module.design_settings.list_styles.background_color != "auto" -%}
+						background-color: var(--{{ module.design_settings.list_styles.background_color }});
+						{%- endif -%}
+						{%- if module.design_settings.list_styles.text_color == "custom" %}
+						color: {{ module.design_settings.list_styles.text_color_custom.css }};
+						{%- endif -%}
+						{% if module.design_settings.list_styles.border.css %}
+						{{ module.design_settings.list_styles.border.css }};
+						{% endif %}
+						{% if module.design_settings.list_styles.border_radius >= 0 %}
+						border-radius: {{ module.design_settings.list_styles.border_radius }}px;
+						{% endif %}
+						{% if module.design_settings.list_styles.shadow %}
+						box-shadow: {{ "inset" if module.design_settings.list_styles.inset }} {{ module.design_settings.list_styles.horizontal ~ "px" }} {{ module.design_settings.list_styles.vertical ~ "px" }} {{ module.design_settings.list_styles.blur ~ "px" }} {{ module.design_settings.list_styles.spread ~ "px" }} {{ module.design_settings.list_styles.color.css }};
+						{% endif %}
+					}
+				</style>
+			{% end_require_css %}
+		</style>
+	{% end_require_css %}
+
+	<div class="pillar-nav-toc-02 {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} text-{{ module.design_settings.text_color }} {{ macros.text_align(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+
+		{{ macros.module_bg_video(module) }}
+
+		<div class="{{ module.design_settings.layout }}">
+			{% if module.design_settings.container_width != 'max' %}
+			<div class="row">
+				<div class="{{ width_class }}">
+			{% endif %}
+
+					{%- if is_in_editor && module.add_items_manually -%}
+					<div class="hs-placeholder mb-4">
+						<p>Chapters are automatically populated from any Pillar Chapter Title 01 OR Pillar Cover 01 modules on the page.</p>
+					</div>
+					{%- endif -%}
+
+					{% if module.heading || module.description %}
+					<div class="sr-spacer-bottom-50 text-{{ module.design_settings.text_color }} {{ macros.text_align(module.design_settings) }}">
+						{% if module.heading %}
+						<label>
+							{% icon
+								name="book"
+								style="SOLID"
+								unicode="f02d"
+								icon_set="fontawesome-5.14.0"
+								width="50"
+								no_wrapper=true
+							%}
+						</label>
+						{{ macros.heading(module.heading)}}
+						{% endif %}
+
+						{% if module.description %}
+						<div class="description {% if module.lead_text %} lead{% endif %}">{{ module.description}}</div>
+						{% endif %}
+					</div>
+					{% endif %}
+					<ul class="pillar-nav-toc-02-list text-center" data-color="text-{{ module.design_settings.list_styles.text_color }}" {{ "data-manual" if module.add_items_manually }}>
+						{% if module.add_items_manually %}
+						{% for item in module.items %}
+						<li>
+							<a {{ macros.link(item.link) }} class="sr-border sr-card text-auto">
+								{{ item.text }}
+								<span>{{ loop.index }} </span>
+							</a>
+						</li>
+						{% endfor %}
+						{% endif %}
+					</ul>
+			{% if module.design_settings.container_width != 'max' %}
+				</div>
+			</div>
+			{% endif %}
+		</div>
+	</div>
+{% endif %}

@@ -1,0 +1,45 @@
+.sr-cards-filter-02 .container {
+    position: relative;
+}
+
+.sr-cards-filter-02-filter {
+    margin-bottom: 1.25rem;
+    gap: 1rem;
+}
+
+.sr-cards-filter-02-filter button {
+    -webkit-appearance: none;
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    box-shadow: none;
+    padding: 0 1.5rem;
+}
+
+
+.sr-cards-filter-02-item img {
+    margin-bottom: 1.5rem;
+    max-width: 100%;
+    height: auto;
+}
+
+.sr-cards-filter-02-item a,
+.sr-cards-filter-02-item h4 {
+    color: inherit;
+    margin: 0;
+    text-decoration: none;
+}
+
+.sr-cards-filter-02-item .item-card {
+    padding: 1rem;
+    background: transparent;
+    -webkit-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+.sr-cards-filter-02-item a:hover .item-card {
+    background-color: #fff;
+    box-shadow: 15px 25px 60px 0px rgba(0, 0, 0, 0.1);
+}

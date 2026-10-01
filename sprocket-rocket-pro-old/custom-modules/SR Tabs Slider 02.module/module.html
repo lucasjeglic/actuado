@@ -1,0 +1,128 @@
+{% if module.enabled %}
+
+	{% import "../../templates/macros.html" as macros %}
+
+	{% if module.design_settings.container_width == 'min' %}
+		{% set width_class = 'col-md-6 offset-md-3' %}
+	{% elif module.design_settings.container_width == 'narrow' %}
+		{% set width_class = 'col-md-8 offset-md-2' %}
+	{% elif module.design_settings.container_width == 'wide' %}
+		{% set width_class = 'col-md-10 offset-md-1' %}
+	{% else %}
+		{% set width_class = 'col-md-12' %}
+	{% endif %}
+
+	{{ macros.label("SR Tabs Slider 02") }}
+
+	<div class="sr-tabs-slider-02 {{ name }} {% if module.design_settings.background_option == 'color' %} bg-{{ module.design_settings.background_color }}{% endif %} {{ macros.padding(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+
+		{% if module.design_settings.background_option == 'video' %}
+		{{macros.bg_video(module.background_video, module.design_settings.background_image.src)}}
+		{% endif %}
+
+		<div class="{{ module.design_settings.layout }}">
+			{% if module.design_settings.container_width != 'max' %}
+				<div class="row">
+					<div class="{{ width_class }}">
+			{% endif %}
+
+					{% if module.heading ||  module.description || module.ctas %}
+					<div class="text-{{ module.design_settings.text_color }} {{ macros.text_align(module.design_settings) }} sr-spacer-bottom-25">
+						{{ macros.heading(module.heading) }}
+
+						{% if module.description %}
+							<div class="description{% if module.lead_text %} lead{% endif %}">{{ module.description}}</div>
+						{% endif %}
+
+						{{ macros.cta(module.ctas) }}
+					</div>
+					{% endif %}
+
+					<div class="blaze-slider" data-autoplay="{{ module.autoplay }}" data-autoplayspeed="{{ module.autoplay_speed }}">
+						<div class="blaze-container">
+
+							{% if module.arrows %}
+							<button type="button" class="d-none d-md-flex blaze-arrow blaze-prev chevron-left">{% icon name="chevron-left" style="SOLID" unicode="f053" icon_set="fontawesome-5.14.0" width="12" height="12" no_wrapper=true %}</button>
+							{% endif %}
+
+							<div class="blaze-track-container">
+								<div class="blaze-track">
+									{% for slide in module.slides %}
+									<div class="slider-item sr-card sr-border text-{{ module.design_settings.card_styles.text_color }}">
+										<div class="d-lg-flex h-100">
+											<div class="sr-tabs-slider-02-image">
+												{{ macros.image(slide.image) }}
+											</div>
+											<div class="sr-tabs-slider-02-content">
+												<div class="sr-spacer-bottom-75">
+													<div class="description{% if slide.lead_text %} lead{% endif %} sr-spacer-bottom-25">
+														{{slide.content}}
+													</div>
+													<span class="slider-name">{{slide.slider_name}}</span>
+													<span class="slider-title">{{slide.slider_title}}</span>
+												</div>
+
+												<div class="text-md-right text-center w-100">
+													{{ macros.cta(slide.slide_ctas) }}
+												</div>
+											</div>
+										</div>
+									</div>
+									{% endfor %}
+								</div>
+							</div>
+
+							{% if module.arrows %}
+							<button type="button" class="d-none d-md-flex blaze-arrow blaze-next chevron-right">{% icon name="chevron-right" style="SOLID" unicode="f054" icon_set="fontawesome-5.14.0" width="12" height="12" no_wrapper=true %}</button>
+							{% endif %}
+
+							{% if module.dots %}
+							<div class="blaze-pagination mt-4 mx-4"></div>
+							{% endif %}
+
+						</div>
+					</div>
+
+		{% if module.design_settings.container_width != 'max' %}
+			</div>
+		</div>
+		{% endif %}
+		</div>
+
+	</div>
+
+	{% require_css %}
+	<style>
+		{{ macros.design_settings(name, module.design_settings) }}
+		.{{ name }} .sr-card {
+			{%- if module.design_settings.card_styles.background_color == "gradient" -%}
+			background: {{ module.design_settings.card_styles.background_gradient.css }};
+			{%- elif module.design_settings.card_styles.background_color == "custom" -%}
+			background-color: {{ module.design_settings.card_styles.background_custom.css }};
+			{%- elif module.design_settings.card_styles.background_color != "auto" -%}
+			background-color: var(--{{ module.design_settings.card_styles.background_color }});
+			{%- endif -%}
+			{%- if module.design_settings.card_styles.text_color == "custom" %}
+			color: {{ module.design_settings.card_styles.text_color_custom.css }};
+			{%- endif -%}
+			{% if module.design_settings.card_styles.border.css %}
+			{{ module.design_settings.card_styles.border.css }};
+			{% endif %}
+			{% if module.design_settings.card_styles.border_radius >= 0 %}
+			border-radius: {{ module.design_settings.card_styles.border_radius }}px;
+			{% endif %}
+		}
+		.{{ name }} .sr-tabs-slider-02-content {
+			{{ module.design_settings.card_styles.spacing.css }};
+		}
+		{% if module.design_settings.card_styles.shadow %}
+		.{{ name }} .blaze-container {
+			box-shadow: {{ "inset" if module.design_settings.card_styles.inset }} {{ module.design_settings.card_styles.horizontal ~ "px" }} {{ module.design_settings.card_styles.vertical ~ "px" }} {{ module.design_settings.card_styles.blur ~ "px" }} {{ module.design_settings.card_styles.spread ~ "px" }} {{ module.design_settings.card_styles.color.css }};
+		}
+		{% endif %}
+	</style>
+	{% end_require_css %}
+
+	{{ require_css(get_asset_url('../../css/blaze-slider.css'), { async: true }) }}
+	{{ require_js(get_asset_url('../../js/blaze-slider.js'), { position: 'head', defer: true }) }}
+{% endif %}

@@ -1,0 +1,102 @@
+.sr-cards-pricing-01 {
+    position: relative;
+}
+
+.sr-cards-pricing-01>div {
+    position: relative;
+    z-index: 1;
+}
+
+.sr-cards-pricing-01 .card {
+    border-width: 1px;
+    border-style: solid;
+    text-align: center;
+    -webkit-transition: background 0.25s ease-in-out;
+    -moz-transition: background 0.25s ease-in-out;
+    transition: background 0.25s ease-in-out;
+}
+
+.sr-cards-pricing-01 .cards.row .card-inner h3 {
+    white-space: nowrap;
+    font-size: clamp(2.125rem, 5.375vw + -0.45rem, 3.375rem);
+    line-height: 1.35;
+}
+
+.sr-cards-pricing-01 .cards.row.cards-4 .card-inner h3 {
+    font-size: clamp(1.75rem, 3.22vw + 0.2rem, 2.5rem);
+}
+
+.sr-cards-pricing-01 .card-inner strong {
+    display: inline-block;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+}
+
+.sr-cards-pricing-01 .card-inner ul {
+    padding: 0;
+    list-style: none;
+    margin-bottom: 0.5rem;
+}
+
+.sr-cards-pricing-01 .pricing-name {
+    font-weight: 600;
+}
+
+.sr-cards-pricing-01 .card-inner ul li {
+    padding: 0.1rem 0;
+}
+
+.sr-cards-pricing-01 .card .featured_text {
+    border: 1px solid;
+    border-color: var(--borders);
+    border-radius: 1rem;
+    padding: 0.2rem 1.25rem;
+    position: absolute;
+    font-size: 0.9rem;
+    top: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: max-content;
+}
+
+.sr-cards-pricing-01 .card-inner {
+    height: 100%;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.sr-cards-pricing-01 .card-inner .cta-group {
+    margin-top: auto;
+}
+
+.sr-cards-pricing-01 .section-wrapper {
+    padding-bottom: 3rem;
+}
+
+@media only screen and (min-width: 992px) {
+    .sr-cards-pricing-01 .card {
+        flex: 1;
+    }
+
+    .sr-cards-pricing-01 .card.active {
+        box-shadow: 15px 25px 60px 0px rgba(0, 0, 0, 0.1);
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .sr-cards-pricing-01 .card {
+        margin: 1rem 0;
+    }
+
+    .sr-cards-pricing-01 .card {
+        margin: 0 2%;
+        width: 46%;
+    }
+
+    .sr-cards-pricing-01 .cards .card {
+        width: 96%;
+    }
+}

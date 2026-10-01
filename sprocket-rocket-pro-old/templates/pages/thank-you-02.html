@@ -1,0 +1,42 @@
+<!--
+templateType: page
+isAvailableForNewContent: true
+label: Thank You 02
+screenshotPath: ../../images/thank-you-02.jpg
+-->
+
+	{% include '../header.html' %}
+
+		<body class="pre-built {{ widget_data.body_class.value }} {{ builtin_body_classes }} {% set theme_name = content.template_path|split('/')|first %}{{ theme_name }} {% set template_name = content.template_path|split('/')|last %}{{ template_name[:-5] if template_name }}">
+
+		{% block header %}
+			{% boolean "enabled_site_header" label='Enable Global Site Header', value=true, export_to_template_context=True %}
+			{% if widget_data.enabled_site_header.value %}
+				{% global_partial path="../partials/site_header.html" %}
+			{% endif %}
+		{% endblock header %}
+
+		{% block body %}
+
+			{% dnd_area "body_dnd_area", class='body_dnd_area' label="Main Content" %}
+
+				{% dnd_section %}
+					{% dnd_module overrideable=True, path='../../custom-modules/SR Offer Bar 05', widget_name='SR Offer Bar 05', label='SR Offer Bar 05' %}{% end_dnd_module %}
+				{% end_dnd_section %}
+
+
+
+			{% end_dnd_area %}
+
+		{% endblock body %}
+
+		{% block footer %}
+			{% boolean "enabled_site_footer" label='Enable Global Site Footer', value=true, export_to_template_context=True %}
+			{% if widget_data.enabled_site_footer.value %}
+				{% global_partial path="../partials/site_footer.html" %}
+			{% endif %}
+		{% endblock footer %}
+
+		{% include '../footer-includes.html' %}
+	</body>
+</html>

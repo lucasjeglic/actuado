@@ -1,0 +1,36 @@
+
+
+.sr-two-col-toc-01 nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+@media (min-height: 800px) {
+    .sr-two-col-toc-01 nav ul {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 6.25rem;
+    }
+}
+
+.sr-two-col-toc-01 nav ul li a {
+    display: block;
+    font-weight: 600;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    text-decoration: none;
+    background: #f9f9f9;
+    -webkit-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    border-left: 4px solid transparent !important;
+    border-right: 4px solid transparent !important;
+}
+
+.sr-two-col-toc-01 nav ul li.active a {
+    border-left-color: inherit !important;
+}
+.column-quote {
+    gap: 1rem;
+}

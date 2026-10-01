@@ -1,0 +1,18 @@
+{% if module.heading %}
+<h{{ module.heading_size }} class="author-heading">{{ module.heading }}</h{{ module.heading_size }}>
+{% endif %}
+
+{% set my_authors = blog_authors(module.blog, 250) %}
+<div class="row blog-authurs my-n3">
+	{% for author in my_authors %}
+	<div class="col-md-{{ module.authors_per_row }} my-3">
+		<a href="{{ blog_author_url(group.id, author.slug) }}">
+			<div class="author" style="background: rgba({{ module.background_color.color|convert_rgb }}, {{ module.background_color.opacity/100 }})">
+				<div class="avatar" style="background-image: url({% if author.avatar %}{{ author.avatar }}{% else %}https://docs.sprocketrocket.co/hubfs/sr-assets/images/Blank-Avatar-Image.png{% endif %}"></div>
+				<div class="author-name p-3" style="background-color: rgba({{ module.background_hover_color.color|convert_rgb }}, {{ module.background_hover_color.opacity/100 }})">{{ author }}</div>
+			</div>
+			
+		</a>
+	</div>
+	{% endfor %}
+</div>

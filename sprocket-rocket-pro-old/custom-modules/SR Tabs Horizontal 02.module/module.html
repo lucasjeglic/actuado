@@ -1,0 +1,62 @@
+{% if module.enabled %}
+
+	{% import "../../templates/macros.html" as macros %}
+
+	{% if module.design_settings.container_width == 'min' %}
+		{% set width_class = 'col-md-6 offset-md-3' %}
+	{% elif module.design_settings.container_width == 'narrow' %}
+		{% set width_class = 'col-md-8 offset-md-2' %}
+	{% elif module.design_settings.container_width == 'wide' %}
+		{% set width_class = 'col-md-10 offset-md-1' %}
+	{% endif %}
+
+	{{ macros.label("SR Tabs Horizontal 02") }}
+
+	<div class="sr-tabs-horizontal-02 {{ name }} {% if module.design_settings.background_option == 'color' %} bg-{{ module.design_settings.background_color }}{% endif %} {{ macros.padding(module.design_settings) }} text-{{ module.design_settings.text_color }} {{ macros.text_align(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+
+		{% if module.design_settings.background_option == 'video' %}
+		{{macros.bg_video(module.background_video, module.design_settings.background_image.src)}}
+		{% endif %}
+
+		<div class="{{ module.design_settings.layout }}">
+            {% if module.design_settings.container_width != 'max' %}
+            <div class="row">
+                <div class="{{ width_class }}">
+            {% endif %}
+						<div class="row">
+							<div class="{{ macros.col_size(module.columns.left_column) }} sr-tabs-horizontal-02-nav">
+								<ul class="nav nav-tabs tab-nav mb-4 mb-md-0" role="tablist" aria-orientation="vertical">
+									{% for item in module.tabs %}
+									<li>
+										<button class="{% if loop.first %}active{% endif %} nav-link text-{{ item.tab_heading[0].heading_color }}" data-tab="{{ name }}_tab_{{ loop.index }}" data-toggle="tab" role="tab" aria-controls="{{ name }}_tab_{{ loop.index }}" aria-selected="true" style="{% if item.tab_heading[0].heading_color == 'custom' %}color: {{ item.tab_heading[0].heading_color_custom.css }};{% endif %}--bg: {{ item.tab_heading[0].background_color.css }}; --bg-active: {{ item.tab_heading[0].active_background_color.css }}">
+											{{ macros.heading(item.tab_heading, 'mb-0') }}
+											{% icon name="chevron-right" style="SOLID" unicode="f054" icon_set="fontawesome-5.14.0" width="10" no_wrapper=true %}
+										</button>
+									</li>
+									{% endfor %}
+								</ul>
+							</div>
+							<div class="{{ macros.col_size(module.columns.right_column) }} sr-tabs-horizontal-02-content">
+								<div class="tab-content">
+									{% for item in module.tabs %}
+									<div class="tab-pane{% if loop.first %} active{% endif %} description" data-tab="{{ name }}_tab_{{ loop.index }}" role="tabpanel" aria-labelledby="{{ name }}_tab_{{ loop.index }}">
+										{{ macros.heading(item.heading) }}
+										{{ item.tab_content }}
+									</div>
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+			{% if module.design_settings.container_width != 'max' %}
+					</div>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+
+	{% require_css %}
+	<style>
+		{{ macros.design_settings(name, module.design_settings) }}
+	</style>
+	{% end_require_css %}
+{% endif %}

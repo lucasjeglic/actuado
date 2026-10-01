@@ -1,0 +1,30 @@
+
+
+.sr-two-col-06 .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.sr-two-col-06 .links .link-item {
+    padding: 2px;
+    position: relative;
+    display: inline;
+}
+
+.sr-two-col-06 .links>* {
+    display: inline-block;
+	margin: 0
+}
+
+.sr-two-col-06 .links a.link-item {
+    text-decoration: underline!important;
+}
+
+.sr-two-col-06.text-white .links a:hover {
+    color: var(--primary) !important;
+}
+
+.sr-two-col-06.text-white.bg-primary .links a:hover {
+    color: var(--secondary) !important;
+}

@@ -1,0 +1,925 @@
+<!--
+templateType: page
+isAvailableForNewContent: true
+label: Airstory Pricing Page
+screenshotPath: ../../images/airstory-pricing-page.jpg
+-->
+
+	{% include '../header.html' %}
+
+		<body class="pre-built {{ widget_data.body_class.value }} {{ builtin_body_classes }} {% set theme_name = content.template_path|split('/')|first %}{{ theme_name }} {% set template_name = content.template_path|split('/')|last %}{{ template_name[:-5] if template_name }}">
+
+		{% block header %}
+			{% boolean "enabled_site_header" label='Enable Global Site Header', value=true, export_to_template_context=True %}
+			{% if widget_data.enabled_site_header.value %}
+				{% global_partial path="../partials/site_header.html" %}
+			{% endif %}
+		{% endblock header %}
+
+		{% block body %}
+			{% dnd_area "body_dnd_area", class='body_dnd_area' label="Main Content" %}
+				{% dnd_section %}
+				  {% dnd_column
+					offset=0,
+					width=12
+				  %}
+					{% dnd_row %}
+					  {% dnd_module
+						path="../../custom-modules/SR Hero 01",
+						offset=0,
+						width=12,
+						ctas=[ ],
+						design_settings={
+						  "background_custom" : {
+							"color" : "#CAE5DA",
+							"opacity" : 100
+						  },
+						  "background_option" : "custom",
+						  "container_width" : "max",
+						  "text_align" : {
+							"text_align" : "LEFT"
+						  },
+						  "text_color" : "dark"
+						},
+						heading=[ {
+						  "heading" : "Try Airstory free for 7 days",
+						  "heading_align" : "auto",
+						  "heading_color" : "auto",
+						  "heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+						  },
+						  "heading_display_size" : "display-4",
+						  "heading_size" : "h1"
+						} ],
+						height="medium"
+					  %}
+						{% module_attribute "description" %}
+						  <h5>Get unlimited projects, storage, collaborators, research cards, uploads, downloads, exports, imports - the works. Free for a week.</h5>
+						{% end_module_attribute %}
+					  {% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					  {% dnd_module
+						path="../../custom-modules/SR Two Col 07",
+						offset=0,
+						width=12,
+						ctas=[ ],
+						heading=[ {
+						  "heading" : "Always get everything",
+						  "heading_align" : "auto",
+						  "heading_color" : "auto",
+						  "heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+						  },
+						  "heading_display_size" : "auto",
+						  "heading_size" : "h2"
+						} ],
+						side_list=[ {
+						  "list_item" : "<h5><span>Airstory Researcher</span></h5>\n<p>Capture online research and send it to your projects.</p>"
+						}, {
+						  "list_item" : "<h5><span>Unlimited projects</span></h5>\n<p>Create and use endless writing projects - with full functionality.</p>"
+						}, {
+						  "list_item" : "<h5><span>Team collaboration</span></h5>\n<p>Invite researchers and editors to work with you inside one or more Airstory projects.</p>"
+						}, {
+						  "list_item" : "<h5><span>Easy exports</span></h5>\n<p>Send your writing to Google Drive, WordPress, HTML, Microsoft Word, etc.</p>"
+						} ]
+					  %}
+						{% module_attribute "description" %}
+						  <p><span>...Except a spellchecker. Because most spellcheckers are awful. And grammar checkers get in the way of style, which would make the late great Virginia Tufte cry. </span></p>
+						  <p><span>If you reallllly need a spellchecker, you can always export your writing to Word or Google.</span></p>
+						{% end_module_attribute %}
+					  {% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					  {% dnd_module
+						path="../../custom-modules/SR Cards Pricing 01",
+						offset=0,
+						width=12,
+						column=[ {
+						  "ctas" : [ {
+							"button_text" : "Upgrade Now",
+							"cta" : "",
+							"cta_size" : "md",
+							"cta_style" : "outline-primary",
+							"cta_type" : "btn",
+							"link" : {
+							  "no_follow" : false,
+							  "open_in_new_tab" : false,
+							  "url" : {
+								"href" : "#",
+								"type" : "EXTERNAL"
+							  }
+							},
+							"modal_target" : "demo"
+						  } ],
+						  "featured_text" : "",
+						  "price" : "$125 per month",
+						  "pricing_name" : "Heavy Duty Writer",
+						  "text" : "<ul>\n<li>1000 to 5000 GB of storage</li>\n<li>Everything in Pro Writer</li>\n</ul>"
+						}, {
+						  "ctas" : [ {
+							"button_text" : "Try it free for 7 days",
+							"cta" : "",
+							"cta_size" : "md",
+							"cta_style" : "primary",
+							"cta_type" : "btn",
+							"link" : {
+							  "no_follow" : false,
+							  "open_in_new_tab" : false,
+							  "url" : {
+								"href" : "#",
+								"type" : "EXTERNAL"
+							  }
+							},
+							"modal_target" : "demo"
+						  } ],
+						  "featured_text" : "",
+						  "price" : "$25 per month",
+						  "pricing_name" : "Pro Writer",
+						  "text" : "<ul>\n<li>100 GB of storage</li>\n<li><span>Unlimited cards (research)</span></li>\n<li><span>Unlimited writing projects</span></li>\n<li><span>Unlimited kanban boards</span></li>\n<li><span>Unlimited outlines</span></li>\n<li><span>Unlimited collaborators</span></li>\n<li><span>Full access to the Airstory Researcher</span></li>\n<li><span>Responsive design (for mobile)</span></li>\n<li><span>Templatizing (for repetitive writing)</span></li>\n<li><span>All integrations</span></li>\n</ul>"
+						} ],
+						heading=[ ]
+					  %}
+					  {% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					  {% dnd_module
+						path="../../custom-modules/SR Two Col 03",
+						offset=0,
+						width=12,
+						column=[ {
+						  "add_to_lightbox" : false,
+						  "background_video_design" : "none",
+						  "col_image" : {
+							"alt" : "airstory-pricing",
+							"height" : 685,
+							"loading" : "lazy",
+							"max_height" : 685,
+							"max_width" : 927,
+							"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/airstory-pricing.png",
+							"width" : 927
+						  },
+						  "col_media_type" : "image",
+						  "col_overlay_color" : {
+							"color" : "#000000",
+							"opacity" : 50
+						  },
+						  "col_text_align" : "auto",
+						  "custom_accent_color" : {
+							"color" : "#000000",
+							"opacity" : 20
+						  },
+						  "custom_column_size" : false,
+						  "image_link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+							  "type" : "EXTERNAL"
+							}
+						  },
+						  "lead_text" : false,
+						  "text_color" : "auto",
+						  "video" : {
+							"autoplay" : true,
+							"background_video_design" : "none",
+							"custom_accent_color" : {
+							  "color" : "#000000",
+							  "opacity" : 20
+							},
+							"embed_field" : {
+							  "source_type" : "oembed"
+							},
+							"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+							"loop" : true,
+							"muted" : true,
+							"oembed_thumbnail" : {
+							  "loading" : "disabled",
+							  "src" : ""
+							},
+							"placeholder_fields" : {
+							  "placeholder_description" : "Select a video type in the sidebar.",
+							  "placeholder_title" : "No video selected"
+							},
+							"show_controls" : true,
+							"style_options" : {
+							  "oembed_thumbnail_play_button_color" : {
+								"color" : "#ffffff"
+							  }
+							},
+							"video_accent_color" : "primary",
+							"video_poster" : {
+							  "alt" : "Sprocket Rocket Demo",
+							  "size_type" : "exact",
+							  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+							},
+							"video_type" : "html_video"
+						  },
+						  "video_accent_color" : "primary"
+						}, {
+						  "add_to_lightbox" : false,
+						  "background_video_design" : "none",
+						  "col_content" : "<p><span>Write without borders. Eliminate versioning issues. Avoid battles between file types. Export to multiple formats. Work on the go. Autosave everything. Work light. Go easy on memory. Go paperless. Strut like a champ.</span></p>",
+						  "col_media_type" : "none",
+						  "col_overlay_color" : {
+							"color" : "#000000",
+							"opacity" : 50
+						  },
+						  "col_size" : "col-md-5 offset-md-1",
+						  "col_text_align" : "auto",
+						  "column_size" : [ {
+							"column_breakpoint" : "md",
+							"column_offset" : "1",
+							"column_width" : "5"
+						  } ],
+						  "ctas" : [ ],
+						  "custom_accent_color" : {
+							"color" : "#000000",
+							"opacity" : 20
+						  },
+						  "custom_column_size" : true,
+						  "heading" : [ {
+							"heading" : "THE LIST KEEPS ON GOING",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							  "color" : "#30343b",
+							  "opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h6"
+						  }, {
+							"heading" : "Pluuuuus...",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							  "color" : "#30343b",
+							  "opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h3"
+						  } ],
+						  "image_link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+							  "type" : "EXTERNAL"
+							}
+						  },
+						  "lead_text" : false,
+						  "text_color" : "auto",
+						  "video" : {
+							"autoplay" : true,
+							"background_video_design" : "none",
+							"custom_accent_color" : {
+							  "color" : "#000000",
+							  "opacity" : 20
+							},
+							"embed_field" : {
+							  "source_type" : "oembed"
+							},
+							"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+							"loop" : true,
+							"muted" : true,
+							"oembed_thumbnail" : {
+							  "loading" : "disabled",
+							  "src" : ""
+							},
+							"placeholder_fields" : {
+							  "placeholder_description" : "Select a video type in the sidebar.",
+							  "placeholder_title" : "No video selected"
+							},
+							"show_controls" : true,
+							"style_options" : {
+							  "oembed_thumbnail_play_button_color" : {
+								"color" : "#ffffff"
+							  }
+							},
+							"video_accent_color" : "primary",
+							"video_poster" : {
+							  "alt" : "Sprocket Rocket Demo",
+							  "size_type" : "exact",
+							  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+							},
+							"video_type" : "html_video"
+						  },
+						  "video_accent_color" : "primary"
+						} ],
+						design_settings={
+						  "background_color" : "light",
+						  "layout" : "container-fluid",
+						  "top_bottom_padding" : "zero"
+						}
+					  %}
+					  {% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					  {% dnd_module
+						path="../../custom-modules/SR Cards Grid 02",
+						offset=0,
+						width=12,
+						cards=[ {
+						  "background_color" : {
+							"color" : "#ffffff",
+							"opacity" : 100
+						  },
+						  "heading" : [ {
+							"heading" : "Smart documents",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							  "color" : "#30343b",
+							  "opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h4"
+						  } ],
+						  "image" : {
+							"alt" : "Professional Design",
+							"height" : "75",
+							"loading" : "lazy",
+							"src" : "https://f.hubspotusercontent20.net/hub/275827/hubfs/sr-assets/images/bulb.png",
+							"width" : "75"
+						  },
+						  "text" : "<p><span>Add tabs to your document. <br>(Like Excel. But you can write in it.)</span></p>",
+						  "text_color" : "auto"
+						}, {
+						  "background_color" : {
+							"color" : "#ffffff",
+							"opacity" : 100
+						  },
+						  "heading" : [ {
+							"heading" : "Boards and outliners",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							  "color" : "#30343b",
+							  "opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h4"
+						  } ],
+						  "image" : {
+							"alt" : "Superior Inbound Material",
+							"height" : "75",
+							"loading" : "lazy",
+							"src" : "https://f.hubspotusercontent20.net/hub/275827/hubfs/sr-assets/images/sprout.png",
+							"width" : "75"
+						  },
+						  "text" : "<p><span>Add a kanban board to a writing project as a tab. Click the 'outliner' option at the top to see your work in outline form.</span></p>",
+						  "text_color" : "auto"
+						}, {
+						  "background_color" : {
+							"color" : "#ffffff",
+							"opacity" : 100
+						  },
+						  "heading" : [ {
+							"heading" : "Drag and drop",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							  "color" : "#30343b",
+							  "opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h4"
+						  } ],
+						  "image" : {
+							"alt" : "Light Years Ahead",
+							"height" : "75",
+							"loading" : "lazy",
+							"src" : "https://f.hubspotusercontent20.net/hub/275827/hubfs/sr-assets/images/head.png",
+							"width" : "75"
+						  },
+						  "text" : "<p><span>Move your cards around a board, outline or document. Drop 'em where you want. Merge 'em when you're ready to.</span></p>",
+						  "text_color" : "auto"
+						}, {
+						  "background_color" : {
+							"color" : "#ffffff",
+							"opacity" : 100
+						  },
+						  "heading" : [ {
+							"heading" : "Research library",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							  "color" : "#30343b",
+							  "opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h4"
+						  } ],
+						  "image" : {
+							"alt" : "Enhanced User Experience",
+							"height" : "75",
+							"loading" : "lazy",
+							"src" : "https://f.hubspotusercontent20.net/hub/275827/hubfs/sr-assets/images/presentation-1.png",
+							"width" : "75"
+						  },
+						  "text" : "<p><span>Access cards from across your entire research library, no matter what project you're in.</span></p>",
+						  "text_color" : "auto"
+						}, {
+						  "background_color" : {
+							"color" : "#ffffff",
+							"opacity" : 100
+						  },
+						  "heading" : [ {
+							"heading" : "Show/hide cards",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							  "color" : "#30343b",
+							  "opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h4"
+						  } ],
+						  "image" : {
+							"alt" : "Exceptional Customer Support",
+							"height" : "75",
+							"loading" : "lazy",
+							"src" : "https://f.hubspotusercontent20.net/hub/275827/hubfs/sr-assets/images/plant.png",
+							"width" : "75"
+						  },
+						  "text" : "<p><span>Wanna hide the cards you've already added to a board, outline or doc? You can do that. Then unhide them if you wanna.</span></p>",
+						  "text_color" : "auto"
+						}, {
+						  "background_color" : {
+							"color" : "#ffffff",
+							"opacity" : 100
+						  },
+						  "heading" : [ {
+							"heading" : "Integrations",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							  "color" : "#30343b",
+							  "opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h4"
+						  } ],
+						  "image" : {
+							"alt" : "Prototype With Robust Modules",
+							"height" : "75",
+							"loading" : "lazy",
+							"src" : "https://f.hubspotusercontent20.net/hub/275827/hubfs/sr-assets/images/cloud.png",
+							"width" : "75"
+						  },
+						  "text" : "<p><span>Evernote. Dropbox. Google Drive. Box. WordPress. Instagram. If you've got content somewhere, we've got your integration.</span></p>",
+						  "text_color" : "auto"
+						} ],
+						design_settings={
+						  "text_align" : {
+							"text_align" : "LEFT"
+						  }
+						},
+						heading=[ {
+						  "heading" : "All plans include",
+						  "heading_align" : "left",
+						  "heading_color" : "auto",
+						  "heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+						  },
+						  "heading_display_size" : "auto",
+						  "heading_size" : "h2"
+						} ]
+					  %}
+						{% module_attribute "description" %}
+
+						{% end_module_attribute %}
+					  {% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					  {% dnd_module
+						path="../../custom-modules/SR Clients Carousel 01",
+						offset=0,
+						width=12,
+						heading=[ {
+						  "heading" : "TRUSTED BY 10K+ PRO WRITERS FROM PLACES LIKE THESE",
+						  "heading_align" : "auto",
+						  "heading_color" : "auto",
+						  "heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+						  },
+						  "heading_display_size" : "auto",
+						  "heading_size" : "h6"
+						} ],
+						design_settings={
+						  "spacing" : {
+							"margin" : {
+							  "bottom" : {
+								"units" : "rem",
+								"value" : 0
+							  },
+							  "top" : {
+								"units" : "rem",
+								"value" : 0
+							  }
+							},
+							"padding" : {
+							  "bottom" : {
+								"units" : "px",
+								"value" : 0
+							  },
+							  "left" : {
+								"units" : "rem",
+								"value" : 0
+							  },
+							  "right" : {
+								"units" : "rem",
+								"value" : 0
+							  },
+							  "top" : {
+								"units" : "rem",
+								"value" : 6.25
+							  }
+							}
+						  },
+						  "top_bottom_padding" : "custom"
+						}
+					  %}
+					  {% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					  {% dnd_module
+						path="../../custom-modules/SR Two Col 04",
+						offset=0,
+						width=12,
+						column=[ {
+						  "add_to_lightbox" : false,
+						  "col_content" : "<h4><span>'If Google Docs &amp; Evernote had a love child, they couldn’t have done better than Airstory. I love long form &amp; research-based writing on their platform.'</span></h4>\n<div data-id='5c0d933c' data-element_type='widget' data-widget_type='heading.default'>\n<div>\n<p><strong>Chris Lema<br></strong>VP of Product, LiquidWeb</p>\n</div>\n</div>",
+						  "col_media_type" : "none",
+						  "col_overlay_color" : {
+							"color" : "#000000",
+							"opacity" : 50
+						  },
+						  "col_text_align" : "auto",
+						  "column_size" : [ {
+							"column_breakpoint" : "md",
+							"column_offset" : "0",
+							"column_order" : 1,
+							"column_width" : "5"
+						  } ],
+						  "ctas" : [ ],
+						  "custom_column_size" : true,
+						  "heading" : [ ],
+						  "image_link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+							  "type" : "EXTERNAL"
+							}
+						  },
+						  "lead_text" : false,
+						  "text_color" : "auto",
+						  "video" : {
+							"autoplay" : true,
+							"background_video_design" : "none",
+							"custom_accent_color" : {
+							  "color" : "#000000",
+							  "opacity" : 20
+							},
+							"embed_field" : {
+							  "source_type" : "oembed"
+							},
+							"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+							"loop" : true,
+							"muted" : true,
+							"oembed_thumbnail" : {
+							  "loading" : "disabled",
+							  "src" : ""
+							},
+							"placeholder_fields" : {
+							  "placeholder_description" : "Select a video type in the sidebar.",
+							  "placeholder_title" : "No video selected"
+							},
+							"show_controls" : true,
+							"style_options" : {
+							  "oembed_thumbnail_play_button_color" : {
+								"color" : "#ffffff"
+							  }
+							},
+							"video_accent_color" : "primary",
+							"video_poster" : {
+							  "alt" : "Sprocket Rocket Demo",
+							  "size_type" : "exact",
+							  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+							},
+							"video_type" : "html_video"
+						  }
+						}, {
+						  "add_to_lightbox" : false,
+						  "col_image" : {
+							"alt" : "airstory-testimonial-chris",
+							"height" : 691,
+							"loading" : "lazy",
+							"max_height" : 691,
+							"max_width" : 708,
+							"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/airstory-testimonial-chris.png",
+							"width" : 708
+						  },
+						  "col_media_type" : "image",
+						  "col_overlay_color" : {
+							"color" : "#000000",
+							"opacity" : 50
+						  },
+						  "col_text_align" : "auto",
+						  "column_size" : [ {
+							"column_breakpoint" : "md",
+							"column_offset" : "1",
+							"column_order" : 2,
+							"column_width" : "6"
+						  }, {
+							"column_breakpoint" : "sm",
+							"column_offset" : "0",
+							"column_order" : 1,
+							"column_width" : "12"
+						  } ],
+						  "custom_column_size" : true,
+						  "image_link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+							  "type" : "EXTERNAL"
+							}
+						  },
+						  "lead_text" : false,
+						  "text_color" : "auto",
+						  "video" : {
+							"autoplay" : true,
+							"background_video_design" : "none",
+							"custom_accent_color" : {
+							  "color" : "#000000",
+							  "opacity" : 20
+							},
+							"embed_field" : {
+							  "source_type" : "oembed"
+							},
+							"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+							"loop" : true,
+							"muted" : true,
+							"oembed_thumbnail" : {
+							  "loading" : "disabled",
+							  "src" : ""
+							},
+							"placeholder_fields" : {
+							  "placeholder_description" : "Select a video type in the sidebar.",
+							  "placeholder_title" : "No video selected"
+							},
+							"show_controls" : true,
+							"style_options" : {
+							  "oembed_thumbnail_play_button_color" : {
+								"color" : "#ffffff"
+							  }
+							},
+							"video_accent_color" : "primary",
+							"video_poster" : {
+							  "alt" : "Sprocket Rocket Demo",
+							  "size_type" : "exact",
+							  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+							},
+							"video_type" : "html_video"
+						  }
+						} ],
+						design_settings={
+						  "top_bottom_padding" : "full"
+						}
+					  %}
+					  {% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					  {% dnd_module
+						path="../../custom-modules/SR Two Col 03",
+						offset=0,
+						width=12,
+						column=[ {
+						  "add_to_lightbox" : false,
+						  "background_video_design" : "none",
+						  "col_content" : "",
+						  "col_image" : {
+							"alt" : "airstory-testimonial-2",
+							"height" : 811,
+							"loading" : "lazy",
+							"max_height" : 811,
+							"max_width" : 708,
+							"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/airstory-testimonial-2.png",
+							"width" : 708
+						  },
+						  "col_media_type" : "image",
+						  "col_overlay_color" : {
+							"color" : "#000000",
+							"opacity" : 50
+						  },
+						  "col_text_align" : "auto",
+						  "custom_accent_color" : {
+							"color" : "#000000",
+							"opacity" : 20
+						  },
+						  "custom_column_size" : false,
+						  "image_link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+							  "type" : "EXTERNAL"
+							}
+						  },
+						  "lead_text" : false,
+						  "text_color" : "auto",
+						  "video" : {
+							"autoplay" : true,
+							"background_video_design" : "none",
+							"custom_accent_color" : {
+							  "color" : "#000000",
+							  "opacity" : 20
+							},
+							"embed_field" : {
+							  "source_type" : "oembed"
+							},
+							"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+							"loop" : true,
+							"muted" : true,
+							"oembed_thumbnail" : {
+							  "loading" : "disabled",
+							  "src" : ""
+							},
+							"placeholder_fields" : {
+							  "placeholder_description" : "Select a video type in the sidebar.",
+							  "placeholder_title" : "No video selected"
+							},
+							"show_controls" : true,
+							"style_options" : {
+							  "oembed_thumbnail_play_button_color" : {
+								"color" : "#ffffff"
+							  }
+							},
+							"video_accent_color" : "primary",
+							"video_poster" : {
+							  "alt" : "Sprocket Rocket Demo",
+							  "size_type" : "exact",
+							  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+							},
+							"video_type" : "html_video"
+						  },
+						  "video_accent_color" : "primary"
+						}, {
+						  "add_to_lightbox" : false,
+						  "background_video_design" : "none",
+						  "col_content" : "<h4><span>'I’m in love with Airstory. I uploaded a customer interview transcript as a tab in Airstory. Then went through it and clipped all the good chunks into notes. I went from transcript to editing in like 5 minutes. Massive. Epic.'</span></h4>\n<p><span><strong>Stephen Hovnanian</strong><br>Content architect, Sprout Social</span></p>",
+						  "col_media_type" : "none",
+						  "col_overlay_color" : {
+							"color" : "#000000",
+							"opacity" : 50
+						  },
+						  "col_size" : "col-md-5 offset-md-1",
+						  "col_text_align" : "auto",
+						  "column_size" : [ {
+							"column_breakpoint" : "md",
+							"column_offset" : "1",
+							"column_width" : "5"
+						  } ],
+						  "ctas" : [ ],
+						  "custom_accent_color" : {
+							"color" : "#000000",
+							"opacity" : 20
+						  },
+						  "custom_column_size" : true,
+						  "heading" : [ ],
+						  "image_link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+							  "type" : "EXTERNAL"
+							}
+						  },
+						  "lead_text" : false,
+						  "text_color" : "auto",
+						  "video" : {
+							"autoplay" : true,
+							"background_video_design" : "none",
+							"custom_accent_color" : {
+							  "color" : "#000000",
+							  "opacity" : 20
+							},
+							"embed_field" : {
+							  "source_type" : "oembed"
+							},
+							"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+							"loop" : true,
+							"muted" : true,
+							"oembed_thumbnail" : {
+							  "loading" : "disabled",
+							  "src" : ""
+							},
+							"placeholder_fields" : {
+							  "placeholder_description" : "Select a video type in the sidebar.",
+							  "placeholder_title" : "No video selected"
+							},
+							"show_controls" : true,
+							"style_options" : {
+							  "oembed_thumbnail_play_button_color" : {
+								"color" : "#ffffff"
+							  }
+							},
+							"video_accent_color" : "primary",
+							"video_poster" : {
+							  "alt" : "Sprocket Rocket Demo",
+							  "size_type" : "exact",
+							  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+							},
+							"video_type" : "html_video"
+						  },
+						  "video_accent_color" : "primary"
+						} ],
+						design_settings={
+						  "spacing" : {
+							"margin" : {
+							  "bottom" : {
+								"units" : "rem",
+								"value" : 0
+							  },
+							  "top" : {
+								"units" : "rem",
+								"value" : 0
+							  }
+							},
+							"padding" : {
+							  "bottom" : {
+								"units" : "rem",
+								"value" : 6.25
+							  },
+							  "left" : {
+								"units" : "rem",
+								"value" : 0
+							  },
+							  "right" : {
+								"units" : "rem",
+								"value" : 0
+							  },
+							  "top" : {
+								"units" : "px",
+								"value" : 0
+							  }
+							}
+						  },
+						  "top_bottom_padding" : "custom"
+						}
+					  %}
+					  {% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					  {% dnd_module
+						path="../../custom-modules/SR Offer Bar 03",
+						offset=0,
+						width=12,
+						ctas=[ {
+						  "button_text" : "TRY AIRSTORY NOW",
+						  "cta" : "",
+						  "cta_size" : "md",
+						  "cta_style" : "outline-white",
+						  "cta_type" : "btn",
+						  "link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+							  "href" : "#",
+							  "type" : "EXTERNAL"
+							}
+						  },
+						  "modal_target" : "demo"
+						} ],
+						heading=[ {
+						  "heading" : "Save hours a week by streamlining the research-to-writing process.",
+						  "heading_align" : "auto",
+						  "heading_color" : "auto",
+						  "heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+						  },
+						  "heading_display_size" : "auto",
+						  "heading_size" : "h3"
+						} ]
+					  %}
+						{% module_attribute "description" %}
+
+						{% end_module_attribute %}
+					  {% end_dnd_module %}
+					{% end_dnd_row %}
+				  {% end_dnd_column %}
+				{% end_dnd_section %}
+			{% end_dnd_area %}
+		{% endblock body %}
+
+		{% block footer %}
+			{% boolean "enabled_site_footer" label='Enable Global Site Footer', value=true, export_to_template_context=True %}
+			{% if widget_data.enabled_site_footer.value %}
+				{% global_partial path="../partials/site_footer.html" %}
+			{% endif %}
+		{% endblock footer %}
+
+		{% include '../footer-includes.html' %}
+	</body>
+</html>

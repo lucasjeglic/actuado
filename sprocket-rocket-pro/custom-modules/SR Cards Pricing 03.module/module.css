@@ -1,0 +1,65 @@
+
+.sr-cards-pricing-03 .pricing-box {
+  text-align: center;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.sr-cards-pricing-03 .features-box {
+  text-align: left;
+}
+
+.sr-cards-pricing-03 .features-box ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 1.8rem 0;
+}
+
+.sr-cards-pricing-03 .features-box ul li {
+  width: 50%;
+  list-style: none;
+  position: relative;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: start;
+  gap: 10px;
+}
+
+.icon-icon {
+  color: var(--icon-color);
+  background: var(--icon-background);
+  display: block;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  padding: .5rem
+}
+
+
+.icon-icon svg:not([style]):not([fill]),
+.icon-icon  svg g:not([style]):not([fill]),
+.icon-icon svg path:not([style]):not([fill]) {
+	fill: var(--icon-color)
+}
+
+.icon-image {
+  display: block;
+  min-width: var(--icon-width);
+}
+
+@media (max-width:991px) {
+
+  .sr-cards-pricing-03 .features-box ul li {
+    width: 100%;
+  }
+
+  .sr-cards-pricing-03 .features-box {
+    margin-top: 1.5rem;
+  }
+
+  .sr-cards-pricing-03 .features-box ul {
+    margin: 0.8rem 0;
+  }
+}

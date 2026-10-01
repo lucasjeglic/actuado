@@ -1,0 +1,63 @@
+<!--
+templateType: global_partial
+isAvailableForNewContent: false
+label: Blog Navbar
+-->
+
+<div class="blog-nav" >
+	<div class="container">
+		<div class="row d-flex align-items-center justify-content-lg-between justify-content-center">
+			<div class="col-md-auto col-12 text-md-auto text-center">
+				<div class="d-inline-block ml-md-n3">
+					{% module "menu1" path="@hubspot/simple_menu", label="Menu Left" menu_tree=[{"linkLabel": "Blog Home", "linkUrl": "/blog"}] no_wrapper=true %}
+				</div>
+			</div>
+			<div class="col-md-auto col-12 text-md-auto text-center">
+				<div class="d-inline-block">
+					{% module "menu2" path="@hubspot/simple_menu", label="Menu Right" menu_tree=[{"linkLabel": "Authors", "linkUrl": "/authors"},{"linkLabel": "Newsletter", "linkUrl": "/categories"}] no_wrapper=true %}
+				</div>
+				<div class="d-inline-block">
+					{% module_block module "site_search"
+						placeholder="Search Blog",
+						include_search_button=true,
+						content_types='{
+							"website_pages":false,
+							"blog_posts":true,
+							"landing_pages":false,
+							"knowledge_articles":false
+						}',
+						overrideable=True,
+						widget_name='Site Search Input',
+						path='@hubspot/search_input',
+						label='Site Search Input' %}
+					{% end_module_block %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% color "background_color" label='Background Color', color='#232031', no_wrapper=True, export_to_template_context=True %}
+{% color "text_color" label='Text Color', color='#fff', no_wrapper=True, export_to_template_context=True %}
+{% require_css %}
+<style>
+	.blog-nav {
+		background-color: {{widget_data.background_color.color}};
+		color: {{widget_data.text_color.color}};
+	}
+	.blog-nav .hs-search-field button {
+		background-color: {{widget_data.text_color.color}};
+	}
+	.blog-nav .hs-search-field svg {
+		color: {{widget_data.background_color.color}};
+	}
+    @media(max-width: 768px){
+        input:not([type="radio"]):not([type="checkbox"]):not([type="file"]):not([type="submit"]) {
+            min-height: 2.5rem;
+        }
+        .hs-search-field button {
+            width: 23px;
+            height: 23px;
+        }
+    }
+</style>
+{% end_require_css %}

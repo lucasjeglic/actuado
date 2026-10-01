@@ -1,0 +1,356 @@
+<!--
+templateType: page
+isAvailableForNewContent: true
+label: About 01
+screenshotPath: ../../images/about-01.jpg
+-->
+
+	{% include '../header.html' %}
+
+	<body class="pre-built {{ widget_data.body_class.value }} {{ builtin_body_classes }} {% set theme_name = content.template_path|split('/')|first %}{{ theme_name }} {% set template_name = content.template_path|split('/')|last %}{{ template_name[:-5] if template_name }}">
+
+		{% block header %}
+			{% boolean "enabled_site_header" label='Enable Global Site Header', value=true, export_to_template_context=True %}
+			{% if widget_data.enabled_site_header.value %}
+				{% global_partial path="../partials/site_header.html" %}
+			{% endif %}
+		{% endblock header %}
+
+		{% block body %}
+
+			{% dnd_area "body_dnd_area", class='body_dnd_area' label="Main Content" %}
+
+				{% dnd_section %}
+					{% dnd_column
+					offset=0,
+					width=12
+					%}
+
+					{% dnd_row %}
+						{% dnd_module
+						path="../../custom-modules/SR One Col Media 01",
+						offset=0,
+						width=12,
+						column=[ {
+							"add_to_lightbox" : false,
+							"col_content" : "<p><span>Stacking modules is rapid, responsive, and enables marketers to build on-brand pages easily.</span></p><p>&nbsp;</p>",
+							"col_image" : {
+							"alt" : "card-4",
+							"height" : 530,
+							"loading" : "lazy",
+							"max_height" : 1060,
+							"max_width" : 1630,
+							"src" : "https://www.lean-labs.com/hubfs/card-4.jpg",
+							"width" : 815
+							},
+							"col_media_type" : "image",
+							"col_overlay_color" : {
+							"color" : "#000000",
+							"opacity" : 50
+							},
+							"col_text_align" : "auto",
+							"column_size" : [ {
+							"column_breakpoint" : "md",
+							"column_offset" : "0",
+							"column_width" : "12"
+							} ],
+							"ctas" : [ ],
+							"custom_column_size" : false,
+							"heading" : {
+							"heading" : [ ],
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+								"color" : "#30343b",
+								"opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h2"
+							},
+							"image_link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+								"type" : "EXTERNAL"
+							}
+							},
+							"lead_text" : true,
+							"text_color" : "auto",
+							"video" : {
+							"autoplay" : true,
+							"background_video_design" : "none",
+							"custom_accent_color" : {
+								"color" : "#000000",
+								"opacity" : 20
+							},
+							"embed_field" : {
+								"height" : 113,
+								"max_height" : 113,
+								"max_width" : 200,
+								"oembed_response" : {
+								"author_name" : "Lean Labs",
+								"author_url" : "https://www.youtube.com/user/LeanLabs1",
+								"height" : "113",
+								"html" : "<iframe width='200' height='113' src='https://www.youtube.com/embed/UBP6xX5KF84?feature=oembed' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+								"provider_name" : "YouTube",
+								"provider_url" : "https://www.youtube.com/",
+								"thumbnail_height" : "360",
+								"thumbnail_url" : "https://i.ytimg.com/vi/UBP6xX5KF84/hqdefault.jpg",
+								"thumbnail_width" : "480",
+								"title" : "What Does 10x Mean",
+								"type" : "video",
+								"version" : "1.0",
+								"width" : "200"
+								},
+								"oembed_url" : "https://www.youtube.com/watch?v=UBP6xX5KF84",
+								"size_type" : "auto_full_width",
+								"source_type" : "oembed",
+								"width" : 200
+							},
+							"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+							"loop" : true,
+							"muted" : true,
+							"oembed_thumbnail" : {
+								"loading" : "disabled",
+								"src" : ""
+							},
+							"placeholder_fields" : {
+								"placeholder_description" : "Select a video type in the sidebar.",
+								"placeholder_title" : "No video selected"
+							},
+							"show_controls" : true,
+							"style_options" : {
+								"oembed_thumbnail_play_button_color" : {
+								"color" : "#ffffff"
+								}
+							},
+							"video_accent_color" : "primary",
+							"video_poster" : {
+								"alt" : "Sprocket Rocket Demo",
+								"size_type" : "exact",
+								"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+							},
+							"video_type" : "embed"
+							}
+						} ],
+						design_settings={
+							"background_custom" : {
+							"color" : "#060f1e",
+							"opacity" : 0
+							},
+							"background_image" : {
+							"background_position" : "MIDDLE_CENTER",
+							"background_size" : "cover",
+							"src" : "https://www.lean-labs.com/hubfs/bg.png"
+							},
+							"background_option" : "image",
+							"container_width" : "narrow",
+							"layout" : "container-fluid",
+							"spacing" : {
+							"margin" : {
+								"bottom" : {
+								"units" : "rem",
+								"value" : 0
+								},
+								"top" : {
+								"units" : "rem",
+								"value" : 0
+								}
+							},
+							"padding" : {
+								"bottom" : {
+								"units" : "rem",
+								"value" : 8.25
+								},
+								"left" : {
+								"units" : "rem",
+								"value" : 0
+								},
+								"right" : {
+								"units" : "rem",
+								"value" : 0
+								},
+								"top" : {
+								"units" : "rem",
+								"value" : 13.4375
+								}
+							}
+							},
+							"text_color" : "auto",
+							"top_bottom_padding" : "custom"
+						},
+						enabled=true,
+						heading=[ {
+							"heading" : "About Sprocket Rocket",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h6"
+						}, {
+							"heading" : "Never build another page from scratch again.",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+							},
+							"heading_display_size" : "display-3",
+							"heading_size" : "h1"
+						} ]
+						%}
+						{% module_attribute "description" %}
+
+						{% end_module_attribute %}
+						{% end_dnd_module %}
+					{% end_dnd_row %}
+					{% end_dnd_column %}
+				{% end_dnd_section %}
+
+				{% dnd_section %}
+					{% dnd_module path='../../custom-modules/SR Stats 06', overrideable=True, widget_name='SR Stats 06', label='SR Stats 06' %}{% end_dnd_module %}
+				{% end_dnd_section %}
+
+				{% dnd_section %}
+					{% dnd_module path='../../custom-modules/SR Cards Team 04', widget_name='SR Cards Team 04', label='SR Cards Team 04' %}{% end_dnd_module %}
+				{% end_dnd_section %}
+
+				{% dnd_section %}
+					{% dnd_column
+					offset=0,
+					width=12
+					%}
+					{% dnd_row %}
+						{% dnd_module
+						path="../../custom-modules/SR Cards Testimonial Grid 02",
+						offset=0,
+						width=12,
+						cards=[ {
+							"author_name" : "Gus Gehlen",
+							"author_title" : "CEO, <br>Grove Watersports",
+							"quote" : "<span>These new Sprocket Rocket themes are just what I needed! I've used a lot of web builders before, and this one is my favorite. Love those pricing columns for our offers. Looks great on web and mobile.</span>"
+						}, {
+							"author_name" : "Peter Walker",
+							"author_title" : "Head of Marketing,<br> PublicRelay",
+							"quote" : "<span>Really appreciate the flexibility. The modules are a great way to channel our team's creativity into useful, high-performing website building blocks.</span>"
+						}, {
+							"author_name" : "Dan Wiesel",
+							"author_title" : "CEO & Founder, <br> Pet Airways",
+							"quote" : "<span>The Sprocket Rocket Theme is incredibly flexible, easy to use, fully customizable, with drag and drop modules. It's a super smart choice.\</span>"
+						}, {
+							"author_name" : "Jess Graeser",
+							"author_title" : "Head of Marketing, <br> Covid Watch",
+							"quote" : "<p><span>We love this modular website builder! Unlike static page templates, the Sprocket Rocket theme enabled us to quickly and easily build a very attractive and well-designed website that we can add new content to on the fly as we grow–without a lot of design or technical expertise. Very pleased, thanks!\</span></p>"
+						}, {
+							"author_name" : "Jared Scharen",
+							"author_title" : "VP Marketing, <br>Zipongo",
+							"quote" : "<p><span>These guys are great. Very responsive and committed to creating the optimal experience for you and your team. For someone with no development experience, we ended up with a stellar outcome thanks to their themes. Would use them again in a second!\</span></p>"
+						}, {
+							"author_name" : "Floriane Mota",
+							"author_title" : "Sr. Rev Ops<br> Marketing Management IO",
+							"quote" : "<span>We launched a 55-page website with Sprocket Rocket. It was very easy to build and the customer support was super helpful when we needed it. And that's why we decided to move forward and build our next website for another client with this template. Long life to Sprocket Rocket!\</span>"
+						} ],
+						heading=[ {
+							"heading" : "A Word From Our Customers",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h1"
+						} ]
+						%}
+						{% end_dnd_module %}
+					{% end_dnd_row %}
+					{% end_dnd_column %}
+				{% end_dnd_section %}
+
+				{% dnd_section %}
+					{% dnd_column
+					offset=0,
+					width=12
+					%}
+					{% dnd_row %}
+						{% dnd_module
+						path="../../custom-modules/SR Hero 01",
+						offset=0,
+						width=12,
+						ctas=[ {
+							"button_text" : "Get Started",
+							"cta" : "",
+							"cta_size" : "md",
+							"cta_style" : "primary",
+							"cta_type" : "btn",
+							"link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+								"href" : "https://app.hubspot.com/ecosystem/21669159/marketplace/website/sprocket-rocket-theme-by-sprocket-rocket",
+								"type" : "EXTERNAL"
+							}
+							},
+							"modal_target" : "demo"
+						} ],
+						design_settings={
+							"background_custom" : {
+							"color" : "#000000",
+							"opacity" : 0
+							},
+							"background_image" : {
+							"background_position" : "MIDDLE_CENTER",
+							"background_size" : "cover",
+							"src" : "https://www.lean-labs.com/hubfs/IMG_0362-(2)-1-(1)%20(1).jpg"
+							},
+							"background_overlay_color" : {
+							"color" : "#000",
+							"opacity" : 55
+							},
+							"container_width" : "narrow"
+						},
+						heading=[ {
+							"heading" : "Never feel stuck again.",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+							},
+							"heading_display_size" : "display-4",
+							"heading_size" : "h1"
+						} ]
+						%}
+						{% module_attribute "description" %}
+							<p>Proven modules, winning page templates, and support that's always there when you need it.&nbsp;</p>
+						{% end_module_attribute %}
+						{% end_dnd_module %}
+					{% end_dnd_row %}
+					{% end_dnd_column %}
+				{% end_dnd_section %}
+
+        		{% dnd_section %}
+					{% dnd_module path='../../custom-modules/SR Cards Flip 01', widget_name='SR Cards Flip 01', label='SR Cards Flip 01' %}{% end_dnd_module %}
+				{% end_dnd_section %}
+
+        		{% dnd_section %}
+					{% dnd_module path='../../custom-modules/SR Offer Bar 06', widget_name='SR Offer Bar 06', label='SR Offer Bar 06' %}{% end_dnd_module %}
+				{% end_dnd_section %}
+
+			{% end_dnd_area %}
+
+		{% endblock body %}
+
+		{% block footer %}
+			{% boolean "enabled_site_footer" label='Enable Global Site Footer', value=true, export_to_template_context=True %}
+			{% if widget_data.enabled_site_footer.value %}
+				{% global_partial path="../partials/site_footer.html" %}
+			{% endif %}
+		{% endblock footer %}
+
+		{% include '../footer-includes.html' %}
+	</body>
+</html>

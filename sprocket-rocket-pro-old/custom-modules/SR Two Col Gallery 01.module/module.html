@@ -1,0 +1,173 @@
+{% if module.enabled %}
+
+	{% import "../../templates/macros.html" as macros %}
+
+	{% require_css %}
+	<style>
+		{{ macros.design_settings(name, module.design_settings) }}
+		{% for item in module.images %}
+		{% if module.images|length == 1 %}
+		{% set image_width = '600' %}
+		.{{ name }} .row .col{{ loop.index }} a {
+			background-image: url({{ resize_image_url(item.image.src, '1200') }});
+		}
+		.{{ name }} .row .col{{ loop.index }} a:before {
+			background: {{ item.overlay.color.css }}
+		}
+		{% elif module.images|length == 2 %}
+		{% if loop.index == 1 %}
+		.{{ name }} .row .col2 a {
+			background-image: url({{ resize_image_url(item.image.src, '394') }});
+		}
+		.{{ name }} .row .col2 a:before {
+			background: {{ item.overlay.color.css }}
+		}
+		{% endif %}
+		{% if loop.index == 2 %}
+		.{{ name }} .row .col3 a {
+			background-image: url({{ resize_image_url(item.image.src, '388') }});
+		}
+		.{{ name }} .row .col3 a:before {
+			background: {{ item.overlay.color.css }}
+		}
+		{% endif %}
+		{% else %}
+		{%- if loop.index == 1 -%}
+			{% set image_width = '394' -%}
+		{%- elif loop.index == 2 %}
+			{% set image_width = '648' -%}
+		{%- elif loop.index == 3 %}
+			{% set image_width = '388' -%}
+		{%- elif loop.index == 4 %}
+			{%- set image_width = '240' -%}
+		{% endif -%}
+		.{{ name }} .row .col{{ loop.index }} a {
+			background-image: url({{ resize_image_url(item.image.src, image_width) }});
+		}
+		.{{ name }} .row .col{{loop.index}} a:before {
+			background: {{ item.overlay.css }}
+		}
+		{% endif %}
+		{% endfor %}
+	</style>
+	{% end_require_css %}
+
+	{% if module.design_settings.container_width == 'min' %}
+		{% set width_class = 'col-md-6 offset-md-3' %}
+	{% elif module.design_settings.container_width == 'narrow' %}
+		{% set width_class = 'col-md-8 offset-md-2' %}
+	{% elif module.design_settings.container_width == 'wide' %}
+		{% set width_class = 'col-md-10 offset-md-1' %}
+	{% endif %}
+
+	{{macros.label("SR Two Col Gallery 01")}}
+
+	<div class="sr-two-col-gallery-01 {{ name }} {% if module.design_settings.background_option == 'color' %} bg-{{ module.design_settings.background_color }}{% endif %} {{ macros.padding(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+
+		{% if module.design_settings.background_option == 'video' %}
+		{{macros.bg_video(module.background_video, module.design_settings.background_image.src)}}
+		{% endif %}
+
+		<div class="{{ module.design_settings.layout }}">
+
+			{% if module.design_settings.container_width != 'max' %}
+				<div class="row">
+					<div class="{{ width_class }}">
+			{% endif %}
+
+						<div class="row">
+
+							<div class="text-{{ module.design_settings.text_color }} {{ macros.text_align(module.design_settings) }} {{ macros.col_size(module.columns.left_column) }}">
+								{{ macros.heading(module.heading) }}
+								{% if module.description %}
+									<div class="description{% if module.lead_text %} lead{% endif %}">
+										{{ module.description}}
+									</div>
+								{% endif %}
+								{{ macros.cta(module.ctas, 'sr-spacer-top-25') }}
+							</div>
+
+							<div class="{{ macros.col_size(module.columns.right_column) }} num-{{ module.images|length }}-images" >
+								{% for item in module.images %}
+									{% if module.images|length == 2 %}
+										{% if loop.index == 1 %}
+											<div class="row image-row image-row1">
+												<div class="col-5 text-right image-col col1"></div>
+
+												<div class="col-7 image-col col2">
+													<a href="{{ item.image.src }}" data-fslightbox="gallery">
+														<div class="plus">
+															<i class="bg-primary currentColor" aria-hidden="true">
+																{% icon
+																	name="plus"
+																	style="SOLID"
+																	unicode="f067"
+																	icon_set="fontawesome-5.14.0"
+																	height="22"
+																	no_wrapper=true
+																%}
+															</i>
+														</div>
+													</a>
+												</div>
+											</div>
+										{% endif %}
+										{% if loop.index == 2 %}
+											<div class="row image-row image-row2">
+												<div class="col-6 text-right image-col col3">
+													<a href="{{ item.image.src }}" data-fslightbox="gallery">
+														<div class="plus">
+															<i class="bg-primary currentColor" aria-hidden="true">
+																{% icon
+																	name="plus"
+																	style="SOLID"
+																	unicode="f067"
+																	icon_set="fontawesome-5.14.0"
+																	height="22"
+																	no_wrapper=true
+																%}
+															</i>
+														</div>
+													</a>
+												</div>
+
+												<div class="col-4 image-col col4 "></div>
+											</div>
+										{% endif %}
+									{% else %}
+										{% if loop.index == 1 %}<div class="row image-row image-row1">{% endif %}
+										{% if loop.index == 3 %}<div class="row image-row image-row2">{% endif %}
+											{% if item.image.src %}
+												<div class="{% if module.images|length == 1 %} col-12 image-col col1 {% else %}{% if loop.index == 1 %}col-5 text-right{% elif loop.index == 2 %}col-7{% elif loop.index == 3 %}col-6 {% if module.images|length == 3 %}text-left{% else %}text-right{% endif %} {% elif loop.index == 4 %}col-4{% endif %} image-col col{{loop.index}} {% endif %}">
+													<a href="{{ item.image.src }}" data-fslightbox="gallery">
+														<div class="plus">
+															<i class="bg-primary currentColor" aria-hidden="true">
+																{% icon
+																	name="plus"
+																	style="SOLID"
+																	unicode="f067"
+																	icon_set="fontawesome-5.14.0"
+																	height="22"
+																	no_wrapper=true
+																%}
+															</i>
+														</div>
+													</a>
+												</div>
+											{% endif %}
+										{% if loop.index == 2 %}</div>{% endif %}
+										{% if loop.index == 4 %}</div>{% endif %}
+									{% endif %}
+								{% endfor %}
+							</div>
+						</div>
+
+			{% if module.design_settings.container_width != 'max' %}
+					</div>
+				</div>
+			{% endif %}
+	    </div>
+    </div>
+
+	{{ require_js(get_asset_url('../../js/fslightbox.js'), { defer: true }) }}
+{% endif %}

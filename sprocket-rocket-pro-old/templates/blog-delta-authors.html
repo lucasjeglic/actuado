@@ -1,0 +1,44 @@
+<!--
+templateType: page
+isAvailableForNewContent: true
+label: Blog Delta Authors
+-->
+
+{% include './header.html' %}
+
+	{{ require_css(get_asset_url('../css/blog-delta.css'), { async: true }) }}
+
+	<body class="blog blog-authors {{ widget_data.body_class.value }} {{ builtin_body_classes }} {% set theme_name = content.template_path|split('/')|first %}{{ theme_name }} {% set template_name = content.template_path|split('/')|last %}{{ template_name[:-5] if template_name }}">
+
+		{# ===================================================================================== }
+			Add navigation below
+		{ ===================================================================================== #}
+
+        {% block header %}
+		{% global_partial path="./Blog Delta Navbar.html" label="Blog Navbar" %}
+        {% endblock header%}
+
+        {% block body %}
+		<div class="sr-spacer-50">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-7 blog-col">
+						{% module "blog_authors" path="../custom-modules/Blog Delta Authors", label="Blog Authors" %}
+					</div>
+					<div class="col-md-4 offset-md-1">
+						{% module "blog_sidebar" path="../custom-modules/Blog Delta Sidebar", label="Blog Sidebar" %}
+					</div>
+				</div>
+			</div>
+		</div>
+        {% endblock body%}
+
+		{# ===================================================================================== }
+			Add footer below
+		{ ===================================================================================== #}
+
+        {% block footer %}
+		{% include './footer-includes.html' %}
+        {% endblock footer%}
+	</body>
+</html>

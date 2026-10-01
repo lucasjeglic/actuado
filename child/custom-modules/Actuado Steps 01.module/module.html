@@ -1,0 +1,91 @@
+{% if module.enabled %}
+
+	{% import "../../templates/macros.html" as macros %}
+	{% import "../../templates/ac-macros.html" as ac %}
+
+	{% require_css %}
+	<style>
+		{{ macros.design_settings(name, module.design_settings) }}
+
+		{% if module.design_settings.divider_color.color %}
+		.{{ name }} .ac-steps {
+			--ac-divider: {{ macros.color(module.design_settings.divider_color) }};
+		}
+		{% endif %}
+	</style>
+	{% end_require_css %}
+
+	{% set width_class =
+		module.design_settings.container_width == 'min' ? 'col-lg-6 offset-lg-3' :
+		module.design_settings.container_width == 'narrow' ? 'col-lg-8 offset-lg-2' :
+		module.design_settings.container_width == 'wide' ? 'col-lg-10 offset-lg-1' :
+		'col-lg-12'
+	%}
+
+	{# Choice fields return strings; coerce and clamp so the grid cannot collapse. #}
+	{% set cols = module.columns|int %}
+	{% set cols = cols in [3, 4, 6] ? cols : 6 %}
+
+	{# Only emit a text colour class when one is actually set; "auto" is not a class. #}
+	{% set text_color_class = module.design_settings.text_color != 'auto' ? 'text-' ~ module.design_settings.text_color : '' %}
+
+	<div class="ac-steps-01 {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} {{ text_color_class }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+
+		{{ macros.module_bg_video(module) }}
+
+		<div class="{{ module.design_settings.layout }}">
+			{% if module.design_settings.container_width != 'max' %}
+			<div class="row">
+				<div class="{{ width_class }}">
+			{% endif %}
+
+					{# ---------- Intro ---------- #}
+					{% if module.eyebrow || module.show_eyebrow_rule || module.heading.heading_text || module.description %}
+					<div class="ac-steps__intro text-{{ module.intro_align }} sr-spacer-bottom-50">
+
+						{{ ac.eyebrow(module, '{% if module.heading.heading_text || module.description %}sr-spacer-bottom-25{% endif %}') }}
+
+						{% if module.heading.heading_text %}
+						{% set h = module.heading %}
+						<{{ h.heading_size }} class="heading ac-steps__heading{% if h.heading_display_size != 'auto' %} {{ h.heading_display_size }}{% endif %}{% if module.description %} sr-spacer-bottom-25{% endif %}{% if module.animate_heading %} ac-animate-words{% endif %}">{{ h.heading_text }}</{{ h.heading_size }}>
+						{% endif %}
+
+						{% if module.description %}
+						<div class="description ac-steps__description">{{ module.description }}</div>
+						{% endif %}
+
+					</div>
+					{% endif %}
+
+					{# ---------- Steps ---------- #}
+					<ol class="ac-steps ac-steps--{{ cols }}{% if module.show_rule %} ac-steps--ruled{% endif %} text-{{ module.step_align }}">
+						{% for item in module.steps %}
+						<li class="ac-steps__item">
+							{% if item.number %}
+							<span class="ac-steps__number">{{ item.number }}</span>
+							{% endif %}
+							{% if item.title %}
+							<{{ module.step_title_tag }} class="ac-steps__title heading{% if module.step_title_size != 'auto' %} {{ module.step_title_size }}{% endif %}">{{ item.title }}</{{ module.step_title_tag }}>
+							{% endif %}
+							{% if item.text %}
+							<div class="ac-steps__text description">{{ item.text }}</div>
+							{% endif %}
+						</li>
+						{% endfor %}
+					</ol>
+
+			{% if module.design_settings.container_width != 'max' %}
+				</div>
+			</div>
+			{% endif %}
+
+		</div>
+	</div>
+
+	{% if module.animate_heading %}
+	{{ require_js(get_asset_url('../../js/gsap.js'), { defer: true, position: head }) }}
+	{{ require_js(get_asset_url('../../js/TextPlugin.js'), { defer: true, position: head }) }}
+	{{ require_js(get_asset_url('../../js/ac-type-on-scroll.js'), { defer: true }) }}
+	{% endif %}
+
+{% endif %}

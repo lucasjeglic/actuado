@@ -1,0 +1,240 @@
+/* ==========================================================================
+   Actuado Service Detail 01
+   One service block: icon + number + title + lead on the left, a divided
+   points list on the right. Placed once per service, so the alternating
+   white/sand rhythm comes from each placement's own background setting.
+
+   Type sizes come from theme typography (.small, .heading, .description) -
+   no font-size is set here. Vertical padding is owned by the SR section
+   padding classes, so never set padding-top / padding-bottom.
+   ========================================================================== */
+
+.ac-service-detail-01 .ac-service-row {
+	/* Applies once the columns stack (below lg). */
+	row-gap: 3rem;
+}
+
+/* Horizontal separation between the two columns. Bootstrap columns are
+   flex: 0 0 <pct> and never grow, so the gap must be explicit padding. */
+@media (min-width: 992px) {
+	.ac-service-detail-01 .ac-service-intro {
+		padding-right: var(--ac-column-gap, 3.5rem);
+	}
+
+	.ac-service-detail-01 .ac-service-intro.order-lg-2 {
+		padding-right: 0;
+		padding-left: var(--ac-column-gap, 3.5rem);
+	}
+}
+
+/* ---------- Icon + number ---------- */
+
+.ac-service-detail-01 .ac-service-meta {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.ac-service-detail-01 .ac-service-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 2.75rem;
+	height: 2.75rem;
+	flex: none;
+	border: 1px solid var(--ac-divider, var(--borders));
+	border-radius: 0.5rem;
+	color: var(--body_color);
+}
+
+/* The accent tile (used by the AI block) is filled from the module setting;
+   its darker text keeps the icon legible on the gold tint. */
+.ac-service-detail-01 .ac-service-icon--accent {
+	color: var(--heading);
+}
+
+.ac-service-detail-01 .ac-service-icon svg {
+	display: block;
+	width: 1.25rem;
+	height: 1.25rem;
+	fill: currentColor;
+}
+
+.ac-service-detail-01 .ac-service-number {
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+	opacity: 0.65;
+}
+
+/* ---------- Title + lead ---------- */
+
+.ac-service-detail-01 .ac-service-heading {
+	margin-top: 2rem;
+	margin-bottom: 0;
+}
+
+.ac-service-detail-01 .ac-service-lead {
+	margin-top: 1.25rem;
+	max-width: 28rem;
+}
+
+.ac-service-detail-01 .ac-service-lead > *:last-child {
+	margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Points list
+   Hairline rules above every row and below the last, matching the design's
+   divide-y + border-t treatment.
+   ========================================================================== */
+
+.ac-service-detail-01 .ac-service-points {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	border-top: 1px solid var(--ac-divider, var(--borders));
+}
+
+.ac-service-detail-01 .ac-service-point {
+	display: flex;
+	gap: 1.5rem;
+	padding: 1.25rem 0;
+	border-bottom: 1px solid var(--ac-divider, var(--borders));
+}
+
+/* Short gold dash standing in for a bullet. On expandable points it also
+   carries the open/closed state by rotating upright. */
+.ac-service-detail-01 .ac-service-point__rule {
+	flex: none;
+	width: 1.5rem;
+	height: 1px;
+	margin-top: 0.75em;
+	background: var(--primary);
+}
+
+/* ---------- Expandable points ---------- */
+
+.ac-service-detail-01 .ac-service-point--expandable {
+	display: block;
+	padding: 0;
+}
+
+/* The toggle carries the row's padding so the whole row is clickable. */
+.ac-service-detail-01 .ac-service-point__toggle {
+	display: flex;
+	gap: 1.5rem;
+	width: 100%;
+	padding: 1.25rem 0;
+	background: none;
+	border: 0;
+	font: inherit;
+	color: inherit;
+	text-align: left;
+	cursor: pointer;
+}
+
+.ac-service-detail-01 .ac-service-point__toggle:focus-visible {
+	outline: 2px solid var(--primary);
+	outline-offset: 2px;
+}
+
+/* The dash is the only mark: it rotates a quarter turn to stand upright when
+   the point is open. One line turning, nothing added or removed - the state
+   reads at a glance without introducing an icon. */
+.ac-service-detail-01 .ac-service-point--expandable .ac-service-point__rule {
+	transform-origin: center;
+	transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ac-service-detail-01 .ac-service-point__toggle[aria-expanded="true"] .ac-service-point__rule {
+	transform: rotate(90deg);
+}
+
+.ac-service-detail-01 .ac-service-point__toggle:hover .ac-service-point__text {
+	opacity: 0.85;
+}
+
+.ac-service-detail-01 .ac-service-point__text {
+	transition: opacity 0.3s ease;
+}
+
+/* GSAP animates the height; overflow keeps the content clipped while it moves.
+   No CSS transition here, or the two would fight over the same property. */
+.ac-service-detail-01 .ac-service-point__detail {
+	overflow: hidden;
+}
+
+.ac-service-detail-01 .ac-service-point__detail-inner {
+	/* Aligns the detail with the point text, past the gold rule. */
+	padding: 0 0 1.25rem 3rem;
+	opacity: 0.85;
+}
+
+.ac-service-detail-01 .ac-service-point__detail-inner > *:last-child {
+	margin-bottom: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.ac-service-detail-01 .ac-service-point--expandable .ac-service-point__rule {
+		transition: none;
+	}
+}
+
+.ac-service-detail-01 .ac-service-point__text {
+	color: var(--body_color);
+}
+
+/* On mobile the list sits directly under the lead, so soften the top rule
+   to avoid a doubled line against the stacked column. */
+@media (max-width: 991px) {
+	.ac-service-detail-01 .ac-service-points {
+		border-top: none;
+	}
+}
+
+/* ==========================================================================
+   Scroll sequence
+   When the block is pinned and scroll drives the points, they stop behaving
+   like buttons: no pointer, no hover hint, no focus ring. The script only
+   adds .is-sequenced once it has confirmed it can run, so a failure leaves
+   the normal click accordion intact.
+   ========================================================================== */
+
+.ac-service-detail-01.is-sequenced .ac-service-point__toggle {
+	cursor: default;
+}
+
+.ac-service-detail-01.is-sequenced .ac-service-point__toggle:hover .ac-service-point__text {
+	opacity: 1;
+}
+
+.ac-service-detail-01.is-sequenced .ac-service-point__toggle:focus-visible {
+	outline: none;
+}
+
+.ac-service-detail-01.is-sequenced .ac-service-points {
+	transition: none;
+}
+
+/* ==========================================================================
+   Points text size
+   The list is the body of this module, so its size is worth controlling
+   rather than fixing. Base follows theme typography; the other two step
+   either side of it.
+   ========================================================================== */
+
+.ac-service-detail-01 .ac-points-sm .ac-service-point__text {
+	font-size: 0.9375rem;
+}
+
+.ac-service-detail-01 .ac-points-lg .ac-service-point__text {
+	font-size: 1.125rem;
+	line-height: 1.6;
+}
+
+/* "Match heights" needs the columns themselves to stretch, not just align. */
+.ac-service-detail-01 .align-items-stretch .ac-service-intro {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}

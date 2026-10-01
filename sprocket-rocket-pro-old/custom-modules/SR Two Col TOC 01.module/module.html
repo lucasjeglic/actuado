@@ -1,0 +1,124 @@
+{% if module.enabled %}
+
+	{% import "../../templates/macros.html" as macros %}
+
+	{%- macro escapeString(string)  -%}
+	{{ string|lower
+	|replace(" ", "-")
+	|regex_replace("[\\\\|?,.!@#$%&*^<>;:/]", "")
+	}}
+	{%- endmacro -%}
+
+	{% if module.design_settings.container_width == 'min' %}
+		{% set width_class = 'col-md-6 offset-md-3' %}
+	{% elif module.design_settings.container_width == 'narrow' %}
+		{% set width_class = 'col-md-8 offset-md-2' %}
+	{% elif module.design_settings.container_width == 'wide' %}
+		{% set width_class = 'col-md-10 offset-md-1' %}
+	{% endif %}
+
+	{{ macros.label("SR Two Col TOC 01") }}
+
+	<div class="sr-two-col-toc-01 {{ name }} {% if module.design_settings.background_option == 'color' %} bg-{{ module.design_settings.background_color }}{% endif %} {{ macros.padding(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+
+		{% if module.design_settings.background_option == 'video' %}
+		{{macros.bg_video(module.background_video, module.design_settings.background_image.src)}}
+		{% endif %}
+
+		<div class="{{ module.design_settings.layout }}">
+
+			{% if module.design_settings.container_width != 'max' %}
+			<div class="row">
+				<div class="{{ width_class }}">
+					{% endif %}
+
+					<div class="toc row">
+
+						<nav class="section-nav {{ macros.col_size(module.columns.left_column) }}">
+							<ul>
+								{% for item in module.section %}
+								<li class="border-primary">
+									<a class="text-black" href="#{{ escapeString(item.title) }}">{{ item.title }}</a>
+								</li>
+								{% endfor %}
+							</ul>
+						</nav>
+						<main class="text-{{ module.design_settings.text_color }} {{ macros.text_align(module.design_settings) }} {{ macros.col_size(module.columns.right_column) }}">
+							{% for item in module.section %}
+							<section {% if !loop.first %}class="sr-spacer-top-100"{% endif %} id="{{ escapeString(item.title) }}">
+								{% for item2 in item.item %}
+								{% if item2.item_type == "image" %}
+								<div class="toc-item toc-image text-{{item2.image_align}}{% if !loop.last %} py-5{% else %} pt-5{% endif %}">
+									{% if item2.image_link.url.href %}
+									<a {{ macros.link(item2.image_link) }}>
+									{% endif %}
+									{{ macros.image(item2.image) }}
+									{% if item2.image_link.url.href %}
+									</a>
+									{% endif %}
+								</div>
+								{% elif item2.item_type == "video" %}
+								<div class="toc-item toc-video text-center{% if !loop.last %} py-5{% else %} pt-5{% endif %}">
+									{{ require_js(get_asset_url('../../js/video_embed.js'), { defer: true }) }}
+									{{ macros.video(item2.video) }}
+								</div>
+								{% elif item2.item_type == "quote" %}
+								<div class="toc-item toc-quote{% if !loop.last %} py-5{% else %} pt-5{% endif %}">
+									<div class="pt-5">
+										<div class="column-quote d-md-flex">
+
+											<div class="quote-img" style="min-width: {{ item2.quote_image.width ~ "px" }};">
+												{{ macros.image(item2.quote_image) }}
+											</div>
+
+											<div {% if !item2.quote_image.src %}class="no-image"{% endif %}>
+												<div class="quote-name h6 mb-0">
+													{{ item2.quote_name }}
+												</div>
+												<div class="quote-title small">
+													{{ item2.quote_title }}
+												</div>
+
+												<div class="quote-quote mt-2">
+													{{ item2.quote_quote }}
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								{% elif item2.item_type == "rich_text" %}
+								<div class="toc-item toc-text description">
+									{{ item2.rich_text }}
+								</div>
+								{% elif item2.item_type == "html" %}
+								<div class="toc-item toc-html">
+									{{ item2.html }}
+								</div>
+								{% elif item2.item_type == "cta" %}
+								<div class="toc-item toc-cta  text-{{ item2.cta_align }}{% if !loop.last %} py-5{% else %} pt-5{% endif %}">
+								{{ macros.cta(item2.ctas) }}
+								</div>
+								{% endif %}
+								{% endfor %}
+							</section>
+							{% endfor %}
+						</main>
+					</div>
+
+					{% if module.design_settings.container_width != 'max' %}
+				</div>
+			</div>
+			{% endif %}
+
+		</div>
+	</div>
+
+	{% require_css %}
+	<style>
+		#hs_cos_wrapper_{{name}} {
+			overflow: unset;
+		}
+		{{ macros.design_settings(name, module.design_settings) }}
+	</style>
+	{% end_require_css %}
+{% endif %}

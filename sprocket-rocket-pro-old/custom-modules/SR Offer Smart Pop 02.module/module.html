@@ -1,0 +1,60 @@
+{% if module.enabled %}
+
+	{% import "../../templates/macros.html" as macros %}
+
+	<div data-timer="{{ module.delay }}" class="{{name}} sr-offer-smart-pop-02 {% if module.background_option == 'color' %} bg-{{ module.design_settings.background_color }}{% endif %} {{module.class}}" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+		<div class="smart-pop-inner d-flex">
+			<div class="smart-pop-icon">
+				{{macros.image(module.image, 'class="close-image"')}}
+				{{macros.image(module.opened_image, 'class="open-image"')}}
+			</div>
+
+			<div class="smart-pop-teaser text-{{module.design_settings.text_color}}">
+				<div class="smart-pop-teaser-wrapper d-flex align-items-center">
+					<p class="teaser">{{ module.teaser}}</p>
+				</div>
+
+				<div class="smart-pop-form text-{{module.design_settings.text_color}}">
+					<button role="button" class="pop-close text-{{module.design_settings.text_color}}" tabindex="0">
+						{% icon
+							name="Times"
+							style="SOLID"
+							unicode="f00d"
+							icon_set="fontawesome-5.14.0"
+							height="18"
+							no_wrapper=true
+						%}
+					</button>
+
+					{{ macros.form(module.form, false, false, 'Free Download') }}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{% require_css %}
+		<style>
+			.{{name}} .smart-pop-icon {
+				background-color: {{ module.design_settings.background_color.color }};
+				border-left: 3px solid {{ module.design_settings.border_color.color }};
+			}
+			.{{name}} .smart-pop-teaser {
+				background: rgba({{ module.design_settings.background_color.color|convert_rgb }}, 0.9);
+			}
+			.{{name}} .smart-pop-teaser-wrapper:hover {
+				cursor: pointer;
+				background: rgba({{ module.design_settings.background_color.color|convert_rgb }}, 1);
+			}
+			{% if module.design_settings.text_color != 'auto' %}
+				.{{name}} .field > label,
+				.{{name}} .form-group label {
+					color: inherit;
+				}
+			{% endif %}
+		</style>
+	{% end_require_css %}
+
+	{{ require_js(get_asset_url('../../js/gsap.js'), { defer: true }) }}
+	{{ require_js(get_asset_url('../../js/ScrollTrigger.js'), { defer: true }) }}
+
+{% endif %}

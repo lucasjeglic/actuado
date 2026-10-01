@@ -1,0 +1,139 @@
+{% if module.enabled %}
+
+	{% import "../../templates/macros.html" as macros %}
+
+	{{ require_css('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css') }}
+
+	{% require_css %}
+		<style>
+			{{ macros.design_settings(name, module.design_settings) }}
+			.{{ name }} .sr-card {
+				{{ module.design_settings.card_styles.spacing.css }}
+				{%- if module.design_settings.card_styles.background_color == "gradient" -%}
+				background: {{ module.design_settings.card_styles.background_gradient.css }};
+				{%- elif module.design_settings.card_styles.background_color == "custom" -%}
+				background-color: {{ module.design_settings.card_styles.background_custom.css }};
+				{%- elif module.design_settings.card_styles.background_color != "auto" -%}
+				background-color: var(--{{ module.design_settings.card_styles.background_color }});
+				{%- endif -%}
+				{%- if module.design_settings.card_styles.text_color == "custom" %}
+				color: {{ module.design_settings.card_styles.text_color_custom.css }};
+				{%- endif -%}
+				{% if module.design_settings.card_styles.border.css %}
+				{{ module.design_settings.card_styles.border.css }}
+				{% endif %}
+				{% if module.design_settings.card_styles.border_radius >= 0 %}
+				border-radius: {{ module.design_settings.card_styles.border_radius }}px;
+				{% endif %}
+				{% if module.design_settings.card_styles.shadow %}
+				box-shadow: {{ "inset" if module.design_settings.card_styles.inset }} {{ module.design_settings.card_styles.horizontal ~ "px" }} {{ module.design_settings.card_styles.vertical ~ "px" }} {{ module.design_settings.card_styles.blur ~ "px" }} {{ module.design_settings.card_styles.spread ~ "px" }} {{ module.design_settings.card_styles.color.css }};
+				{% endif %}
+			}
+		</style>
+	{% end_require_css %}
+
+	{% set width_class =
+		module.design_settings.container_width == 'min' ? 'col-lg-6 offset-lg-3' :
+		module.design_settings.container_width == 'narrow' ? 'col-lg-8 offset-lg-2' :
+		module.design_settings.container_width == 'wide' ? 'col-lg-10 offset-lg-1' :
+		'col-lg-12'
+	%}
+
+	<div class="sr-cards-pricing-02 {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} prototype-no-background {% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+
+		{{ macros.module_bg_video(module) }}
+
+		<div class="{{ module.design_settings.layout }}">
+			{% if module.design_settings.container_width != 'max' %}
+			<div class="row">
+				<div class="{{ width_class }}">
+			{% endif %}
+
+					{% if module.heading ||  module.description %}
+					<div class="sr-spacer-bottom-50 text-{{ module.design_settings.text_color }} {{ macros.text_align(module.design_settings) }}">
+						{{ macros.heading(module.heading) }}
+
+						{% if module.description %}
+							<div class="description{% if module.lead_text %} lead{% endif %}">{{ module.description}}</div>
+						{% endif %}
+					</div>
+					{% endif %}
+
+					<div class="row">
+						<div class="col-lg-4 sr-card sr-border text-{{ module.design_settings.card_styles.text_color }}">
+							<div class="pricing-description">
+								<h3 class="h5">{{ module.plan_1.title }}</h3>
+								<p class="text-primary" role="heading" aria-level="3">{{ module.plan_1.price }} <small>{{ module.plan_1.suffix }}</small></p>
+							</div>
+							<div class="hiddenBtn">
+								{% set href = module.plan_1.link.url.href %}
+								{% if module.plan_1.link.url.type is equalto "EMAIL_ADDRESS" %}
+									{% set href = "mailto:" + href %}
+								{% endif %}
+								<a class="hiddenBtn" href="{{ href }}"
+									{% if module.plan_1.link.open_in_new_tab %}target="_blank" aria-label="(Opens in new tab)"{% endif %}
+									{% if module.plan_1.link.no_follow %}rel="nofollow"{% endif %}
+									aria-label="{{ module.plan_1.title }} pricing link"
+									role="link"
+									>
+								</a>
+							</div>
+							<div class="pricing-features">
+								{{ module.plan_1.features }}
+							</div>
+						</div>
+
+						<div class="col-lg-4 sr-card sr-border text-{{ module.design_settings.card_styles.text_color }}">
+							<div class="pricing-description">
+								<h3 class="h5">{{ module.plan_2.title }}</h3>
+								<p class="text-primary" role="heading" aria-level="3">{{ module.plan_2.price }} <small>{{ module.plan_2.suffix }}</small></p>
+							</div>
+							<div class="hiddenBtn">
+								{% set href = module.plan_2.link.url.href %}
+								{% if module.plan_2.link.url.type is equalto "EMAIL_ADDRESS" %}
+									{% set href = "mailto:" + href %}
+								{% endif %}
+								<a class="hiddenBtn" href="{{ href }}"
+									{% if module.plan_2.link.open_in_new_tab %}target="_blank" aria-label="(Opens in new tab)"{% endif %}
+									{% if module.plan_2.link.no_follow %}rel="nofollow"{% endif %}
+									aria-label="{{ module.plan_2.title }} pricing link"
+									>
+								</a>
+							</div>
+							<div class="pricing-features">
+								{{ module.plan_2.features }}
+							</div>
+						</div>
+
+						<div class="col-lg-4 sr-card sr-border text-{{ module.design_settings.card_styles.text_color }}">
+							<div class="pricing-description">
+								<h3 class="h5">{{ module.plan_3.title }}</h3>
+								<p class="text-primary" role="heading" aria-level="3">{{ module.plan_3.price }} <small>{{ module.plan_3.suffix }}</small></p>
+							</div>
+							<div class="hiddenBtn">
+								{% set href = module.plan_3.link.url.href %}
+								{% if module.plan_3.link.url.type is equalto "EMAIL_ADDRESS" %}
+									{% set href = "mailto:" + href %}
+								{% endif %}
+								<a class="hiddenBtn" href="{{ href }}"
+									{% if module.plan_3.link.open_in_new_tab %}target="_blank" aria-label="(Opens in new tab)"{% endif %}
+									{% if module.plan_3.link.no_follow %}rel="nofollow"{% endif %}
+									aria-label="{{ module.plan_3.title }} pricing link"
+									>
+								</a>
+							</div>
+							<div class="pricing-features">
+								{{ module.plan_3.features }}
+							</div>
+						</div>
+
+					</div>
+
+			{% if module.design_settings.container_width != 'max' %}
+				</div>
+			</div>
+			{% endif %}
+
+		</div>
+	</div>
+{% endif %}

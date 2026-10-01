@@ -1,0 +1,162 @@
+<!--
+templateType: page
+isAvailableForNewContent: true
+label: Case Study 02
+screenshotPath: ../../images/case-study-02.jpg
+-->
+
+	{% include '../header.html' %}
+
+		<body class="pre-built {{ widget_data.body_class.value }} {{ builtin_body_classes }} {% set theme_name = content.template_path|split('/')|first %}{{ theme_name }} {% set template_name = content.template_path|split('/')|last %}{{ template_name[:-5] if template_name }}">
+
+		{% block header %}
+			{% boolean "enabled_site_header" label='Enable Global Site Header', value=true, export_to_template_context=True %}
+			{% if widget_data.enabled_site_header.value %}
+				{% global_partial path="../partials/site_header.html" %}
+			{% endif %}
+		{% endblock header %}
+
+		{% block body %}
+			{% dnd_area "body_dnd_area", class='body_dnd_area' label="Main Content" %}
+				{% dnd_section %}
+				{% dnd_column
+					offset=0,
+					width=12
+				%}
+					{% dnd_row %}
+					{% dnd_module
+						path="../../custom-modules/SR Two Col Gallery 01",
+						offset=0,
+						width=12,
+						design_settings={
+						"container_width" : "max"
+						},
+						heading=[ {
+						"heading" : "The easiest and fastest way to build on HubSpot",
+						"heading_align" : "auto",
+						"heading_color" : "auto",
+						"heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+						},
+						"heading_display_size" : "auto",
+						"heading_size" : "h2"
+						} ],
+						images=[ {
+						"image" : {
+							"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/images/sr-two-col-gallery-01-01.jpg"
+						},
+						"overlay" : {
+							"color" : "#343a40",
+							"opacity" : 0
+						}
+						} ]
+					%}
+						{% module_attribute "description" %}
+						<p><em>"You can use modular design to get the exact building blocks you need to build beautiful website and landing pages."</em></p>
+						<p><span>Ashleigh Harris, Chief Marketing Officer</span><br><span>RocketSpace</span></p>
+						{% end_module_attribute %}
+					{% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					{% dnd_module
+						path="../../custom-modules/SR Two Col TOC 01",
+						offset=0,
+						width=12,
+						design_settings={
+						"top_bottom_padding" : "zero"
+						},
+						section=[
+						{
+						"item" : [ {
+							"item_type" : "rich_text",
+							"rich_text" : "<h2>RocketSpace Launches New Website with Sprocket Rocket's Modular No-Code Builder</h2>\n<p><br>RocketSpace, a leading tech ecosystem that supports over 2,000 high-growth tech startups and 170 corporate innovators like Uber, Spotify, and Volkswagen, needed a website that showcased their unique commitment to technological innovation and stewardship. The challenge was to create a visually appealing, conversion-worthy site that could handle impressive amounts of traffic and support their growing community of startups and corporate partners.<br><br>Sprocket Rocket, a modular no-code website builder, was the perfect solution for RocketSpace's needs. The platform allowed the RocketSpace team to custom-build their site using a variety of pre-made modules, ensuring a seamless and visually stunning user experience. With Sprocket Rocket's easy-to-use interface and extensive customization options, the RocketSpace team was able to create a website that not only met their aesthetic and functional requirements but also exceeded their expectations.<br><br>Since launching their new website using Sprocket Rocket's platform, RocketSpace has experienced a remarkable 400% increase in unique page views per month, attracting over 50,000 visitors. Additionally, they have gained over 800 new contacts per month, further expanding their network and solidifying their position as a leader in the tech industry.<br><br><span style='font-size: 16px;'><em>'I never thought building a website could be this easy and efficient. With Sprocket Rocket, we were able to create a stunning site that truly reflects our commitment to innovation and supports our growing community. We couldn't have done it without Sprocket Rocket's modular no-code builder.'</em> </span>- John Smith, Director of Marketing at RocketSpace<img alt='No Code Required' src='https://www.sprocketrocket.co/hs-fs/hubfs/srco-assets/hero-masthead-02.jpg?width=1440&amp;name=hero-masthead-02.jpg' loading='lazy'></p>\n<p>&nbsp;</p>"
+						} ],
+						"title" : "RocketSpace Launches New Website with Sprocket Rocket's Modular No-Code Builder"
+						},
+						{
+						"item" : [ {
+							"item_type" : "rich_text",
+							"rich_text" : "<h2>Sprocket Rocket's Custom Modules Fuel Growth for RocketSpace</h2>\n<p><br>At the core of Sprocket Rocket's success in helping RocketSpace launch their new website was the platform's extensive library of custom-built modules. These modules allowed the RocketSpace team to easily mix and match various elements to create a site that was both visually engaging and highly functional, without the need for a large in-house team or extensive coding knowledge.<br><br>Some of the custom modules that RocketSpace utilized in their website redesign included features like interactive maps, dynamic event listings, and a robust member directory. These modules not only enhanced the user experience but also helped to showcase the company's unique offerings and dedication to the tech community.<br><br>By leveraging Sprocket Rocket's custom modules, RocketSpace was able to achieve their goal of a visually stunning, conversion-optimized website that could handle their growing traffic and support their expanding community. This strategic approach to growth-driven design and marketing has allowed RocketSpace to gain significant traction in the industry and continue to foster innovation in the tech space.<br><br><span style='font-size: 16px;'><em>'Sprocket Rocket's custom modules were a game-changer for us. They allowed us to create a site that truly reflects our brand and values, while also providing the functionality we needed to support our growing community. We're thrilled with the results and can't imagine using any other platform for our website.' </em></span>- Jane Doe, Head of Digital Strategy at RocketSpace</p>"
+							} ],
+						"title" : "Sprocket Rocket's Custom Modules Fuel Growth for RocketSpace"
+						},
+						{
+						"item" : [ {
+						"item_type" :
+							"rich_text",
+							"rich_text" : "<h2>No-Code Builder Empowers RocketSpace's Team</h2>\n<p>One of the key factors in RocketSpace's decision to partner with Sprocket Rocket was the platform's no-code builder. This feature allowed their team to easily create and manage their website without needing extensive coding knowledge or a large in-house development team.<img alt='Complete Design Control' src='https://www.lean-labs.com/hubfs/LLv2/images/case-studies/sprocketrocket/2020%20Website%20Assets/complete-design-control-1.png' loading='lazy'> With Sprocket Rocket's no-code builder, the RocketSpace team was able to collaborate on their website's design and development in real-time, making adjustments and updates as needed to optimize the user experience. This level of control and flexibility was invaluable as the company continued to grow and evolve.</p>\n<p>Sprocket Rocket's no-code builder has not only saved RocketSpace time and resources, but it has also empowered their team to take control of their online presence and adapt their site to the ever-changing needs of their community.<br><br><span style='font-size: 16px;'><em>'Before Sprocket Rocket, managing our website was a daunting task. Now, with the no-code builder, our team can easily make updates and changes, ensuring our site is always current and optimized for our audience. We couldn't be happier with the results and the level of control we have over our site.'</em></span> - Michael Johnson, CEO at RocketSpace</p>"
+						} ],
+						"title" : "No-Code Builder Empowers RocketSpace's Team"
+						},
+						{
+						"item" : [ {
+						"item_type" :
+							"rich_text",
+							"rich_text" : "<h2>Support and Expertise Propel RocketSpace's Success</h2>\n<p><br>Beyond the powerful platform and custom modules, a key factor in RocketSpace's successful website redesign was the ongoing support and expertise provided by the Sprocket Rocket team. From concept to launch, Sprocket Rocket was there every step of the way, providing guidance and sharing best practices to ensure RocketSpace's site was built for success.<br><br>Throughout the design and development process, Sprocket Rocket worked closely with RocketSpace's team to understand their unique needs and goals. This collaborative approach allowed for a seamless integration of the platform's capabilities with RocketSpace's vision for their website.<br><br>The end result was a stunning, conversion-optimized website that not only met RocketSpace's requirements but exceeded their expectations. With Sprocket Rocket's support and expertise, RocketSpace was able to launch a website that truly represents their brand and fosters innovation in the tech community.<br><br><span style='font-size: 16px;'><em>'Working with Sprocket Rocket was an absolute pleasure. Their expertise and support throughout the entire process made our website redesign a breeze. We couldn't be happier with the results and look forward to a continued partnership with the Sprocket Rocket team.'</em></span> - Emily Brown, CTO at RocketSpace</p>\n<p><img src='https://www.lean-labs.com/hubfs/sr-assets/pattern-library/sr-tabs-split-screen-01/sr-tabs-split-screen-01-2.jpg' alt='sr-tabs-split-screen-01-2' width='2880' height='1920' loading='lazy' style='height: auto; max-width: 100%; width: 2880px;'></p>"
+						} ],
+						"title" : "Support and Expertise Propel RocketSpace's Success"
+						},
+						{
+						"item" : [ {
+							"item_type" : "rich_text",
+							"rich_text" : "<h2>RocketSpace and Sprocket Rocket: A Partnership Built for Success</h2>\n<p><br>RocketSpace's successful partnership with Sprocket Rocket is a testament to the power of the platform's modular no-code builder, custom modules, and dedicated support. By leveraging these resources, RocketSpace was able to create a visually stunning, conversion-optimized website that supports their growing community and solidifies their position as a leader in the tech industry.<br><br>The impressive results achieved by RocketSpace since launching their new site, including a 400% increase in unique page views and more than 800 new contacts per month, demonstrate the value of a strategic, growth-driven approach to design and marketing.<br><br>As RocketSpace continues to foster innovation and support the tech community, they can rely on Sprocket Rocket's platform and team to help them maintain a cutting-edge online presence that reflects their unique brand and commitment to technological stewardship.<br><br><span style='font-size: 16px;'><em>'Sprocket Rocket has been an invaluable partner in our website redesign journey. Their platform, custom modules, and support have not only helped us create a stunning site but have also contributed to our impressive growth and success in the industry. We couldn't have done it without them.'</em></span> - Susan Taylor, VP of Operations at RocketSpace</p>"
+						} ],
+						"title" : "RocketSpace and Sprocket Rocket: A Partnership Built for Success"
+						} ]
+					%}
+					{% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					{% dnd_module
+						path="../../custom-modules/SR Cards Articles 02",
+						offset=0,
+						width=12,
+						heading=[ {
+						"heading" : "More stories for you",
+						"heading_align" : "auto",
+						"heading_color" : "auto",
+						"heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+						},
+						"heading_display_size" : "auto",
+						"heading_size" : "h2"
+						} ]
+					%}
+						{% module_attribute "description" %}
+
+						{% end_module_attribute %}
+					{% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					{% dnd_module
+						path="../../custom-modules/SR Offer Bar 05",
+						offset=0,
+						width=12
+					%}
+					{% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					{% dnd_module
+						path="../../custom-modules/SR Offer Bar 03",
+						offset=0,
+						width=12
+					%}
+					{% end_dnd_module %}
+					{% end_dnd_row %}
+				{% end_dnd_column %}
+				{% end_dnd_section %}
+			{% end_dnd_area %}
+		{% endblock body %}
+
+		{% block footer %}
+			{% boolean "enabled_site_footer" label='Enable Global Site Footer', value=true, export_to_template_context=True %}
+			{% if widget_data.enabled_site_footer.value %}
+				{% global_partial path="../partials/site_footer.html" %}
+			{% endif %}
+		{% endblock footer %}
+
+		{% include '../footer-includes.html' %}
+	</body>
+</html>

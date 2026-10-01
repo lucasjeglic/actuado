@@ -1,0 +1,126 @@
+{% if module.enabled %}
+
+	{% import "../../templates/macros.html" as macros %}
+	{% import "../../templates/ac-macros.html" as ac %}
+
+	{% set divider = module.design_settings.divider_color.color ? macros.color(module.design_settings.divider_color) : 'var(--borders)' %}
+	{% set in_view = module.cards_in_view|int %}
+	{% set in_view = in_view >= 2 and in_view <= 4 ? in_view : 3 %}
+
+	{% require_css %}
+	<style>
+		{{ macros.design_settings(name, module.design_settings) }}
+
+		.{{ name }} .ac-htl {
+			--ac-divider: {{ divider }};
+			--ac-in-view: {{ in_view }};
+		}
+	</style>
+	{% end_require_css %}
+
+	{# Only render the image panel when a milestone actually has one. #}
+	{% set image_flags = [] %}
+	{% for item in module.milestones %}
+		{% if item.image.src %}{% do image_flags.append(1) %}{% endif %}
+	{% endfor %}
+	{% set has_images = module.show_images && image_flags|length > 0 %}
+
+	{% set text_color_class = module.design_settings.text_color != 'auto' ? 'text-' ~ module.design_settings.text_color : '' %}
+
+	<div class="ac-timeline-01 ac-timeline--{{ module.layout_mode }} ac-year-{{ module.year_size }} {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+
+		{{ macros.module_bg_video(module) }}
+
+		<div class="ac-htl">
+
+			<div class="{{ module.design_settings.layout }} content-wrapper">
+				<div class="ac-htl-head{% if has_images %} ac-htl-head--split{% endif %}">
+				{% if module.eyebrow || module.heading.heading_text %}
+				<div class="ac-htl-intro sr-spacer-bottom-50 {{ text_color_class }}">
+					{{ ac.eyebrow(module) }}
+
+					{% if module.heading.heading_text %}
+					{% set h = module.heading %}
+					<{{ h.heading_size }} class="heading ac-htl-heading{% if h.heading_display_size != 'auto' %} {{ h.heading_display_size }}{% endif %}{% if module.animate_heading %} ac-animate-words{% endif %}">{{ h.heading_text }}</{{ h.heading_size }}>
+					{% endif %}
+				</div>
+				{% endif %}
+
+				{% if has_images %}
+				{# Every image is stacked in the same box and cross-faded, so the
+				   panel never changes size as milestones change. #}
+				<div class="ac-htl-media" aria-hidden="true">
+					{% for item in module.milestones %}
+					{% if item.image.src %}
+					<figure class="ac-htl-media__item{% if loop.first %} is-current{% endif %}" data-index="{{ loop.index0 }}">
+						<img src="{{ item.image.src }}" alt="{{ item.image.alt }}"
+							{% if item.image.width %}width="{{ item.image.width }}"{% endif %}
+							{% if item.image.height %}height="{{ item.image.height }}"{% endif %}
+							loading="lazy">
+					</figure>
+					{% endif %}
+					{% endfor %}
+				</div>
+				{% endif %}
+				</div>
+			</div>
+
+			{# The track scrolls horizontally while the section is pinned. #}
+			<div class="ac-htl-viewport">
+
+				{# The line lives outside the track: the track is translated as
+				   you scroll, so a line inside it would slide away with the
+				   milestones instead of staying put and filling. #}
+				{% if module.show_progress %}
+				<div class="ac-htl-line" aria-hidden="true">
+					<span class="ac-htl-line__fill"></span>
+				</div>
+				{% endif %}
+
+				<div class="ac-htl-track">
+
+					<ol class="ac-htl-items">
+						{% for item in module.milestones %}
+						{% if item.year || item.title %}
+						<li class="ac-htl-item" data-index="{{ loop.index0 }}">
+							<span class="ac-htl-item__dot" aria-hidden="true"></span>
+							{% if item.year %}
+							<p class="ac-htl-item__year">{{ item.year }}</p>
+							{% endif %}
+							{% if item.title %}
+							<h3 class="heading ac-htl-item__title h4">{{ item.title }}</h3>
+							{% endif %}
+							{% if item.text %}
+							<div class="description ac-htl-item__text">{{ item.text }}</div>
+							{% endif %}
+
+							{# Shown only below the desktop breakpoint, where the
+							   head panel is hidden and each milestone carries its
+							   own image on the opposite side of the spine. #}
+							{% if has_images && item.image.src %}
+							<figure class="ac-htl-item__media">
+								<img src="{{ item.image.src }}" alt="{{ item.image.alt }}" loading="lazy">
+							</figure>
+							{% endif %}
+						</li>
+						{% endif %}
+						{% endfor %}
+					</ol>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	{% if module.animate_heading %}
+	{{ require_js(get_asset_url('../../js/gsap.js'), { defer: true, position: head }) }}
+	{{ require_js(get_asset_url('../../js/TextPlugin.js'), { defer: true, position: head }) }}
+	{{ require_js(get_asset_url('../../js/ac-type-on-scroll.js'), { defer: true }) }}
+	{% endif %}
+
+	{{ require_js(get_asset_url('../../js/gsap.js'), { defer: true, position: head }) }}
+	{{ require_js(get_asset_url('../../js/ScrollTrigger.js'), { defer: true, position: head }) }}
+	{{ require_js(get_asset_url('../../js/ac-timeline.js'), { defer: true }) }}
+
+{% endif %}

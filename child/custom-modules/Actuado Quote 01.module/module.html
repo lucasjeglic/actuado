@@ -1,0 +1,72 @@
+{% if module.enabled %}
+
+	{% import "../../templates/macros.html" as macros %}
+
+	{% require_css %}
+	<style>
+		{{ macros.design_settings(name, module.design_settings) }}
+
+		{% if module.quote_mark_color.color %}
+		.{{ name }} .ac-quote__mark {
+			--ac-quote-mark: {{ macros.color(module.quote_mark_color) }};
+		}
+		{% endif %}
+
+		{% if module.author_color.color %}
+		.{{ name }} .ac-quote__author {
+			--ac-quote-author: {{ macros.color(module.author_color) }};
+		}
+		{% endif %}
+	</style>
+	{% end_require_css %}
+
+	{% set width_class =
+		module.design_settings.container_width == 'min' ? 'col-lg-6 offset-lg-3' :
+		module.design_settings.container_width == 'narrow' ? 'col-lg-8 offset-lg-2' :
+		module.design_settings.container_width == 'wide' ? 'col-lg-10 offset-lg-1' :
+		'col-lg-12'
+	%}
+
+	{# Only emit a text colour class when one is actually set; "auto" is not a class. #}
+	{% set text_color_class = module.design_settings.text_color != 'auto' ? 'text-' ~ module.design_settings.text_color : '' %}
+
+	<div class="ac-quote-01 {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} {{ text_color_class }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+
+		{{ macros.module_bg_video(module) }}
+
+		<div class="{{ module.design_settings.layout }}">
+			{% if module.design_settings.container_width != 'max' %}
+			<div class="row">
+				<div class="{{ width_class }}">
+			{% endif %}
+
+					<div class="content-wrapper">
+						<blockquote class="ac-quote text-{{ module.text_align }}">
+
+							{% if module.show_quote_mark %}
+							<span class="ac-quote__mark" aria-hidden="true">&ldquo;</span>
+							{% endif %}
+
+							{% if module.quote %}
+							<div class="ac-quote__text blockquote">{{ module.quote }}</div>
+							{% endif %}
+
+							{% if module.author_name || module.author_title %}
+							<footer class="ac-quote__author small">
+								{% if module.author_name %}<span class="ac-quote__name">{{ module.author_name }}</span>{% endif %}
+								{% if module.author_title %}<cite class="ac-quote__title">{{ module.author_title }}</cite>{% endif %}
+							</footer>
+							{% endif %}
+
+						</blockquote>
+					</div>
+
+			{% if module.design_settings.container_width != 'max' %}
+				</div>
+			</div>
+			{% endif %}
+
+		</div>
+	</div>
+
+{% endif %}

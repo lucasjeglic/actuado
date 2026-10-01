@@ -1,0 +1,126 @@
+.sr-tabs-vertical-01 .nav-link {
+  display: block;
+  padding: 1.8rem;
+  position: relative;
+  text-decoration: none;
+  width: 100%;
+  text-align: left;
+  border: none;
+}
+
+.sr-tabs-vertical-01 .nav-link.active {
+  box-shadow: 5px 10px 60px 0 rgba(0, 0, 0, .13);
+}
+
+.sr-tabs-vertical-01 .sticky {
+  position: sticky;
+  top: 6.25rem
+}
+
+.sr-tabs-vertical-01 .nav-link::after {
+  border: 2px solid var(--accent) !important;
+  border-color: inherit;
+  bottom: 0;
+  content: "";
+  height: 0;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  translate: translateY(-50%);
+  -webkit-transition: all .2s ease;
+  -o-transition: all .2s ease;
+  transition: all .2s ease;
+}
+
+.sr-tabs-vertical-01 .nav-link.active::after,
+.sr-tabs-vertical-01 .nav-link:hover::after {
+  height: 100%;
+  opacity: 1;
+  top: 0;
+}
+
+.sr-tabs-vertical-01 .nav-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sr-tabs-vertical-01 .details-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sr-tabs-vertical-01 .details {
+  overflow: hidden;
+  transition: height 300ms ease-in-out, box-shadow 200ms ease-in-out;
+  box-shadow: 15px 25px 60px 0px rgba(0, 0, 0, 0%);
+  border-width: 1px;
+  border-style: solid;
+}
+
+.sr-tabs-vertical-01 .details[open] {
+  box-shadow: 15px 25px 60px 0px rgba(0, 0, 0, 10%);
+}
+
+.sr-tabs-vertical-01 .details__summary {
+  list-style: none;
+  outline: 0;
+  position: relative;
+  transition: color .3s ease-in-out;
+  cursor: pointer;
+  padding: 1.8rem;
+  position: relative;
+}
+
+.sr-tabs-vertical-01 .details__content {
+  padding: 1.5rem 1.25rem;
+  position: relative;
+}
+
+.sr-tabs-vertical-01 .details__summary::-webkit-details-marker {
+  display: none;
+}
+
+.sr-tabs-vertical-01 .details__summary::-webkit-details-marker {
+  display: none;
+}
+
+.sr-tabs-vertical-01 .details-icon {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%) rotate(0deg);
+  transition: transform .2s ease-in;
+  height: 32px;
+  width: 32px;
+  border-radius: 100%;
+}
+
+.sr-tabs-vertical-01 .details-icon:before,
+.sr-tabs-vertical-01 .details-icon:after {
+  content: "";
+  position: absolute;
+  right: 50%;
+  top: 50%;
+  transform: translate(50%, -50%);
+  height: 2px;
+  width: 12px;
+  background-color: var(--accent);
+}
+
+.sr-tabs-vertical-01 .details-icon:before {
+  height: 2.5px;
+  width: .7rem;
+}
+
+.sr-tabs-vertical-01 .details-icon:after {
+  height: .7rem;
+  width: 2.5px;
+}
+
+
+.sr-tabs-vertical-01 [open] .details-icon {
+  transform: translateY(-50%) rotate(135deg);
+}

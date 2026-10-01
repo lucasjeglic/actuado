@@ -1,0 +1,57 @@
+{% if module.enabled %}
+    <footer class="custom-footer {{ name }}{% if module.wide_first_column %} wide-first-column-enabled{% endif %}" style="background-color: {{ module.styles.background_color.color }};">
+        <div class="footer-row">
+
+            {% for column in module.columns %}
+                <div class="footer-column">
+
+                    {% if column.column_heading.heading_text %}
+                        <h4 style="font-size: {{ column.column_heading.heading_size }}px; color: {{ column.column_heading.heading_color.color }}; text-align: {{ column.column_heading.alignment }}; font-weight: {{ column.column_heading.font_weight }};">{{ column.column_heading.heading_text }}</h4>
+                    {% endif %}
+
+                    {% if column.rich_text %}
+                        <div class="rich-text">
+                            {{ column.rich_text }}
+                        </div>
+                    {% endif %}
+
+                    {% if column.column_link.link_url %}
+                        <a href="{{ column.column_link.link_url.url.href }}" class="link-text"
+                           style="font-size: {{ column.column_link.link_text.font_size }}px; font-family: {{ column.column_link.link_text.font_family.font }}; text-align: {{ column.column_link.alignment }}; font-weight: {{ column.column_link.link_text.font_weight }};"
+                           {% if column.column_link.link_url.open_in_new_tab %}target="_blank"{% endif %}>
+                            {{ column.column_link.link_text.text }}
+                        </a>
+                    {% endif %}
+
+                    {% if column.column_button.button_text %}
+                        <a href="{{ column.column_button.button_link.url.href }}" class="button"
+                           style="background-color: {{ column.column_button.button_color.color }}; text-align: {{ column.column_button.alignment }};"
+                           {% if column.column_button.button_link.open_in_new_tab %}target="_blank"{% endif %}>
+                            <span style="font-size: {{ column.column_button.button_text.font_size }}px; color: {{ column.column_button.button_text.text_color.color }}; font-family: {{ column.column_button.button_text.font_family.font }}; font-weight: {{ column.column_button.button_text.font_weight }};">
+                                {{ column.column_button.button_text.text }}
+                            </span>
+                        </a>
+                    {% endif %}
+                    
+                    {% if column.socials %}
+                        <ul class="social-icons-list" style="text-align: {{ column.social_alignment }};">
+                            {% for social in column.socials %}
+                                <li style="--social-icon-bg: {{ social.background_color.color }}; --social-icon-color: {{ social.icon_color.color }};">
+                                    <a href="{{ social.link.url.href }}" class="social-icon"
+                                       aria-label="{{ social.aria_label }}"
+                                       {% if social.link.open_in_new_tab %}target="_blank"{% endif %}>
+                                        {% icon name="{{ social.icon.name }}" style="{{ social.icon.type }}" unicode="{{ social.icon.unicode }}" icon_set="{{ social.icon.icon_set }}" %}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+
+                    {% if column.logo.image_field.src %}
+                        <img src="{{ column.logo.image_field.src }}" alt="{{ column.logo.image_field.alt }}" style="width: {{ column.logo.logo_width }}; height: auto;">
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </footer>
+{% endif %}

@@ -1,0 +1,87 @@
+{% if module.enabled %}
+
+{% import "../../templates/macros.html" as macros %}
+
+	{% require_css %}
+		<style>
+			{{ macros.design_settings(name, module.design_settings) }}
+			{% if !module.carousel %}
+			.{{ name }} .logo-slider {
+				column-gap: {{ module.design_settings.logo_styles.column_gap ~ "px" if module.design_settings.logo_styles.logos_per_row == 'auto' else '2.875rem' }};
+				row-gap: {{ module.design_settings.logo_styles.row_gap ~ "px" }}
+			}
+			{% endif %}
+			{% if module.carousel && module.carousel_settings.dots %}
+			.{{ name }} {
+				--dots: {{ module.carousel_settings.dots_color.css }};
+			}
+			{% endif %}
+		</style>
+	{% end_require_css %}
+
+	{% if module.design_settings.container_width == 'min' %}
+		{% set width_class = 'col-lg-6 offset-lg-3' %}
+	{% elif module.design_settings.container_width == 'narrow' %}
+		{% set width_class = 'col-lg-8 offset-lg-2' %}
+	{% elif module.design_settings.container_width == 'wide' %}
+		{% set width_class = 'col-10 offset-1' %}
+	{% endif %}
+
+	{{ macros.label("SR Clients Carousel 01") }}
+
+	<div class="sr-clients-carousel-01 {{ name }} sr-clients {% if module.design_settings.background_option == 'color' %} bg-{{ module.design_settings.background_color }}{% endif %} {{ macros.padding(module.design_settings) }} text-{{ module.design_settings.text_color }} {{ macros.text_align(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+
+		{% if module.design_settings.background_option == 'video' %}
+		{{macros.bg_video(module.background_video, module.design_settings.background_image.src)}}
+		{% endif %}
+
+		<div class="{{ module.design_settings.layout }}-xl">
+			{% if module.design_settings.container_width != 'max' %}
+				<div class="row">
+					<div class="{{ width_class }}">
+			{% endif %}
+
+						<div>
+							{{ macros.heading(module.heading) }}
+							{% if module.description %}
+								<div class="description{% if module.lead_text %} lead{% endif %}">
+									{{ module.description }}
+								</div>
+							{% endif %}
+							<div class="blaze-slider"{% if module.carousel%} data-carousel="{{ module.carousel }}" data-autoplay="{{ module.carousel_settings.autoplay }}" data-autoplayspeed="{{ module.carousel_settings.autoplay_speed }}" data-slides="{{ module.carousel_settings.logos_to_show }}" style="--slides-to-show: {{ module.carousel_settings.logos_to_show }};"{% endif %}>
+								<div class="blaze-container">
+								  <div class="blaze-track-container">
+									<div class="logo-slider column-{{ module.design_settings.logo_styles.logos_per_row|replace(".","") }} {{ 'flex-wrap justify-content-{{ module.design_settings.logo_styles.alignment }}' if not module.carousel else "blaze-track " }} {% if module.heading || module.description %}sr-spacer-top-25{% endif %} grayscale-{{ module.design_settings.logo_styles.grayscale }}">
+										{% for item in module.logos %}
+										{% if item.link.url.href %}
+										<div>
+											<a {{ macros.link( item.link) }}>
+												{{ macros.image(item.image) }}
+											</a>
+										</div>
+										{% else %}
+										<div>
+											{{ macros.image(item.image) }}
+										</div>
+										{% endif %}
+										{% endfor %}
+									</div>
+								  </div>
+								  {% if module.carousel_settings.dots %}
+								  <div class="blaze-pagination mt-4 mx-4"></div>
+								  {% endif %}
+								</div>
+							</div>
+						</div>
+			{% if module.design_settings.container_width != 'max' %}
+					</div>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+
+	{% if module.carousel %}
+	{{ require_css(get_asset_url('../../css/blaze-slider.css'), { async: true }) }}
+	{{ require_js(get_asset_url('../../js/blaze-slider.js'), { position: 'head', defer: true }) }}
+	{% endif %}
+{% endif %}

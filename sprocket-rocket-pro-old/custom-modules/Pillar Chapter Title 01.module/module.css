@@ -1,0 +1,20 @@
+.pillar-chapter-title-01 label:before {
+	left: 0;
+	display: inline;
+}
+.pillar-chapter-title-01 label:after {
+	right: 0;
+}
+.author-info {
+	margin-top: 0.5rem;
+}
+.pillar-cover-inner-column {
+	padding: 0;
+}
+@media (max-width: 767px) {
+	.pillar-chapter-title-01 label {
+		font-size: 0.903rem;
+		padding: 0.833rem 2.083rem 1.111rem 2.083rem;
+		line-height: 1.1rem;
+	}
+}

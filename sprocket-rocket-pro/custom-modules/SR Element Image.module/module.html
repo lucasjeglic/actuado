@@ -1,0 +1,24 @@
+{% import "../../templates/macros.html" as macros %}
+<div class="sr-image text-{{ module.design_settings.align.horizontal_align|lower }}" {{ "data-preview" if module_preview }}>
+    {% if module.link.url.href %}
+    <a {{ macros.link(module.link) }}>
+    {% endif %}
+    {{ macros.image(module.image) }}
+    {% if module.link.url.href %}
+    </a>
+    {% endif %}
+</div>
+{% require_css %}
+<style>
+    {% scope_css %}
+    .sr-image {
+        {{ module.design_settings.spacing.css }};
+        {{ module.design_settings.border.css }};
+        background-color: {{ module.design_settings.background_color.css }};
+    }
+    .sr-image img {
+        border-radius: {{ module.design_settings.border_radius ~ 'px' }};
+    }
+    {% end_scope_css %}
+</style>
+{% end_require_css %}

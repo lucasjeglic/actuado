@@ -1,0 +1,478 @@
+<!--
+templateType: page
+isAvailableForNewContent: true
+label: Pricing 01
+screenshotPath: ../../images/pricing-01.jpg
+-->
+
+	{% include '../header.html' %}
+
+		<body class="pre-built {{ widget_data.body_class.value }} {{ builtin_body_classes }} {% set theme_name = content.template_path|split('/')|first %}{{ theme_name }} {% set template_name = content.template_path|split('/')|last %}{{ template_name[:-5] if template_name }}">
+
+		{% block header %}
+			{% boolean "enabled_site_header" label='Enable Global Site Header', value=true, export_to_template_context=True %}
+			{% if widget_data.enabled_site_header.value %}
+				{% global_partial path="../partials/site_header.html" %}
+			{% endif %}
+		{% endblock header %}
+
+		{% block body %}
+
+			{% dnd_area "body_dnd_area", class='body_dnd_area' label="Main Content" %}
+
+				{% dnd_section %}
+					{% dnd_column
+							offset=0,
+							width=12
+					%}
+
+						{% dnd_row %}
+						{% dnd_module
+									path="../../custom-modules/SR Pricing 03",
+									offset=0,
+									width=12,
+									column=[ {
+									"annual_price" : "$200/y",
+									"background_color" : "light",
+									"background_custom" : {
+										"color" : "#fff",
+										"opacity" : 100
+									},
+									"background_gradient_from" : {
+										"color" : "#060f1e",
+										"opacity" : 100
+									},
+									"background_gradient_to" : {
+										"color" : "#000",
+										"opacity" : 100
+									},
+									"background_option" : "gradient",
+									"card_gradient_from" : {
+										"color" : "#0C63FF",
+										"opacity" : 100
+									},
+									"card_gradient_to" : {
+										"color" : "#1897FF",
+										"opacity" : 100
+									},
+									"ctas" : [ {
+										"button_text" : "Purchase Now",
+										"cta" : "",
+										"cta_size" : "md",
+										"cta_style" : "primary",
+										"cta_type" : "btn",
+										"link" : {
+										"no_follow" : false,
+										"open_in_new_tab" : false,
+										"url" : {
+											"href" : "#",
+											"type" : "EXTERNAL"
+										}
+										},
+										"modal_target" : "demo"
+									} ],
+									"features" : [ {
+										"feature" : "<p>Unlimited Updates</p>"
+									}, {
+										"feature" : "<p>Built for Hubspot</p>"
+									}, {
+										"feature" : "<p>10 Projects</p>"
+									} ],
+									"highlight_plan" : false,
+									"price" : "$20/mo",
+									"pricing_name" : "Starter",
+									"recommended" : false,
+									"recommended_background_color" : {
+										"color" : "#0c63ff",
+										"opacity" : 100
+									},
+									"text_color" : "auto",
+									"text_color_custom" : {
+										"color" : "#87909e",
+										"opacity" : 100
+									}
+									}, {
+									"annual_price" : "$900/y",
+									"background_color" : "light",
+									"background_custom" : {
+										"color" : "#fff",
+										"opacity" : 100
+									},
+									"background_gradient_from" : {
+										"color" : "#060f1e",
+										"opacity" : 100
+									},
+									"background_gradient_to" : {
+										"color" : "#000",
+										"opacity" : 100
+									},
+									"background_option" : "gradient",
+									"card_gradient_from" : {
+										"color" : "#0C63FF",
+										"opacity" : 100
+									},
+									"card_gradient_to" : {
+										"color" : "#0C63FF",
+										"opacity" : 100
+									},
+									"ctas" : [ {
+										"button_text" : "Purchase Now",
+										"cta" : "",
+										"cta_size" : "md",
+										"cta_style" : "secondary",
+										"cta_type" : "btn",
+										"link" : {
+										"no_follow" : false,
+										"open_in_new_tab" : false,
+										"url" : {
+											"href" : "#",
+											"type" : "EXTERNAL"
+										}
+										},
+										"modal_target" : "demo"
+									} ],
+									"features" : [ {
+										"feature" : "<p>Unlimited Projects</p>"
+									}, {
+										"feature" : "<p>Branding</p>"
+									}, {
+										"feature" : "<p>Analytics</p>"
+									}, {
+										"feature" : "<p>Email Support</p>"
+									}, {
+										"feature" : "<p>Upgrade Discount</p>"
+									}, {
+										"feature" : "<p>Custom Interface</p>"
+									} ],
+									"highlight_plan" : true,
+									"price" : "$80/mo",
+									"pricing_name" : "Growth",
+									"recommended" : false,
+									"recommended_background_color" : {
+										"color" : "#0c63ff",
+										"opacity" : 100
+									},
+									"text_color" : "auto",
+									"text_color_custom" : {
+										"color" : "#87909e",
+										"opacity" : 100
+									}
+									}, {
+									"annual_price" : "$550/y",
+									"background_color" : "light",
+									"background_custom" : {
+										"color" : "#fff",
+										"opacity" : 100
+									},
+									"background_gradient_from" : {
+										"color" : "#060f1e",
+										"opacity" : 100
+									},
+									"background_gradient_to" : {
+										"color" : "#000",
+										"opacity" : 100
+									},
+									"background_option" : "gradient",
+									"card_gradient_from" : {
+										"color" : "#0C63FF",
+										"opacity" : 100
+									},
+									"card_gradient_to" : {
+										"color" : "#1897FF",
+										"opacity" : 100
+									},
+									"ctas" : [ {
+										"button_text" : "Purchase Now",
+										"cta" : "",
+										"cta_size" : "md",
+										"cta_style" : "primary",
+										"cta_type" : "btn",
+										"link" : {
+										"no_follow" : false,
+										"open_in_new_tab" : false,
+										"url" : {
+											"href" : "#",
+											"type" : "EXTERNAL"
+										}
+										},
+										"modal_target" : "demo"
+									} ],
+									"features" : [ {
+										"feature" : "<p>Unlimited Updates</p>"
+									}, {
+										"feature" : "<p>Built for Hubspot</p>"
+									}, {
+										"feature" : "<p>10 Projects</p>"
+									}, {
+										"feature" : "<p>Email Support</p>"
+									}, {
+										"feature" : "<p>Analytics</p>"
+									} ],
+									"highlight_plan" : false,
+									"price" : "$50/mo",
+									"pricing_name" : "Scale",
+									"recommended" : true,
+									"recommended_background_color" : {
+										"color" : "#0c63ff",
+										"opacity" : 100
+									},
+									"text_color" : "auto",
+									"text_color_custom" : {
+										"color" : "#87909e",
+										"opacity" : 100
+									}
+									} ],
+									show_price_toggle=true
+								%}
+						{% module_attribute "description" %}
+						<p><span>Make your pricing clean and clear, and set up your products to highlight recommended options and special features.</span></p>
+						{% end_module_attribute %}
+						{% end_dnd_module %}
+						{% end_dnd_row %}
+					{% end_dnd_column %}
+				{% end_dnd_section %}
+
+				{% dnd_section %}
+					{% dnd_column
+							offset=0,
+							width=12
+					%}
+						{% dnd_row %}
+						{% dnd_module
+									path="../../custom-modules/SR Three Col 02",
+									offset=0,
+									width=12,
+									column=[ {
+									"add_to_lightbox" : false,
+									"class" : "",
+									"col_content" : "<p>Whether you need to deliver a wireframe or quickly launch a landing page, Sprocket Rocket makes it easy even if you're not a designer or developer.</p>",
+									"col_image" : {
+										"height" : "100",
+										"loading" : "lazy",
+										"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/images/bulb.svg",
+										"width" : "100"
+									},
+									"col_media_type" : "none",
+									"col_overlay_color" : {
+										"color" : "#000000",
+										"opacity" : 50
+									},
+									"col_text_align" : "auto",
+									"column_size" : [ {
+										"column_width" : "5"
+									} ],
+									"ctas" : [ {
+										"add_icon" : false,
+										"button_text" : "Let's Do This",
+										"cta_size" : "md",
+										"cta_style" : "primary",
+										"cta_type" : "btn",
+										"default" : {
+										"background" : {
+											"color" : "#0c63ff",
+											"opacity" : 100
+										},
+										"border" : {
+											"color" : "#0c63ff",
+											"opacity" : 100
+										},
+										"text" : {
+											"color" : "#fff",
+											"opacity" : 100
+										}
+										},
+										"hover" : {
+										"background" : {
+											"color" : "#5a93fd",
+											"opacity" : 100
+										},
+										"border" : {
+											"color" : "#5a93fd",
+											"opacity" : 100
+										},
+										"text" : {
+											"color" : "#fff",
+											"opacity" : 100
+										}
+										},
+										"icon" : {
+										"icon" : {
+											"name" : "arrow-right",
+											"type" : "SOLID",
+											"unicode" : "f061"
+										},
+										"position" : "right"
+										},
+										"link" : {
+										"no_follow" : false,
+										"open_in_new_tab" : false,
+										"url" : {
+											"href" : "https://app.hubspot.com/ecosystem/21669159/marketplace/website/sprocket-rocket-theme-by-sprocket-rocket",
+											"type" : "EXTERNAL"
+										}
+										},
+										"modal_target" : "demo"
+									} ],
+									"custom_column_size" : true,
+									"heading" : [ {
+										"heading" : "Light Years Ahead",
+										"heading_align" : "auto",
+										"heading_color" : "auto",
+										"heading_color_custom" : {
+										"color" : "#30343b",
+										"opacity" : 100
+										},
+										"heading_display_size" : "auto",
+										"heading_size" : "h1"
+									} ],
+									"image_link" : {
+										"no_follow" : false,
+										"open_in_new_tab" : false,
+										"url" : {
+										"type" : "EXTERNAL"
+										}
+									},
+									"lead_text" : false,
+									"text_color" : "auto",
+									"video" : {
+										"autoplay" : true,
+										"background_video_design" : "none",
+										"custom_accent_color" : {
+										"color" : "#000000",
+										"opacity" : 20
+										},
+										"embed_field" : {
+										"source_type" : "oembed"
+										},
+										"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+										"loop" : true,
+										"muted" : true,
+										"oembed_thumbnail" : {
+										"loading" : "disabled",
+										"src" : ""
+										},
+										"placeholder_fields" : {
+										"placeholder_description" : "Select a video type in the sidebar.",
+										"placeholder_title" : "No video selected"
+										},
+										"show_controls" : true,
+										"style_options" : {
+										"oembed_thumbnail_play_button_color" : {
+											"color" : "#ffffff"
+										}
+										},
+										"video_accent_color" : "primary",
+										"video_poster" : {
+										"alt" : "Sprocket Rocket Demo",
+										"size_type" : "exact",
+										"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+										},
+										"video_type" : "html_video"
+									}
+									}, {
+									"add_to_lightbox" : false,
+									"class" : "col-feature",
+									"col_content" : "<div><img src='https://www.lean-labs.com/hubfs/Vector%20(8).png' alt='Vector (8)' width='35' loading='lazy' style='width: 35px;'>\n<p>Stack your modules, swap out your content, and then launch your page. Easy as 1-2-3!</p>\n</div>\n<div><img src='https://www.lean-labs.com/hubfs/Vector%20(9).png' alt='Vector (9)' width='35' loading='lazy' style='width: 35px;'>\n<p>Page templates are easy to deploy, and can act as a great starting point for pages.</p>\n</div>\n<div><img src='https://www.lean-labs.com/hubfs/Vector%20(10).png' alt='Vector (10)' width='35' loading='lazy' style='width: 35px;'>\n<p>Consistent editing options from module to module makes SR Theme easy to master.</p>\n</div>\n<div><img src='https://www.lean-labs.com/hubfs/Vector%20(11).png' alt='Vector (11)' width='35' loading='lazy' style='width: 35px;'>\n<p>By the time you're on your second or third page, you'll be building pages like a pro.</p>\n</div>",
+									"col_image" : {
+										"height" : "100",
+										"loading" : "lazy",
+										"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/images/badge.png",
+										"width" : "100"
+									},
+									"col_media_type" : "none",
+									"col_overlay_color" : {
+										"color" : "#000000",
+										"opacity" : 50
+									},
+									"col_text_align" : "auto",
+									"column_size" : [ {
+										"column_offset" : "1",
+										"column_width" : "6"
+									} ],
+									"custom_column_size" : true,
+									"heading" : [ ],
+									"image_link" : {
+										"no_follow" : false,
+										"open_in_new_tab" : false,
+										"url" : {
+										"type" : "EXTERNAL"
+										}
+									},
+									"lead_text" : false,
+									"text_color" : "auto",
+									"video" : {
+										"autoplay" : true,
+										"background_video_design" : "none",
+										"custom_accent_color" : {
+										"color" : "#000000",
+										"opacity" : 20
+										},
+										"embed_field" : {
+										"source_type" : "oembed"
+										},
+										"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+										"loop" : true,
+										"muted" : true,
+										"oembed_thumbnail" : {
+										"loading" : "disabled",
+										"src" : ""
+										},
+										"placeholder_fields" : {
+										"placeholder_description" : "Select a video type in the sidebar.",
+										"placeholder_title" : "No video selected"
+										},
+										"show_controls" : true,
+										"style_options" : {
+										"oembed_thumbnail_play_button_color" : {
+											"color" : "#ffffff"
+										}
+										},
+										"video_accent_color" : "primary",
+										"video_poster" : {
+										"alt" : "Sprocket Rocket Demo",
+										"size_type" : "exact",
+										"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+										},
+										"video_type" : "html_video"
+									}
+									} ],
+									column_vertical_align="top",
+									design_settings={
+									"background_custom" : {
+										"color" : "#f5f7f9",
+										"opacity" : 100
+									},
+									"background_option" : "custom",
+									"layout" : "container",
+									"text_align" : {
+										"text_align" : "LEFT"
+									},
+									"text_color" : "auto"
+									},
+									enabled=true
+								%}
+						{% end_dnd_module %}
+						{% end_dnd_row %}
+					{% end_dnd_column %}
+				{% end_dnd_section %}
+
+				{% dnd_section %}
+				{% dnd_module path='../../custom-modules/SR Offer Bar 06', widget_name='SR Offer Bar 06', label='SR Offer Bar 06' %}{% end_dnd_module %}
+				{% end_dnd_section %}
+
+
+
+			{% end_dnd_area %}
+
+		{% endblock body %}
+
+		{% block footer %}
+			{% boolean "enabled_site_footer" label='Enable Global Site Footer', value=true, export_to_template_context=True %}
+			{% if widget_data.enabled_site_footer.value %}
+				{% global_partial path="../partials/site_footer.html" %}
+			{% endif %}
+		{% endblock footer %}
+
+		{% include '../footer-includes.html' %}
+	</body>
+</html>

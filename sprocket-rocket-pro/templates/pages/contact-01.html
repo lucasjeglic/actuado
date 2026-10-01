@@ -1,0 +1,153 @@
+<!--
+templateType: page
+isAvailableForNewContent: true
+label: Contact 01
+screenshotPath: ../../images/contact-01.jpg
+-->
+
+	{% include '../header.html' %}
+
+		<body class="pre-built {{ widget_data.body_class.value }} {{ builtin_body_classes }} {% set theme_name = content.template_path|split('/')|first %}{{ theme_name }} {% set template_name = content.template_path|split('/')|last %}{{ template_name[:-5] if template_name }}">
+
+		{% block header %}
+			{% boolean "enabled_site_header" label='Enable Global Site Header', value=true, export_to_template_context=True %}
+			{% if widget_data.enabled_site_header.value %}
+				{% global_partial path="../partials/site_header.html" %}
+			{% endif %}
+		{% endblock header %}
+
+		{% block body %}
+
+			{% dnd_area "body_dnd_area", class='body_dnd_area' label="Main Content" %}
+
+				{% dnd_section %}
+					{% dnd_column
+					offset=0,
+					width=12
+					%}
+
+					{% dnd_row %}
+						{% dnd_module
+						path="../../custom-modules/SR Hero Form 01",
+						offset=0,
+						width=12,
+						columns={
+							"left_column" : [ {
+							"column_breakpoint" : "lg",
+							"column_offset" : "1",
+							"column_width" : "5"
+							} ],
+							"right_column" : [ {
+							"column_breakpoint" : "lg",
+							"column_offset" : "0",
+							"column_order" : 1,
+							"column_width" : "6"
+							} ]
+						},
+						form={
+							"enabled" : true,
+							"follow_up_type_simple" : false,
+							"form" : {
+							"message" : "Thanks for submitting the form.",
+							"response_type" : "inline"
+							},
+							"form_heading" : [ {
+							"heading" : "Contact Us",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+								"color" : "#30343b",
+								"opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h6"
+							}, {
+							"heading" : "We’d Love To Hear From You!",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+								"color" : "#30343b",
+								"opacity" : 100
+							},
+							"heading_display_size" : "display-4",
+							"heading_size" : "h1"
+							} ],
+							"lead_text" : false,
+							"notifications_are_overridden" : false,
+							"styles" : {
+							"background_color" : {
+								"color" : "#fff",
+								"opacity" : 0
+							},
+							"border" : {
+								"bottom" : true,
+								"color" : {
+								"color" : "#e5e7ea",
+								"opacity" : 100
+								},
+								"left" : true,
+								"right" : true,
+								"style" : "none",
+								"top" : true,
+								"width" : 1
+							},
+							"button" : {
+								"align" : "center",
+								"block" : true,
+								"size" : "md",
+								"style" : "primary"
+							},
+							"hide_label" : false,
+							"padding" : {
+								"bottom" : 0,
+								"left" : 0,
+								"right" : 0,
+								"top" : 0
+							},
+							"text_color" : "auto",
+							"text_color_custom" : {
+								"color" : "#87909e",
+								"opacity" : 100
+							}
+							}
+						},
+						heading=[ ]
+						%}
+						{% module_attribute "description" %}
+							<p><span>Sprocket Rocket lets you transform your rapid prototype into a beautiful design by adjusting every aspect of the design to fit brand standards.</span></p>
+							<p>&nbsp;</p>
+							<p><strong>ADDRESS:</strong></p>
+							<p><span>11184 Antioch Rd, Ste 524</span></p>
+							<p><span>Overland Park, Kansas,&nbsp;</span>66210</p>
+							<p><strong>PHONE:</strong></p>
+							<p><a href="tel:7774569810" rel="noopener">777-456-9810</a></p>
+							<p><strong>EMAIL:</strong></p>
+							<p><a href="mailto:team@sprocketrocket.co" rel="noopener">team@sprocketrocket.co</a></p>
+							<p><strong>WEB:</strong></p>
+							<p><a href="https://www.sprocketrocket.co/" rel="noopener" id="__hsNewLink">https://www.sprocketrocket.co/</a></p>
+						{% end_module_attribute %}
+						{% end_dnd_module %}
+					{% end_dnd_row %}
+					{% end_dnd_column %}
+				{% end_dnd_section %}
+
+        		{% dnd_section %}
+					{% dnd_module path='../../custom-modules/SR Contact 01' overrideable=True, widget_name='SR Contact 01', label='SR Contact 01' %}{% end_dnd_module %}
+				{% end_dnd_section %}
+
+
+
+			{% end_dnd_area %}
+
+		{% endblock body %}
+
+		{% block footer %}
+			{% boolean "enabled_site_footer" label='Enable Global Site Footer', value=true, export_to_template_context=True %}
+			{% if widget_data.enabled_site_footer.value %}
+				{% global_partial path="../partials/site_footer.html" %}
+			{% endif %}
+		{% endblock footer %}
+
+		{% include '../footer-includes.html' %}
+	</body>
+</html>

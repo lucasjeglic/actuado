@@ -1,0 +1,62 @@
+{% if module.enabled %}
+
+	{% import "../../templates/macros.html" as macros %}
+
+	{% set width_class =
+		module.design_settings.container_width == 'min' ? 'col-lg-6 offset-lg-3' :
+		module.design_settings.container_width == 'narrow' ? 'col-lg-8 offset-lg-2' :
+		module.design_settings.container_width == 'wide' ? 'col-lg-10 offset-lg-1' :
+		'col-lg-12'
+	%}
+
+	{% require_css %}
+	<style>
+		{{ macros.design_settings(name, module.design_settings) }}
+	</style>
+	{% end_require_css %}
+
+	<div class="sr-meeting-01 {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} text-{{ module.design_settings.text_color }} {{ macros.text_align(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+
+		{{ macros.module_bg_video(module) }}
+
+		<div class="{{ module.design_settings.layout }}">
+		{% if module.design_settings.container_width != 'max' %}
+			<div class="row">
+				<div class="{{ width_class }}">
+		{% endif %}
+					<div class="row align-items-{{ module.vertical_align }}">
+							<div class="{{ macros.col_size(module.columns.left_column) }}">
+								{% if module.heading ||  module.description %}
+									<div class="sr-spacer-bottom-50 {% if module.text_align != 'auto' %} text-{{ module.text_align }}{% endif %} {% if module.text_color != 'auto' %}text-{{ module.text_color }}{% endif %}">
+										{{ macros.heading(module.heading) }}
+
+										{% if module.description %}
+											<div class="description{% if module.lead_text %} lead{% endif %}">{{ module.description}}</div>
+										{% endif %}
+									</div>
+								{% endif %}
+
+							</div>
+							<div class="{{ macros.col_size(module.columns.right_column) }}">
+								<div class="meeting">
+									{% if module.meeting %}
+										<div class="meetings-iframe-container" data-src="{{ module.meeting }}?embed=true" data-ab="{{ content.ab }}" data-ab-status="{{ content.abStatus }}" data-content-id="{{ content.id }}"></div>
+										<script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"></script>
+									{% else %}
+									<div class="hs-placeholder">
+										<div class="hs-placeholder__inner">
+											<h3 class="hs-placeholder__title">No meeting selected</h3>
+											<p class="hs-placeholder__description">Select an existing meeting from the sidebar, or create a new one by navigating to the Meetings tool</p>
+										</div>
+									</div>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+		{% if module.design_settings.container_width != 'max' %}
+				</div>
+			</div>
+		{% endif %}
+		</div>
+	</div>
+{% endif %}

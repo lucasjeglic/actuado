@@ -1,0 +1,40 @@
+{% if module.heading %}
+<h{{ module.heading_size }} class="author-heading">{{ module.heading }}</h{{ module.heading_size }}>
+{% endif %}
+
+{% set my_tags = blog_tags(module.blog, 250) %}
+<div class="row my-n3">
+	{% for item in my_tags %}
+	<div class="col-lg-{{ module.authors_per_row }} col-6 my-3">
+		<a href="{{ blog_tag_url(group.id, item.slug) }}">
+			<div class="tag d-flex justify-content-between">
+				<div class="tag-name d-flex align-items-center p-3">{{ item }}</div>
+				<div class="tag-count">{{ item.live_posts }}</div>
+			</div>
+		</a>
+	</div>
+	{% endfor %}
+</div>
+
+{% require_css %}
+<style>
+	.tag {
+		-webkit-transition: all .2s ease;
+		-o-transition: all .2s ease;
+		transition: all .2s ease;
+		background: rgba({{ module.background_color.color|convert_rgb }}, 0.6);
+	}
+	.tag-count {
+		-webkit-transition: all .2s ease;
+		-o-transition: all .2s ease;
+		transition: all .2s ease;
+		background: rgba({{ module.background_color.color|convert_rgb }}, 1)
+	}
+	.tag:hover {
+		background: rgba({{ module.background_hover_color.color|convert_rgb }}, 0.6)
+	}
+	.tag:hover .tag-count {
+		background: rgba({{ module.background_hover_color.color|convert_rgb }}, 1)
+	}
+</style>
+{% end_require_css %}

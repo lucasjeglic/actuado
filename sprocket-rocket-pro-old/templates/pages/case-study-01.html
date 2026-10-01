@@ -1,0 +1,851 @@
+<!--
+templateType: page
+isAvailableForNewContent: true
+label: Case Study 01
+screenshotPath: ../../images/case-study-01.jpg
+-->
+
+	{% include '../header.html' %}
+
+	<body class="pre-built {{ widget_data.body_class.value }} {{ builtin_body_classes }} {% set theme_name = content.template_path|split('/')|first %}{{ theme_name }} {% set template_name = content.template_path|split('/')|last %}{{ template_name[:-5] if template_name }}">
+
+		{% block header %}
+			{% boolean "enabled_site_header" label='Enable Global Site Header', value=true, export_to_template_context=True %}
+			{% if widget_data.enabled_site_header.value %}
+				{% global_partial path="../partials/site_header.html" %}
+			{% endif %}
+		{% endblock header %}
+
+		{% block body %}
+
+			{% dnd_area "body_dnd_area", class='body_dnd_area' label="Main Content" %}
+
+				{% dnd_section %}
+					{% dnd_column
+					offset=0,
+					width=12
+					%}
+					{% dnd_row %}
+
+					{% end_dnd_row %}
+					{% dnd_row %}
+						{% dnd_module
+						path="../../custom-modules/SR One Col Media 01",
+						offset=0,
+						width=12,
+						column=[ {
+							"add_to_lightbox" : false,
+							"col_content" : "<p>High Fidelity provides an open-source VR software platform to help people build virtual reality spaces capable of hosting up to 500 people at once.</p>\n<p>&nbsp;</p>",
+							"col_image" : {
+							"alt" : "image-26 (1)",
+							"height" : 634,
+							"loading" : "lazy",
+							"max_height" : 1267,
+							"max_width" : 1630,
+							"src" : "https://www.lean-labs.com/hubfs/image-26%20(1).png",
+							"width" : 815
+							},
+							"col_media_type" : "image",
+							"col_overlay_color" : {
+							"color" : "#000000",
+							"opacity" : 50
+							},
+							"col_text_align" : "auto",
+							"column_size" : [ {
+							"column_breakpoint" : "md",
+							"column_offset" : "0",
+							"column_width" : "12"
+							} ],
+							"ctas" : [ ],
+							"custom_column_size" : false,
+							"heading" : {
+							"heading" : [ ],
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+								"color" : "#30343b",
+								"opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h2"
+							},
+							"image_link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+								"type" : "EXTERNAL"
+							}
+							},
+							"lead_text" : true,
+							"text_color" : "auto",
+							"video" : {
+							"autoplay" : true,
+							"background_video_design" : "none",
+							"custom_accent_color" : {
+								"color" : "#000000",
+								"opacity" : 20
+							},
+							"embed_field" : {
+								"height" : 113,
+								"max_height" : 113,
+								"max_width" : 200,
+								"oembed_response" : {
+								"author_name" : "Lean Labs",
+								"author_url" : "https://www.youtube.com/user/LeanLabs1",
+								"height" : "113",
+								"html" : "<iframe width='200' height='113' src='https://www.youtube.com/embed/UBP6xX5KF84?feature=oembed' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+								"provider_name" : "YouTube",
+								"provider_url" : "https://www.youtube.com/",
+								"thumbnail_height" : "360",
+								"thumbnail_url" : "https://i.ytimg.com/vi/UBP6xX5KF84/hqdefault.jpg",
+								"thumbnail_width" : "480",
+								"title" : "What Does 10x Mean",
+								"type" : "video",
+								"version" : "1.0",
+								"width" : "200"
+								},
+								"oembed_url" : "https://www.youtube.com/watch?v=UBP6xX5KF84",
+								"size_type" : "auto_full_width",
+								"source_type" : "oembed",
+								"width" : 200
+							},
+							"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+							"loop" : true,
+							"muted" : true,
+							"oembed_thumbnail" : {
+								"loading" : "disabled",
+								"src" : ""
+							},
+							"placeholder_fields" : {
+								"placeholder_description" : "Select a video type in the sidebar.",
+								"placeholder_title" : "No video selected"
+							},
+							"show_controls" : true,
+							"style_options" : {
+								"oembed_thumbnail_play_button_color" : {
+								"color" : "#ffffff"
+								}
+							},
+							"video_accent_color" : "primary",
+							"video_poster" : {
+								"alt" : "Sprocket Rocket Demo",
+								"size_type" : "exact",
+								"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+							},
+							"video_type" : "embed"
+							}
+						} ],
+						design_settings={
+							"background_custom" : {
+							"color" : "#060f1e",
+							"opacity" : 0
+							},
+							"background_image" : {
+							"background_position" : "MIDDLE_CENTER",
+							"background_size" : "cover",
+							"src" : "https://www.lean-labs.com/hubfs/SR%20One%20Col%20Media%2001.png"
+							},
+							"background_option" : "image",
+							"container_width" : "wide",
+							"layout" : "container",
+							"spacing" : {
+							"margin" : {
+								"bottom" : {
+								"units" : "rem",
+								"value" : 0
+								},
+								"top" : {
+								"units" : "rem",
+								"value" : 0
+								}
+							},
+							"padding" : {
+								"bottom" : {
+								"units" : "rem",
+								"value" : 8.25
+								},
+								"left" : {
+								"units" : "rem",
+								"value" : 0
+								},
+								"right" : {
+								"units" : "rem",
+								"value" : 0
+								},
+								"top" : {
+								"units" : "rem",
+								"value" : 13.4375
+								}
+							}
+							},
+							"text_color" : "auto",
+							"top_bottom_padding" : "custom"
+						},
+						enabled=true,
+						heading=[ {
+							"heading" : "Case Study",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h6"
+						}, {
+							"heading" : "High Fidelity",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+							},
+							"heading_display_size" : "display-3",
+							"heading_size" : "h1"
+						} ]
+						%}
+						{% module_attribute "description" %}
+
+						{% end_module_attribute %}
+						{% end_dnd_module %}
+					{% end_dnd_row %}
+					{% end_dnd_column %}
+				{% end_dnd_section %}
+
+				{% dnd_section %}
+					{% dnd_module
+					path="../../custom-modules/SR Two Col 03",
+					offset=0,
+					width=12,
+					column=[ {
+						"add_to_lightbox" : false,
+						"col_content" : "<p>Easy and fast adjustments of elements is possible with Core template. Find our more about our all-in-one programmatic template.</p>",
+						"col_image" : {
+						"height" : "450",
+						"loading" : "lazy",
+						"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/images/sr-two-col-03-1.jpg",
+						"width" : "600"
+						},
+						"col_media_type" : "none",
+						"col_overlay_color" : {
+						"color" : "#000000",
+						"opacity" : 50
+						},
+						"col_text_align" : "auto",
+						"column_size" : [ {
+						"column_breakpoint" : "md",
+						"column_offset" : "0",
+						"column_width" : "12"
+						} ],
+						"custom_column_size" : false,
+						"heading" : [ {
+						"heading" : "Problem",
+						"heading_align" : "auto",
+						"heading_color" : "auto",
+						"heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+						},
+						"heading_display_size" : "auto",
+						"heading_size" : "h3"
+						} ],
+						"image_link" : {
+						"no_follow" : false,
+						"open_in_new_tab" : false,
+						"url" : {
+							"type" : "EXTERNAL"
+						}
+						},
+						"lead_text" : false,
+						"text_color" : "auto",
+						"video" : {
+						"autoplay" : true,
+						"background_video_design" : "none",
+						"custom_accent_color" : {
+							"color" : "#000000",
+							"opacity" : 20
+						},
+						"embed_field" : {
+							"source_type" : "oembed"
+						},
+						"html_video" : [ "https://www.lean-labs.com/hubfs/LLv2/images/case-studies/sprocketrocket/2020%20Website%20Assets/01%20Complete%20Design%20Control.mp4" ],
+						"hubspot_video" : {
+							"height" : 960,
+							"player_id" : 34795538243,
+							"player_type" : "hsvideo2",
+							"width" : 1460
+						},
+						"loop" : true,
+						"muted" : true,
+						"oembed_thumbnail" : {
+							"loading" : "disabled",
+							"src" : ""
+						},
+						"placeholder_fields" : {
+							"placeholder_description" : "Select a video type in the sidebar.",
+							"placeholder_title" : "No video selected"
+						},
+						"show_controls" : true,
+						"style_options" : {
+							"oembed_thumbnail_play_button_color" : {
+							"color" : "#ffffff"
+							}
+						},
+						"video_accent_color" : "primary",
+						"video_poster" : {
+							"alt" : "Sprocket Rocket Demo",
+							"size_type" : "exact",
+							"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+						},
+						"video_type" : "hubspot_video"
+						}
+					}, {
+						"add_to_lightbox" : false,
+						"col_content" : "<p>Quickly and efficiently build the materials you need to support your inbound marketing strategy. Drag and drop building blocks including testimonials, forms, calls-to-action, and more.</p>",
+						"col_media_type" : "none",
+						"col_overlay_color" : {
+						"color" : "#000000",
+						"opacity" : 50
+						},
+						"col_text_align" : "auto",
+						"column_size" : [ {
+						"column_breakpoint" : "lg",
+						"column_offset" : "0",
+						"column_width" : "4"
+						} ],
+						"ctas" : [ ],
+						"custom_column_size" : false,
+						"heading" : [ {
+						"heading" : "Results",
+						"heading_align" : "auto",
+						"heading_color" : "auto",
+						"heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+						},
+						"heading_display_size" : "auto",
+						"heading_size" : "h3"
+						} ],
+						"image_link" : {
+						"no_follow" : false,
+						"open_in_new_tab" : false,
+						"url" : {
+							"type" : "EXTERNAL"
+						}
+						},
+						"lead_text" : false,
+						"text_color" : "auto",
+						"video" : {
+						"autoplay" : true,
+						"background_video_design" : "none",
+						"custom_accent_color" : {
+							"color" : "#000000",
+							"opacity" : 20
+						},
+						"embed_field" : {
+							"source_type" : "oembed"
+						},
+						"html_video" : [ "https://www.lean-labs.com/hubfs/LLv2/images/case-studies/sprocketrocket/2020%20Website%20Assets/01%20Complete%20Design%20Control.mp4" ],
+						"hubspot_video" : {
+							"height" : 960,
+							"player_id" : 34795538243,
+							"player_type" : "hsvideo2",
+							"width" : 1460
+						},
+						"loop" : true,
+						"muted" : true,
+						"oembed_thumbnail" : {
+							"loading" : "disabled",
+							"src" : ""
+						},
+						"placeholder_fields" : {
+							"placeholder_description" : "Select a video type in the sidebar.",
+							"placeholder_title" : "No video selected"
+						},
+						"show_controls" : true,
+						"style_options" : {
+							"oembed_thumbnail_play_button_color" : {
+							"color" : "#ffffff"
+							}
+						},
+						"video_accent_color" : "primary",
+						"video_poster" : {
+							"alt" : "Sprocket Rocket Demo",
+							"size_type" : "exact",
+							"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+						},
+						"video_type" : "hubspot_video"
+						}
+					}, {
+						"add_to_lightbox" : false,
+						"col_content" : "<p>SprocketRocket lets you transform your rapid prototype into a beautiful design by adjusting every aspect to fit brand standards.</p>",
+						"col_media_type" : "none",
+						"col_overlay_color" : {
+						"color" : "#000000",
+						"opacity" : 50
+						},
+						"col_text_align" : "auto",
+						"column_size" : [ {
+						"column_breakpoint" : "lg",
+						"column_offset" : "0",
+						"column_width" : "4"
+						} ],
+						"ctas" : [ ],
+						"custom_column_size" : false,
+						"heading" : [ {
+						"heading" : "Solution",
+						"heading_align" : "auto",
+						"heading_color" : "auto",
+						"heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+						},
+						"heading_display_size" : "auto",
+						"heading_size" : "h3"
+						} ],
+						"image_link" : {
+						"no_follow" : false,
+						"open_in_new_tab" : false,
+						"url" : {
+							"type" : "EXTERNAL"
+						}
+						},
+						"lead_text" : false,
+						"text_color" : "auto",
+						"video" : {
+						"autoplay" : true,
+						"background_video_design" : "none",
+						"custom_accent_color" : {
+							"color" : "#000000",
+							"opacity" : 20
+						},
+						"embed_field" : {
+							"source_type" : "oembed"
+						},
+						"html_video" : [ "https://www.lean-labs.com/hubfs/LLv2/images/case-studies/sprocketrocket/2020%20Website%20Assets/01%20Complete%20Design%20Control.mp4" ],
+						"hubspot_video" : {
+							"height" : 960,
+							"player_id" : 34795538243,
+							"player_type" : "hsvideo2",
+							"width" : 1460
+						},
+						"loop" : true,
+						"muted" : true,
+						"oembed_thumbnail" : {
+							"loading" : "disabled",
+							"src" : ""
+						},
+						"placeholder_fields" : {
+							"placeholder_description" : "Select a video type in the sidebar.",
+							"placeholder_title" : "No video selected"
+						},
+						"show_controls" : true,
+						"style_options" : {
+							"oembed_thumbnail_play_button_color" : {
+							"color" : "#ffffff"
+							}
+						},
+						"video_accent_color" : "primary",
+						"video_poster" : {
+							"alt" : "Sprocket Rocket Demo",
+							"size_type" : "exact",
+							"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+						},
+						"video_type" : "hubspot_video"
+						}
+					} ]
+					%}
+					{% end_dnd_module %}
+				{% end_dnd_section %}
+
+				{% dnd_section %}
+					{% dnd_column
+						offset=0,
+						width=12
+					%}
+						{% dnd_row %}
+						{% dnd_module
+							path="../../custom-modules/SR Stats 06",
+							offset=0,
+							width=12,
+							animate_stats=false,
+							stats=[ {
+							"description" : "Income Increase",
+							"format" : true,
+							"image" : {
+								"alt" : "Describe Your Image",
+								"height" : 36,
+								"loading" : "lazy",
+								"size_type" : "exact",
+								"src" : "https://275827.fs1.hubspotusercontent-na1.net/hub/275827/hubfs/Vector-Aug-15-2022-04-01-24-99-PM.png",
+								"width" : 43
+							},
+							"image_type" : "none",
+							"lead_text" : true,
+							"stat" : [ {
+								"heading" : 10,
+								"heading_align" : "auto",
+								"heading_color" : "auto",
+								"heading_color_custom" : {
+								"color" : "#30343b",
+								"opacity" : 100
+								},
+								"heading_display_size" : "display-1",
+								"heading_size" : "h3"
+							} ],
+							"suffix" : "X"
+							}, {
+							"description" : "Savings On Website Costs",
+							"format" : true,
+							"image" : {
+								"alt" : "Describe Your Image",
+								"height" : 34,
+								"loading" : "lazy",
+								"size_type" : "exact",
+								"src" : "https://275827.fs1.hubspotusercontent-na1.net/hub/275827/hubfs/Vector%20(1)-2.png",
+								"width" : 43
+							},
+							"image_type" : "none",
+							"lead_text" : true,
+							"prefix" : "$",
+							"stat" : [ {
+								"heading" : 1500,
+								"heading_align" : "auto",
+								"heading_color" : "auto",
+								"heading_color_custom" : {
+								"color" : "#30343b",
+								"opacity" : 100
+								},
+								"heading_display_size" : "display-1",
+								"heading_size" : "h3"
+							} ],
+							"suffix" : ""
+							}, {
+							"description" : "Coding Skills Required",
+							"format" : true,
+							"image" : {
+								"alt" : "Describe Your Image",
+								"height" : 34,
+								"loading" : "lazy",
+								"size_type" : "exact",
+								"src" : "https://275827.fs1.hubspotusercontent-na1.net/hub/275827/hubfs/Vector%20(2)-2.png",
+								"width" : 43
+							},
+							"image_type" : "none",
+							"lead_text" : true,
+							"stat" : [ {
+								"heading" : 0,
+								"heading_align" : "auto",
+								"heading_color" : "auto",
+								"heading_color_custom" : {
+								"color" : "#30343b",
+								"opacity" : 100
+								},
+								"heading_display_size" : "display-1",
+								"heading_size" : "h3"
+							} ],
+							"suffix" : ""
+							} ]
+						%}
+						{% end_dnd_module %}
+						{% end_dnd_row %}
+					{% end_dnd_column %}
+				{% end_dnd_section %}
+
+				{% dnd_section %}
+					{% dnd_column
+					offset=0,
+					width=12
+					%}
+					{% dnd_row %}
+						{% dnd_module
+						path="../../custom-modules/SR Two Col 03",
+						offset=0,
+						width=12,
+						class="p-0 two-col-only-image",
+						column=[ {
+							"add_to_lightbox" : false,
+							"class" : "",
+							"col_content" : "",
+							"col_image" : {
+							"alt" : "Rectangle-Copy",
+							"height" : 976,
+							"loading" : "lazy",
+							"max_height" : 976,
+							"max_width" : 1918,
+							"src" : "https://www.lean-labs.com/hubfs/Rectangle-Copy.jpg",
+							"width" : 1918
+							},
+							"col_media_type" : "image",
+							"col_overlay_color" : {
+							"color" : "#000000",
+							"opacity" : 0
+							},
+							"col_text_align" : "auto",
+							"column_size" : [ {
+							"column_breakpoint" : "md",
+							"column_offset" : "0",
+							"column_width" : "12"
+							} ],
+							"custom_column_size" : false,
+							"image_link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+								"type" : "EXTERNAL"
+							}
+							},
+							"lead_text" : false,
+							"text_color" : "auto",
+							"video" : {
+							"autoplay" : true,
+							"background_video_design" : "none",
+							"custom_accent_color" : {
+								"color" : "#000000",
+								"opacity" : 20
+							},
+							"embed_field" : {
+								"source_type" : "oembed"
+							},
+							"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+							"loop" : true,
+							"muted" : true,
+							"oembed_thumbnail" : {
+								"loading" : "disabled",
+								"src" : ""
+							},
+							"placeholder_fields" : {
+								"placeholder_description" : "Select a video type in the sidebar.",
+								"placeholder_title" : "No video selected"
+							},
+							"show_controls" : true,
+							"style_options" : {
+								"oembed_thumbnail_play_button_color" : {
+								"color" : "#ffffff"
+								}
+							},
+							"video_accent_color" : "primary",
+							"video_poster" : {
+								"alt" : "Sprocket Rocket Demo",
+								"size_type" : "exact",
+								"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+							},
+							"video_type" : "html_video"
+							}
+						}, {
+							"add_to_lightbox" : false,
+							"class" : "",
+							"col_content" : "",
+							"col_image" : {
+							"alt" : "Rectangle-Copy-2",
+							"height" : 976,
+							"max_height" : 976,
+							"max_width" : 1923,
+							"src" : "https://www.lean-labs.com/hubfs/Rectangle-Copy-2.jpg",
+							"width" : 1923
+							},
+							"col_media_type" : "image",
+							"col_overlay_color" : {
+							"color" : "#000000",
+							"opacity" : 0
+							},
+							"col_text_align" : "auto",
+							"column_size" : [ {
+							"column_breakpoint" : "md",
+							"column_offset" : "1",
+							"column_width" : "5"
+							} ],
+							"ctas" : [ ],
+							"custom_column_size" : false,
+							"heading" : [ ],
+							"image_link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+								"type" : "EXTERNAL"
+							}
+							},
+							"lead_text" : false,
+							"text_color" : "auto",
+							"video" : {
+							"autoplay" : true,
+							"background_video_design" : "none",
+							"custom_accent_color" : {
+								"color" : "#000000",
+								"opacity" : 20
+							},
+							"embed_field" : {
+								"source_type" : "oembed"
+							},
+							"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+							"loop" : true,
+							"muted" : true,
+							"oembed_thumbnail" : {
+								"loading" : "disabled",
+								"src" : ""
+							},
+							"placeholder_fields" : {
+								"placeholder_description" : "Select a video type in the sidebar.",
+								"placeholder_title" : "No video selected"
+							},
+							"show_controls" : true,
+							"style_options" : {
+								"oembed_thumbnail_play_button_color" : {
+								"color" : "#ffffff"
+								}
+							},
+							"video_accent_color" : "primary",
+							"video_poster" : {
+								"alt" : "Sprocket Rocket Demo",
+								"size_type" : "exact",
+								"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+							},
+							"video_type" : "html_video"
+							}
+						} ],
+						column_vertical_align="top",
+						design_settings={
+							"layout" : "container-fluid",
+							"top_bottom_padding" : "zero"
+						},
+						use_image_as_background=true
+						%}
+						{% end_dnd_module %}
+					{% end_dnd_row %}
+					{% end_dnd_column %}
+				{% end_dnd_section %}
+
+				{% dnd_section %}
+					{% dnd_column
+					offset=0,
+					width=12
+					%}
+					{% dnd_row %}
+						{% dnd_module
+						path="../../custom-modules/SR Hero 01",
+						offset=0,
+						width=12,
+						ctas=[ {
+							"button_text" : "Get Started",
+							"cta" : "",
+							"cta_size" : "md",
+							"cta_style" : "primary",
+							"cta_type" : "btn",
+							"link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+								"href" : "https://app.hubspot.com/ecosystem/21669159/marketplace/website/sprocket-rocket-theme-by-sprocket-rocket",
+								"type" : "EXTERNAL"
+							}
+							},
+							"modal_target" : "demo"
+						}, {
+							"add_icon" : true,
+							"button_text" : "Watch the Video",
+							"cta" : "",
+							"cta_size" : "md",
+							"cta_style" : "outline-white",
+							"cta_type" : "btn",
+							"default" : {
+							"background" : {
+								"color" : "#0c63ff",
+								"opacity" : 100
+							},
+							"border" : {
+								"color" : "#0c63ff",
+								"opacity" : 100
+							},
+							"text" : {
+								"color" : "#fff",
+								"opacity" : 100
+							}
+							},
+							"hover" : {
+							"background" : {
+								"color" : "#5a93fd",
+								"opacity" : 100
+							},
+							"border" : {
+								"color" : "#5a93fd",
+								"opacity" : 100
+							},
+							"text" : {
+								"color" : "#fff",
+								"opacity" : 100
+							}
+							},
+							"icon" : {
+							"icon" : {
+								"name" : "play",
+								"type" : "SOLID",
+								"unicode" : "f04b"
+							},
+							"position" : "left"
+							},
+							"link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+								"href" : "https://share.vidyard.com/watch/dX81hRG56mWdscaqqRu7pv?",
+								"type" : "EXTERNAL"
+							}
+							},
+							"modal_target" : "demo"
+						} ],
+						design_settings={
+							"background_custom" : {
+							"color" : "#000000",
+							"opacity" : 0
+							},
+							"background_image" : {
+							"background_position" : "MIDDLE_CENTER",
+							"background_size" : "cover",
+							"src" : "https://www.lean-labs.com/hubfs/Kevin-at-work-1%20(1).jpg"
+							},
+							"background_overlay_color" : {
+							"color" : "#000",
+							"opacity" : 0
+							},
+							"container_width" : "narrow"
+						},
+						heading=[ {
+							"heading" : "Light Years Ahead",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+							},
+							"heading_display_size" : "h1",
+							"heading_size" : "h1"
+						} ]
+						%}
+						{% module_attribute "description" %}
+							<p>Sprocket Rocket lets you transform your rapid prototype into a beautiful design by adjusting every aspect to fit brand standards.</p>
+						{% end_module_attribute %}
+						{% end_dnd_module %}
+					{% end_dnd_row %}
+					{% end_dnd_column %}
+				{% end_dnd_section %}
+
+        		{% dnd_section %}
+					{% dnd_module path='../../custom-modules/SR Offer Bar 06', widget_name='SR Offer Bar 06', label='SR Offer Bar 06' %}{% end_dnd_module %}
+				{% end_dnd_section %}
+
+
+
+			{% end_dnd_area %}
+
+		{% endblock body %}
+
+		{% block footer %}
+			{% boolean "enabled_site_footer" label='Enable Global Site Footer', value=true, export_to_template_context=True %}
+			{% if widget_data.enabled_site_footer.value %}
+				{% global_partial path="../partials/site_footer.html" %}
+			{% endif %}
+		{% endblock footer %}
+
+		{% include '../footer-includes.html' %}
+	</body>
+</html>

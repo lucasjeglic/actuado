@@ -1,0 +1,155 @@
+/* ==========================================================================
+   Actuado Steps 01
+   A numbered sequence laid out as columns, with an optional hairline running
+   through the numbers to link them.
+
+   Layout, background and padding come from the theme's own primitives. Type
+   comes from the theme's type slots (.h5, .small, .description), so only the
+   grid and the connecting rule live here.
+
+   Section padding is owned by the SR padding classes - never set section
+   padding-top / padding-bottom here.
+   ========================================================================== */
+
+/* ---------- Grid ---------- */
+
+/* CSS grid rather than Bootstrap columns: the step count is editor-controlled,
+   and grid lets the same markup reflow to 2 and 1 columns without per-count
+   classes. gap applies only between items, so no edge margins to undo. */
+.ac-steps-01 .ac-steps {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	/* Shared with the connecting rule, which has to span this gap to reach the
+	   next column. */
+	--ac-steps-gap: 1.5rem;
+	gap: 2.5rem var(--ac-steps-gap);
+}
+
+@media (min-width: 768px) {
+	.ac-steps-01 .ac-steps--3 { grid-template-columns: repeat(3, 1fr); }
+	.ac-steps-01 .ac-steps--4 { grid-template-columns: repeat(2, 1fr); }
+	.ac-steps-01 .ac-steps--6 { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 992px) {
+	.ac-steps-01 .ac-steps--4 { grid-template-columns: repeat(4, 1fr); }
+	.ac-steps-01 .ac-steps--6 { grid-template-columns: repeat(6, 1fr); }
+	.ac-steps-01 .ac-steps { gap: 3rem var(--ac-steps-gap); }
+}
+
+/* ---------- Intro ---------- */
+
+/* The gaps below the eyebrow, heading and intro block are .sr-spacer-* classes
+   in the markup, so they follow Theme Settings. The theme gives headings and
+   paragraphs their own bottom margin, which would stack on top of the spacer -
+   zero them so the spacer owns the distance, as the other modules do. */
+.ac-steps-01 .ac-steps__heading {
+	margin-bottom: 0;
+}
+
+.ac-steps-01 .ac-steps__description > *:last-child {
+	margin-bottom: 0;
+}
+
+/* ---------- Step ---------- */
+
+.ac-steps-01 .ac-steps__item {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	/* Anchors the connecting rule, which is drawn on the number. */
+	position: relative;
+}
+
+.ac-steps-01 .ac-steps__number {
+	font-variant-numeric: tabular-nums;
+	letter-spacing: 0.08em;
+	color: var(--primary);
+	font-weight: 600;
+	/* Sits above the connecting rule, which crosses the item at this height. */
+	position: relative;
+	z-index: 1;
+}
+
+.ac-steps-01 .ac-steps__title {
+	margin: 0;
+}
+
+.ac-steps-01 .ac-steps__text > *:last-child {
+	margin-bottom: 0;
+}
+
+/* ---------- Connecting rule ---------- */
+
+/* A hairline linking each step to the next, sitting on the number's centre
+   line. It is drawn on the number's own row wrapper and starts after the
+   number ends, so it runs through the empty space between two numbers rather
+   than across the glyphs themselves. Suppressed on the last item of each row
+   so nothing overhangs the grid edge, which is why it disappears when the row
+   breaks. */
+@media (min-width: 992px) {
+	/* The wrapper spans the full column width; the number sits inside it at the
+	   chosen alignment, and the rule fills whatever space is left. */
+	.ac-steps-01 .ac-steps--ruled .ac-steps__number {
+		display: flex;
+		align-items: center;
+		/* Clear space either side of the digits, so the rule reads as a short
+		   segment between two numbers rather than one line running through
+		   them. */
+		gap: 2.5rem;
+		width: 100%;
+	}
+
+	.ac-steps-01 .ac-steps--ruled .ac-steps__number::after {
+		content: "";
+		/* Reaches HALF way into the grid gap, where the next number's leading
+		   half meets it. Pulling the full gap width made the two overlap, which
+		   showed as a thicker, darker segment in the middle. */
+		flex: 1 1 auto;
+		margin-right: calc(var(--ac-steps-gap, 1.5rem) / -2);
+		height: 1px;
+		/* The body text colour, not currentColor - the number is gold, and the
+		   theme's divider colour is too faint on a light background. */
+		background: var(--body_color, var(--borders));
+		opacity: 0.45;
+	}
+
+	/* visibility rather than display: the element keeps its width, so the number
+	   stays in the same place on the last item of a row as on every other. */
+	.ac-steps-01 .ac-steps--6 .ac-steps__item:nth-child(6n) .ac-steps__number::after,
+	.ac-steps-01 .ac-steps--4 .ac-steps__item:nth-child(4n) .ac-steps__number::after,
+	.ac-steps-01 .ac-steps--3 .ac-steps__item:nth-child(3n) .ac-steps__number::after,
+	.ac-steps-01 .ac-steps--ruled .ac-steps__item:last-child .ac-steps__number::after {
+		visibility: hidden;
+	}
+}
+
+.ac-steps-01 .ac-steps.text-center .ac-steps__item {
+	align-items: center;
+}
+
+/* Centred, the number sits mid-column, so a matching rule is needed on its left
+   as well - otherwise the number is pushed off-centre by the right-hand one.
+   The two halves together run from one number to the next, with the gap on
+   either side coming from the flex gap. */
+@media (min-width: 992px) {
+	.ac-steps-01 .ac-steps--ruled.text-center .ac-steps__number::before {
+		content: "";
+		flex: 1 1 auto;
+		margin-left: calc(var(--ac-steps-gap, 1.5rem) / -2);
+		height: 1px;
+		background: var(--body_color, var(--borders));
+		opacity: 0.45;
+	}
+
+	/* The first item of each row has nothing to its left, so its leading half is
+	   hidden - again by visibility, to keep the number in place. */
+	.ac-steps-01 .ac-steps--6.text-center .ac-steps__item:nth-child(6n + 1) .ac-steps__number::before,
+	.ac-steps-01 .ac-steps--4.text-center .ac-steps__item:nth-child(4n + 1) .ac-steps__number::before,
+	.ac-steps-01 .ac-steps--3.text-center .ac-steps__item:nth-child(3n + 1) .ac-steps__number::before {
+		visibility: hidden;
+	}
+}

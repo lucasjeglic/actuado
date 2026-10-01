@@ -1,0 +1,770 @@
+<!--
+templateType: page
+isAvailableForNewContent: true
+label: SparkToro Pricing Page
+screenshotPath: ../../images/sparktoro-pricing-page.jpg
+-->
+
+	{% include '../header.html' %}
+
+	<body class="pre-built {{ widget_data.body_class.value }} {{ builtin_body_classes }} {% set theme_name = content.template_path|split('/')|first %}{{ theme_name }} {% set template_name = content.template_path|split('/')|last %}{{ template_name[:-5] if template_name }}">
+
+		{% block header %}
+			{% boolean "enabled_site_header" label='Enable Global Site Header', value=true, export_to_template_context=True %}
+			{% if widget_data.enabled_site_header.value %}
+				{% global_partial path="../partials/site_header.html" %}
+			{% endif %}
+		{% endblock header %}
+
+		{% block body %}
+			{% dnd_area "body_dnd_area", class='body_dnd_area' label="Main Content" %}
+				{% dnd_section %}
+				  {% dnd_column
+					offset=0,
+					width=12
+				  %}
+					{% dnd_row %}
+					  {% dnd_module
+						path="../../custom-modules/SR Pricing 03",
+						offset=0,
+						width=12,
+						column=[ {
+						  "annual_price" : "$0/y",
+						  "background_color" : "white",
+						  "background_custom" : {
+							"color" : "#fff",
+							"opacity" : 100
+						  },
+						  "background_gradient_from" : {
+							"color" : "#060f1e",
+							"opacity" : 100
+						  },
+						  "background_gradient_to" : {
+							"color" : "#000",
+							"opacity" : 100
+						  },
+						  "background_option" : "color",
+						  "ctas" : [ {
+							"button_text" : "Try Free",
+							"cta" : "",
+							"cta_size" : "md",
+							"cta_style" : "primary",
+							"cta_type" : "btn",
+							"link" : {
+							  "no_follow" : false,
+							  "open_in_new_tab" : false,
+							  "url" : {
+								"href" : "#",
+								"type" : "EXTERNAL"
+							  }
+							},
+							"modal_target" : "demo"
+						  } ],
+						  "features" : [ {
+							"feature" : "<p><strong>5 searches</strong>/month</p>"
+						  }, {
+							"feature" : "<p>Sampling of results only</p>"
+						  }, {
+							"feature" : "<p>Single list</p>"
+						  }, {
+							"feature" : "<p>Social contact data</p>"
+						  }, {
+							"feature" : "<p>Single user</p>"
+						  } ],
+						  "price" : "$0/mo",
+						  "pricing_name" : "Free",
+						  "recommended" : false,
+						  "recommended_background_color" : {
+							"color" : "#0c63ff",
+							"opacity" : 100
+						  },
+						  "text_color" : "black",
+						  "text_color_custom" : {
+							"color" : "#87909e",
+							"opacity" : 100
+						  }
+						}, {
+						  "annual_price" : "$900/y",
+						  "background_color" : "white",
+						  "background_custom" : {
+							"color" : "#fff",
+							"opacity" : 100
+						  },
+						  "background_gradient_from" : {
+							"color" : "#060f1e",
+							"opacity" : 100
+						  },
+						  "background_gradient_to" : {
+							"color" : "#000",
+							"opacity" : 100
+						  },
+						  "background_option" : "color",
+						  "ctas" : [ {
+							"button_text" : "Purchase Now",
+							"cta" : "",
+							"cta_size" : "md",
+							"cta_style" : "secondary",
+							"cta_type" : "btn",
+							"link" : {
+							  "no_follow" : false,
+							  "open_in_new_tab" : false,
+							  "url" : {
+								"href" : "#",
+								"type" : "EXTERNAL"
+							  }
+							},
+							"modal_target" : "demo"
+						  } ],
+						  "features" : [ {
+							"feature" : "<p>Unlimited Projects</p>"
+						  }, {
+							"feature" : "<p>Branding</p>"
+						  }, {
+							"feature" : "<p>Analytics</p>"
+						  }, {
+							"feature" : "<p>Email Support</p>"
+						  }, {
+							"feature" : "<p>Upgrade Discount</p>"
+						  } ],
+						  "price" : "$80/mo",
+						  "pricing_name" : "Basic",
+						  "recommended" : false,
+						  "recommended_background_color" : {
+							"color" : "#0c63ff",
+							"opacity" : 100
+						  },
+						  "text_color" : "black",
+						  "text_color_custom" : {
+							"color" : "#87909e",
+							"opacity" : 100
+						  }
+						}, {
+						  "annual_price" : "$1,344/y",
+						  "background_color" : "primary",
+						  "background_custom" : {
+							"color" : "#fff",
+							"opacity" : 100
+						  },
+						  "background_gradient_from" : {
+							"color" : "#060f1e",
+							"opacity" : 100
+						  },
+						  "background_gradient_to" : {
+							"color" : "#000",
+							"opacity" : 100
+						  },
+						  "background_option" : "gradient",
+						  "ctas" : [ {
+							"button_text" : "Purchase Now",
+							"cta" : "",
+							"cta_size" : "md",
+							"cta_style" : "primary",
+							"cta_type" : "btn",
+							"link" : {
+							  "no_follow" : false,
+							  "open_in_new_tab" : false,
+							  "url" : {
+								"href" : "#",
+								"type" : "EXTERNAL"
+							  }
+							},
+							"modal_target" : "demo"
+						  } ],
+						  "features" : [ {
+							"feature" : "<p>Unlimited Updates</p>"
+						  }, {
+							"feature" : "<p>Built for Hubspot</p>"
+						  }, {
+							"feature" : "<p>10 Projects</p>"
+						  }, {
+							"feature" : "<p>Email Support</p>"
+						  }, {
+							"feature" : "<p>Analytics</p>"
+						  }, {
+							"feature" : "<p>Sprocket Rocket App Access</p>"
+						  } ],
+						  "price" : "$112/mo",
+						  "pricing_name" : "Standard",
+						  "recommended" : true,
+						  "recommended_background_color" : {
+							"color" : "#0c63ff",
+							"opacity" : 100
+						  },
+						  "text_color" : "white",
+						  "text_color_custom" : {
+							"color" : "#87909e",
+							"opacity" : 100
+						  }
+						} ],
+						design_settings={
+						  "spacing" : {
+							"margin" : {
+							  "bottom" : {
+								"units" : "rem",
+								"value" : 0
+							  },
+							  "top" : {
+								"units" : "rem",
+								"value" : 0
+							  }
+							},
+							"padding" : {
+							  "bottom" : {
+								"units" : "rem",
+								"value" : 0.25
+							  },
+							  "left" : {
+								"units" : "rem",
+								"value" : 0
+							  },
+							  "right" : {
+								"units" : "rem",
+								"value" : 0
+							  },
+							  "top" : {
+								"units" : "rem",
+								"value" : 6.25
+							  }
+							}
+						  },
+						  "top_bottom_padding" : "custom"
+						},
+						heading=[ {
+						  "heading" : "Select Your Plan Below",
+						  "heading_align" : "auto",
+						  "heading_color" : "auto",
+						  "heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+						  },
+						  "heading_display_size" : "auto",
+						  "heading_size" : "1"
+						} ]
+					  %}
+						{% module_attribute "description" %}
+
+						{% end_module_attribute %}
+					  {% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					  {% dnd_module
+						path="../../custom-modules/SR Three Col 02",
+						offset=0,
+						width=12,
+						column=[ {
+						  "add_to_lightbox" : false,
+						  "col_content" : "<p><span>End your subscription anytime, online, no phone call required</span></p>",
+						  "col_image" : {
+							"alt" : "no-hassle-cancel",
+							"height" : 61,
+							"loading" : "lazy",
+							"max_height" : 61,
+							"max_width" : 61,
+							"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/no-hassle-cancel.svg",
+							"width" : 61
+						  },
+						  "col_media_type" : "image",
+						  "col_overlay_color" : {
+							"color" : "#000000",
+							"opacity" : 50
+						  },
+						  "col_text_align" : "left",
+						  "custom_column_size" : false,
+						  "heading" : [ {
+							"heading" : "No hassle cancellation.",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							  "color" : "#30343b",
+							  "opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h4"
+						  } ],
+						  "image_link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+							  "type" : "EXTERNAL"
+							}
+						  },
+						  "lead_text" : false,
+						  "text_color" : "auto",
+						  "video" : {
+							"autoplay" : true,
+							"background_video_design" : "none",
+							"custom_accent_color" : {
+							  "color" : "#000000",
+							  "opacity" : 20
+							},
+							"embed_field" : {
+							  "source_type" : "oembed"
+							},
+							"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+							"loop" : true,
+							"muted" : true,
+							"oembed_thumbnail" : {
+							  "loading" : "disabled",
+							  "src" : ""
+							},
+							"placeholder_fields" : {
+							  "placeholder_description" : "Select a video type in the sidebar.",
+							  "placeholder_title" : "No video selected"
+							},
+							"show_controls" : true,
+							"style_options" : {
+							  "oembed_thumbnail_play_button_color" : {
+								"color" : "#ffffff"
+							  }
+							},
+							"video_accent_color" : "primary",
+							"video_poster" : {
+							  "alt" : "Sprocket Rocket Demo",
+							  "size_type" : "exact",
+							  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+							},
+							"video_type" : "html_video"
+						  }
+						}, {
+						  "add_to_lightbox" : false,
+						  "col_content" : "<p><span>Including 1:1 personalized help to fully leverage the tool</span></p>",
+						  "col_image" : {
+							"alt" : "super-fast-support",
+							"height" : 61,
+							"loading" : "lazy",
+							"max_height" : 61,
+							"max_width" : 61,
+							"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/super-fast-support.svg",
+							"width" : 61
+						  },
+						  "col_media_type" : "image",
+						  "col_overlay_color" : {
+							"color" : "#000000",
+							"opacity" : 50
+						  },
+						  "col_text_align" : "left",
+						  "custom_column_size" : false,
+						  "heading" : [ {
+							"heading" : "Super-fast email support",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							  "color" : "#30343b",
+							  "opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h4"
+						  } ],
+						  "image_link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+							  "type" : "EXTERNAL"
+							}
+						  },
+						  "lead_text" : false,
+						  "text_color" : "auto",
+						  "video" : {
+							"autoplay" : true,
+							"background_video_design" : "none",
+							"custom_accent_color" : {
+							  "color" : "#000000",
+							  "opacity" : 20
+							},
+							"embed_field" : {
+							  "source_type" : "oembed"
+							},
+							"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+							"loop" : true,
+							"muted" : true,
+							"oembed_thumbnail" : {
+							  "loading" : "disabled",
+							  "src" : ""
+							},
+							"placeholder_fields" : {
+							  "placeholder_description" : "Select a video type in the sidebar.",
+							  "placeholder_title" : "No video selected"
+							},
+							"show_controls" : true,
+							"style_options" : {
+							  "oembed_thumbnail_play_button_color" : {
+								"color" : "#ffffff"
+							  }
+							},
+							"video_accent_color" : "primary",
+							"video_poster" : {
+							  "alt" : "Sprocket Rocket Demo",
+							  "size_type" : "exact",
+							  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+							},
+							"video_type" : "html_video"
+						  }
+						}, {
+						  "add_to_lightbox" : false,
+						  "col_content" : "<p><span>Move to a different plan or duration with built-in pro-rating so you never pay extra</span></p>",
+						  "col_image" : {
+							"alt" : "upgrade-downgrade",
+							"height" : 61,
+							"loading" : "lazy",
+							"max_height" : 61,
+							"max_width" : 61,
+							"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/upgrade-downgrade.svg",
+							"width" : 61
+						  },
+						  "col_media_type" : "image",
+						  "col_overlay_color" : {
+							"color" : "#000000",
+							"opacity" : 50
+						  },
+						  "col_text_align" : "left",
+						  "custom_column_size" : false,
+						  "heading" : [ {
+							"heading" : "Upgrade/downgrade anytime",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							  "color" : "#30343b",
+							  "opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h4"
+						  } ],
+						  "image_link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+							  "type" : "EXTERNAL"
+							}
+						  },
+						  "lead_text" : false,
+						  "text_color" : "auto",
+						  "video" : {
+							"autoplay" : true,
+							"background_video_design" : "none",
+							"custom_accent_color" : {
+							  "color" : "#000000",
+							  "opacity" : 20
+							},
+							"embed_field" : {
+							  "source_type" : "oembed"
+							},
+							"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+							"loop" : true,
+							"muted" : true,
+							"oembed_thumbnail" : {
+							  "loading" : "disabled",
+							  "src" : ""
+							},
+							"placeholder_fields" : {
+							  "placeholder_description" : "Select a video type in the sidebar.",
+							  "placeholder_title" : "No video selected"
+							},
+							"show_controls" : true,
+							"style_options" : {
+							  "oembed_thumbnail_play_button_color" : {
+								"color" : "#ffffff"
+							  }
+							},
+							"video_accent_color" : "primary",
+							"video_poster" : {
+							  "alt" : "Sprocket Rocket Demo",
+							  "size_type" : "exact",
+							  "src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+							},
+							"video_type" : "html_video"
+						  }
+						} ],
+						design_settings={
+						  "background_color" : "light",
+						  "spacing" : {
+							"margin" : {
+							  "bottom" : {
+								"units" : "rem",
+								"value" : 0
+							  },
+							  "top" : {
+								"units" : "rem",
+								"value" : 0
+							  }
+							},
+							"padding" : {
+							  "bottom" : {
+								"units" : "rem",
+								"value" : 6.25
+							  },
+							  "left" : {
+								"units" : "rem",
+								"value" : 0
+							  },
+							  "right" : {
+								"units" : "rem",
+								"value" : 0
+							  },
+							  "top" : {
+								"units" : "rem",
+								"value" : 3.25
+							  }
+							}
+						  },
+						  "top_bottom_padding" : "custom"
+						},
+						heading=[ {
+						  "heading" : "You may cancel your SparkToro subscription or change plans at any time, your plan will stay active until the end of your billing cycle.",
+						  "heading_align" : "auto",
+						  "heading_color" : "auto",
+						  "heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+						  },
+						  "heading_display_size" : "auto",
+						  "heading_size" : "p"
+						} ]
+					  %}
+					  {% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					  {% dnd_module
+						path="../../custom-modules/SR Pricing 01",
+						offset=0,
+						width=12,
+						design_settings={
+						  "background_color" : "none"
+						},
+						heading=[ {
+						  "heading" : "Feature Comparison",
+						  "heading_align" : "auto",
+						  "heading_color" : "auto",
+						  "heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+						  },
+						  "heading_display_size" : "auto",
+						  "heading_size" : "h2"
+						} ]
+					  %}
+					  {% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					  {% dnd_module
+						path="../../custom-modules/SR Tabs Vertical 01",
+						offset=0,
+						width=12,
+						heading=[ {
+						  "heading" : "Plans & Billing FAQs:",
+						  "heading_align" : "auto",
+						  "heading_color" : "auto",
+						  "heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+						  },
+						  "heading_display_size" : "auto",
+						  "heading_size" : "h2"
+						} ],
+						tab_item=[ {
+							"tab_content" : "<p><span>You may cancel your SparkToro subscription or change plans at any time by clicking on the 'cancel subscription' button on the My Account-&gt;Subscription page. Your paid plan will end on the date of your next billing cycle (i.e. the month or year anniversary of whenever you first paid for your subscription's start). </span></p>\n<p><span>We do not offer refunds for partial use, except in the cases of SparkToro-caused issues with account access or other problems. If this is the case, email us:&nbsp;</span><span><a href='mailto:support@sparktoro.com'>support@sparktoro.com</a></span><span>&nbsp;and we'll look into any troubles you've experienced.</span></p>",
+							"tab_heading" : [ {
+							  "heading" : "What is SparkToro's cancellation policy?",
+							  "heading_align" : "auto",
+							  "heading_color" : "auto",
+							  "heading_color_custom" : {
+								"color" : "#30343b",
+								"opacity" : 100
+							  },
+							  "heading_display_size" : "auto",
+							  "heading_size" : "h3"
+							} ],
+							"tab_label" : "What is SparkToro's cancellation policy?"
+						  }, {
+							"tab_content" : "<p>For technical, logistical, and access-related reasons, we do not allow the crawling or extraction of SparkToro results by bots, programmatic queries, or other forms of automated software.</p>\n<p>We make substantive efforts to detect such queries, and accounts associated with them may be suspended or banned. In the future, we hope to offer an API that will enable programmatic, large volume queries against our dataset. Email<span>&nbsp;</span><span><a href='mailto:support@sparktoro.com'>support@sparktoro.com</a></span><span>&nbsp;</span>if you’re interested in API access, and we’ll get you on the try-it-early list.</p>",
+							"tab_heading" : [ {
+							  "heading" : "Can I use software to run SparkToro searches?",
+							  "heading_align" : "auto",
+							  "heading_color" : "auto",
+							  "heading_color_custom" : {
+								"color" : "#30343b",
+								"opacity" : 100
+							  },
+							  "heading_display_size" : "auto",
+							  "heading_size" : "h3"
+							} ],
+							"tab_label" : "Can I use software to run SparkToro searches?"
+						  }, {
+							"tab_content" : "<p><span>You can switch to a new plan at any time by going to the Billing page in your account. Select the plan you’d like to switch to and immediately start using new features.</span></p>",
+							"tab_heading" : [ {
+							  "heading" : "How do I switch to a different plan?",
+							  "heading_align" : "auto",
+							  "heading_color" : "auto",
+							  "heading_color_custom" : {
+								"color" : "#30343b",
+								"opacity" : 100
+							  },
+							  "heading_display_size" : "auto",
+							  "heading_size" : "h3"
+							} ],
+							"tab_label" : "How do I switch to a different plan?"
+						  }, {
+							  "tab_content" : "<p>You sure can, at the top of this pricing page there is a annual to monthly toggle that will update the pricing for monthly subscriptions. Below is what the toggle looks like.</p>\n<p><a href='https://sparktoro.com/pricing#price-switch'><img src='https://sparktoro.com/img/pricing/toggle.dd461a014db76b41a4edb3f054ca9171.png' height='88' loading='lazy' _cdn='true'></a></p>",
+							"tab_heading" : [ {
+							  "heading" : "Can I subscribe monthly?",
+							  "heading_align" : "auto",
+							  "heading_color" : "auto",
+							  "heading_color_custom" : {
+								"color" : "#30343b",
+								"opacity" : 100
+							  },
+							  "heading_display_size" : "auto",
+							  "heading_size" : "h3"
+							} ],
+							"tab_label" : "Can I subscribe monthly?"
+						  }, {
+							  "tab_content" : "<p><span>If you have any additional questions, just send an email over to&nbsp;</span><span><a href='mailto:support@sparktoro.com'>support@sparktoro.com</a></span><span>&nbsp;and we will get back to you in a flash.</span></p>",
+							"tab_heading" : [ {
+							  "heading" : "Additional billing questions?",
+							  "heading_align" : "auto",
+							  "heading_color" : "auto",
+							  "heading_color_custom" : {
+								"color" : "#30343b",
+								"opacity" : 100
+							  },
+							  "heading_display_size" : "auto",
+							  "heading_size" : "h3"
+							} ],
+							"tab_label" : "Additional billing questions?"
+						  } ]
+					  %}
+					  {% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					  {% dnd_module
+						path="../../custom-modules/SR Cards Testimonial Grid 02",
+						offset=0,
+						width=12,
+						card=[ {
+						  "card_content" : "<p>The template is really nice and offers quite a large set of options. It's beautiful and the coding is done quickly and seamlessly. Thank you!</p>",
+						  "team_image" : {
+							"alt" : "Jovani Tate",
+							"height" : "128",
+							"loading" : "lazy",
+							"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/images/02.jpg",
+							"width" : "128"
+						  },
+						  "team_name" : "Jovani Tate",
+						  "team_title" : "INTERACTION DESIGNER"
+						}, {
+						  "card_content" : "<p>It was easy to put together pages and when I was done, I could just click and have the page automatically created in HubSpot.</p>",
+						  "team_image" : {
+							"alt" : "Kaila Terrell",
+							"height" : "128",
+							"loading" : "lazy",
+							"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/images/06.jpg",
+							"width" : "128"
+						  },
+						  "team_name" : "Kaila Terrell",
+						  "team_title" : "GRAPHIC DESIGNER"
+						}, {
+						  "card_content" : "<p>We built our old site using a template, and it left a lot to be desired. With SprocketRocket, we can go page by page and get the exact flow of content we need.</p>",
+						  "team_image" : {
+							"alt" : "Hugh Branch",
+							"height" : "128",
+							"loading" : "lazy",
+							"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/images/05.jpg",
+							"width" : "128"
+						  },
+						  "team_name" : "Hugh Branch",
+						  "team_title" : "INBOUND WRITER"
+						}, {
+						  "card_content" : "<p>We built our old site using a template, and it left a lot to be desired. With SprocketRocket, we can go page by page and get the exact flow of content we need.</p>",
+						  "team_image" : {
+							"height" : "128",
+							"loading" : "lazy",
+							"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/images/05.jpg",
+							"width" : "128"
+						  },
+						  "team_name" : "Hugh Branch",
+						  "team_title" : "INBOUND WRITER"
+						}, {
+						  "card_content" : "<p>We built our old site using a template, and it left a lot to be desired. With SprocketRocket, we can go page by page and get the exact flow of content we need.</p>",
+						  "team_image" : {
+							"alt" : "Hugh Brancht",
+							"height" : "128",
+							"loading" : "lazy",
+							"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/images/05.jpg",
+							"width" : "128"
+						  },
+						  "team_name" : "Hugh Branch",
+						  "team_title" : "INBOUND WRITER"
+						}, {
+						  "card_content" : "<p>We built our old site using a template, and it left a lot to be desired. With SprocketRocket, we can go page by page and get the exact flow of content we need.</p>",
+						  "team_image" : {
+							"alt" : "Hugh Brancht",
+							"height" : "128",
+							"loading" : "lazy",
+							"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/images/05.jpg",
+							"width" : "128"
+						  },
+						  "team_name" : "Hugh Branch",
+						  "team_title" : "INBOUND WRITER"
+						} ],
+						ctas=[ ],
+						heading=[ {
+						  "heading" : "What People Say About SparkToro",
+						  "heading_align" : "auto",
+						  "heading_color" : "auto",
+						  "heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+						  },
+						  "heading_display_size" : "auto",
+						  "heading_size" : "h2"
+						} ],
+						design_settings={
+						  "spacing" : {
+							"margin" : {
+							  "bottom" : {
+								"units" : "rem",
+								"value" : 0
+							  },
+							  "top" : {
+								"units" : "rem",
+								"value" : 0
+							  }
+							},
+							"padding" : {
+							  "bottom" : {
+								"units" : "rem",
+								"value" : 6.25
+							  },
+							  "left" : {
+								"units" : "rem",
+								"value" : 0
+							  },
+							  "right" : {
+								"units" : "rem",
+								"value" : 0
+							  },
+							  "top" : {
+								"units" : "px",
+								"value" : 0
+							  }
+							}
+						  },
+						  "top_bottom_padding" : "custom"
+						}
+					  %}
+					  {% end_dnd_module %}
+					{% end_dnd_row %}
+				  {% end_dnd_column %}
+				{% end_dnd_section %}
+			{% end_dnd_area %}
+		{% endblock body %}
+
+		{% block footer %}
+			{% boolean "enabled_site_footer" label='Enable Global Site Footer', value=true, export_to_template_context=True %}
+			{% if widget_data.enabled_site_footer.value %}
+				{% global_partial path="../partials/site_footer.html" %}
+			{% endif %}
+		{% endblock footer %}
+
+		{% include '../footer-includes.html' %}
+	</body>
+</html>

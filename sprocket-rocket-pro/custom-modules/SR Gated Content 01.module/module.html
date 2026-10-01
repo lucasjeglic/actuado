@@ -1,0 +1,76 @@
+{% if module.enabled %}
+
+	{% if is_in_editor %}
+	<div class="hs-placeholder mb-0">
+		<div class="hs-placeholder__inner">
+			<h4 class="hs-placeholder__title py-4">SR Gated Content 01</h4>
+		</div>
+	</div>
+	{% endif %}
+
+	{% import "../../templates/macros.html" as macros %}
+	<!-- if contact doesn't have email inside of CRM -->
+	{% if !contact_without_defaults.email %}
+	<div class="sr-gated-content-01 {{name}} fade {{ macros.module_background(module.design_settings) }} text-{{ module.design_settings.text_color }} {{ macros.text_align(module.design_settings) }} {% if module.class %} {{ module.class }}{% endif %} sr_module"{% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }} tabindex="-1" role="dialog" aria-labelledby="{{name}}" aria-hidden="true">
+
+		{% if module.design_settings.background_option == 'video' %}
+			{{macros.bg_video(module.background_video, module.design_settings.background_image.src)}}
+		{% endif %}
+
+		<div class="modal fade sr-modal" id="gated-popup" tabindex="-1" role="dialog" aria-labelledby="gated-popupTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document" style=" max-width: {{ module.design_settings.modal_width }}px; ">
+				<div class="modal-content sr-border">
+					<div class="modal-body ">
+						<div class="modal_content">
+							{{ macros.image(module.modal_image) }}
+							{% if module.heading || module.description %}
+							<div class="sr-spacer-25">
+								{{ macros.heading(module.heading) }}
+								{% if module.description %}
+								<div class="description{% if module.lead_text %} lead{% endif %}">{{ module.description}}</div>
+								{% endif %}
+							</div>
+							{% endif %}
+							{{ macros.form(module.form, false, true) }}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endif %}
+
+	{% require_css %}
+	<style>
+		{{ macros.design_settings(name, module.design_settings) }}
+	</style>
+	{% end_require_css %}	{% require_js %}
+	<script>
+		document.addEventListener("DOMContentLoaded", function(event) {
+			let shown = false;
+			window.addEventListener('message', function(event) {
+				if(event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormSubmit') {
+					var modal = document.querySelector('.{{ name }} .modal');
+					hideModal(modal.id);
+					sessionStorage.alreadyClickedExitModal = 1;
+				}
+			});
+			{% if not is_in_editor && !module_preview %}
+			document.addEventListener('scroll', function(e) {
+				var modal = document.querySelector('.{{ name }} .modal');
+				if (modal) {
+					var documentHeight = document.body.scrollHeight;
+					var percentage = parseFloat('.{{ module.modal_open_at }}');
+					var triggerAt = percentage * documentHeight;
+					if (window.scrollY >= triggerAt && !sessionStorage.alreadyClickedExitModal && !shown) {
+						shown = true;
+						showModal(modal.id, false);
+					}
+				}
+			});
+			{% endif %}
+		});
+
+	</script>
+	{% end_require_js %}
+{% endif %}

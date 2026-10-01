@@ -1,0 +1,128 @@
+{% if module.enabled %}
+
+	{% import "../../templates/macros.html" as macros %}
+
+	{% if module.design_settings.container_width == 'min' %}
+		{% set width_class = 'col-md-6 offset-md-3' %}
+	{% elif module.design_settings.container_width == 'narrow' %}
+		{% set width_class = 'col-md-8 offset-md-2' %}
+	{% elif module.design_settings.container_width == 'wide' %}
+		{% set width_class = 'col-md-10 offset-md-1' %}
+	{% else %}
+		{% set width_class = 'col-md-12' %}
+	{% endif %}
+
+	{{ macros.label("SR Hero 01") }}
+
+	<div data-parallax="{{ module.parallax }}" data-background-option="{{ module.design_settings.background_option }}" class="sr-hero-01 sr-cover-parallax position-relative overflow-hidden {{ name }} {% if module.design_settings.background_option == 'color' %} bg-{{ module.design_settings.background_color }}{% endif %} text-{{ module.design_settings.text_color }} {{ macros.text_align(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+
+		{% if module.design_settings.background_option == 'image' %}
+		<div class="sr-cover-image"></div>
+		{% elif module.design_settings.background_option == 'video' %}
+		<div class="sr-cover-image">
+			{{macros.bg_video(module.background_video, module.design_settings.background_image.src)}}
+		</div>
+		{% endif %}
+
+		<div class="{{module.design_settings.layout}}">
+			{% if module.design_settings.container_width != 'max' %}
+			<div class="row">
+				<div class="{{ width_class }}">
+			{% endif %}
+					<div class="sr-cover d-flex align-items-center {% if module.height != 'auto' %}height-{{ module.height }}{% else %}{{ macros.padding(module.design_settings) }}{% endif %}">
+						<div class="sr-cover-inner">
+
+							{% if module.heading || module.description %}
+							<div {% if module.ctas %}class="sr-spacer-bottom-50"{% endif %}>
+								{{ macros.heading(module.heading) }}
+								{% if module.description %}
+								<div class="description{% if module.lead_text %} lead{% endif %}">{{ module.description}}</div>
+								{% endif %}
+							</div>
+							{% endif %}
+
+							{{ macros.cta(module.ctas) }}
+
+						</div>
+					</div>
+			{% if module.design_settings.container_width != 'max' %}
+				</div>
+			</div>
+			{% endif %}
+		</div>
+	</div>
+
+	{% require_css %}
+	<style>
+		.{{name}} {
+			{%- if module.design_settings.background_option == 'custom' || module.design_settings.background_option == 'image' -%}
+			background-color: {{ macros.color(module.design_settings.background_custom) }};
+			{%- elif module.design_settings.background_option == 'gradient' -%}
+			background: {{ module.design_settings.background_gradient.css }};
+			{%- endif -%}
+			{% if module.design_settings.text_color == 'custom' %}
+			color: {{ macros.color(module.design_settings.text_color_custom) }};
+			{% endif %}
+			{{module.design_settings.border.css}};
+		}
+		.{{name}} .sr-cover-image {
+			position: absolute;
+			width: 100%;
+			{% if module.parallax %}
+			height: 150%;
+			top: -50%;
+			{% else %}
+			height: 100%;
+			top: 0%;
+			{% endif %}
+			{%- if module.design_settings.background_option == 'image' -%}
+			background-image: url({{ resize_image_url(module.design_settings.background_image.src, '1440') }});
+			background-size: {{ module.design_settings.background_image.background_size }};
+			background-position: {{ module.design_settings.background_image.background_position|lower|replace("_", " ")|replace("middle", "center") }};
+			{%- endif -%}
+		}
+		{%- if module.design_settings.background_option == 'image' -%}
+		@media (min-width: 768px) {
+			.{{name}} .sr-cover-image {
+				background-image: url({{ resize_image_url(module.design_settings.background_image.src, '2880') }});
+				{% if module.design_settings.fixed_background %}
+				background-attachment: fixed;
+				{% endif %}
+			}
+		}
+		.{{name}}  .sr-cover-image::before {
+			content: "";
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background-color: {{ macros.color(module.design_settings.background_overlay_color) }};
+		}
+		{%- elif module.design_settings.background_option == 'video' -%}
+		.{{name}} {
+			position: relative;
+			background-color: {{ macros.color(module.design_settings.background_custom) }}
+		}
+		.{{name}} .container,
+		.{{name}} .container-fliud {
+			position: relative;
+		}
+		.{{name}} .sr-bg-video-wrapper:after {
+			content: "";
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background-color: {{ macros.color(module.design_settings.background_overlay_color) }}
+		}
+		{%- endif -%}
+		{{ macros.design_settings(name, module.design_settings, true) }}
+	</style>
+	{% end_require_css %}
+	{% if module.parallax %}
+	{{ require_js(get_asset_url('../../js/gsap.js'), { defer: true, position: head }) }}
+	{{ require_js(get_asset_url('../../js/ScrollTrigger.js'), { defer: true, position: head }) }}
+	{% endif %}
+{% endif %}

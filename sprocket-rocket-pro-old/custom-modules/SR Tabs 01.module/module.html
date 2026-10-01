@@ -1,0 +1,70 @@
+{% if module.enabled %}
+
+	{% import "../../templates/macros.html" as macros %}
+
+	{% if module.design_settings.container_width == 'min' %}
+		{% set width_class = 'col-md-6 offset-md-3' %}
+	{% elif module.design_settings.container_width == 'narrow' %}
+		{% set width_class = 'col-md-8 offset-md-2' %}
+	{% elif module.design_settings.container_width == 'wide' %}
+		{% set width_class = 'col-md-10 offset-md-1' %}
+	{% endif %}
+
+
+	{{ macros.label("SR Tabs 01") }}
+
+	<div class="sr-tabs-01 {{ name }} {% if module.design_settings.background_option == 'color' %} bg-{{ module.design_settings.background_color }}{% endif %} {{ macros.padding(module.design_settings) }} text-{{ module.design_settings.text_color }} {{ macros.text_align(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+
+		{% if module.design_settings.background_option == 'video' %}
+		{{macros.bg_video(module.background_video, module.design_settings.background_image.src)}}
+		{% endif %}
+
+		<div class="{{ module.design_settings.layout }}">
+
+			{% if module.design_settings.container_width != 'max' %}
+				<div class="row">
+					<div class="{{ width_class }}">
+			{% endif %}
+
+						{{ macros.heading(module.heading) }}
+
+						{% if module.description %}
+							<div class="description sr-spacer-bottom-25{% if module.lead_text %} lead{% endif %}">{{ module.description}}</div>
+						{% endif %}
+
+						<ul class="nav nav-tabs cta-group mb-4 unstyle-list" role="tablist">
+							{% for item in module.tabs %}
+								<li class="nav-item btn-wrapper btn-{{module.tab_style}}-wrapper">
+									<button class="nav-link cta-button{% if loop.first %} active{% endif %}" data-tab="{{ name }}_tab_{{ loop.index }}" data-toggle="tab" role="tab" aria-controls="{{ name }}_tab_{{ loop.index }}" aria-selected="true">{{ item.tab_label }}</button>
+								</li>
+							{% endfor %}
+						</ul>
+
+						<div class="tab-content">
+							{% for item in module.tabs %}
+							<div class="tab-pane{% if loop.first %} active{% endif %}" data-tab="{{ name }}_tab_{{ loop.index }}" role="tabpanel" aria-labelledby="{{ name }}_tab_{{ loop.index }}">
+								{{ item.tab_content }}
+							</div>
+							{% endfor %}
+						</div>
+			{% if module.design_settings.container_width != 'max' %}
+					</div>
+				</div>
+			{% endif %}
+
+		</div>
+	</div>
+
+	{% require_css %}
+		<style>
+			{{ macros.design_settings(name, module.design_settings) }}
+			.{{ name }} .nav .nav-item .active {
+				background: {{ module.tabs_active.background.css }};
+				border-color: {{ module.tabs_active.background.css }};
+			}
+			.{{ name }} .nav .nav-link.active {
+				color: {{ module.tabs_active.text_color.css }};
+			}
+		</style>
+	{% end_require_css %}
+{% endif %}

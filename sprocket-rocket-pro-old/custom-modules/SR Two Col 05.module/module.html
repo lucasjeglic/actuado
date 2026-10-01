@@ -1,0 +1,42 @@
+{% if module.enabled %}
+
+	{% import "../../templates/macros.html" as macros %}
+
+	{% require_css %}
+	<style>
+		{{ macros.design_settings(name, module.design_settings) }}
+	</style>
+	{% end_require_css %}
+
+	<div class="sr-two-col-05 {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} text-{{ module.design_settings.text_color }} {{ macros.text_align(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+
+		{{ macros.module_bg_video(module) }}
+
+		<div class="{{ module.design_settings.layout }}">
+			<div class="row">
+				<div class="{{ macros.col_size(module.columns.left_column) }} d-flex flex-column">
+					{{ macros.heading(module.heading) }}
+					{% if module.bleed_image.src %}
+					<div class="bleed-image d-none d-md-block">
+						{{ macros.image(module.bleed_image) }}
+					</div>
+					{% endif %}
+				</div>
+				<div class="{{ macros.col_size(module.columns.right_column) }} description {% if module.text_color != 'auto' %}text-{{ module.text_color }}{% endif %}">
+					{% if module.description %}
+					<div class="description{% if module.lead_text %} lead{% endif %}">
+						{{module.description}}
+					</div>
+					{% endif %}
+				</div>
+				<div class="col-12 d-md-none text-center mt-5">
+					{% if module.bleed_image.src %}
+					<div class="bleed-image">
+						{{ macros.image(module.bleed_image) }}
+					</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endif %}

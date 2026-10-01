@@ -1,0 +1,79 @@
+.sr-cards-grid-01 > div {
+	position: relative;
+}
+
+.sr-cards-grid-01 .card {
+	padding: 4rem 0;
+	border: none;
+	border-radius: 0;
+	background-color: transparent;
+	-webkit-transition: background 0.25s ease-in-out;
+	-o-transition: background 0.25s ease-in-out;
+	transition: background 0.25s ease-in-out;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+}
+
+.sr-cards-grid-01 .card:not(:hover) .card-inner {
+	border: 1px solid transparent !important;
+}
+
+.sr-cards-grid-01 .card-inner {
+	padding: 4rem 1.5rem;
+	border: 1px solid;
+	border-color: transparent;
+	-webkit-transition: border-color 0.25s ease-in-out;
+	-moz-transition: border-color 0.25s ease-in-out;
+	transition: border-color 0.25s ease-in-out;
+	width: 80%;
+}
+
+.sr-cards-grid-01 .card:is(:hover, :focus),
+.sr-cards-grid-01 .card:has(.cta-button:focus) {
+	-webkit-box-shadow: 15px 25px 60px 0 rgba(0, 0, 0, 0.13);
+	box-shadow: 15px 25px 60px 0 rgba(0, 0, 0, 0.13);
+}
+
+@media (min-width: 1200px) {
+	.sr-cards-grid-01 .card-inner {
+		width: 55%;
+	}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+	.sr-cards-grid-01 .card:nth-child(2n) {
+		border-right: none;
+	}
+}
+
+@media only screen and (min-width: 992px) {
+	.sr-cards-grid-01 .card-inner {
+		width: 75%;
+	}
+
+	.sr-cards-grid-01 .card .cta-button {
+		opacity: 0;
+		-webkit-transition: opacity 0.25s ease-in-out;
+		-moz-transition: opacity 0.25s ease-in-out;
+		transition: opacity 0.25s ease-in-out;
+	}
+
+	.sr-cards-grid-01 .card:is(:hover, :focus) .cta-button,
+	.sr-cards-grid-01 .card .cta-button:focus {
+		opacity: 1;
+	}
+
+	.sr-cards-grid-01 .card:nth-child(3n) {
+		border-right: none !important;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.sr-cards-grid-01 .card:first-child {
+		border-top: none !important;
+	}
+}

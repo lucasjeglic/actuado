@@ -1,0 +1,968 @@
+<!--
+templateType: page
+isAvailableForNewContent: true
+label: Qualio Product Page
+screenshotPath: ../../images/qualio-product-page.jpg
+-->
+
+	{% include '../header.html' %}
+
+		<body class="pre-built {{ widget_data.body_class.value }} {{ builtin_body_classes }} {% set theme_name = content.template_path|split('/')|first %}{{ theme_name }} {% set template_name = content.template_path|split('/')|last %}{{ template_name[:-5] if template_name }}">
+
+		{% block header %}
+			{% boolean "enabled_site_header" label='Enable Global Site Header', value=true, export_to_template_context=True %}
+			{% if widget_data.enabled_site_header.value %}
+				{% global_partial path="../partials/site_header.html" %}
+			{% endif %}
+		{% endblock header %}
+
+		{% block body %}
+			{% dnd_area "body_dnd_area", class='body_dnd_area' label="Main Content" %}
+				{% dnd_section %}
+					  {% dnd_column
+						offset=0,
+						width=12
+					  %}
+						{% dnd_row %}
+						  {% dnd_module
+							path="../../custom-modules/SR Hero 01",
+							offset=0,
+							width=12,
+							ctas=[ {
+							  "button_text" : "Get Started Now",
+							  "cta" : "",
+							  "cta_size" : "md",
+							  "cta_style" : "primary",
+							  "cta_type" : "btn",
+							  "link" : {
+								"no_follow" : false,
+								"open_in_new_tab" : false,
+								"url" : {
+								  "href" : "#",
+								  "type" : "EXTERNAL"
+								}
+							  },
+							  "modal_target" : "demo"
+							}, {
+							  "button_text" : "Watch The Video",
+							  "cta" : "",
+							  "cta_size" : "md",
+							  "cta_style" : "outline-primary",
+							  "cta_type" : "btn",
+							  "link" : {
+								"no_follow" : false,
+								"open_in_new_tab" : false,
+								"url" : {
+								  "href" : "#",
+								  "type" : "EXTERNAL"
+								}
+							  },
+							  "modal_target" : "demo"
+							} ],
+							design_settings={
+							  "background_option" : "color",
+							  "text_color" : "black"
+							},
+							heading=[ {
+							  "heading" : "The #1-rated eQMS to unite yourteam, data and processes",
+							  "heading_align" : "auto",
+							  "heading_color" : "auto",
+							  "heading_color_custom" : {
+								"color" : "#30343b",
+								"opacity" : 100
+							  },
+							  "heading_display_size" : "auto",
+							  "heading_size" : "h1"
+							} ],
+							height="small"
+						  %}
+							{% module_attribute "description" %}
+							  <h5>Learn why Qualio's cloud-based QMS is rated #1 easiest to use and trusted by<br>hundreds of quality experts in over 80 countries.</h5>
+							{% end_module_attribute %}
+						  {% end_dnd_module %}
+						{% end_dnd_row %}
+						{% dnd_row %}
+						  {% dnd_module
+							path="../../custom-modules/SR Clients Carousel 01",
+							offset=0,
+							width=12,
+							design_settings={
+							  "background_custom" : {
+								"color" : "#FFF2F0",
+								"opacity" : 100
+							  },
+							  "background_option" : "custom",
+							  "top_bottom_padding" : "full"
+							}
+						  %}
+						  {% end_dnd_module %}
+						{% end_dnd_row %}
+						{% dnd_row %}
+						  {% dnd_module
+							path="../../custom-modules/SR One Col Media 01",
+							offset=0,
+							width=12,
+							design_settings={
+							  "background_option" : "color"
+							},
+							heading=[ ]
+						  %}
+							{% module_attribute "description" %}
+
+							{% end_module_attribute %}
+						  {% end_dnd_module %}
+						{% end_dnd_row %}
+						{% dnd_row %}
+						  {% dnd_module
+							path="../../custom-modules/SR Cards Grid 02",
+							offset=0,
+							width=12,
+							cards=[ {
+							  "background_color" : {
+								"color" : "#ffffff",
+								"opacity" : 100
+							  },
+							  "ctas" : [ {
+								"add_icon" : false,
+								"button_text" : "Learn more >",
+								"cta" : "",
+								"cta_size" : "md",
+								"cta_style" : "none",
+								"cta_type" : "btn",
+								"default" : {
+								  "background" : {
+									"color" : "#0c63ff",
+									"opacity" : 100
+								  },
+								  "border" : {
+									"color" : "#0c63ff",
+									"opacity" : 100
+								  },
+								  "text" : {
+									"color" : "#fff",
+									"opacity" : 100
+								  }
+								},
+								"hover" : {
+								  "background" : {
+									"color" : "#5a93fd",
+									"opacity" : 100
+								  },
+								  "border" : {
+									"color" : "#5a93fd",
+									"opacity" : 100
+								  },
+								  "text" : {
+									"color" : "#fff",
+									"opacity" : 100
+								  }
+								},
+								"icon" : {
+								  "icon" : {
+									"name" : "arrow-right",
+									"type" : "SOLID",
+									"unicode" : "f061"
+								  },
+								  "position" : "right"
+								},
+								"link" : {
+								  "no_follow" : false,
+								  "open_in_new_tab" : false,
+								  "url" : {
+									"href" : "#",
+									"type" : "EXTERNAL"
+								  }
+								},
+								"modal_target" : "demo"
+							  } ],
+							  "heading" : [ {
+								"heading" : "Document management",
+								"heading_align" : "auto",
+								"heading_color" : "auto",
+								"heading_color_custom" : {
+								  "color" : "#30343b",
+								  "opacity" : 100
+								},
+								"heading_display_size" : "auto",
+								"heading_size" : "h4"
+							  } ],
+							  "image" : {
+								"alt" : "icon_Document-management",
+								"height" : 105,
+								"loading" : "lazy",
+								"max_height" : 105,
+								"max_width" : 113,
+								"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/icon_Document-management.svg",
+								"width" : 113
+							  },
+							  "text" : "<p>Easy and fast adjustments of elements is possible with Core template.</p>",
+							  "text_color" : "auto"
+							}, {
+							  "background_color" : {
+								"color" : "#ffffff",
+								"opacity" : 100
+							  },
+							  "ctas" : [ {
+								"add_icon" : false,
+								"button_text" : "Learn more >",
+								"cta" : "",
+								"cta_size" : "md",
+								"cta_style" : "none",
+								"cta_type" : "btn",
+								"default" : {
+								  "background" : {
+									"color" : "#0c63ff",
+									"opacity" : 100
+								  },
+								  "border" : {
+									"color" : "#0c63ff",
+									"opacity" : 100
+								  },
+								  "text" : {
+									"color" : "#fff",
+									"opacity" : 100
+								  }
+								},
+								"hover" : {
+								  "background" : {
+									"color" : "#5a93fd",
+									"opacity" : 100
+								  },
+								  "border" : {
+									"color" : "#5a93fd",
+									"opacity" : 100
+								  },
+								  "text" : {
+									"color" : "#fff",
+									"opacity" : 100
+								  }
+								},
+								"icon" : {
+								  "icon" : {
+									"name" : "arrow-right",
+									"type" : "SOLID",
+									"unicode" : "f061"
+								  },
+								  "position" : "right"
+								},
+								"link" : {
+								  "no_follow" : false,
+								  "open_in_new_tab" : false,
+								  "url" : {
+									"href" : "#",
+									"type" : "EXTERNAL"
+								  }
+								},
+								"modal_target" : "demo"
+							  } ],
+							  "heading" : [ {
+								"heading" : "Supplier management",
+								"heading_align" : "auto",
+								"heading_color" : "auto",
+								"heading_color_custom" : {
+								  "color" : "#30343b",
+								  "opacity" : 100
+								},
+								"heading_display_size" : "auto",
+								"heading_size" : "h4"
+							  } ],
+							  "image" : {
+								"alt" : "Icon-supplier-management",
+								"height" : 105,
+								"loading" : "lazy",
+								"max_height" : 105,
+								"max_width" : 113,
+								"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/Icon-supplier-management.svg",
+								"width" : 113
+							  },
+							  "text" : "<p><span>Control and categorize suppliers and third parties with complete visibility.</span></p>",
+							  "text_color" : "auto"
+							}, {
+							  "background_color" : {
+								"color" : "#ffffff",
+								"opacity" : 100
+							  },
+							  "ctas" : [ {
+								"add_icon" : false,
+								"button_text" : "Learn more >",
+								"cta" : "",
+								"cta_size" : "md",
+								"cta_style" : "none",
+								"cta_type" : "btn",
+								"default" : {
+								  "background" : {
+									"color" : "#0c63ff",
+									"opacity" : 100
+								  },
+								  "border" : {
+									"color" : "#0c63ff",
+									"opacity" : 100
+								  },
+								  "text" : {
+									"color" : "#fff",
+									"opacity" : 100
+								  }
+								},
+								"hover" : {
+								  "background" : {
+									"color" : "#5a93fd",
+									"opacity" : 100
+								  },
+								  "border" : {
+									"color" : "#5a93fd",
+									"opacity" : 100
+								  },
+								  "text" : {
+									"color" : "#fff",
+									"opacity" : 100
+								  }
+								},
+								"icon" : {
+								  "icon" : {
+									"name" : "arrow-right",
+									"type" : "SOLID",
+									"unicode" : "f061"
+								  },
+								  "position" : "right"
+								},
+								"link" : {
+								  "no_follow" : false,
+								  "open_in_new_tab" : false,
+								  "url" : {
+									"href" : "#",
+									"type" : "EXTERNAL"
+								  }
+								},
+								"modal_target" : "demo"
+							  } ],
+							  "heading" : [ {
+								"heading" : "Light Years Ahead",
+								"heading_align" : "auto",
+								"heading_color" : "auto",
+								"heading_color_custom" : {
+								  "color" : "#30343b",
+								  "opacity" : 100
+								},
+								"heading_display_size" : "auto",
+								"heading_size" : "h4"
+							  } ],
+							  "image" : {
+								"alt" : "icon_Design-controls",
+								"height" : 105,
+								"loading" : "lazy",
+								"max_height" : 105,
+								"max_width" : 113,
+								"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/icon_Design-controls.svg",
+								"width" : 113
+							  },
+							  "text" : "<p><span>Supercharge your product development from a single source of truth.</span></p>",
+							  "text_color" : "auto"
+							}, {
+							  "background_color" : {
+								"color" : "#ffffff",
+								"opacity" : 100
+							  },
+							  "ctas" : [ {
+								"add_icon" : false,
+								"button_text" : "Learn more >",
+								"cta" : "",
+								"cta_size" : "md",
+								"cta_style" : "none",
+								"cta_type" : "btn",
+								"default" : {
+								  "background" : {
+									"color" : "#0c63ff",
+									"opacity" : 100
+								  },
+								  "border" : {
+									"color" : "#0c63ff",
+									"opacity" : 100
+								  },
+								  "text" : {
+									"color" : "#fff",
+									"opacity" : 100
+								  }
+								},
+								"hover" : {
+								  "background" : {
+									"color" : "#5a93fd",
+									"opacity" : 100
+								  },
+								  "border" : {
+									"color" : "#5a93fd",
+									"opacity" : 100
+								  },
+								  "text" : {
+									"color" : "#fff",
+									"opacity" : 100
+								  }
+								},
+								"icon" : {
+								  "icon" : {
+									"name" : "arrow-right",
+									"type" : "SOLID",
+									"unicode" : "f061"
+								  },
+								  "position" : "right"
+								},
+								"link" : {
+								  "no_follow" : false,
+								  "open_in_new_tab" : false,
+								  "url" : {
+									"href" : "#",
+									"type" : "EXTERNAL"
+								  }
+								},
+								"modal_target" : "demo"
+							  } ],
+							  "heading" : [ {
+								"heading" : "Risk management",
+								"heading_align" : "auto",
+								"heading_color" : "auto",
+								"heading_color_custom" : {
+								  "color" : "#30343b",
+								  "opacity" : 100
+								},
+								"heading_display_size" : "auto",
+								"heading_size" : "h4"
+							  } ],
+							  "image" : {
+								"alt" : "icon_Risk-management",
+								"height" : 105,
+								"loading" : "lazy",
+								"max_height" : 105,
+								"max_width" : 113,
+								"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/icon_Risk-management.svg",
+								"width" : 113
+							  },
+							  "text" : "<p><span>Detect and mitigate risks and comply with</span><br><span>ISO 14971 and ICH Q9.</span></p>",
+							  "text_color" : "auto"
+							}, {
+							  "background_color" : {
+								"color" : "#ffffff",
+								"opacity" : 100
+							  },
+							  "ctas" : [ {
+								"add_icon" : false,
+								"button_text" : "Learn more >",
+								"cta" : "",
+								"cta_size" : "md",
+								"cta_style" : "none",
+								"cta_type" : "btn",
+								"default" : {
+								  "background" : {
+									"color" : "#0c63ff",
+									"opacity" : 100
+								  },
+								  "border" : {
+									"color" : "#0c63ff",
+									"opacity" : 100
+								  },
+								  "text" : {
+									"color" : "#fff",
+									"opacity" : 100
+								  }
+								},
+								"hover" : {
+								  "background" : {
+									"color" : "#5a93fd",
+									"opacity" : 100
+								  },
+								  "border" : {
+									"color" : "#5a93fd",
+									"opacity" : 100
+								  },
+								  "text" : {
+									"color" : "#fff",
+									"opacity" : 100
+								  }
+								},
+								"icon" : {
+								  "icon" : {
+									"name" : "arrow-right",
+									"type" : "SOLID",
+									"unicode" : "f061"
+								  },
+								  "position" : "right"
+								},
+								"link" : {
+								  "no_follow" : false,
+								  "open_in_new_tab" : false,
+								  "url" : {
+									"href" : "#",
+									"type" : "EXTERNAL"
+								  }
+								},
+								"modal_target" : "demo"
+							  } ],
+							  "heading" : [ {
+								"heading" : "Training management",
+								"heading_align" : "auto",
+								"heading_color" : "auto",
+								"heading_color_custom" : {
+								  "color" : "#30343b",
+								  "opacity" : 100
+								},
+								"heading_display_size" : "auto",
+								"heading_size" : "h4"
+							  } ],
+							  "image" : {
+								"alt" : "icon_Training-management",
+								"height" : 105,
+								"loading" : "lazy",
+								"max_height" : 105,
+								"max_width" : 113,
+								"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/icon_Training-management.svg",
+								"width" : 113
+							  },
+							  "text" : "<p><span>Build a competent, confident, compliant, continuously improving workforce.</span></p>",
+							  "text_color" : "auto"
+							}, {
+							  "background_color" : {
+								"color" : "#ffffff",
+								"opacity" : 100
+							  },
+							  "ctas" : [ {
+								"add_icon" : false,
+								"button_text" : "Learn more >",
+								"cta" : "",
+								"cta_size" : "md",
+								"cta_style" : "none",
+								"cta_type" : "btn",
+								"default" : {
+								  "background" : {
+									"color" : "#0c63ff",
+									"opacity" : 100
+								  },
+								  "border" : {
+									"color" : "#0c63ff",
+									"opacity" : 100
+								  },
+								  "text" : {
+									"color" : "#fff",
+									"opacity" : 100
+								  }
+								},
+								"hover" : {
+								  "background" : {
+									"color" : "#5a93fd",
+									"opacity" : 100
+								  },
+								  "border" : {
+									"color" : "#5a93fd",
+									"opacity" : 100
+								  },
+								  "text" : {
+									"color" : "#fff",
+									"opacity" : 100
+								  }
+								},
+								"icon" : {
+								  "icon" : {
+									"name" : "arrow-right",
+									"type" : "SOLID",
+									"unicode" : "f061"
+								  },
+								  "position" : "right"
+								},
+								"link" : {
+								  "no_follow" : false,
+								  "open_in_new_tab" : false,
+								  "url" : {
+									"href" : "#",
+									"type" : "EXTERNAL"
+								  }
+								},
+								"modal_target" : "demo"
+							  } ],
+							  "heading" : [ {
+								"heading" : "Change control management",
+								"heading_align" : "auto",
+								"heading_color" : "auto",
+								"heading_color_custom" : {
+								  "color" : "#30343b",
+								  "opacity" : 100
+								},
+								"heading_display_size" : "auto",
+								"heading_size" : "h4"
+							  } ],
+							  "image" : {
+								"alt" : "icon_Change-control",
+								"height" : 105,
+								"loading" : "lazy",
+								"max_height" : 105,
+								"max_width" : 113,
+								"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/icon_Change-control.svg",
+								"width" : 113
+							  },
+							  "text" : "<p><span>Manage change activity easily and effectively with complete traceability.</span></p>",
+							  "text_color" : "auto"
+							}, {
+							  "background_color" : {
+								"color" : "#fff",
+								"opacity" : 100
+							  },
+							  "ctas" : [ {
+								"add_icon" : false,
+								"button_text" : "Learn more >",
+								"cta" : "",
+								"cta_size" : "md",
+								"cta_style" : "none",
+								"cta_type" : "btn",
+								"default" : {
+								  "background" : {
+									"color" : "#0c63ff",
+									"opacity" : 100
+								  },
+								  "border" : {
+									"color" : "#0c63ff",
+									"opacity" : 100
+								  },
+								  "text" : {
+									"color" : "#fff",
+									"opacity" : 100
+								  }
+								},
+								"hover" : {
+								  "background" : {
+									"color" : "#5a93fd",
+									"opacity" : 100
+								  },
+								  "border" : {
+									"color" : "#5a93fd",
+									"opacity" : 100
+								  },
+								  "text" : {
+									"color" : "#fff",
+									"opacity" : 100
+								  }
+								},
+								"icon" : {
+								  "icon" : {
+									"name" : "arrow-right",
+									"type" : "SOLID",
+									"unicode" : "f061"
+								  },
+								  "position" : "right"
+								},
+								"link" : {
+								  "no_follow" : false,
+								  "open_in_new_tab" : false,
+								  "url" : {
+									"href" : "#",
+									"type" : "EXTERNAL"
+								  }
+								},
+								"modal_target" : "demo"
+							  } ],
+							  "heading" : [ {
+								"heading" : "Audit management",
+								"heading_align" : "auto",
+								"heading_color" : "auto",
+								"heading_color_custom" : {
+								  "color" : "#30343b",
+								  "opacity" : 100
+								},
+								"heading_display_size" : "auto",
+								"heading_size" : "h4"
+							  } ],
+							  "image" : {
+								"alt" : "icon_Audit-management",
+								"height" : 105,
+								"loading" : "lazy",
+								"max_height" : 105,
+								"max_width" : 113,
+								"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/icon_Audit-management.svg",
+								"width" : 113
+							  },
+							  "lead_text" : false,
+							  "text" : "<p><span>Make compliance and audit readiness the natural core of your business DNA.</span></p>",
+							  "text_color" : "auto"
+							}, {
+							  "background_color" : {
+								"color" : "#fff",
+								"opacity" : 100
+							  },
+							  "ctas" : [ {
+								"add_icon" : false,
+								"button_text" : "Learn more >",
+								"cta" : "",
+								"cta_size" : "md",
+								"cta_style" : "none",
+								"cta_type" : "btn",
+								"default" : {
+								  "background" : {
+									"color" : "#0c63ff",
+									"opacity" : 100
+								  },
+								  "border" : {
+									"color" : "#0c63ff",
+									"opacity" : 100
+								  },
+								  "text" : {
+									"color" : "#fff",
+									"opacity" : 100
+								  }
+								},
+								"hover" : {
+								  "background" : {
+									"color" : "#5a93fd",
+									"opacity" : 100
+								  },
+								  "border" : {
+									"color" : "#5a93fd",
+									"opacity" : 100
+								  },
+								  "text" : {
+									"color" : "#fff",
+									"opacity" : 100
+								  }
+								},
+								"icon" : {
+								  "icon" : {
+									"name" : "arrow-right",
+									"type" : "SOLID",
+									"unicode" : "f061"
+								  },
+								  "position" : "right"
+								},
+								"link" : {
+								  "no_follow" : false,
+								  "open_in_new_tab" : false,
+								  "url" : {
+									"href" : "#",
+									"type" : "EXTERNAL"
+								  }
+								},
+								"modal_target" : "demo"
+							  } ],
+							  "heading" : [ {
+								"heading" : "CAPA & NCR management",
+								"heading_align" : "auto",
+								"heading_color" : "auto",
+								"heading_color_custom" : {
+								  "color" : "#30343b",
+								  "opacity" : 100
+								},
+								"heading_display_size" : "auto",
+								"heading_size" : "h4"
+							  } ],
+							  "image" : {
+								"alt" : "icon_CAPAs-Nonconformances",
+								"height" : 105,
+								"loading" : "lazy",
+								"max_height" : 105,
+								"max_width" : 113,
+								"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/icon_CAPAs-Nonconformances.svg",
+								"width" : 113
+							  },
+							  "lead_text" : false,
+							  "text" : "<p><span>Build automated response workflows for any quality event.</span></p>",
+							  "text_color" : "auto"
+							} ],
+							heading=[ {
+							  "heading" : "THE QUALIO PLATFORM",
+							  "heading_align" : "auto",
+							  "heading_color" : "auto",
+							  "heading_color_custom" : {
+								"color" : "#30343b",
+								"opacity" : 100
+							  },
+							  "heading_display_size" : "auto",
+							  "heading_size" : "h6"
+							}, {
+							  "heading" : "We're trusted by life science and healthcare organizations across the globe",
+							  "heading_align" : "auto",
+							  "heading_color" : "auto",
+							  "heading_color_custom" : {
+								"color" : "#30343b",
+								"opacity" : 100
+							  },
+							  "heading_display_size" : "h1",
+							  "heading_size" : "h2"
+							}, {
+							  "heading" : "Qualio is a holistic quality management platform purpose-built for <br>medical device, pharmaceutical, biotech, and CSP companies.",
+							  "heading_align" : "auto",
+							  "heading_color" : "auto",
+							  "heading_color_custom" : {
+								"color" : "#30343b",
+								"opacity" : 100
+							  },
+							  "heading_display_size" : "auto",
+							  "heading_size" : "h5"
+							} ]
+						  %}
+							{% module_attribute "description" %}
+
+							{% end_module_attribute %}
+						  {% end_dnd_module %}
+						{% end_dnd_row %}
+						{% dnd_row %}
+						  {% dnd_module
+							path="../../custom-modules/SR Cards Grid 02",
+							offset=0,
+							width=12,
+							cards=[ {
+							  "background_color" : {
+								"color" : "#ffffff",
+								"opacity" : 100
+							  },
+							  "heading" : [ {
+								"heading" : "Ready-to-go regulatory content",
+								"heading_align" : "auto",
+								"heading_color" : "auto",
+								"heading_color_custom" : {
+								  "color" : "#30343b",
+								  "opacity" : 100
+								},
+								"heading_display_size" : "auto",
+								"heading_size" : "h4"
+							  } ],
+							  "image" : {
+								"alt" : "icon_Contract-Research-Orgs",
+								"height" : 105,
+								"loading" : "lazy",
+								"max_height" : 105,
+								"max_width" : 113,
+								"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/icon_Contract-Research-Orgs.svg",
+								"width" : 113
+							  },
+							  "text" : "<p><span>Access pre-configured templates and documentation for faster and smoother FDA &amp; ISO compliance.</span></p>",
+							  "text_color" : "auto"
+							}, {
+							  "background_color" : {
+								"color" : "#ffffff",
+								"opacity" : 100
+							  },
+							  "heading" : [ {
+								"heading" : "Quality assurance experts",
+								"heading_align" : "auto",
+								"heading_color" : "auto",
+								"heading_color_custom" : {
+								  "color" : "#30343b",
+								  "opacity" : 100
+								},
+								"heading_display_size" : "auto",
+								"heading_size" : "h4"
+							  } ],
+							  "image" : {
+								"alt" : "Icon_star",
+								"height" : 105,
+								"loading" : "lazy",
+								"max_height" : 105,
+								"max_width" : 113,
+								"src" : "https://23135464.fs1.hubspotusercontent-na1.net/hubfs/23135464/Icon_star.svg",
+								"width" : 113
+							  },
+							  "text" : "<p><span>Work with our team of seasoned quality experts to ensure you meet - and exceed - your QA goals.</span></p>",
+							  "text_color" : "auto"
+							} ],
+							cards_per_row="6",
+							heading=[ {
+							  "heading" : "QUALIO+ SERVICES",
+							  "heading_align" : "auto",
+							  "heading_color" : "auto",
+							  "heading_color_custom" : {
+								"color" : "#30343b",
+								"opacity" : 100
+							  },
+							  "heading_display_size" : "auto",
+							  "heading_size" : "h6"
+							}, {
+							  "heading" : "Have quality and regulatory experts on your side",
+							  "heading_align" : "auto",
+							  "heading_color" : "auto",
+							  "heading_color_custom" : {
+								"color" : "#30343b",
+								"opacity" : 100
+							  },
+							  "heading_display_size" : "auto",
+							  "heading_size" : "h2"
+							}, {
+							  "heading" : "Add Qualio+ to your plan and receive expert quality assurance <br>support to help your business scale, mature and get to market.",
+							  "heading_align" : "auto",
+							  "heading_color" : "auto",
+							  "heading_color_custom" : {
+								"color" : "#30343b",
+								"opacity" : 100
+							  },
+							  "heading_display_size" : "auto",
+							  "heading_size" : "h6"
+							} ],
+							design_settings={
+							  "top_bottom_padding" : "zero"
+							}
+						  %}
+							{% module_attribute "description" %}
+
+							{% end_module_attribute %}
+						  {% end_dnd_module %}
+						{% end_dnd_row %}
+						{% dnd_row %}
+						  {% dnd_module
+							path="../../custom-modules/SR Offer Bar 03",
+							offset=0,
+							width=12,
+							ctas=[ {
+							  "button_text" : "Download Guide",
+							  "cta" : "",
+							  "cta_size" : "md",
+							  "cta_style" : "primary",
+							  "cta_type" : "btn",
+							  "link" : {
+								"no_follow" : false,
+								"open_in_new_tab" : false,
+								"url" : {
+								  "href" : "#",
+								  "type" : "EXTERNAL"
+								}
+							  },
+							  "modal_target" : "demo"
+							} ],
+							design_settings={
+							  "background_color" : "light",
+							  "container_width" : "wide",
+							  "text_color" : "black"
+							},
+							heading=[ {
+							  "heading" : "HEAR FROM OUR CUSTOMERS",
+							  "heading_align" : "auto",
+							  "heading_color" : "auto",
+							  "heading_color_custom" : {
+								"color" : "#30343b",
+								"opacity" : 100
+							  },
+							  "heading_display_size" : "auto",
+							  "heading_size" : "h6"
+							}, {
+							  "heading" : "Learn why they love Qualio",
+							  "heading_align" : "auto",
+							  "heading_color" : "auto",
+							  "heading_color_custom" : {
+								"color" : "#30343b",
+								"opacity" : 100
+							  },
+							  "heading_display_size" : "auto",
+							  "heading_size" : "h3"
+							} ]
+						  %}
+							{% module_attribute "description" %}
+
+							{% end_module_attribute %}
+						  {% end_dnd_module %}
+						{% end_dnd_row %}
+					  {% end_dnd_column %}
+					{% end_dnd_section %}
+			{% end_dnd_area %}
+		{% endblock body %}
+
+		{% block footer %}
+			{% boolean "enabled_site_footer" label='Enable Global Site Footer', value=true, export_to_template_context=True %}
+			{% if widget_data.enabled_site_footer.value %}
+				{% global_partial path="../partials/site_footer.html" %}
+			{% endif %}
+		{% endblock footer %}
+
+		{% include '../footer-includes.html' %}
+	</body>
+</html>

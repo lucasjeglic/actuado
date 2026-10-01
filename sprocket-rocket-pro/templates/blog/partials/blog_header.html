@@ -1,0 +1,12 @@
+<!--
+templateType: global_partial
+isAvailableForNewContent: false
+label: Global Blog Header
+-->
+{% dnd_area "blog_header" label="Modules here will appear on the top of blog listing and post pages" %}
+
+    {% dnd_section %}
+        {% dnd_module path="../custom-modules/Blog Navbar 01",overrideable=True,  widget_name='Blog Navbar 01', label='Blog Navbar 01' %} {% end_dnd_module %}
+    {% end_dnd_section %}
+
+{% end_dnd_area %}

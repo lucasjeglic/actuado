@@ -1,0 +1,63 @@
+.sr-cards-slider-01 .blaze-track > div img {
+  margin-bottom: .5rem;
+}
+
+.sr-cards-slider-01 .blaze-track > div {
+  border-width: 2px;
+  border-style: solid;
+}
+
+.sr-cards-slider-01 .blaze-track > div p {
+  font-size: .875rem;
+  line-height: 1.35rem;
+}
+
+.sr-cards-slider-01 .paginator-center ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.sr-cards-slider-01 .blaze-arrow,
+.sr-cards-slider-01 .blaze-arrow svg {
+    color: var(--arrows-color, var(--primary));
+}
+
+.sr-cards-slider-01 .paginator-center ul li {
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  opacity: .3;
+}
+
+.sr-cards-slider-01 svg.prevV.arrow {
+  margin-right: 2rem;
+}
+
+.sr-cards-slider-01 .paginator-center ul li:hover,
+.sr-cards-slider-01 .paginator-center ul li:has(.blaze-arrow:focus) {
+  opacity: .8;
+  cursor: pointer;
+}
+
+.sr-cards-slider-01 .feat-slider {
+  overflow: hidden;
+}
+
+.sr-cards-slider-01 .blaze-arrow {
+  background-color: transparent;
+  border: none;
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 0;
+}

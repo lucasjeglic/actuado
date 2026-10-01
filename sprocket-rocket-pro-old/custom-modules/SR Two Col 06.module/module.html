@@ -1,0 +1,67 @@
+{% if module.enabled %}
+
+	{% import "../../templates/macros.html" as macros %}
+
+	{% require_css %}
+	<style>
+		{{ macros.design_settings(name, module.design_settings) }}
+	</style>
+	{% end_require_css %}
+
+	{% set width_class =
+		module.design_settings.container_width == 'min' ? 'col-lg-6 offset-lg-3' :
+		module.design_settings.container_width == 'narrow' ? 'col-lg-8 offset-lg-2' :
+		module.design_settings.container_width == 'wide' ? 'col-lg-10 offset-lg-1' :
+		'col-lg-12'
+	%}
+
+	<div class="sr-two-col-06 {{ name }} {{ macros.module_background(module.design_settings) }} sr-padding-{{ module.design_settings.top_bottom_padding }} {% if module.design_settings.class %}{{ module.design_settings.class }} {% endif %}{% if module.design_settings.border_top %}sr-line-top {% endif %}{% if module.design_settings.border_bottom %}sr-line-bottom {% endif %} {% if module.text_align != 'auto' %} text-{{ module.text_align }}{% endif %} {% if module.text_color != 'auto' %}text-{{ module.text_color }}{% endif %}" {% if module.design_settings.sr_module_id %}id="{{ module.design_settings.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+		{{ macros.module_bg_video(module.background_video, module.design_settings.background_image.src, module.background_video_md, module.design_settings.responsive_settings.tablet.tablet_background_image.src, module.background_video_sm, module.design_settings.responsive_settings.mobile.mobile_background_image.src) }}
+		<div class="{{ module.design_settings.layout }}">
+            {% if module.design_settings.container_width != 'max' %}
+            <div class="row">
+                <div class="{{ width_class }}">
+            {% endif %}
+						<div class="row">
+							<div class="col-lg-4">
+								{{ macros.heading(module.heading) }}
+
+								{% if module.description %}
+									<div class="description{% if module.lead_text %} lead{% endif %}">{{ module.description}}</div>
+								{% endif %}
+							</div>
+							<div class="col-lg-7 offset-lg-1 main-richtext mt-5 mt-lg-0">
+								{{ macros.heading(module.links_heading) }}
+								<div class="links">
+									{%- for link in module.links -%}
+									{% set href = link.link.url.href %}
+									{% if link.link.url.type is equalto "EMAIL_ADDRESS" %}
+										{% set href = "mailto:" + href %}
+									{% endif %}
+									{% set rel = [] %}
+									{% if link.link.no_follow %}
+										{% do rel.append("nofollow") %}
+									{% endif %}
+									{% if link.link.open_in_new_tab %}
+										{% do rel.append("noopener") %}
+									{% endif %}
+									{% if link.heading %}
+									<{{ link.heading_size }} class="heading{% if link.heading_display_size != 'auto' %} {{ link.heading_display_size }}{% endif %}{% if link.heading_color != 'auto' %} text-{{ link.heading_color }}{% endif %}" {% if link.heading_color == 'custom' %}style="color: {{ color(link.heading_color_custom) }}"{% endif %}>
+									{% if link.link.url.href %}
+									<a class="link-item" {{ macros.link(link.link) }}>{{ link.heading }}</a>{{"," if not loop.last }}
+									{% else %}
+									<p class="link-item" >{{ link.heading }}</p>{{"," if not loop.last }}
+									{% endif %}
+									</{{ link.heading_size }}>
+									{% endif %}
+									{%- endfor -%}
+								</div>
+							</div>
+						</div>
+			{% if module.design_settings.container_width != 'max' %}
+					</div>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+{% endif %}

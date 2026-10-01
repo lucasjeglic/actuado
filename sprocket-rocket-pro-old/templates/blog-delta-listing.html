@@ -1,0 +1,140 @@
+<!--
+templateType: blog_listing
+isAvailableForNewContent: true
+label: Blog Delta Listing
+-->
+{% include './header.html' %}
+
+	{{ require_css(get_asset_url('../css/blog-delta.css'), { async: true }) }}
+
+	<body class="blog blog-listing {{ widget_data.body_class.value }} {{ builtin_body_classes }} {% set theme_name = content.template_path|split('/')|first %}{{ theme_name }} {% set template_name = content.template_path|split('/')|last %}{{ template_name[:-5] if template_name }}">
+
+		{% block header %}
+			{% boolean "enabled_site_header" label='Enable Global Site Header', value=true, export_to_template_context=True %}
+			{% if widget_data.enabled_site_header.value %}
+				{% global_partial path="../templates/partials/site_header.html" %}
+			{% endif %}
+
+			{% global_partial path="./Blog Delta Navbar.html" label="Blog Navbar" %}
+		{% endblock header %}
+
+		{% block body %}
+		<div class="articles-list sr-spacer-50">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-7 blog-col">
+						{% if tag %}
+						<h1 class="author-heading">Blog Category // {{ page_meta.html_title|split(' | ')|last }}</h1>
+						{% elif blog_author %}
+						<h1 class="author-heading">{{ blog_author.full_name }}</h1>
+						<div class="author-section">
+							<div class="d-flex align-items-center">
+								{% if blog_author.avatar %}
+								<div class="avatar mr-3">
+									<img src="{{ blog_author.avatar }}" alt="{{ blog_author.full_name }}" />
+								</div>
+								{% endif %}
+								<div class="meta">
+									{% if content.blog_author %}
+									<span class="author">Post by
+										<a class="author-link" href="{{ group.absolute_url }}/author/{{ blog_author.slug }}">{{ blog_author.display_name }}</a>
+									</span><br>
+									{% endif %}
+									{{ content.publish_date_local_time|datetimeformat('%B %e, %Y') }}
+								</div>
+							</div>
+							<div class="py-2">
+								{{blog_author.bio}}
+							</div>
+							{% if blog_author.has_social_profiles %}
+							<div class="author-social-links">
+								{% if blog_author.website %}
+								<a href="{{ blog_author.website }}" target="_blank" rel="noopener"> {% icon name='link', purpose='semantic', style='SOLID', title='Follow me on my website', width='15' %} </a>
+								{% endif %}
+								{% if blog_author.facebook %}
+								<a href="{{ blog_author.facebook }}" target="_blank" rel="noopener"> {% icon name='facebook-f', purpose='semantic', style='SOLID', title='Follow me on Facebook', width='15' %} </a>
+								{% endif %}
+								{% if blog_author.linkedin %}
+								<a href="{{ blog_author.linkedin }}" target="_blank" rel="noopener"> {% icon name='linkedin-in', purpose='semantic', style='SOLID', title='Follow me on LinkedIn', width='15' %} </a>
+								{% endif %}
+								{% if blog_author.twitter %}
+								<a href="{{ blog_author.twitter }}" target="_blank" rel="noopener"> {% icon name='twitter', purpose='semantic', style='SOLID', title='Follow me on Twitter', width='15' %} </a>
+								{% endif %}
+							</div>
+							{% endif %}
+						</div>
+						{% endif %}
+
+
+						<div class="posts">
+							{% if blog_author %}
+							<h6 class="sibebar-heading border-primary mb-4 mt-5">Articles By {{ blog_author.full_name }}</h6>
+							{% endif %}
+							{% for content in contents %}
+							{% if loop.index == 1 && !blog_author && !tag %}
+							<div class="article-panel sr-spacer-bottom-100">
+								{% if content.featured_image %}
+								<a href="{{ content.absolute_url }}"><img class="featured-image" src="{{ content.featured_image }}" alt="{{ content.name }}"></a>
+								{% endif %}
+								<h2 class="article-name mb-0 sr-spacer-top-25"><a href="{{ content.absolute_url }}">{{ content.name }}</a></h3>
+								<div class="article-meta my-3">
+									<span class="author">{% if content.blog_post_author %}Posted by <strong><a href="{{ group.absolute_url }}/author/{{ content.blog_post_author.slug }}">{{ content.blog_post_author.full_name }}</a>,</strong>{% endif %}</span>
+									<span class="date"><strong>{{ content.publish_date_local_time|datetimeformat('%b %d, %Y') }}</strong></span>
+								</div>
+								<div>
+									{{ content.post_list_content|striptags|truncate(275) }}
+								</div>
+								<div class="btn-wrapper btn-primary-wrapper sr-spacer-top-25">
+									<a class="cta-button" href="{{ content.absolute_url }}">
+										Read More
+									</a>
+								</div>
+							</div>
+							{% else %}
+							<div class="article-panel d-lg-flex {% if !loop.last %}sr-spacer-bottom-50{% endif %}">
+								{% if content.featured_image %}
+								<a href="{{ content.absolute_url }}"><div class="article-image" style="background-image: url({{ content.featured_image }}"></div></a>
+								{% endif %}
+								<div class="article-content {% if content.featured_image %}pl-3{% endif %}">
+									<h3 class="article-name mb-0"><a href="{{ content.absolute_url }}">{{ content.name }}</a></h3>
+									<div class="article-meta my-3">
+										<span class="author">{% if content.blog_post_author %}Posted by <strong><a href="{{ group.absolute_url }}/author/{{ content.blog_post_author.slug }}">{{ content.blog_post_author.full_name }}</a>,</strong>{% endif %}</span>
+										<span class="date"><strong>{{ content.publish_date_local_time|datetimeformat('%b %d, %Y') }}</strong></span>
+									</div>
+									{{ content.post_list_content|striptags|truncate(125) }}
+								</div>
+							</div>
+							{% endif %}
+							{% endfor %}
+						</div>
+
+						{% if not simple_list_page %}
+						<div class="blog-pagination sr-spacer-top-50">
+							{% if last_page_num %}
+							<a class="previous-posts-link mr-3" href="{{ blog_page_link(last_page_num) }}">Prev</a>
+							{% endif %}
+							{% if next_page_num %}
+							<a class="next-posts-link" href="{{ blog_page_link(next_page_num) }}">Next</a>
+							{% endif %}
+						</div>
+						{% endif %}
+					</div>
+					<div class="col-lg-4 offset-lg-1 sticky-col">
+						{% module "blog_sidebar" path="../custom-modules/Blog Delta Sidebar", label="Blog Sidebar" no_wrapper=true %}
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endblock body %}
+
+
+		{% block footer %}
+			{% boolean "enabled_site_footer" label='Enable Global Site Footer', value=true, export_to_template_context=True %}
+			{% if widget_data.enabled_site_footer.value %}
+				{% global_partial path="../templates/partials/site_footer.html" %}
+			{% endif %}
+		{% endblock footer %}
+
+		{% include './footer-includes.html' %}
+	</body>
+</html>

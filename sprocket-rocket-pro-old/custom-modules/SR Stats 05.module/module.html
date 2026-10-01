@@ -1,0 +1,70 @@
+{% if module.enabled %}
+
+	{% import "../../templates/macros.html" as macros %}
+
+	{% if module.design_settings.container_width == 'min' %}
+		{% set width_class = 'col-md-6 offset-md-3' %}
+	{% elif module.design_settings.container_width == 'narrow' %}
+		{% set width_class = 'col-md-8 offset-md-2' %}
+	{% elif module.design_settings.container_width == 'wide' %}
+		{% set width_class = 'col-md-10 offset-md-1' %}
+	{% else %}
+		{% set width_class = 'col-md-10 offset-md-1' %}
+	{% endif %}
+
+	{{ macros.label("SR Stats 05") }}
+
+	<div class="sr-stats-05 {{ name }} {% if module.design_settings.background_option == 'color' %} bg-{{ module.design_settings.background_color }}{% endif %} {{ macros.padding(module.design_settings) }} text-{{ module.design_settings.text_color }} {{ macros.text_align(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }} data-animate="{{module.animate_stats}}" data-speed="{{module.animation_speed}}">
+
+		{% if module.design_settings.background_option == 'video' %}
+		{{macros.bg_video(module.background_video, module.design_settings.background_image.src)}}
+		{% endif %}
+
+		<div class="{{ module.design_settings.layout }}">
+			{% if module.design_settings.container_width != 'max' %}
+				<div class="row">
+					<div class="{{ width_class }}">
+			{% endif %}
+				<div class="row">
+					{% if module.stats|length == 1 %}
+						{% set left_col = 'col-md-8' %}
+						{% set right_col = 'col-md-4' %}
+					{% elif  module.stats|length == 3 %}
+						{% set left_col = 'col-md-4' %}
+						{% set right_col = 'col-md-8' %}
+					{% else %}
+						{% set left_col = 'col-md-6' %}
+						{% set right_col = 'col-md-6' %}
+					{% endif %}
+					{% if module.heading || module.description %}
+					<div class="{{left_col}}">
+						{{ macros.heading(module.heading) }}
+						{% if module.description %}
+						<div class="description{% if module.lead_text %} lead{% endif %}">{{ module.description}}</div>
+						{% endif %}
+					</div>
+					{% endif %}
+					<div class="{% if module.heading || module.description %}{{right_col}}{% else %}col-12{% endif %} counter-wrapper">
+						{% for item in module.stats %}
+							<div class="counter-item text-center">
+								{{ macros.image(item.image) }}
+								{% set heading = item.stat[0] %}
+								{% if heading.heading >= 0 %}<{{heading.heading_size|int ? 'h' ~ heading.heading_size : heading.heading_size}} class="heading mb-0{% if heading.heading_display_size != 'auto' %} {{ heading.heading_display_size }}{% endif %}{% if heading.heading_color != 'auto' %} text-{{ heading.heading_color }}{% endif %}{% if heading.heading_align != 'auto' %} text-{{ heading.heading_align }}{% endif %}{% if heading.class %} {{heading.class}}{% endif %} my-4" {% if heading.heading_color == 'custom' %}style="color: {{ color(heading.heading_color_custom) }}"{% endif %}>{{ item.prefix }}<span class="stat-counter" data-stat="{{ heading.heading }}" data-format="{{ item.format }}">{% if item.format %}{{"%,d"|format(heading.heading)}}{% else %}{{ heading.heading }}{% endif %}</span>{{ item.suffix }}</{{heading.heading_size|int ? 'h' ~ heading.heading_size : heading.heading_size}}>{% endif %}
+								{% if item.description %}<div class="description{% if item.lead_text %} lead{% endif %}"><p>{{item.description}}</p></div>{% endif %}
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			{% if module.design_settings.container_width != 'max' %}
+					</div>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+
+	{% require_css %}
+	<style>
+		{{ macros.design_settings(name, module.design_settings) }}
+	</style>
+	{% end_require_css %}
+{% endif %}

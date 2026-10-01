@@ -1,0 +1,128 @@
+/* ==========================================================================
+   Actuado Question List 01
+   Half/half split: intro copy on one side, icon rows on the other.
+
+   Layout is entirely the theme's: the same wrapper chain, .row-gap,
+   .sr-valign-*, .sr-spacer-* and Bootstrap column classes SR's own two-column
+   modules use, so column geometry, text alignment and spacing all follow Theme
+   Settings rather than values frozen in this file. There are no layout rules
+   below - only the hairline rules, the eyebrow and the icon sizing, because SR
+   has no equivalent for those.
+
+   Section padding is owned by the SR padding classes - never set section
+   padding-top / padding-bottom here.
+   ========================================================================== */
+
+/* ---------- Layout ---------- */
+
+/* The intro carries sr-spacer-bottom-50 so the gap to the rows matches every
+   other module once the two columns stack - which is always the case below
+   992px. Side by side there is nothing below the intro, so the spacer's
+   padding is dropped at that breakpoint. */
+@media (min-width: 992px) {
+	.ac-question-list-01 .ac-ql__intro {
+		padding-bottom: 0;
+	}
+}
+
+/* ---------- Eyebrow ---------- */
+
+/* ---------- Intro copy ---------- */
+
+/* The gap below the heading is an .sr-spacer-* class in the markup, applied
+   only when a description follows, so there is no dangling space without one. */
+.ac-question-list-01 .ac-ql__heading {
+	margin-bottom: 0;
+	text-wrap: balance;
+}
+
+.ac-question-list-01 .ac-ql__description > *:last-child {
+	margin-bottom: 0;
+}
+
+/* ---------- Rows ---------- */
+
+.ac-question-list-01 .ac-ql__list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+/* A rule below every row, including the last, closes the list off rather than
+   letting it trail away. */
+.ac-question-list-01 .ac-ql__list--ruled > .ac-ql__item {
+	border-bottom: 1px solid var(--ac-divider, var(--borders));
+}
+
+/* Vertical padding comes from the .sr-spacer-* class in the markup, so row
+   rhythm follows the theme's spacer scale. Only the flex arrangement is here.
+   gap applies between the icon and the text only - never as leading or
+   trailing space - so the first row needs no special-casing when top-aligned. */
+.ac-question-list-01 .ac-ql__item {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+@media (min-width: 992px) {
+	.ac-question-list-01 .ac-ql__item {
+		gap: 1.5rem;
+	}
+}
+
+/* ---------- Icons ---------- */
+
+/* Font Awesome glyphs share a 512-unit viewBox height but differ in width -
+   chart-line is wide, circle-user is square - so sizing by width alone makes
+   each icon a different height. Sizing by HEIGHT instead normalises them: every
+   glyph draws at the same cap height and only its width varies, which is how
+   icon sets are designed to be used.
+
+   The wrapper is a fixed square slot (aspect-ratio: 1, as SR's own .icon-icon
+   does) so text stays on a common left edge whether or not a row has an icon,
+   and the glyph is centred inside it. */
+.ac-question-list-01 .ac-ql__icon {
+	flex: 0 0 var(--ac-icon-width, 32px);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: var(--ac-icon-width, 32px);
+	aspect-ratio: 1;
+	line-height: 0;
+	color: var(--ac-icon-color, var(--primary));
+}
+
+/* height wins over the width attribute the icon tag stamps on the SVG, so the
+   glyph scales to a uniform height and its width follows its own ratio. */
+.ac-question-list-01 .ac-ql__icon svg {
+	width: auto;
+	height: var(--ac-icon-width, 32px);
+	max-width: 100%;
+	/* HubSpot's icon tag emits inline SVG, so the fill follows the colour set
+	   on the wrapper. */
+	fill: currentColor;
+}
+
+/* Size comes from the theme display class in the markup (h4/h5/h6); only
+   wrapping is set here so the type still tracks theme typography. */
+.ac-question-list-01 .ac-ql__text {
+	display: block;
+	margin: 0;
+	text-wrap: balance;
+}
+
+/* ---------- Scroll reveal ---------- */
+
+/* Pre-hide before GSAP runs so nothing flashes in at full opacity. The class is
+   removed by the script once the timeline is built; if the script never runs
+   (JS off, GSAP missing), the rows stay visible rather than disappearing. */
+.ac-question-list-01 .ac-ql__list--animate.is-revealing > .ac-ql__item {
+	opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	/* Reduced motion means don't animate - not don't show. */
+	.ac-question-list-01 .ac-ql__list--animate.is-revealing > .ac-ql__item {
+		opacity: 1;
+	}
+}

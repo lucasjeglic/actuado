@@ -1,0 +1,16 @@
+.sr-hero-two-col-01 .hero-block {
+    height: 100%;
+    display: grid;
+    align-items: end;
+    justify-content: center;
+}
+
+.sr-hero-two-col-01 .hero-block>div:first-child {
+    padding: 4rem 1rem 0 1rem;
+}
+
+@media (min-width: 1200px) {
+    .sr-hero-two-col-01 .hero-block>div:first-child {
+        padding: 4rem 8rem 0 8rem;
+    }
+}

@@ -1,0 +1,307 @@
+<!--
+templateType: page
+isAvailableForNewContent: true
+label: Thank You 05
+screenshotPath: ../../images/thank-you-05.jpg
+-->
+
+	{% include '../header.html' %}
+
+		<body class="pre-built {{ widget_data.body_class.value }} {{ builtin_body_classes }} {% set theme_name = content.template_path|split('/')|first %}{{ theme_name }} {% set template_name = content.template_path|split('/')|last %}{{ template_name[:-5] if template_name }}">
+
+		{% block header %}
+			{% boolean "enabled_site_header" label='Enable Global Site Header', value=true, export_to_template_context=True %}
+			{% if widget_data.enabled_site_header.value %}
+				{% global_partial path="../partials/site_header.html" %}
+			{% endif %}
+		{% endblock header %}
+
+		{% block body %}
+			{% dnd_area "body_dnd_area", class='body_dnd_area' label="Main Content" %}
+				{% dnd_section %}
+				{% dnd_column
+					offset=0,
+					width=12
+				%}
+					{% dnd_row %}
+					{% dnd_module
+						path="../../custom-modules/SR Offer Bar 06",
+						offset=0,
+						width=12,
+						design_settings={
+						"top_bottom_padding" : "auto"
+						}
+					%}
+						{% module_attribute "heading" %}
+						<div id="1680294320386">
+						<div><strong>Congrats!</strong><span>&nbsp;</span>— You Made The Right Choice. Your Download Will Be Arriving in Your Inbox Shortly.</div>
+						</div>
+						{% end_module_attribute %}
+					{% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					{% dnd_module
+						path="../../custom-modules/SR One Col 01",
+						offset=0,
+						width=12,
+						design_settings={
+						"container_width" : "wide",
+						"spacing" : {
+							"margin" : {
+							"bottom" : {
+								"units" : "rem",
+								"value" : 0
+							},
+							"top" : {
+								"units" : "rem",
+								"value" : 0
+							}
+							},
+							"padding" : {
+							"bottom" : {
+								"units" : "px",
+								"value" : 0
+							},
+							"left" : {
+								"units" : "rem",
+								"value" : 0
+							},
+							"right" : {
+								"units" : "rem",
+								"value" : 0
+							},
+							"top" : {
+								"units" : "rem",
+								"value" : 6.25
+							}
+							}
+						},
+						"text_align" : {
+							"text_align" : "CENTER"
+						},
+						"top_bottom_padding" : "custom"
+						},
+						column=[ {
+						"add_to_lightbox" : false,
+						"col_content" : "<p>We've sent additional information to your inbox, but if you're interested in learning more or have any questions, we'd love to chat with you further. You can book a [insert type of session, e.g. consultation, demo, strategy session, etc.] by filling out the application form and choosing a time that works best for you.</p>",
+						"col_media_type" : "none",
+						"col_overlay_color" : {
+							"color" : "#000000",
+							"opacity" : 50
+						},
+						"col_text_align" : "auto",
+						"custom_column_size" : false,
+						"heading" : [ {
+							"heading" : "Start Here",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h6"
+						}, {
+							"heading" : "Thank you for your interest in [insert product or service]!",
+							"heading_align" : "auto",
+							"heading_color" : "auto",
+							"heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+							},
+							"heading_display_size" : "auto",
+							"heading_size" : "h1"
+						} ],
+						"image_link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+							"type" : "EXTERNAL"
+							}
+						},
+						"lead_text" : false,
+						"text_color" : "auto",
+						"video" : {
+							"autoplay" : true,
+							"background_video_design" : "none",
+							"custom_accent_color" : {
+							"color" : "#000000",
+							"opacity" : 20
+							},
+							"embed_field" : {
+							"source_type" : "oembed"
+							},
+							"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+							"loop" : true,
+							"muted" : true,
+							"oembed_thumbnail" : {
+							"loading" : "disabled",
+							"src" : ""
+							},
+							"placeholder_fields" : {
+							"placeholder_description" : "Select a video type in the sidebar.",
+							"placeholder_title" : "No video selected"
+							},
+							"show_controls" : true,
+							"style_options" : {
+							"oembed_thumbnail_play_button_color" : {
+								"color" : "#ffffff"
+							}
+							},
+							"video_accent_color" : "primary",
+							"video_poster" : {
+							"alt" : "Sprocket Rocket Demo",
+							"size_type" : "exact",
+							"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+							},
+							"video_type" : "html_video"
+						}
+						} ]
+					%}
+					{% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					{% dnd_module
+						path="../../custom-modules/SR One Col Media 02",
+						offset=0,
+						width=12,
+						heading=[ ],
+						column=[ {
+						"add_to_lightbox" : false,
+						"col_media_type" : "video",
+						"col_overlay_color" : {
+							"color" : "#000000",
+							"opacity" : 50
+						},
+						"col_text_align" : "auto",
+						"custom_column_size" : false,
+						"image_link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+							"type" : "EXTERNAL"
+							}
+						},
+						"lead_text" : false,
+						"text_color" : "auto",
+						"video" : {
+							"autoplay" : true,
+							"background_video_design" : "none",
+							"custom_accent_color" : {
+							"color" : "#000000",
+							"opacity" : 20
+							},
+							"embed_field" : {
+							"source_type" : "oembed"
+							},
+							"html_video" : [ "https://www.lean-labs.com/hubfs/sr-assets/videos/sr-demo.mp4" ],
+							"loop" : true,
+							"muted" : true,
+							"oembed_thumbnail" : {
+							"loading" : "disabled",
+							"src" : ""
+							},
+							"placeholder_fields" : {
+							"placeholder_description" : "Select a video type in the sidebar.",
+							"placeholder_title" : "No video selected"
+							},
+							"show_controls" : true,
+							"style_options" : {
+							"oembed_thumbnail_play_button_color" : {
+								"color" : "#ffffff"
+							}
+							},
+							"video_accent_color" : "primary",
+							"video_poster" : {
+							"alt" : "Sprocket Rocket Demo",
+							"size_type" : "exact",
+							"src" : "https://f.hubspotusercontent20.net/hubfs/275827/sr-assets/videos/sr-demo-poster.jpg"
+							},
+							"video_type" : "html_video"
+						}
+						} ]
+					%}
+						{% module_attribute "description" %}
+
+						{% end_module_attribute %}
+					{% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					{% dnd_module
+						path="../../custom-modules/SR Offer Bar 05",
+						offset=0,
+						width=12
+					%}
+					{% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					{% dnd_module
+						path="../../custom-modules/SR Offer Parallax 02",
+						offset=0,
+						width=12,
+						ctas=[ {
+						"button_text" : "Schedule Your Demo Now",
+						"cta" : "",
+						"cta_size" : "md",
+						"cta_style" : "primary",
+						"cta_type" : "btn",
+						"link" : {
+							"no_follow" : false,
+							"open_in_new_tab" : false,
+							"url" : {
+							"href" : "#",
+							"type" : "EXTERNAL"
+							}
+						},
+						"modal_target" : "demo"
+						} ],
+						heading=[ {
+						"heading" : "Free Demo",
+						"heading_align" : "auto",
+						"heading_color" : "auto",
+						"heading_color_custom" : {
+							"color" : "#30343b",
+							"opacity" : 100
+						},
+						"heading_display_size" : "auto",
+						"heading_size" : "h2"
+						} ],
+						parallax_image={
+						"alt" : "",
+						"height" : 400,
+						"loading" : "lazy",
+						"max_height" : 854,
+						"max_width" : 1280,
+						"size_type" : "exact",
+						"src" : "https://8510912.fs1.hubspotusercontent-na1.net/hubfs/8510912/Imported%20sitepage%20images/chris-1@1x.jpg",
+						"width" : 600
+						}
+					%}
+						{% module_attribute "description" %}
+						<div>We’ll show you the top questions to ask before buying and how to find the best hardware and software for your business.</div>
+						{% end_module_attribute %}
+					{% end_dnd_module %}
+					{% end_dnd_row %}
+					{% dnd_row %}
+					{% dnd_module
+						path="../../custom-modules/SR Offer Bar 03",
+						offset=0,
+						width=12
+					%}
+					{% end_dnd_module %}
+					{% end_dnd_row %}
+				{% end_dnd_column %}
+				{% end_dnd_section %}
+			{% end_dnd_area %}
+		{% endblock body %}
+
+		{% block footer %}
+			{% boolean "enabled_site_footer" label='Enable Global Site Footer', value=true, export_to_template_context=True %}
+			{% if widget_data.enabled_site_footer.value %}
+				{% global_partial path="../partials/site_footer.html" %}
+			{% endif %}
+		{% endblock footer %}
+
+		{% include '../footer-includes.html' %}
+	</body>
+</html>

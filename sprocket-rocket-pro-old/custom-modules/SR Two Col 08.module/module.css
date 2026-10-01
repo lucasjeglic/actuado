@@ -1,0 +1,72 @@
+.sr-two-col-08 .card-content {
+  margin-bottom: 20px;
+}
+
+.sr-two-col-08 .image-col {
+  max-width: 343px;
+  width: 100%;
+}
+
+.sr-two-col-08 .column-wrapper {
+  padding: 4.16875rem 20px 0;
+  display: flex;
+  align-items: flex-start;
+}
+
+.sr-two-col-08 .content-col {
+  padding-left: 20px;
+}
+
+@media (min-width: 1440px) {
+  .sr-two-col-08 .content-col {
+    padding-left: 60px;
+  }
+
+  .sr-two-col-08 .column-wrapper {
+    padding: 4.16875rem 40px 0;
+  }
+}
+
+.sr-two-col-08 .container-fluid {
+  max-width: 1440px;
+}
+
+.sr-two-col-08 .btn-wrapper.btn-white-wrapper .cta-button {
+  color: var(--primary);
+}
+
+.sr-two-col-08 .btn-wrapper.btn-white-wrapper .cta-button:hover {
+  color: var(--white);
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+  .sr-two-col-08 .image-col {
+    max-width: 225px;
+  }
+
+  .sr-two-col-08 .heading {
+    font-size: 20px;
+    line-height: 26px;
+  }
+}
+
+@media (max-width: 476px) {
+  .sr-two-col-08 .column-wrapper {
+    padding-top: 2rem;
+    flex-direction: column-reverse;
+  }
+
+  .sr-two-col-08 .content-col {
+    padding-left: 0;
+    padding-bottom: 2rem;
+  }
+
+  .sr-two-col-08 .card-content {
+    margin-bottom: 10px;
+  }
+
+  .sr-two-col-08 .image-col {
+    margin: 0 auto;
+    max-width: 100%;
+  }
+}

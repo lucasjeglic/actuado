@@ -1,0 +1,120 @@
+
+{% if module.enabled %}
+
+{% import "../../templates/macros.html" as macros %}
+
+{{ macros.label("SR Video Slider 01") }}
+
+<div class="sr-video-slider-01 {{ name }} {% if module.design_settings.background_option == 'color' %} bg-{{ module.design_settings.background_color }}{% endif %} {{ macros.padding(module.design_settings) }} text-{{ module.design_settings.text_color }} {{ macros.text_align(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+
+	{% if module.design_settings.background_option == 'video' %}
+	{{macros.bg_video(module.background_video, module.design_settings.background_image.src)}}
+	{% endif %}
+
+	<div class="container silder-container slides-{{ module.slides|length }}">
+		<div class="row">
+			<div class="col-md-12">
+
+				{% if module.heading ||  module.description %}
+				<div class="sr-spacer-bottom-50">
+					{{ macros.heading(module.heading) }}
+
+					{% if module.description %}
+					<div class="description{% if module.lead_text %} lead{% endif %}">{{ module.description}}</div>
+					{% endif %}
+				</div>
+				{% endif %}
+
+				<div class="blaze-slider slider" data-autoplay="{{ module.autoplay }}" data-autoplayspeed="{{ module.autoplay_speed }}" data-arrows="{{ module.arrows }}" data-pagination="{{ module.dots }}" >
+					<div class="blaze-container">
+
+						<div class="blaze-track-container">
+							<div class="blaze-track">
+								{% for item2 in module.slides %}
+								<div class="all {{ item2.filters }} video-slide">
+
+									<div class="slide-image">
+										<div class="scaler">
+
+											<a href="#" class="playBtn" data-toggle="modal" data-target="#videoModal-{{ name }}" data-theVideo="{{ item2.video }}">
+												<i class="bg-primary">
+													{% icon
+                                                        name="play"
+                                                        style="SOLID"
+                                                        unicode="f04b"
+                                                        icon_set="fontawesome-5.14.0"
+                                                        height="15"
+                                                        no_wrapper=true
+                                                    %}
+												</i>
+											</a>
+
+											<video class="slider-video" muted data-src="{{ item2.video }}">
+											</video>
+
+											{{ macros.image(item2.image) }}
+										</div>
+
+										<div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+									</div>
+
+									<div class="text-center sr-spacer-top-25 caption">
+										{% if item2.description %}
+										<div class="description{% if item2.lead_text %} lead{% endif %}">{{ item2.description}}</div>
+										{% endif %}
+										{{ macros.cta(item2.ctas, 'sr-spacer-top-25') }}
+									</div>
+
+								</div>
+								{% endfor %}
+							</div>
+						</div>
+						{% if module.arrows %}
+						<span>
+							<button type="button" class="blaze-arrow blaze-prev chevron-left text-primary prevV arrow">
+								<svg width="27px" height="48px" viewBox="0 0 27 48" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"> <desc>Created with Lunacy</desc> <g id="down-chevron-(4)-copy" transform="matrix(4.371139E-08 -1 -1 -4.371139E-08 27 48)"> <path d="M45.4421 0L23.9668 21.4053L2.49165 0L0 2.49976L23.9668 26.3886L47.9338 2.49976L45.4421 0Z" transform="translate(0 0.06670588)" id="Path" stroke="none"></path> </g> </svg>
+							</button>
+							<button type="button" class="blaze-arrow blaze-next chevron-right text-primary nextV arrow">
+								<svg width="27px" height="48px" viewBox="0 0 27 48" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"> <desc>Created with Lunacy</desc> <g id="down-chevron-(4)" transform="matrix(-4.371139E-08 -1 1 -4.371139E-08 0 47.93378)"> <path d="M45.4421 0L23.9668 21.4053L2.49165 0L0 2.49976L23.9668 26.3886L47.9338 2.49976L45.4421 0Z" id="Path" stroke="none"></path> </g> </svg>
+							</button>
+						</span>
+						{% endif %}
+						{% if module.dots %}
+						<div class="blaze-pagination mt-4 mx-4"></div>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="modal fade" id="videoModal-{{ name }}" tabindex="-1" role="dialog" aria-labelledby="videoModal-{{ name }}" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-body">
+					<button type="button" class="close bg-primary" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<div>
+						<video class="modal-video" controls>
+							<source type="video/mp4">
+							Your browser does not support HTML video.
+						</video>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</div>
+
+{{ require_css(get_asset_url('../../css/blaze-slider.css')) }}
+{{ require_js(get_asset_url('../../js/blaze-slider.js'), { position: 'head', defer: true }) }}
+{% require_css %}
+<style>
+	{{ macros.design_settings(name, module.design_settings) }}
+</style>
+{% end_require_css %}
+
+{% endif %}

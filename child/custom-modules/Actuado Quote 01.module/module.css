@@ -1,0 +1,67 @@
+/* ==========================================================================
+   Actuado Quote 01
+   A single pull quote with optional attribution.
+
+   Layout, background and padding come from the theme's own primitives, so the
+   section behaves like every other SR module. The quote itself uses the theme's
+   .blockquote type slot (Theme Settings > Typography > Blockquote), so only
+   the quote mark and the attribution layout live here.
+
+   Section padding is owned by the SR padding classes - never set section
+   padding-top / padding-bottom here.
+   ========================================================================== */
+
+.ac-quote-01 .ac-quote {
+	margin: 0;
+}
+
+/* ---------- Quote mark ---------- */
+
+/* Purely decorative, so it is aria-hidden in the markup and sized in ems to
+   track whatever the Blockquote slot is set to. */
+.ac-quote-01 .ac-quote__mark {
+	display: block;
+	font-size: 3em;
+	line-height: 0.8;
+	color: var(--ac-quote-mark, var(--primary));
+}
+
+/* ---------- Quote ---------- */
+
+/* Size, font and line-height come from the theme's Blockquote slot (the
+   .blockquote class in the markup). Nothing type-related is set here. */
+.ac-quote-01 .ac-quote__text > *:last-child {
+	margin-bottom: 0;
+}
+
+/* ---------- Attribution ---------- */
+
+/* SR's own testimonial leaves the footer unstyled, so <strong> and <cite> sit
+   inline on the left whatever the alignment is set to. Flex with an inherited
+   justification is what lets the attribution follow the quote's alignment. */
+.ac-quote-01 .ac-quote__author {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 0.25rem 0.75rem;
+	margin-top: 1.5rem;
+	color: var(--ac-quote-author, inherit);
+}
+
+.ac-quote-01 .ac-quote.text-center .ac-quote__author {
+	justify-content: center;
+}
+
+.ac-quote-01 .ac-quote.text-left .ac-quote__author {
+	justify-content: flex-start;
+}
+
+.ac-quote-01 .ac-quote__name {
+	font-weight: 600;
+}
+
+/* <cite> is italic by default, which fights a condensed heading face. No
+   opacity here: the Name & Title Color field colours both equally. */
+.ac-quote-01 .ac-quote__title {
+	font-style: normal;
+}

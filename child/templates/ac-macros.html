@@ -1,0 +1,28 @@
+{# =============================================================================
+   Actuado child-theme macros
+
+   Shared markup for the Actuado modules. The parent theme's macros.html is
+   imported separately and is not affected by this file:
+
+     {% import "../../templates/macros.html" as macros %}
+     {% import "../../templates/ac-macros.html" as ac %}
+
+   Styling for these lives in child.css so it is defined once as well.
+   ============================================================================= #}
+
+
+{# -----------------------------------------------------------------------------
+   eyebrow(module, extra_class)
+
+   The small uppercase label above a section heading, with the optional gold
+   rule above it. Renders when either the eyebrow text or the rule is wanted,
+   so the rule can stand alone as a section marker.
+
+   `extra_class` is appended to the element - used for the .sr-spacer-* class
+   that spaces the eyebrow from whatever follows.
+   -------------------------------------------------------------------------- #}
+{%- macro eyebrow(module, extra_class) -%}
+{%- if module.eyebrow || module.show_eyebrow_rule -%}
+<p class="ac-eyebrow small{% if module.show_eyebrow_rule %} ac-eyebrow--rule{% endif %}{% if extra_class %} {{ extra_class }}{% endif %}">{{ module.eyebrow }}</p>
+{%- endif -%}
+{%- endmacro -%}

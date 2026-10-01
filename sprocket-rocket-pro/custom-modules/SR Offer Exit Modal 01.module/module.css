@@ -1,0 +1,93 @@
+#exit-popup .modal-dialog {
+    max-width: 540px;
+}
+
+#exit-popup .modal-header {
+    border: none;
+    padding: 0;
+}
+
+#exit-popup .modal-body {
+    padding: 1rem 2rem 3rem 2rem;
+}
+
+#exit-popup .col-md-6 {
+    padding: 0;
+}
+
+#exit-popup .popup-left small {
+    color: #94979E;
+    font-size: 10px;
+    display: block;
+    line-height: 15px;
+    padding-top: 10px;
+}
+
+#exit-popup .popup-left img {
+    max-width: 380px;
+}
+
+#exit-popup .popup-right p {
+    margin: 20px 0;
+}
+
+#exit-popup .hs-form .hs_submit {
+    margin: 10px 0;
+}
+
+#exit-popup button.close {
+    border: 2px solid;
+    border-radius: 50%;
+    height: 33px;
+    width: 32px;
+    line-height: 29px;
+    text-align: center;
+    padding: 0 !important;
+    font-size: 13px;
+    font-weight: 400;
+    opacity: 1;
+    margin: 0px -10px 0px auto;
+    -webkit-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    text-shadow: none;
+}
+
+#exit-popup button.close:hover {
+    background: var(--primary);
+    cursor: pointer;
+}
+
+
+#exit-popup button.close:hover svg,
+#exit-popup button.close:hover svg g {
+    fill: #fff
+}
+
+
+.actions {
+    padding: 0.25rem 0.5rem;
+}
+
+.modal-content {
+    border-radius: 0;
+    background-color: #fff;
+    border-color: #e5e7ea;
+}
+
+@media only screen and (max-width : 992px) {
+    #exit-popup .popup-left img {
+        max-width: 90%;
+    }
+}
+
+@media only screen and (max-width : 767px) {
+    #exit-popup .popup-right {
+        padding-top: 30px;
+    }
+}
+
+.sr-exit-popup.show {
+    display: block;
+    opacity: 1;
+}
