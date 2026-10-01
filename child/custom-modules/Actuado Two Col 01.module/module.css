@@ -1,0 +1,37 @@
+/* ==========================================================================
+   Actuado Two Col 01
+   Text on one side, an image or a Lottie animation on the other.
+
+   Layout is entirely the theme's: the same wrapper chain, .row-gap,
+   .sr-valign-*, .sr-spacer-* and Bootstrap column classes SR Two Col 04 uses,
+   and the media markup (.responsive-image / .lottie .media-item) is SR's own,
+   so geometry, image corners and spacing follow Theme Settings. Only the type
+   resets below live here.
+
+   Section padding is owned by the SR padding classes - never set section
+   padding-top / padding-bottom here.
+   ========================================================================== */
+
+/* ---------- Text ---------- */
+
+/* The gaps between the eyebrow, highlight, heading and description are
+   .sr-spacer-* classes in the markup, applied only when something follows, so
+   the theme's own bottom margins are zeroed to stop the two stacking. */
+.ac-two-col-01 .ac-tc__highlight,
+.ac-two-col-01 .ac-tc__heading {
+	margin-bottom: 0;
+	text-wrap: balance;
+}
+
+.ac-two-col-01 .ac-tc__description > *:last-child {
+	margin-bottom: 0;
+}
+
+/* ---------- Media ---------- */
+
+/* A Lottie player has no size of its own until its file loads, so it is given
+   the column's width; its height then follows the animation. */
+.ac-two-col-01 .ac-tc__lottie dotlottie-wc {
+	display: block;
+	width: 100%;
+}

@@ -1,0 +1,8 @@
+{
+  "global" : false,
+  "content_types" : [ "LANDING_PAGE", "SITE_PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "host_template_types" : [ "PAGE", "BLOG_POST", "BLOG_LISTING" ],
+  "label" : "Actuado Two Col 01",
+  "icon" : "https://www.sprocketrocket.co/hubfs/sr-assets/icons/sr-icon-columns.svg",
+  "is_available_for_new_content" : true
+}
