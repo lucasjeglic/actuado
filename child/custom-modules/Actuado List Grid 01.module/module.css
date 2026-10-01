@@ -1,0 +1,85 @@
+/* ==========================================================================
+   Actuado List Grid 01
+   An intro above a grid of short names, separated by inner hairlines only.
+
+   Layout, background and padding come from the theme's own primitives, and
+   type from the theme's type slots, so only the grid lives here.
+
+   Section padding is owned by the SR padding classes - never set section
+   padding-top / padding-bottom here.
+   ========================================================================== */
+
+/* ---------- Intro ---------- */
+
+/* The gaps between the eyebrow, heading and description are .sr-spacer-*
+   classes in the markup, so the theme's own bottom margins are zeroed to stop
+   the two stacking. The copy keeps a readable measure, centred with the
+   section when the alignment is centre. */
+.ac-list-grid-01 .ac-lg__heading {
+	margin-bottom: 0;
+	text-wrap: balance;
+}
+
+.ac-list-grid-01 .ac-lg__intro,
+.ac-list-grid-01 .ac-lg__note {
+	max-width: 46rem;
+	/* Avoids a lone word on the last line. */
+	text-wrap: pretty;
+}
+
+.ac-list-grid-01 .text-center .ac-lg__intro,
+.ac-list-grid-01 .text-center .ac-lg__note {
+	margin-inline: auto;
+}
+
+.ac-list-grid-01 .ac-lg__description > *:last-child,
+.ac-list-grid-01 .ac-lg__note > *:last-child {
+	margin-bottom: 0;
+}
+
+/* ---------- Grid ---------- */
+
+/* Each cell draws a hairline on its right and bottom edge. The grid is pulled
+   1px past its wrapper, which clips it, so the lines on the outer edge fall
+   outside and only the inner lines show - at any item count, and on any
+   section background, since no cell is filled. */
+.ac-list-grid-01 .ac-lg {
+	overflow: hidden;
+}
+
+.ac-list-grid-01 .ac-lg__grid {
+	list-style: none;
+	margin: 0 -1px -1px 0;
+	padding: 0;
+	display: grid;
+	grid-template-columns: 1fr;
+}
+
+@media (min-width: 576px) {
+	.ac-list-grid-01 .ac-lg__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 992px) {
+	.ac-list-grid-01 .ac-lg__grid--3 { grid-template-columns: repeat(3, 1fr); }
+	.ac-list-grid-01 .ac-lg__grid--4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+.ac-list-grid-01 .ac-lg__item {
+	padding: 2rem 1.5rem;
+	border-right: 1px solid var(--ac-divider, var(--borders));
+	border-bottom: 1px solid var(--ac-divider, var(--borders));
+}
+
+@media (min-width: 992px) {
+	.ac-list-grid-01 .ac-lg__item {
+		padding: 2.5rem 2rem;
+	}
+}
+
+/* Size comes from the theme display class in the markup; only wrapping is set
+   here so the type still tracks theme typography. */
+.ac-list-grid-01 .ac-lg__text {
+	display: block;
+	margin: 0;
+	text-wrap: balance;
+}

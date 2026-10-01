@@ -1,0 +1,85 @@
+{% if module.enabled %}
+
+	{% import "../../templates/macros.html" as macros %}
+	{% import "../../templates/ac-macros.html" as ac %}
+
+	{% require_css %}
+	<style>
+		{{ macros.design_settings(name, module.design_settings) }}
+
+		{% if module.design_settings.divider_color.color %}
+		.{{ name }} .ac-lg {
+			--ac-divider: {{ macros.color(module.design_settings.divider_color) }};
+		}
+		{% endif %}
+	</style>
+	{% end_require_css %}
+
+	{# Choice fields return strings; coerce and clamp so the grid cannot collapse. #}
+	{% set cols = module.columns|int %}
+	{% set cols = cols in [2, 3, 4] ? cols : 3 %}
+
+	<div class="ac-list-grid-01 {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} {{ ac.text_color_class(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+
+		{{ macros.module_bg_video(module) }}
+
+		<div class="{{ module.design_settings.layout }}">
+			{% if module.design_settings.container_width != 'max' %}
+			<div class="row">
+				<div class="{{ ac.width_class(module.design_settings) }}">
+			{% endif %}
+
+					<div class="text-{{ module.intro_align }}">
+
+						{# ---------- Intro ---------- #}
+						{% if module.eyebrow || module.show_eyebrow_rule || module.heading.heading_text || module.description %}
+						<div class="ac-lg__intro sr-spacer-bottom-50">
+
+							{{ ac.eyebrow(module, 'sr-spacer-bottom-25' if module.heading.heading_text || module.description else '') }}
+
+							{{ ac.heading(module, 'ac-lg__heading' ~ (' sr-spacer-bottom-25' if module.description else '')) }}
+
+							{% if module.description %}
+							<div class="description ac-lg__description">{{ module.description }}</div>
+							{% endif %}
+
+						</div>
+						{% endif %}
+
+						{# ---------- Grid ---------- #}
+						{# The hairlines are drawn on the cells, which stay still; only the
+						   names animate, so the grid frame is in place from the start. #}
+						<div class="ac-lg">
+							<ul class="ac-lg__grid ac-lg__grid--{{ cols }}{% if module.animate_items %} is-revealing{% endif %}"{% if module.animate_items %} data-ac-reveal="0.12"{% endif %}>
+								{% for item in module.items %}
+								{% if item.text %}
+								<li class="ac-lg__item">
+									<span class="ac-lg__text heading{% if module.item_text_size != 'auto' %} {{ module.item_text_size }}{% endif %}" data-ac-reveal-rise>{{ item.text }}</span>
+								</li>
+								{% endif %}
+								{% endfor %}
+							</ul>
+						</div>
+
+						{# ---------- Note ---------- #}
+						{% if module.note %}
+						<div class="description ac-lg__note sr-spacer-top-50">{{ module.note }}</div>
+						{% endif %}
+
+					</div>
+
+			{% if module.design_settings.container_width != 'max' %}
+				</div>
+			</div>
+			{% endif %}
+
+		</div>
+	</div>
+
+	{{ ac.heading_scripts(module) }}
+
+	{% if module.animate_items %}
+	{{ ac.reveal_scripts() }}
+	{% endif %}
+
+{% endif %}
