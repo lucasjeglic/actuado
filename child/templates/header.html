@@ -26,7 +26,6 @@ version: 2
 		{{ require_css(get_asset_url(template_css)) }}
 		{% endif %}
 		{{ require_css(get_asset_url("../css/base-overrides.css")) }}
-		{{ require_js(get_asset_url("../child.js")) }}
 {{ standard_header_includes }}
 {{ require_css(get_public_template_url("../child.css")) }}
 		{% boolean "prototype_mode" label='Prototype Mode', value=False, no_wrapper=True, export_to_template_context=True %}

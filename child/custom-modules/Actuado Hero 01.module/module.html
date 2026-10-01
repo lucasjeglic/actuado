@@ -40,7 +40,7 @@
 
 	<div class="ac-hero-01 {{ name }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
 
-		<div class="ac-hero{% if module.align_to_container %} ac-hero--aligned{% endif %}{% if is_left %} ac-hero--media-left{% endif %}{% if module.parallax && module.image.src %} ac-hero--parallax{% endif %}">
+		<div class="ac-hero{% if is_left %} ac-hero--media-left{% endif %}{% if module.parallax && module.image.src %} ac-hero--parallax{% endif %}">
 
 			{# ---------- Text panel ---------- #}
 			<div class="ac-hero__panel">

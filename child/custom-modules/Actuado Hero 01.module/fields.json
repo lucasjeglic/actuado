@@ -256,7 +256,7 @@
     "id": "eyebrow",
     "name": "eyebrow",
     "label": "Eyebrow",
-    "help_text": "Small uppercase label above the heading. Leave blank to hide it (and its gold rule).",
+    "help_text": "Small uppercase label above the heading. Leave blank to hide it.",
     "required": false,
     "locked": false,
     "allow_new_line": false,

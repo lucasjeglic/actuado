@@ -42,9 +42,10 @@
 	{% endfor %}
 	{% set has_expandable = detail_flags|length > 0 %}
 
+	{# Only emit a text colour class when one is actually set; "auto" is not a class. #}
 	{% set text_color_class = module.design_settings.text_color != 'auto' ? 'text-' ~ module.design_settings.text_color : '' %}
 
-	<div class="ac-service-detail-01{% if module.scroll_sequence && has_expandable %} ac-points-sequence{% endif %} {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+	<div class="ac-service-detail-01{% if module.scroll_sequence && has_expandable %} ac-points-sequence{% endif %} {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} {{ text_color_class }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
 
 		{{ macros.module_bg_video(module) }}
 
@@ -57,7 +58,7 @@
 					<div class="row ac-service-row align-items-{{ module.columns_align }} ac-points-{{ module.points_size }}">
 
 						{# ---------- Left column ---------- #}
-						<div class="col-lg-{{ text_cols }} ac-service-intro {{ text_color_class }}{% if is_right %} order-lg-2{% endif %}">
+						<div class="col-lg-{{ text_cols }} ac-service-intro{% if is_right %} order-lg-2{% endif %}">
 
 							{% if module.show_icon || module.number %}
 							<div class="ac-service-meta">

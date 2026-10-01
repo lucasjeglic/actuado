@@ -35,11 +35,7 @@
 	}
 }
 
-/* The intro rail is always left-aligned, matching the design. The section's
-   own text-align setting governs the section, not this rail, so we defend
-   against inherited Bootstrap text-* utilities landing on the column. */
-
-/* ---------- Eyebrow ---------- */
+/* ---------- Intro alignment ---------- */
 
 /* The description has a measure cap, so the box itself needs centring or the
    text only centres inside a left-pinned block. (The eyebrow rule is handled

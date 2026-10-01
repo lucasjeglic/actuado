@@ -27,7 +27,7 @@
 
 	{% set text_color_class = module.design_settings.text_color != 'auto' ? 'text-' ~ module.design_settings.text_color : '' %}
 
-	<div class="ac-timeline-01 ac-timeline--{{ module.layout_mode }} ac-year-{{ module.year_size }} {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+	<div class="ac-timeline-01 ac-timeline--{{ module.layout_mode }} ac-year-{{ module.year_size }} {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} {{ text_color_class }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
 
 		{{ macros.module_bg_video(module) }}
 
@@ -35,8 +35,8 @@
 
 			<div class="{{ module.design_settings.layout }} content-wrapper">
 				<div class="ac-htl-head{% if has_images %} ac-htl-head--split{% endif %}">
-				{% if module.eyebrow || module.heading.heading_text %}
-				<div class="ac-htl-intro sr-spacer-bottom-50 {{ text_color_class }}">
+				{% if module.eyebrow || module.show_eyebrow_rule || module.heading.heading_text %}
+				<div class="ac-htl-intro sr-spacer-bottom-50">
 					{{ ac.eyebrow(module) }}
 
 					{% if module.heading.heading_text %}
