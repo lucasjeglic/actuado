@@ -131,18 +131,28 @@
 	   which the script removes once GSAP has taken over, so if the script never
 	   runs the list simply shows. Rules drawn by the reveal start undrawn too.
 	   ========================================================================== */
+	/* Items that mark their own parts (data-ac-reveal-fade / -rise) hide just
+	   those parts; any other item is hidden whole. */
 	[data-ac-reveal].is-revealing > * {
-		opacity: 0;
 		--ac-reveal-line-in: 0;
 		--ac-reveal-line-out: 0;
+	}
+
+	[data-ac-reveal].is-revealing > :not(:has([data-ac-reveal-fade], [data-ac-reveal-rise])),
+	[data-ac-reveal].is-revealing :is([data-ac-reveal-fade], [data-ac-reveal-rise]) {
+		opacity: 0;
 	}
 
 	/* Reduced motion means don't animate - not don't show. */
 	@media (prefers-reduced-motion: reduce) {
 		[data-ac-reveal].is-revealing > * {
-			opacity: 1;
 			--ac-reveal-line-in: 1;
 			--ac-reveal-line-out: 1;
+		}
+
+		[data-ac-reveal].is-revealing > :not(:has([data-ac-reveal-fade], [data-ac-reveal-rise])),
+		[data-ac-reveal].is-revealing :is([data-ac-reveal-fade], [data-ac-reveal-rise]) {
+			opacity: 1;
 		}
 	}
 

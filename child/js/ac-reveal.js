@@ -7,6 +7,12 @@
  *
  *   <ol data-ac-reveal="0.3" class="is-revealing"> ... </ol>
  *
+ * By default each item fades up as a whole. An item can instead mark its own
+ * parts, so that something inside it - a rule drawn between items - stays put:
+ *
+ *   data-ac-reveal-fade   fades in where it is
+ *   data-ac-reveal-rise   fades in and rises into place
+ *
  * With data-ac-reveal-line the hairlines between items draw in as well. The
  * script only animates two custom properties on each item, which the module's
  * CSS uses to scale its own rules:
@@ -48,14 +54,27 @@
 		items.forEach(function (item, i) {
 			var at = i * step;
 
+			var fade = item.querySelectorAll('[data-ac-reveal-fade]');
+			var rise = item.querySelectorAll('[data-ac-reveal-rise]');
+			if (!fade.length && !rise.length) rise = [item];
+
 			// fromTo rather than from: from applies its start values only when
 			// the tween first renders, so a list already past the trigger point
 			// could sit at opacity 0 forever.
-			tl.fromTo(item,
-				{ opacity: 0, y: 18 },
-				{ opacity: 1, y: 0, duration: DURATION, ease: 'power2.out' },
-				at
-			);
+			if (fade.length) {
+				tl.fromTo(fade,
+					{ opacity: 0 },
+					{ opacity: 1, duration: DURATION, ease: 'power2.out' },
+					at
+				);
+			}
+			if (rise.length) {
+				tl.fromTo(rise,
+					{ opacity: 0, y: 18 },
+					{ opacity: 1, y: 0, duration: DURATION, ease: 'power2.out' },
+					at
+				);
+			}
 
 			if (line === null) return;
 

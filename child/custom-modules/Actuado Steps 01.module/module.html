@@ -49,13 +49,15 @@
 						{% for item in module.steps %}
 						<li class="ac-steps__item">
 							{% if item.number %}
-							<span class="ac-steps__number">{{ item.number }}</span>
+							{# The rule is drawn on .ac-steps__number; the digits sit in their own
+							   element so the reveal can fade them without fading the rule. #}
+							<span class="ac-steps__number"><span class="ac-steps__digits" data-ac-reveal-fade>{{ item.number }}</span></span>
 							{% endif %}
 							{% if item.title %}
-							<{{ module.step_title_tag }} class="ac-steps__title heading{% if module.step_title_size != 'auto' %} {{ module.step_title_size }}{% endif %}">{{ item.title }}</{{ module.step_title_tag }}>
+							<{{ module.step_title_tag }} data-ac-reveal-rise class="ac-steps__title heading{% if module.step_title_size != 'auto' %} {{ module.step_title_size }}{% endif %}">{{ item.title }}</{{ module.step_title_tag }}>
 							{% endif %}
 							{% if item.text %}
-							<div class="ac-steps__text description">{{ item.text }}</div>
+							<div class="ac-steps__text description" data-ac-reveal-rise>{{ item.text }}</div>
 							{% endif %}
 						</li>
 						{% endfor %}
