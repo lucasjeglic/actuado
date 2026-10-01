@@ -1,6 +1,7 @@
 {% if module.enabled %}
 
 	{% import "../../templates/macros.html" as macros %}
+	{% import "../../templates/ac-macros.html" as ac %}
 
 	{% set divider = module.design_settings.divider_color.color ? macros.color(module.design_settings.divider_color) : 'var(--borders)' %}
 
@@ -21,13 +22,6 @@
 	</style>
 	{% end_require_css %}
 
-	{% set width_class =
-		module.design_settings.container_width == 'min' ? 'col-lg-6 offset-lg-3' :
-		module.design_settings.container_width == 'narrow' ? 'col-lg-8 offset-lg-2' :
-		module.design_settings.container_width == 'wide' ? 'col-lg-10 offset-lg-1' :
-		'col-lg-12'
-	%}
-
 	{# Choice fields return strings; coerce and clamp so the layout cannot collapse. #}
 	{% set text_cols = module.text_column_width|int %}
 	{% set text_cols = text_cols >= 3 and text_cols <= 8 ? text_cols : 5 %}
@@ -42,17 +36,14 @@
 	{% endfor %}
 	{% set has_expandable = detail_flags|length > 0 %}
 
-	{# Only emit a text colour class when one is actually set; "auto" is not a class. #}
-	{% set text_color_class = module.design_settings.text_color != 'auto' ? 'text-' ~ module.design_settings.text_color : '' %}
-
-	<div class="ac-service-detail-01{% if module.scroll_sequence && has_expandable %} ac-points-sequence{% endif %} {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} {{ text_color_class }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+	<div class="ac-service-detail-01{% if module.scroll_sequence && has_expandable %} ac-points-sequence{% endif %} {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} {{ ac.text_color_class(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
 
 		{{ macros.module_bg_video(module) }}
 
 		<div class="{{ module.design_settings.layout }} content-wrapper">
 			{% if module.design_settings.container_width != 'max' %}
 			<div class="row">
-				<div class="{{ width_class }}">
+				<div class="{{ ac.width_class(module.design_settings) }}">
 			{% endif %}
 
 					<div class="row ac-service-row align-items-{{ module.columns_align }} ac-points-{{ module.points_size }}">
@@ -73,10 +64,7 @@
 							</div>
 							{% endif %}
 
-							{% if module.heading.heading_text %}
-							{% set h = module.heading %}
-							<{{ h.heading_size }} class="heading ac-service-heading{% if h.heading_display_size != 'auto' %} {{ h.heading_display_size }}{% endif %}{% if module.animate_heading %} ac-animate-words{% endif %}">{{ h.heading_text }}</{{ h.heading_size }}>
-							{% endif %}
+							{{ ac.heading(module, 'ac-service-heading') }}
 
 							{% if module.lead %}
 							<div class="description ac-service-lead">{{ module.lead }}</div>
@@ -123,11 +111,7 @@
 	</div>
 
 
-	{% if module.animate_heading %}
-	{{ require_js(get_asset_url('../../js/gsap.js'), { defer: true, position: head }) }}
-	{{ require_js(get_asset_url('../../js/TextPlugin.js'), { defer: true, position: head }) }}
-	{{ require_js(get_asset_url('../../js/ac-type-on-scroll.js'), { defer: true }) }}
-	{% endif %}
+	{{ ac.heading_scripts(module) }}
 
 	{% if has_expandable %}
 	{{ require_js(get_asset_url('../../js/gsap.js'), { defer: true, position: head }) }}

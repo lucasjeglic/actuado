@@ -33,13 +33,6 @@
 	</style>
 	{% end_require_css %}
 
-	{% set width_class =
-		module.design_settings.container_width == 'min' ? 'col-lg-6 offset-lg-3' :
-		module.design_settings.container_width == 'narrow' ? 'col-lg-8 offset-lg-2' :
-		module.design_settings.container_width == 'wide' ? 'col-lg-10 offset-lg-1' :
-		'col-lg-12'
-	%}
-
 	{# Choice fields return strings; coerce and clamp so the grid can never collapse. #}
 	{% set text_cols = module.text_column_width|int %}
 	{% set text_cols = text_cols >= 3 and text_cols <= 6 ? text_cols : 4 %}
@@ -48,17 +41,14 @@
 	{% set per_row   = module.grid_columns|int %}
 	{% set per_row   = per_row >= 1 and per_row <= 4 ? per_row : 2 %}
 
-	{# Only emit a text colour class when one is actually set; "auto" is not a class. #}
-	{% set text_color_class = module.design_settings.text_color != 'auto' ? 'text-' ~ module.design_settings.text_color : '' %}
-
-	<div class="ac-services-grid-01 {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} {{ text_color_class }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+	<div class="ac-services-grid-01 {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} {{ ac.text_color_class(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
 
 		{{ macros.module_bg_video(module) }}
 
 		<div class="{{ module.design_settings.layout }}">
 			{% if module.design_settings.container_width != 'max' %}
 			<div class="row">
-				<div class="{{ width_class }}">
+				<div class="{{ ac.width_class(module.design_settings) }}">
 			{% endif %}
 
 					{% set stacked = module.intro_layout == 'above' %}
@@ -74,10 +64,7 @@
 
 							{{ ac.eyebrow(module, '{% if module.heading.heading_text || module.description %}sr-spacer-bottom-25{% endif %}') }}
 
-							{% if module.heading.heading_text %}
-							{% set h = module.heading %}
-							<{{ h.heading_size }} class="heading ac-services-heading{% if h.heading_display_size != 'auto' %} {{ h.heading_display_size }}{% endif %}{% if module.description %} sr-spacer-bottom-25{% endif %}{% if module.animate_heading %} ac-animate-words{% endif %}">{{ h.heading_text }}</{{ h.heading_size }}>
-							{% endif %}
+							{{ ac.heading(module, 'ac-services-heading' ~ (' sr-spacer-bottom-25' if module.description else '')) }}
 
 							{% if module.description %}
 							<div class="description ac-services-description">{{ module.description }}</div>
@@ -130,10 +117,6 @@
 	</div>
 
 
-	{% if module.animate_heading %}
-	{{ require_js(get_asset_url('../../js/gsap.js'), { defer: true, position: head }) }}
-	{{ require_js(get_asset_url('../../js/TextPlugin.js'), { defer: true, position: head }) }}
-	{{ require_js(get_asset_url('../../js/ac-type-on-scroll.js'), { defer: true }) }}
-	{% endif %}
+	{{ ac.heading_scripts(module) }}
 
 {% endif %}

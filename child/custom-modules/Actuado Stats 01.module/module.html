@@ -18,33 +18,21 @@
 	</style>
 	{% end_require_css %}
 
-	{% set width_class =
-		module.design_settings.container_width == 'min' ? 'col-lg-6 offset-lg-3' :
-		module.design_settings.container_width == 'narrow' ? 'col-lg-8 offset-lg-2' :
-		module.design_settings.container_width == 'wide' ? 'col-lg-10 offset-lg-1' :
-		'col-lg-12'
-	%}
-
-	{% set text_color_class = module.design_settings.text_color != 'auto' ? 'text-' ~ module.design_settings.text_color : '' %}
-
-	<div class="ac-stats-01 {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} {{ text_color_class }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+	<div class="ac-stats-01 {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} {{ ac.text_color_class(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
 
 		{{ macros.module_bg_video(module) }}
 
 		<div class="{{ module.design_settings.layout }} content-wrapper">
 			{% if module.design_settings.container_width != 'max' %}
 			<div class="row">
-				<div class="{{ width_class }}">
+				<div class="{{ ac.width_class(module.design_settings) }}">
 			{% endif %}
 
 					{% if module.eyebrow || module.show_eyebrow_rule || module.heading.heading_text %}
 					<div class="ac-stats-intro sr-spacer-bottom-50">
 						{{ ac.eyebrow(module) }}
 
-						{% if module.heading.heading_text %}
-						{% set h = module.heading %}
-						<{{ h.heading_size }} class="heading ac-stats-heading{% if h.heading_display_size != 'auto' %} {{ h.heading_display_size }}{% endif %}{% if module.animate_heading %} ac-animate-words{% endif %}">{{ h.heading_text }}</{{ h.heading_size }}>
-						{% endif %}
+						{{ ac.heading(module, 'ac-stats-heading') }}
 					</div>
 					{% endif %}
 
@@ -79,10 +67,6 @@
 	{% endif %}
 
 
-	{% if module.animate_heading %}
-	{{ require_js(get_asset_url('../../js/gsap.js'), { defer: true, position: head }) }}
-	{{ require_js(get_asset_url('../../js/TextPlugin.js'), { defer: true, position: head }) }}
-	{{ require_js(get_asset_url('../../js/ac-type-on-scroll.js'), { defer: true }) }}
-	{% endif %}
+	{{ ac.heading_scripts(module) }}
 
 {% endif %}

@@ -49,10 +49,7 @@
 
 					{{ ac.eyebrow(module) }}
 
-					{% if module.heading.heading_text %}
-					{% set h = module.heading %}
-					<{{ h.heading_size }} class="heading ac-hero__heading{% if h.heading_display_size != 'auto' %} {{ h.heading_display_size }}{% endif %}{% if module.animate_heading %} ac-animate-words{% endif %}">{{ h.heading_text }}</{{ h.heading_size }}>
-					{% endif %}
+					{{ ac.heading(module, 'ac-hero__heading') }}
 
 					{% if module.description %}
 					<div class="description ac-hero__text{% if module.lead_text %} lead{% endif %}">{{ module.description }}</div>
@@ -80,11 +77,7 @@
 		</div>
 	</div>
 
-	{% if module.animate_heading %}
-	{{ require_js(get_asset_url('../../js/gsap.js'), { defer: true, position: head }) }}
-	{{ require_js(get_asset_url('../../js/TextPlugin.js'), { defer: true, position: head }) }}
-	{{ require_js(get_asset_url('../../js/ac-type-on-scroll.js'), { defer: true }) }}
-	{% endif %}
+	{{ ac.heading_scripts(module) }}
 
 	{% if module.parallax && module.image.src %}
 	{{ require_js(get_asset_url('../../js/gsap.js'), { defer: true, position: head }) }}

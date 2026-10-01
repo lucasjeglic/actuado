@@ -26,3 +26,61 @@
 <p class="ac-eyebrow small{% if module.show_eyebrow_rule %} ac-eyebrow--rule{% endif %}{% if extra_class %} {{ extra_class }}{% endif %}">{{ module.eyebrow }}</p>
 {%- endif -%}
 {%- endmacro -%}
+
+
+{# -----------------------------------------------------------------------------
+   width_class(settings)
+
+   The column classes for the Container Width setting, matching SR's modules.
+   Only used when the width is not "max", where no inner row is rendered.
+   -------------------------------------------------------------------------- #}
+{%- macro width_class(settings) -%}
+{{ settings.container_width == 'min' ? 'col-lg-6 offset-lg-3' :
+   settings.container_width == 'narrow' ? 'col-lg-8 offset-lg-2' :
+   settings.container_width == 'wide' ? 'col-lg-10 offset-lg-1' :
+   'col-lg-12' }}
+{%- endmacro -%}
+
+
+{# -----------------------------------------------------------------------------
+   text_color_class(settings)
+
+   The text-* class for the Text Color setting. Empty when it is "auto",
+   which is not a class.
+   -------------------------------------------------------------------------- #}
+{%- macro text_color_class(settings) -%}
+{{ 'text-' ~ settings.text_color if settings.text_color != 'auto' }}
+{%- endmacro -%}
+
+
+{# -----------------------------------------------------------------------------
+   heading(module, extra_class)
+
+   The section heading from the module's `heading` group: the chosen tag, the
+   display size when it is not "auto", and the typing animation hook when
+   `animate_heading` is on. Renders nothing without heading text.
+
+   `extra_class` is appended - the module's own heading class plus any
+   .sr-spacer-* class.
+   -------------------------------------------------------------------------- #}
+{%- macro heading(module, extra_class) -%}
+{%- set h = module.heading -%}
+{%- if h.heading_text -%}
+<{{ h.heading_size }} class="heading{% if extra_class %} {{ extra_class }}{% endif %}{% if h.heading_display_size != 'auto' %} {{ h.heading_display_size }}{% endif %}{% if module.animate_heading %} ac-animate-words{% endif %}">{{ h.heading_text }}</{{ h.heading_size }}>
+{%- endif -%}
+{%- endmacro -%}
+
+
+{# -----------------------------------------------------------------------------
+   heading_scripts(module)
+
+   Loads the typing animation when `animate_heading` is on. Paths are relative
+   to this file, so they resolve to the same child js/ folder the modules use.
+   -------------------------------------------------------------------------- #}
+{%- macro heading_scripts(module) -%}
+{%- if module.animate_heading -%}
+{{ require_js(get_asset_url('../js/gsap.js'), { defer: true, position: head }) }}
+{{ require_js(get_asset_url('../js/TextPlugin.js'), { defer: true, position: head }) }}
+{{ require_js(get_asset_url('../js/ac-type-on-scroll.js'), { defer: true }) }}
+{%- endif -%}
+{%- endmacro -%}

@@ -1,6 +1,7 @@
 {% if module.enabled %}
 
 	{% import "../../templates/macros.html" as macros %}
+	{% import "../../templates/ac-macros.html" as ac %}
 
 	{% require_css %}
 	<style>
@@ -20,24 +21,14 @@
 	</style>
 	{% end_require_css %}
 
-	{% set width_class =
-		module.design_settings.container_width == 'min' ? 'col-lg-6 offset-lg-3' :
-		module.design_settings.container_width == 'narrow' ? 'col-lg-8 offset-lg-2' :
-		module.design_settings.container_width == 'wide' ? 'col-lg-10 offset-lg-1' :
-		'col-lg-12'
-	%}
-
-	{# Only emit a text colour class when one is actually set; "auto" is not a class. #}
-	{% set text_color_class = module.design_settings.text_color != 'auto' ? 'text-' ~ module.design_settings.text_color : '' %}
-
-	<div class="ac-quote-01 {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} {{ text_color_class }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+	<div class="ac-quote-01 {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} {{ ac.text_color_class(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
 
 		{{ macros.module_bg_video(module) }}
 
 		<div class="{{ module.design_settings.layout }}">
 			{% if module.design_settings.container_width != 'max' %}
 			<div class="row">
-				<div class="{{ width_class }}">
+				<div class="{{ ac.width_class(module.design_settings) }}">
 			{% endif %}
 
 					<div class="content-wrapper">

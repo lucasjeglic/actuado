@@ -25,9 +25,7 @@
 	{% endfor %}
 	{% set has_images = module.show_images && image_flags|length > 0 %}
 
-	{% set text_color_class = module.design_settings.text_color != 'auto' ? 'text-' ~ module.design_settings.text_color : '' %}
-
-	<div class="ac-timeline-01 ac-timeline--{{ module.layout_mode }} ac-year-{{ module.year_size }} {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} {{ text_color_class }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+	<div class="ac-timeline-01 ac-timeline--{{ module.layout_mode }} ac-year-{{ module.year_size }} {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} {{ ac.text_color_class(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
 
 		{{ macros.module_bg_video(module) }}
 
@@ -39,10 +37,7 @@
 				<div class="ac-htl-intro sr-spacer-bottom-50">
 					{{ ac.eyebrow(module) }}
 
-					{% if module.heading.heading_text %}
-					{% set h = module.heading %}
-					<{{ h.heading_size }} class="heading ac-htl-heading{% if h.heading_display_size != 'auto' %} {{ h.heading_display_size }}{% endif %}{% if module.animate_heading %} ac-animate-words{% endif %}">{{ h.heading_text }}</{{ h.heading_size }}>
-					{% endif %}
+					{{ ac.heading(module, 'ac-htl-heading') }}
 				</div>
 				{% endif %}
 
@@ -113,11 +108,7 @@
 		</div>
 	</div>
 
-	{% if module.animate_heading %}
-	{{ require_js(get_asset_url('../../js/gsap.js'), { defer: true, position: head }) }}
-	{{ require_js(get_asset_url('../../js/TextPlugin.js'), { defer: true, position: head }) }}
-	{{ require_js(get_asset_url('../../js/ac-type-on-scroll.js'), { defer: true }) }}
-	{% endif %}
+	{{ ac.heading_scripts(module) }}
 
 	{{ require_js(get_asset_url('../../js/gsap.js'), { defer: true, position: head }) }}
 	{{ require_js(get_asset_url('../../js/ScrollTrigger.js'), { defer: true, position: head }) }}
