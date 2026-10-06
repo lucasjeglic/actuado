@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Actuado Equation 01
+   Actuado Statement 01
    A full-bleed split like Hero 01: a coloured panel with the heading and the
    credentials, and beside it the argument - a pivot line, one large statement
    with its key words highlighted, and the closing text.
@@ -10,12 +10,12 @@
 
 /* ---------- Layout ---------- */
 
-.ac-equation-01 .ac-eq {
+.ac-statement-01 .ac-eq {
 	display: grid;
 	grid-template-columns: 1fr;
 }
 
-.ac-equation-01 .ac-eq__inner {
+.ac-statement-01 .ac-eq__inner {
 	box-sizing: border-box;
 	width: 100%;
 	max-width: var(--ac-container, 1140px);
@@ -25,28 +25,28 @@
 
 /* Side by side from 768px, the breakpoint where Steps moves to its wider grid. */
 @media (min-width: 768px) {
-	.ac-equation-01 .ac-eq {
+	.ac-statement-01 .ac-eq {
 		grid-template-columns: 5fr 7fr;
 	}
 
 	/* Each half keeps its text on the site's container edge rather than the
 	   screen edge, as in Hero 01. */
-	.ac-equation-01 .ac-eq__inner {
+	.ac-statement-01 .ac-eq__inner {
 		max-width: none;
 		margin: 0;
 	}
 
-	.ac-equation-01 .ac-eq__panel .ac-eq__inner {
+	.ac-statement-01 .ac-eq__panel .ac-eq__inner {
 		padding-left: max(1.5rem, calc((100vw - var(--ac-container, 1140px)) / 2 + 15px));
 		padding-right: clamp(2rem, 4vw, 4rem);
 	}
 
-	.ac-equation-01 .ac-eq__main .ac-eq__inner {
+	.ac-statement-01 .ac-eq__main .ac-eq__inner {
 		padding-left: clamp(2rem, 5vw, 5rem);
 		padding-right: max(1.5rem, calc((100vw - var(--ac-container, 1140px)) / 2 + 15px));
 	}
 
-	.ac-equation-01 .ac-eq__main {
+	.ac-statement-01 .ac-eq__main {
 		display: flex;
 		align-items: center;
 	}
@@ -54,21 +54,21 @@
 
 /* ---------- Panel ---------- */
 
-.ac-equation-01 .ac-eq__panel {
+.ac-statement-01 .ac-eq__panel {
 	background: var(--ac-panel, var(--tertiary));
 }
 
-.ac-equation-01 .ac-eq__panel .ac-eyebrow {
+.ac-statement-01 .ac-eq__panel .ac-eyebrow {
 	color: rgba(255, 255, 255, 0.78);
 }
 
-.ac-equation-01 .ac-eq__heading {
+.ac-statement-01 .ac-eq__heading {
 	margin: 0;
 	color: #fff;
 }
 
 /* The credentials as in the source: bold, one per line, divided by hairlines. */
-.ac-equation-01 .ac-eq__creds {
+.ac-statement-01 .ac-eq__creds {
 	list-style: none;
 	margin: 0;
 	padding-left: 0;
@@ -76,26 +76,26 @@
 	color: #fff;
 }
 
-.ac-equation-01 .ac-eq__creds li {
+.ac-statement-01 .ac-eq__creds li {
 	padding: 1rem 0;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.16);
 }
 
 /* On the first item rather than the list, whose top padding is the spacer
    from the heading: the rule belongs above the first credential. */
-.ac-equation-01 .ac-eq__creds li:first-child {
+.ac-statement-01 .ac-eq__creds li:first-child {
 	border-top: 1px solid rgba(255, 255, 255, 0.16);
 }
 
 /* ---------- Main ---------- */
 
-.ac-equation-01 .ac-eq__pivot {
+.ac-statement-01 .ac-eq__pivot {
 	margin: 0;
 }
 
 /* The theme's H3 size and font, read as a sentence: regular weight, with the
    key words bold as in the source. */
-.ac-equation-01 .ac-eq__statement {
+.ac-statement-01 .ac-eq__statement {
 	margin: 0;
 	font-weight: 400;
 	text-wrap: pretty;
@@ -107,7 +107,7 @@
    line by line as one strip (slice), so the sweep - --ac-reveal-line-out from
    0 to 1 when the animation is on - crosses each line in turn. Drawn in full
    without it. */
-.ac-equation-01 .ac-eq__mark {
+.ac-statement-01 .ac-eq__mark {
 	font-weight: 700;
 	background-image: linear-gradient(var(--primary), var(--primary));
 	background-repeat: no-repeat;
@@ -117,10 +117,10 @@
 	box-decoration-break: slice;
 }
 
-.ac-equation-01 .ac-eq__closing {
+.ac-statement-01 .ac-eq__closing {
 	max-width: 36rem;
 }
 
-.ac-equation-01 .ac-eq__closing > *:last-child {
+.ac-statement-01 .ac-eq__closing > *:last-child {
 	margin-bottom: 0;
 }

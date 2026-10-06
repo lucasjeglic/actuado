@@ -1955,7 +1955,7 @@
   },
   {
     "name": "parts",
-    "label": "Equation Parts",
+    "label": "Highlighted Parts",
     "type": "group",
     "required": false,
     "locked": false,
