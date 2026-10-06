@@ -1893,7 +1893,7 @@
       "default": 3
     },
     "display": "inline",
-    "help_text": "Short factual proof points, listed under the heading.",
+    "help_text": "Short factual proof points, shown in a row above the statement.",
     "children": [
       {
         "name": "text",
@@ -1927,7 +1927,7 @@
     "default": "But certifications are only part of it.",
     "allow_new_line": false,
     "show_emoji_picker": false,
-    "help_text": "Closes the left column and leads into the equation."
+    "help_text": "A short sentence leading into the statement."
   },
   {
     "name": "lead",
@@ -1937,7 +1937,7 @@
     "locked": false,
     "allow_new_line": false,
     "default": "We combine",
-    "help_text": "Short text above the parts, starting the sentence."
+    "help_text": "Starts the statement, in regular weight."
   },
   {
     "name": "parts",
@@ -1952,7 +1952,7 @@
       "default": 5
     },
     "display": "inline",
-    "help_text": "Listed one per row, joined with + signs, in this order.",
+    "help_text": "The bold middle of the statement, joined with + signs, in this order.",
     "children": [
       {
         "name": "text",
@@ -1992,7 +1992,7 @@
     "default": "in one implementation team.",
     "allow_new_line": false,
     "show_emoji_picker": false,
-    "help_text": "Ends the sentence, shown larger where the gold line turns."
+    "help_text": "Ends the statement, in regular weight."
   },
   {
     "name": "closing",
@@ -2004,12 +2004,12 @@
   },
   {
     "name": "animate_parts",
-    "label": "Animate Equation",
+    "label": "Animate Statement",
     "type": "boolean",
     "required": false,
     "locked": false,
     "display": "toggle",
     "default": true,
-    "help_text": "The parts appear one after another as the section scrolls into view, ending on the result."
+    "help_text": "The statement builds up piece by piece as the section scrolls into view."
   }
 ]

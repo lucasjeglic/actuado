@@ -1,139 +1,75 @@
 /* ==========================================================================
    Actuado Equation 01
-   Left: the heading, the credentials and a pivot line. Right: the argument
-   written as a sum - parts on ruled rows with + signs, a sum line, then the
-   result - and the closing text.
+   A heading rail beside the "why us" text: credentials, a pivot line, one
+   large statement with its key parts in bold, and the closing text.
 
-   Type comes from the theme's type slots.
-   Section padding is owned by the SR padding classes - never set section
-   padding-top / padding-bottom here.
+   Type comes from the theme's type slots. Section padding is owned by the SR
+   padding classes - never set section padding-top / padding-bottom here.
    ========================================================================== */
 
 /* ---------- Layout ---------- */
 
-/* The intro's spacer separates the columns once they stack; side by side
-   there is nothing below it, so its padding is dropped. */
+/* The rail's spacer separates it from the content once the columns stack;
+   side by side there is nothing below it, so its padding is dropped. */
 @media (min-width: 992px) {
-	.ac-equation-01 .ac-eq__intro {
+	.ac-equation-01 .ac-eq__rail {
 		padding-bottom: 0;
 	}
 }
 
-/* ---------- Setup ---------- */
-
-.ac-equation-01 .ac-eq__heading,
-.ac-equation-01 .ac-eq__pivot {
+.ac-equation-01 .ac-eq__heading {
 	margin-bottom: 0;
 	text-wrap: balance;
 }
 
+/* ---------- Credentials ---------- */
+
+/* The facts in a row, each led by a small gold marker, so a wrapped line never
+   starts with a stray separator. */
 .ac-equation-01 .ac-eq__creds {
 	list-style: none;
 	margin: 0;
 	padding-left: 0;
 	display: flex;
-	flex-direction: column;
-	gap: 0.375rem;
-	/* Bold, as in the source text. */
+	flex-wrap: wrap;
+	gap: 0.375rem 1.75rem;
 	font-weight: 700;
 }
 
-/* ---------- The sentence ---------- */
-
-.ac-equation-01 .ac-eq__parts {
-	list-style: none;
-	margin: 0;
-	padding-left: 0;
+.ac-equation-01 .ac-eq__creds li {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.625rem;
 }
 
-.ac-equation-01 .ac-eq__part {
-	position: relative;
-	padding: 0.25rem 0 0.25rem 1.75rem;
+.ac-equation-01 .ac-eq__creds li::before {
+	content: "";
+	flex: none;
+	width: 0.375rem;
+	height: 0.375rem;
+	background: var(--primary);
 }
 
-.ac-equation-01 .ac-eq__part {
-	margin: 0;
-}
+/* ---------- Text ---------- */
 
-.ac-equation-01 .ac-eq__part > span,
-.ac-equation-01 .ac-eq__part .heading {
-	display: block;
+.ac-equation-01 .ac-eq__pivot {
 	margin: 0;
 }
 
-/* Tighter than the theme's heading line height, so the parts read as one
-   group rather than a spaced-out list. */
-.ac-equation-01 .ac-eq__part .heading {
-	line-height: 1.25;
-}
-
-/* The lead-in and the result open and close the sentence with a little room
-   either side of the parts. */
-.ac-equation-01 .ac-eq__part--lead {
-	padding-bottom: 0.75rem;
-}
-
-.ac-equation-01 .ac-eq__part--result {
-	padding-top: 0.75rem;
-}
-
-/* The + signs from the source text: same colour as the part, lighter. */
-.ac-equation-01 .ac-eq__plus {
+/* The statement uses the theme's H3 size and font, but reads as a sentence:
+   regular weight with the parts bold, as in the source. */
+.ac-equation-01 .ac-eq__statement {
+	margin: 0;
 	font-weight: 400;
+	text-wrap: pretty;
 }
 
-/* One segment of the gold line per row. The segments touch, so together they
-   read as a single line; the reveal grows each one downwards via
-   --ac-reveal-line-out, and without the animation they are simply drawn. */
-.ac-equation-01 .ac-eq__part::before {
-	content: "";
-	position: absolute;
-	left: 0;
-	top: 0;
-	bottom: 0;
-	width: 2px;
-	background: var(--primary);
-	transform: scaleY(var(--ac-reveal-line-out, 1));
-	transform-origin: top;
-}
-
-/* The line starts with a short turn out of the lead-in and ends with one into
-   the result, bracketing the parts. Each turn sits at the middle of the first
-   line of its text: the row's top padding plus half a line (lh), which the
-   row's own .lead type sets. */
-.ac-equation-01 .ac-eq__part--lead {
-	--ac-turn: calc(0.25rem + 0.5lh);
-}
-
-.ac-equation-01 .ac-eq__part--result {
-	--ac-turn: calc(0.75rem + 0.5lh);
-}
-
-.ac-equation-01 .ac-eq__part--lead::before {
-	top: var(--ac-turn);
-}
-
-.ac-equation-01 .ac-eq__part--result::before {
-	bottom: auto;
-	height: var(--ac-turn);
-}
-
-.ac-equation-01 .ac-eq__part--lead::after,
-.ac-equation-01 .ac-eq__part--result::after {
-	content: "";
-	position: absolute;
-	left: 0;
-	top: var(--ac-turn);
-	width: 1rem;
-	height: 2px;
-	background: var(--primary);
-	transform: scaleX(var(--ac-reveal-line-out, 1));
-	transform-origin: left;
+.ac-equation-01 .ac-eq__part {
+	font-weight: 700;
 }
 
 .ac-equation-01 .ac-eq__closing {
-	/* Keeps a readable line length in the wider answer column. */
-	max-width: 36rem;
+	max-width: 40rem;
 }
 
 .ac-equation-01 .ac-eq__closing > *:last-child {
