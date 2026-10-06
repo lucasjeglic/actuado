@@ -4,7 +4,7 @@
    written as a sum - parts on ruled rows with + signs, a sum line, then the
    result - and the closing text.
 
-   Column geometry is Question List's. Type comes from the theme's type slots.
+   Type comes from the theme's type slots.
    Section padding is owned by the SR padding classes - never set section
    padding-top / padding-bottom here.
    ========================================================================== */
@@ -129,6 +129,11 @@
 	background: var(--primary);
 	transform: scaleX(var(--ac-reveal-line-out, 1));
 	transform-origin: left;
+}
+
+.ac-equation-01 .ac-eq__closing {
+	/* Keeps a readable line length in the wider answer column. */
+	max-width: 36rem;
 }
 
 .ac-equation-01 .ac-eq__closing > *:last-child {
