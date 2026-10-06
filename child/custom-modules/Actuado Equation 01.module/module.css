@@ -23,7 +23,8 @@
 	padding: 0 15px;
 }
 
-@media (min-width: 992px) {
+/* Side by side from 768px, the breakpoint where Steps moves to its wider grid. */
+@media (min-width: 768px) {
 	.ac-equation-01 .ac-eq {
 		grid-template-columns: 5fr 7fr;
 	}
@@ -100,15 +101,16 @@
 	text-wrap: pretty;
 }
 
-/* A marker-style highlight under the key words. It runs line by line as one
-   strip (slice), so the sweep - --ac-reveal-line-out from 0 to 1 when the
-   animation is on - crosses each line in turn. Drawn in full without it. */
+/* A marker-style highlight behind the full height of the key words. It runs
+   line by line as one strip (slice), so the sweep - --ac-reveal-line-out from
+   0 to 1 when the animation is on - crosses each line in turn. Drawn in full
+   without it. */
 .ac-equation-01 .ac-eq__mark {
 	font-weight: 700;
 	background-image: linear-gradient(var(--primary), var(--primary));
 	background-repeat: no-repeat;
-	background-position: 0 88%;
-	background-size: calc(var(--ac-reveal-line-out, 1) * 100%) 0.38em;
+	background-position: 0 0;
+	background-size: calc(var(--ac-reveal-line-out, 1) * 100%) 100%;
 	-webkit-box-decoration-break: slice;
 	box-decoration-break: slice;
 }
