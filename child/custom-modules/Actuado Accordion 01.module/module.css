@@ -18,18 +18,6 @@
 		padding-bottom: 0;
 	}
 
-	/* The heading stays in view while the questions scroll past: the column
-	   stretches to the list's height and its content sticks within it. */
-	.ac-accordion-01 .ac-acc__intro {
-		align-self: stretch;
-	}
-
-	.ac-accordion-01 .ac-acc__intro > .content-wrapper {
-		position: sticky;
-		top: 7.5rem;
-		height: auto;
-	}
-
 	/* The space between the columns, the same as Statement 01's: padding on the
 	   list column, so the split stays 5/7. */
 	.ac-accordion-01 .ac-acc__list-col > .content-wrapper {
