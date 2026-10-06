@@ -202,14 +202,15 @@
 
 /* ---------- Decoration ---------- */
 
-/* A field of plus signs under the heading, from the screen edge. Positioned from the
-   heading column, which keeps its height when a question opens, so the squares
-   stay put while the section grows; the section clips them at its bottom.
+/* A field of plus signs under the heading, from the screen edge to the last
+   question. The heading column stretches to the list's height and the field
+   fills the space below the heading, so it ends level with the last divider
+   and follows the list smoothly as a question opens. The drawing is pinned to
+   the field's bottom-left corner and clipped at the top, so it never resizes.
    cqw measures the module, so the reach to the screen edge (--ac-edge, the
    space outside the container, plus the column gutter) ignores the scrollbar. */
 .ac-accordion-01 {
 	container-type: inline-size;
-	overflow: hidden;
 }
 
 .ac-accordion-01 .ac-acc__deco {
@@ -217,32 +218,42 @@
 }
 
 @media (min-width: 992px) {
-	.ac-accordion-01 .ac-acc__intro .content-wrapper {
-		position: relative;
+	.ac-accordion-01 .ac-acc__intro--deco {
+		align-self: stretch;
+	}
+
+	.ac-accordion-01 .ac-acc__intro--deco > .content-wrapper {
+		display: flex;
+		flex-direction: column;
 	}
 
 	.ac-accordion-01 .ac-acc__deco {
 		--ac-edge: max(0px, (100cqw - var(--ac-container, 1140px)) / 2);
 		display: block;
-		position: absolute;
-		top: calc(100% + 3rem);
-		left: calc(-1 * (var(--ac-edge) + 15px));
-		width: 38rem;
-		height: 26rem;
-		/* The heading colour, at the low opacities set on each column. */
+		position: relative;
+		flex: 1 1 auto;
+		min-height: 10rem;
+		margin-top: 3rem;
+		margin-left: calc(-1 * (var(--ac-edge) + 15px));
+		overflow: hidden;
+		/* The heading colour, at the low opacities set on each ring. */
 		color: var(--heading);
 		pointer-events: none;
 	}
 
-	.ac-accordion-01 .ac-acc__deco path {
-		vector-effect: non-scaling-stroke;
+	.ac-accordion-01 .ac-acc__deco svg {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 38rem;
+		height: 51rem;
 	}
 
-	/* Each ring breathes between its own opacity and 40% of it, a little
-	   later the further it is from the corner. */
+	/* Each ring pulses down to 15% of its own opacity and back, starting a
+	   little later the further it is from the corner (inline delay). */
 	.ac-accordion-01 .ac-acc__deco path {
-		opacity: var(--o, 1);
-		animation: ac-acc-breathe 4.8s ease-in-out var(--d, 0s) infinite;
+		vector-effect: non-scaling-stroke;
+		animation: ac-acc-breathe 4.8s ease-in-out infinite;
 	}
 
 	.ac-accordion-01 .ac-acc__deco .ac-acc__deco-accent {
@@ -253,8 +264,8 @@
 }
 
 @keyframes ac-acc-breathe {
-	0%, 100% { opacity: var(--o, 1); }
-	50%      { opacity: calc(var(--o, 1) * 0.4); }
+	0%, 100% { opacity: 1; }
+	50%      { opacity: 0.15; }
 }
 
 @media (prefers-reduced-motion: reduce) {
