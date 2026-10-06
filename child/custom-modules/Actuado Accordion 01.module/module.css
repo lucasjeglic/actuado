@@ -17,6 +17,12 @@
 	.ac-accordion-01 .ac-acc__intro {
 		padding-bottom: 0;
 	}
+
+	/* The space between the columns, the same as Statement 01's: padding on the
+	   column that sits second, so the split stays 5/7. */
+	.ac-accordion-01 .ac-acc__second > .content-wrapper {
+		padding-left: clamp(2rem, 5vw, 5rem);
+	}
 }
 
 /* ---------- Title + lead ---------- */

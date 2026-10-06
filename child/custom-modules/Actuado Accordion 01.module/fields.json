@@ -2028,7 +2028,7 @@
     "id": "text_column_width",
     "name": "text_column_width",
     "label": "Text Column Width",
-    "help_text": "Width of the heading column on desktop. The list takes the rest, after a one-column gap.",
+    "help_text": "Width of the heading column on desktop. The list takes the rest.",
     "required": false,
     "locked": false,
     "display": "select",
