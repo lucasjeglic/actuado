@@ -15,14 +15,6 @@
 	</style>
 	{% end_require_css %}
 
-	{# Choice fields return strings; coerce and clamp so the layout cannot collapse. #}
-	{% set text_cols = module.text_column_width|int %}
-	{% set text_cols = text_cols >= 3 and text_cols <= 8 ? text_cols : 5 %}
-	{# A 5/7 split by default, the same ratio as Statement 01. The space between
-	   the columns is padding on whichever sits second (see module.css). #}
-	{% set list_cols = 12 - text_cols %}
-	{% set is_right  = module.text_column_side == 'right' %}
-
 	{# Only load the accordion assets when a point actually has detail.
 	   Built as a list because {% set %} inside a loop does not escape it. #}
 	{% set detail_flags = [] %}
@@ -44,7 +36,8 @@
 					<div class="row ac-acc align-items-{{ module.columns_align }} ac-points-{{ module.points_size }}">
 
 						{# ---------- Left column ---------- #}
-						<div class="col-lg-{{ text_cols }}{% if is_right %} order-lg-2 ac-acc__second{% endif %} sr-col ac-acc__intro sr-spacer-bottom-50">
+						{# A fixed 5/7 split, the same as Statement 01. #}
+						<div class="col-lg-5 sr-col ac-acc__intro sr-spacer-bottom-50">
 							<div class="content-wrapper">
 
 							{{ ac.eyebrow(module, 'sr-spacer-bottom-25' if module.heading.heading_text || module.lead else '') }}
@@ -60,7 +53,7 @@
 
 						{# ---------- Points list ---------- #}
 						{% if module.points %}
-						<div class="col-lg-{{ list_cols }}{% if is_right %} order-lg-1{% else %} ac-acc__second{% endif %} sr-col ac-acc__list-col">
+						<div class="col-lg-7 sr-col ac-acc__list-col">
 							<div class="content-wrapper">
 							<ul class="ac-acc__list">
 								{% for item in module.points %}
