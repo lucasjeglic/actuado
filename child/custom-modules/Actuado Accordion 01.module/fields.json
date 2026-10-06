@@ -1968,6 +1968,16 @@
     ]
   },
   {
+    "name": "show_decoration",
+    "label": "Decoration",
+    "type": "boolean",
+    "display": "toggle",
+    "required": false,
+    "locked": false,
+    "default": true,
+    "help_text": "Nested squares in the bottom-left corner, from the screen edge. Desktop only."
+  },
+  {
     "id": "columns_align",
     "name": "columns_align",
     "label": "Vertical Alignment",

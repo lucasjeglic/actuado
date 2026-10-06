@@ -199,3 +199,40 @@
 	flex-direction: column;
 	justify-content: center;
 }
+
+/* ---------- Decoration ---------- */
+
+/* Nested squares from the bottom-left corner, starting at the screen edge.
+   Shown only side by side, where there is space under the heading; capped at
+   half the section's height so it stays clear of the heading. */
+.ac-accordion-01 {
+	position: relative;
+	overflow: hidden;
+}
+
+.ac-accordion-01 .ac-acc__deco {
+	display: none;
+}
+
+@media (min-width: 992px) {
+	.ac-accordion-01 .ac-acc__deco {
+		display: block;
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		height: min(23rem, 50%);
+		width: auto;
+		aspect-ratio: 1;
+		color: var(--ac-divider, var(--borders));
+		pointer-events: none;
+	}
+
+	.ac-accordion-01 .ac-acc__deco path {
+		vector-effect: non-scaling-stroke;
+	}
+
+	.ac-accordion-01 .ac-acc__deco .ac-acc__deco-accent {
+		stroke: var(--primary);
+		stroke-width: 2;
+	}
+}

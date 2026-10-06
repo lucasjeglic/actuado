@@ -9,7 +9,7 @@
 	<style>
 		{{ macros.design_settings(name, module.design_settings) }}
 
-		.{{ name }} .ac-acc {
+		.{{ name }} {
 			--ac-divider: {{ divider }};
 		}
 	</style>
@@ -26,6 +26,13 @@
 	<div class="ac-accordion-01 {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} {{ ac.text_color_class(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
 
 		{{ macros.module_bg_video(module) }}
+
+		{% if module.show_decoration %}
+		{# Nested squares growing from the bottom-left corner, in the divider
+		   colour with one in the accent colour. Desktop only; sized to stay below
+		   the heading (see module.css). #}
+		<svg class="ac-acc__deco" viewBox="0 0 368 368" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M0 336 H32 V368"/><path d="M0 312 H56 V368"/><path d="M0 288 H80 V368"/><path d="M0 264 H104 V368"/><path d="M0 240 H128 V368"/><path d="M0 216 H152 V368"/><path d="M0 192 H176 V368" class="ac-acc__deco-accent"/><path d="M0 168 H200 V368"/><path d="M0 144 H224 V368"/><path d="M0 120 H248 V368"/><path d="M0 96 H272 V368"/><path d="M0 72 H296 V368"/><path d="M0 48 H320 V368"/><path d="M0 24 H344 V368"/><path d="M0 0 H368 V368"/></svg>
+		{% endif %}
 
 		<div class="{{ module.design_settings.layout }}">
 			{% if module.design_settings.container_width != 'max' %}
