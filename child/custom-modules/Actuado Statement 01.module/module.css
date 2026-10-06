@@ -10,7 +10,17 @@
 
 /* ---------- Layout ---------- */
 
+/* The split follows the page container (--ac-container, from the Layout
+   setting): the panel runs to the screen edge but ends on the same line as
+   a 5/12 column in the other modules, and the text inside both halves sits on
+   the container's edges. cqw measures the module itself, so the scrollbar is
+   not counted. --ac-edge is the space outside the container on each side. */
+.ac-statement-01 {
+	container-type: inline-size;
+}
+
 .ac-statement-01 .ac-eq {
+	--ac-edge: max(0px, (100cqw - var(--ac-container, 1140px)) / 2);
 	display: grid;
 	grid-template-columns: 1fr;
 }
@@ -26,24 +36,22 @@
 /* Side by side from 768px, the breakpoint where Steps moves to its wider grid. */
 @media (min-width: 768px) {
 	.ac-statement-01 .ac-eq {
-		grid-template-columns: 5fr 7fr;
+		grid-template-columns: calc(var(--ac-edge) + min(100cqw, var(--ac-container, 1140px)) * 5 / 12) 1fr;
 	}
 
-	/* Each half keeps its text on the site's container edge rather than the
-	   screen edge, as in Hero 01. */
 	.ac-statement-01 .ac-eq__inner {
 		max-width: none;
-		margin: 0;
 	}
 
 	.ac-statement-01 .ac-eq__panel .ac-eq__inner {
-		padding-left: max(1.5rem, calc((100vw - var(--ac-container, 1140px)) / 2 + 15px));
+		padding-left: calc(var(--ac-edge) + 15px);
 		padding-right: clamp(2rem, 4vw, 4rem);
 	}
 
+	/* The column gutter plus the same space as Accordion 01's list. */
 	.ac-statement-01 .ac-eq__main .ac-eq__inner {
-		padding-left: clamp(2rem, 5vw, 5rem);
-		padding-right: max(1.5rem, calc((100vw - var(--ac-container, 1140px)) / 2 + 15px));
+		padding-left: calc(clamp(2rem, 5vw, 5rem) + 15px);
+		padding-right: calc(var(--ac-edge) + 15px);
 	}
 
 	.ac-statement-01 .ac-eq__main {
