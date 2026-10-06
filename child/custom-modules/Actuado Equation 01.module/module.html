@@ -25,54 +25,62 @@
 				<div class="{{ ac.width_class(module.design_settings) }}">
 			{% endif %}
 
-					<div class="ac-eq text-{{ module.intro_align }}">
+					{# Same geometry as Question List: a 6-wide intro, then a 5-wide
+					   second column after a 1-column gutter. #}
+					<div class="row ac-eq">
 
-						{# ---------- Intro ---------- #}
-						{% if module.eyebrow || module.show_eyebrow_rule || module.heading.heading_text %}
-						<div class="ac-eq__intro sr-spacer-bottom-50">
+						{# ---------- Setup: heading, credentials, pivot ---------- #}
+						<div class="col-lg-6 sr-col ac-eq__intro sr-spacer-bottom-50">
+							<div class="content-wrapper">
+
 							{{ ac.eyebrow(module, 'sr-spacer-bottom-25' if module.heading.heading_text else '') }}
-							{{ ac.heading(module, 'ac-eq__heading') }}
+
+							{{ ac.heading(module, 'ac-eq__heading' ~ (' sr-spacer-bottom-25' if module.credentials || module.pivot else '')) }}
+
+							{% if module.credentials %}
+							<ul class="ac-eq__creds{% if module.pivot %} sr-spacer-bottom-50{% endif %}">
+								{% for item in module.credentials %}
+								{% if item.text %}<li>{{ item.text }}</li>{% endif %}
+								{% endfor %}
+							</ul>
+							{% endif %}
+
+							{% if module.pivot %}
+							<p class="heading h4 ac-eq__pivot">{{ module.pivot }}</p>
+							{% endif %}
+
+							</div>
 						</div>
-						{% endif %}
 
-						{# ---------- Credentials ---------- #}
-						{% if module.credentials %}
-						<ul class="ac-eq__creds sr-spacer-bottom-50">
-							{% for item in module.credentials %}
-							{% if item.text %}<li class="ac-eq__cred">{{ item.text }}</li>{% endif %}
-							{% endfor %}
-						</ul>
-						{% endif %}
+						{# ---------- Answer: the parts converging into the result ---------- #}
+						{# A gold line runs down beside the parts, drawn segment by segment
+						   as each part appears (the reveal's line feature), and leads into
+						   the result. The segments are on the rows, which stay still; only
+						   the text rises. #}
+						<div class="col-lg-5 offset-lg-1 sr-col ac-eq__answer">
+							<div class="content-wrapper">
 
-						{# ---------- Pivot ---------- #}
-						{% if module.pivot %}
-						<p class="heading h3 ac-eq__pivot sr-spacer-bottom-50">{{ module.pivot }}</p>
-						{% endif %}
+							<ol class="ac-eq__parts{% if module.animate_parts %} is-revealing{% endif %}"{% if module.animate_parts %} data-ac-reveal="0.25" data-ac-reveal-line="out"{% endif %}>
+								{% for item in module.parts %}
+								{% if item.text %}
+								<li class="ac-eq__part">
+									<span data-ac-reveal-rise><span class="heading h4">{{ item.text }}</span></span>
+								</li>
+								{% endif %}
+								{% endfor %}
+								{% if module.result %}
+								<li class="ac-eq__part ac-eq__part--result">
+									<span data-ac-reveal-rise><span class="heading h3">{{ module.result }}</span></span>
+								</li>
+								{% endif %}
+							</ol>
 
-						{# ---------- Equation ---------- #}
-						{# Each part carries the sign before it, so a part and its sign
-						   appear together and wrap together. #}
-						<ol class="ac-eq__parts{% if module.animate_parts %} is-revealing{% endif %}"{% if module.animate_parts %} data-ac-reveal="0.18"{% endif %}>
-							{% for item in module.parts %}
-							{% if item.text %}
-							<li class="ac-eq__part">
-								{% if !loop.first %}<span class="ac-eq__sign" aria-hidden="true">+</span>{% endif %}
-								<span class="ac-eq__chip">{{ item.text }}</span>
-							</li>
+							{% if module.closing %}
+							<div class="description ac-eq__closing sr-spacer-top-25">{{ module.closing }}</div>
 							{% endif %}
-							{% endfor %}
-							{% if module.result %}
-							<li class="ac-eq__part ac-eq__part--result">
-								<span class="ac-eq__sign" aria-hidden="true">=</span>
-								<span class="ac-eq__chip ac-eq__chip--result">{{ module.result }}</span>
-							</li>
-							{% endif %}
-						</ol>
 
-						{# ---------- Closing ---------- #}
-						{% if module.closing %}
-						<div class="description ac-eq__closing sr-spacer-top-50">{{ module.closing }}</div>
-						{% endif %}
+							</div>
+						</div>
 
 					</div>
 

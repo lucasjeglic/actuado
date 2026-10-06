@@ -1893,7 +1893,7 @@
       "default": 3
     },
     "display": "inline",
-    "help_text": "Short factual proof points, shown as a row divided by hairlines.",
+    "help_text": "Short factual proof points, listed under the heading.",
     "children": [
       {
         "name": "text",
@@ -1927,7 +1927,7 @@
     "default": "But certifications are only part of it.",
     "allow_new_line": false,
     "show_emoji_picker": false,
-    "help_text": "The turn from the credentials to the argument below."
+    "help_text": "Closes the left column and leads into the equation."
   },
   {
     "name": "parts",
@@ -1942,7 +1942,7 @@
       "default": 5
     },
     "display": "inline",
-    "help_text": "Joined with + signs, in this order.",
+    "help_text": "Listed one per row with a + sign, in this order.",
     "children": [
       {
         "name": "text",
@@ -1982,7 +1982,7 @@
     "default": "One implementation team",
     "allow_new_line": false,
     "show_emoji_picker": false,
-    "help_text": "Shown after the = sign, highlighted."
+    "help_text": "Shown below the sum line with an = sign."
   },
   {
     "name": "closing",
@@ -2001,25 +2001,5 @@
     "display": "toggle",
     "default": true,
     "help_text": "The parts appear one after another as the section scrolls into view, ending on the result."
-  },
-  {
-    "name": "intro_align",
-    "label": "Alignment",
-    "type": "choice",
-    "required": false,
-    "locked": false,
-    "display": "select",
-    "default": "center",
-    "choices": [
-      [
-        "left",
-        "Left"
-      ],
-      [
-        "center",
-        "Center"
-      ]
-    ],
-    "help_text": "Alignment of the whole section."
   }
 ]
