@@ -1930,6 +1930,16 @@
     "help_text": "Closes the left column and leads into the equation."
   },
   {
+    "name": "lead",
+    "label": "Lead-in",
+    "type": "text",
+    "required": false,
+    "locked": false,
+    "allow_new_line": false,
+    "default": "We combine",
+    "help_text": "Short text above the parts, starting the sentence."
+  },
+  {
     "name": "parts",
     "label": "Equation Parts",
     "type": "group",
@@ -1942,7 +1952,7 @@
       "default": 5
     },
     "display": "inline",
-    "help_text": "Listed one per row with a + sign, in this order.",
+    "help_text": "Listed one per row, joined with + signs, in this order.",
     "children": [
       {
         "name": "text",
@@ -1957,19 +1967,19 @@
     ],
     "default": [
       {
-        "text": "Business process consulting"
+        "text": "business process consulting"
       },
       {
         "text": "HubSpot expertise"
       },
       {
-        "text": "Data"
+        "text": "data"
       },
       {
-        "text": "Integrations"
+        "text": "integrations"
       },
       {
-        "text": "Automation"
+        "text": "automation"
       }
     ]
   },
@@ -1979,10 +1989,10 @@
     "type": "text",
     "required": false,
     "locked": false,
-    "default": "One implementation team",
+    "default": "in one implementation team.",
     "allow_new_line": false,
     "show_emoji_picker": false,
-    "help_text": "Shown below the sum line with an = sign."
+    "help_text": "Ends the sentence, shown larger where the gold line turns."
   },
   {
     "name": "closing",

@@ -62,6 +62,17 @@
 	opacity: 0.55;
 }
 
+/* The start of the sentence, sitting above the line. */
+.ac-equation-01 .ac-eq__lead {
+	margin: 0 0 0.75rem;
+	font-weight: 500;
+}
+
+/* The + signs from the source text, kept quiet: same colour as the part. */
+.ac-equation-01 .ac-eq__plus {
+	font-weight: 400;
+}
+
 /* One segment of the gold line per part. The segments touch, so together
    they read as a single line; the reveal grows each one downwards via
    --ac-reveal-line-out, and without the animation they are simply drawn. */

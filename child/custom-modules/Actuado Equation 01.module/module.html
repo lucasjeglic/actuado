@@ -60,11 +60,15 @@
 						<div class="col-lg-5 offset-lg-1 sr-col ac-eq__answer">
 							<div class="content-wrapper">
 
+							{% if module.lead %}
+							<p class="ac-eq__lead">{{ module.lead }}</p>
+							{% endif %}
+
 							<ol class="ac-eq__parts{% if module.animate_parts %} is-revealing{% endif %}"{% if module.animate_parts %} data-ac-reveal="0.25" data-ac-reveal-line="out"{% endif %}>
 								{% for item in module.parts %}
 								{% if item.text %}
 								<li class="ac-eq__part">
-									<span data-ac-reveal-rise><span class="heading h4">{{ item.text }}</span></span>
+									<span data-ac-reveal-rise><span class="heading h4">{{ item.text }}{% if !loop.last %}<span class="ac-eq__plus"> +</span>{% endif %}</span></span>
 								</li>
 								{% endif %}
 								{% endfor %}
