@@ -202,11 +202,13 @@
 
 /* ---------- Decoration ---------- */
 
-/* Nested squares from the bottom-left corner, starting at the screen edge.
-   Shown only side by side, where there is space under the heading; capped at
-   half the section's height so it stays clear of the heading. */
+/* A field of plus signs under the heading, from the screen edge. Positioned from the
+   heading column, which keeps its height when a question opens, so the squares
+   stay put while the section grows; the section clips them at its bottom.
+   cqw measures the module, so the reach to the screen edge (--ac-edge, the
+   space outside the container, plus the column gutter) ignores the scrollbar. */
 .ac-accordion-01 {
-	position: relative;
+	container-type: inline-size;
 	overflow: hidden;
 }
 
@@ -215,19 +217,21 @@
 }
 
 @media (min-width: 992px) {
+	.ac-accordion-01 .ac-acc__intro .content-wrapper {
+		position: relative;
+	}
+
 	.ac-accordion-01 .ac-acc__deco {
+		--ac-edge: max(0px, (100cqw - var(--ac-container, 1140px)) / 2);
 		display: block;
 		position: absolute;
-		left: 0;
-		bottom: 0;
-		height: min(23rem, 50%);
-		width: auto;
-		aspect-ratio: 1;
-		color: var(--ac-divider, var(--borders));
+		top: calc(100% + 3rem);
+		left: calc(-1 * (var(--ac-edge) + 15px));
+		width: 38rem;
+		height: 38rem;
+		/* The heading colour, at the low opacities set on each column. */
+		color: var(--heading);
 		pointer-events: none;
-		/* The outermost square lies on the drawing's edge; without this, half
-		   its line is clipped and it looks thinner than the rest. */
-		overflow: visible;
 	}
 
 	.ac-accordion-01 .ac-acc__deco path {
