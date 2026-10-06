@@ -1,75 +1,120 @@
 /* ==========================================================================
    Actuado Equation 01
-   A heading rail beside the "why us" text: credentials, a pivot line, one
-   large statement with its key parts in bold, and the closing text.
+   A full-bleed split like Hero 01: a coloured panel with the heading and the
+   credentials, and beside it the argument - a pivot line, one large statement
+   with its key words highlighted, and the closing text.
 
-   Type comes from the theme's type slots. Section padding is owned by the SR
-   padding classes - never set section padding-top / padding-bottom here.
+   Vertical padding comes from the SR padding classes, applied to each half so
+   the panel colour fills its full height.
    ========================================================================== */
 
 /* ---------- Layout ---------- */
 
-/* The rail's spacer separates it from the content once the columns stack;
-   side by side there is nothing below it, so its padding is dropped. */
+.ac-equation-01 .ac-eq {
+	display: grid;
+	grid-template-columns: 1fr;
+}
+
+.ac-equation-01 .ac-eq__inner {
+	box-sizing: border-box;
+	width: 100%;
+	max-width: var(--ac-container, 1140px);
+	margin: 0 auto;
+	padding: 0 15px;
+}
+
 @media (min-width: 992px) {
-	.ac-equation-01 .ac-eq__rail {
-		padding-bottom: 0;
+	.ac-equation-01 .ac-eq {
+		grid-template-columns: 5fr 7fr;
+	}
+
+	/* Each half keeps its text on the site's container edge rather than the
+	   screen edge, as in Hero 01. */
+	.ac-equation-01 .ac-eq__inner {
+		max-width: none;
+		margin: 0;
+	}
+
+	.ac-equation-01 .ac-eq__panel .ac-eq__inner {
+		padding-left: max(1.5rem, calc((100vw - var(--ac-container, 1140px)) / 2 + 15px));
+		padding-right: clamp(2rem, 4vw, 4rem);
+	}
+
+	.ac-equation-01 .ac-eq__main .ac-eq__inner {
+		padding-left: clamp(2rem, 5vw, 5rem);
+		padding-right: max(1.5rem, calc((100vw - var(--ac-container, 1140px)) / 2 + 15px));
+	}
+
+	.ac-equation-01 .ac-eq__main {
+		display: flex;
+		align-items: center;
 	}
 }
 
-.ac-equation-01 .ac-eq__heading {
-	margin-bottom: 0;
-	text-wrap: balance;
+/* ---------- Panel ---------- */
+
+.ac-equation-01 .ac-eq__panel {
+	background: var(--ac-panel, var(--tertiary));
 }
 
-/* ---------- Credentials ---------- */
+.ac-equation-01 .ac-eq__panel .ac-eyebrow {
+	color: rgba(255, 255, 255, 0.78);
+}
 
-/* The facts in a row, each led by a small gold marker, so a wrapped line never
-   starts with a stray separator. */
+.ac-equation-01 .ac-eq__heading {
+	margin: 0;
+	color: #fff;
+}
+
+/* The credentials as in the source: bold, one per line, divided by hairlines. */
 .ac-equation-01 .ac-eq__creds {
 	list-style: none;
 	margin: 0;
 	padding-left: 0;
-	display: flex;
-	flex-wrap: wrap;
-	gap: 0.375rem 1.75rem;
 	font-weight: 700;
+	color: #fff;
 }
 
 .ac-equation-01 .ac-eq__creds li {
-	display: inline-flex;
-	align-items: center;
-	gap: 0.625rem;
+	padding: 1rem 0;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.16);
 }
 
-.ac-equation-01 .ac-eq__creds li::before {
-	content: "";
-	flex: none;
-	width: 0.375rem;
-	height: 0.375rem;
-	background: var(--primary);
+/* On the first item rather than the list, whose top padding is the spacer
+   from the heading: the rule belongs above the first credential. */
+.ac-equation-01 .ac-eq__creds li:first-child {
+	border-top: 1px solid rgba(255, 255, 255, 0.16);
 }
 
-/* ---------- Text ---------- */
+/* ---------- Main ---------- */
 
 .ac-equation-01 .ac-eq__pivot {
 	margin: 0;
 }
 
-/* The statement uses the theme's H3 size and font, but reads as a sentence:
-   regular weight with the parts bold, as in the source. */
+/* The theme's H3 size and font, read as a sentence: regular weight, with the
+   key words bold as in the source. */
 .ac-equation-01 .ac-eq__statement {
 	margin: 0;
 	font-weight: 400;
 	text-wrap: pretty;
 }
 
-.ac-equation-01 .ac-eq__part {
+/* A marker-style highlight under the key words. It runs line by line as one
+   strip (slice), so the sweep - --ac-reveal-line-out from 0 to 1 when the
+   animation is on - crosses each line in turn. Drawn in full without it. */
+.ac-equation-01 .ac-eq__mark {
 	font-weight: 700;
+	background-image: linear-gradient(var(--primary), var(--primary));
+	background-repeat: no-repeat;
+	background-position: 0 88%;
+	background-size: calc(var(--ac-reveal-line-out, 1) * 100%) 0.38em;
+	-webkit-box-decoration-break: slice;
+	box-decoration-break: slice;
 }
 
 .ac-equation-01 .ac-eq__closing {
-	max-width: 40rem;
+	max-width: 36rem;
 }
 
 .ac-equation-01 .ac-eq__closing > *:last-child {

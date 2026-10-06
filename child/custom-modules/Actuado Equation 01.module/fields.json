@@ -1893,17 +1893,17 @@
       "default": 3
     },
     "display": "inline",
-    "help_text": "Short factual proof points, shown in a row above the statement.",
+    "help_text": "Shown in the panel in bold, one per line.",
     "children": [
       {
+        "id": "credentials.text",
         "name": "text",
         "label": "Credential",
         "type": "text",
         "required": false,
         "locked": false,
-        "default": "",
         "allow_new_line": false,
-        "show_emoji_picker": false
+        "default": ""
       }
     ],
     "default": [
@@ -1917,6 +1917,20 @@
         "text": "HubSpot partner since 2015"
       }
     ]
+  },
+  {
+    "id": "panel_color",
+    "name": "panel_color",
+    "label": "Panel Colour",
+    "help_text": "Background of the panel. Leave blank to use the theme's tertiary colour.",
+    "required": false,
+    "locked": false,
+    "type": "color",
+    "display_width": null,
+    "default": {
+      "color": "",
+      "opacity": 100
+    }
   },
   {
     "name": "pivot",
@@ -1952,7 +1966,7 @@
       "default": 5
     },
     "display": "inline",
-    "help_text": "The bold middle of the statement, joined with + signs, in this order.",
+    "help_text": "The highlighted middle of the statement, joined with + signs, in this order.",
     "children": [
       {
         "name": "text",
@@ -2004,12 +2018,12 @@
   },
   {
     "name": "animate_parts",
-    "label": "Animate Statement",
+    "label": "Animate Highlight",
     "type": "boolean",
     "required": false,
     "locked": false,
     "display": "toggle",
     "default": true,
-    "help_text": "The statement builds up piece by piece as the section scrolls into view."
+    "help_text": "The highlight sweeps across the key words the first time the section scrolls into view."
   }
 ]

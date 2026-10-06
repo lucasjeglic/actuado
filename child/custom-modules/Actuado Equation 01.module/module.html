@@ -7,76 +7,75 @@
 	<style>
 		{{ macros.design_settings(name, module.design_settings) }}
 
-		{% if module.design_settings.divider_color.color %}
 		.{{ name }} .ac-eq {
-			--ac-divider: {{ macros.color(module.design_settings.divider_color) }};
+			{% if module.panel_color.color %}--ac-panel: {{ macros.color(module.panel_color) }};{% endif %}
+			/* The width of the container the Layout setting chose, so the text
+			   lines up with the sections above and below (as in Hero 01). */
+			--ac-container: {{
+				module.design_settings.layout == 'container container-small' ? theme.containers.small :
+				module.design_settings.layout == 'container container-large' ? theme.containers.large :
+				theme.containers.default
+			}}px;
 		}
-		{% endif %}
 	</style>
 	{% end_require_css %}
 
-	<div class="ac-equation-01 {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} {{ ac.text_color_class(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+	{# Full-bleed split like Hero 01: a coloured panel with the heading and the
+	   credentials, and the argument beside it. Padding is applied to each half
+	   so the panel colour fills its full height. #}
+	<div class="ac-equation-01 {{ name }} {{ macros.module_background(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
 
 		{{ macros.module_bg_video(module) }}
 
-		<div class="{{ module.design_settings.layout }}">
-			{% if module.design_settings.container_width != 'max' %}
-			<div class="row">
-				<div class="{{ ac.width_class(module.design_settings) }}">
-			{% endif %}
+		<div class="ac-eq">
 
-					{# A heading rail on the left; on the right the text in the source's
-					   order, built around one large statement whose parts are bold, as
-					   in the document. Same rail-and-content split as Services Grid. #}
-					<div class="row ac-eq">
+			{# ---------- Panel: heading and credentials ---------- #}
+			<div class="ac-eq__panel text-white {{ macros.padding(module.design_settings) }}">
+				<div class="ac-eq__inner">
 
-						{# ---------- Rail ---------- #}
-						<div class="col-lg-4 sr-col ac-eq__rail sr-spacer-bottom-50">
-							<div class="content-wrapper">
-							{{ ac.eyebrow(module, 'sr-spacer-bottom-25' if module.heading.heading_text else '') }}
-							{{ ac.heading(module, 'ac-eq__heading') }}
-							</div>
-						</div>
+					{{ ac.eyebrow(module, 'sr-spacer-bottom-25' if module.heading.heading_text else '') }}
+					{{ ac.heading(module, 'ac-eq__heading') }}
 
-						{# ---------- Content ---------- #}
-						<div class="col-lg-8 sr-col ac-eq__content">
-							<div class="content-wrapper">
+					{% if module.credentials %}
+					<ul class="ac-eq__creds sr-spacer-top-50">
+						{% for item in module.credentials %}
+						{% if item.text %}<li>{{ item.text }}</li>{% endif %}
+						{% endfor %}
+					</ul>
+					{% endif %}
 
-							{% if module.credentials %}
-							<ul class="ac-eq__creds sr-spacer-bottom-25">
-								{% for item in module.credentials %}
-								{% if item.text %}<li>{{ item.text }}</li>{% endif %}
-								{% endfor %}
-							</ul>
-							{% endif %}
-
-							{% if module.pivot %}
-							<p class="ac-eq__pivot sr-spacer-bottom-25">{{ module.pivot }}</p>
-							{% endif %}
-
-							{# One sentence: the lead-in and result regular, the parts bold.
-							   With the animation on, each part fades in in turn. #}
-							<p class="heading h3 ac-eq__statement{% if module.animate_parts %} is-revealing{% endif %}"{% if module.animate_parts %} data-ac-reveal="0.2"{% endif %}>
-								{%- if module.lead %}<span class="ac-eq__plain">{{ module.lead }} </span>{% endif -%}
-								{%- for item in module.parts -%}
-								{%- if item.text %}<strong class="ac-eq__part">{{ item.text }}{% if !loop.last %} +{% endif %}</strong>{{ ' ' }}{% endif -%}
-								{%- endfor -%}
-								{%- if module.result %}<span class="ac-eq__plain">{{ module.result }}</span>{% endif -%}
-							</p>
-
-							{% if module.closing %}
-							<div class="description ac-eq__closing sr-spacer-top-25">{{ module.closing }}</div>
-							{% endif %}
-
-							</div>
-						</div>
-
-					</div>
-
-			{% if module.design_settings.container_width != 'max' %}
 				</div>
 			</div>
-			{% endif %}
+
+			{# ---------- Main: the argument ---------- #}
+			<div class="ac-eq__main {{ macros.padding(module.design_settings) }} {{ ac.text_color_class(module.design_settings) }}">
+				<div class="ac-eq__inner">
+
+					{% if module.pivot %}
+					<p class="ac-eq__pivot sr-spacer-bottom-25">{{ module.pivot }}</p>
+					{% endif %}
+
+					{# One sentence, as in the source: the lead-in and result regular,
+					   the parts bold under a highlight. With the animation on, the
+					   highlight sweeps across them via the reveal's line feature. #}
+					<div{% if module.animate_parts %} class="is-revealing" data-ac-reveal="1" data-ac-reveal-line="out"{% endif %}>
+						<p class="heading h3 ac-eq__statement">
+							{%- if module.lead %}{{ module.lead }} {% endif -%}
+							<strong class="ac-eq__mark">
+								{%- for item in module.parts -%}
+								{%- if item.text %}{{ item.text }}{% if !loop.last %} + {% endif %}{% endif -%}
+								{%- endfor -%}
+							</strong>
+							{%- if module.result %} {{ module.result }}{% endif -%}
+						</p>
+					</div>
+
+					{% if module.closing %}
+					<div class="description ac-eq__closing sr-spacer-top-50">{{ module.closing }}</div>
+					{% endif %}
+
+				</div>
+			</div>
 
 		</div>
 	</div>
