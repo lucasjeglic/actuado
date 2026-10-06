@@ -1,0 +1,93 @@
+{% if module.enabled %}
+
+	{% import "../../templates/macros.html" as macros %}
+	{% import "../../templates/ac-macros.html" as ac %}
+
+	{% require_css %}
+	<style>
+		{{ macros.design_settings(name, module.design_settings) }}
+
+		{% if module.design_settings.divider_color.color %}
+		.{{ name }} .ac-eq {
+			--ac-divider: {{ macros.color(module.design_settings.divider_color) }};
+		}
+		{% endif %}
+	</style>
+	{% end_require_css %}
+
+	<div class="ac-equation-01 {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} {{ ac.text_color_class(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+
+		{{ macros.module_bg_video(module) }}
+
+		<div class="{{ module.design_settings.layout }}">
+			{% if module.design_settings.container_width != 'max' %}
+			<div class="row">
+				<div class="{{ ac.width_class(module.design_settings) }}">
+			{% endif %}
+
+					<div class="ac-eq text-{{ module.intro_align }}">
+
+						{# ---------- Intro ---------- #}
+						{% if module.eyebrow || module.show_eyebrow_rule || module.heading.heading_text %}
+						<div class="ac-eq__intro sr-spacer-bottom-50">
+							{{ ac.eyebrow(module, 'sr-spacer-bottom-25' if module.heading.heading_text else '') }}
+							{{ ac.heading(module, 'ac-eq__heading') }}
+						</div>
+						{% endif %}
+
+						{# ---------- Credentials ---------- #}
+						{% if module.credentials %}
+						<ul class="ac-eq__creds sr-spacer-bottom-50">
+							{% for item in module.credentials %}
+							{% if item.text %}<li class="ac-eq__cred">{{ item.text }}</li>{% endif %}
+							{% endfor %}
+						</ul>
+						{% endif %}
+
+						{# ---------- Pivot ---------- #}
+						{% if module.pivot %}
+						<p class="heading h3 ac-eq__pivot sr-spacer-bottom-50">{{ module.pivot }}</p>
+						{% endif %}
+
+						{# ---------- Equation ---------- #}
+						{# Each part carries the sign before it, so a part and its sign
+						   appear together and wrap together. #}
+						<ol class="ac-eq__parts{% if module.animate_parts %} is-revealing{% endif %}"{% if module.animate_parts %} data-ac-reveal="0.18"{% endif %}>
+							{% for item in module.parts %}
+							{% if item.text %}
+							<li class="ac-eq__part">
+								{% if !loop.first %}<span class="ac-eq__sign" aria-hidden="true">+</span>{% endif %}
+								<span class="ac-eq__chip">{{ item.text }}</span>
+							</li>
+							{% endif %}
+							{% endfor %}
+							{% if module.result %}
+							<li class="ac-eq__part ac-eq__part--result">
+								<span class="ac-eq__sign" aria-hidden="true">=</span>
+								<span class="ac-eq__chip ac-eq__chip--result">{{ module.result }}</span>
+							</li>
+							{% endif %}
+						</ol>
+
+						{# ---------- Closing ---------- #}
+						{% if module.closing %}
+						<div class="description ac-eq__closing sr-spacer-top-50">{{ module.closing }}</div>
+						{% endif %}
+
+					</div>
+
+			{% if module.design_settings.container_width != 'max' %}
+				</div>
+			</div>
+			{% endif %}
+
+		</div>
+	</div>
+
+	{{ ac.heading_scripts(module) }}
+
+	{% if module.animate_parts %}
+	{{ ac.reveal_scripts() }}
+	{% endif %}
+
+{% endif %}

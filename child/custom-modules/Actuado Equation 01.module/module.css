@@ -1,0 +1,136 @@
+/* ==========================================================================
+   Actuado Equation 01
+   Credentials, a pivot line, then the argument as an equation: parts joined
+   by + signs, resolving to a highlighted result.
+
+   Layout, background and padding come from the theme's own primitives, and
+   type from the theme's type slots. Section padding is owned by the SR
+   padding classes - never set section padding-top / padding-bottom here.
+   ========================================================================== */
+
+.ac-equation-01 .ac-eq__heading,
+.ac-equation-01 .ac-eq__pivot {
+	margin-bottom: 0;
+	text-wrap: balance;
+}
+
+.ac-equation-01 .ac-eq__closing {
+	max-width: 46rem;
+	text-wrap: pretty;
+}
+
+.ac-equation-01 .ac-eq__closing > *:last-child {
+	margin-bottom: 0;
+}
+
+.ac-equation-01 .text-center .ac-eq__closing {
+	margin-inline: auto;
+}
+
+/* ---------- Credentials ---------- */
+
+/* A quiet row of facts, divided by hairlines. Stacked on small screens. */
+.ac-equation-01 .ac-eq__creds {
+	list-style: none;
+	margin: 0;
+	/* Only the list indent: bottom padding is the .sr-spacer-* class. */
+	padding-left: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	font-weight: 500;
+}
+
+.ac-equation-01 .text-center .ac-eq__creds {
+	align-items: center;
+}
+
+@media (min-width: 768px) {
+	.ac-equation-01 .ac-eq__creds {
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 0;
+	}
+
+	.ac-equation-01 .text-center .ac-eq__creds {
+		justify-content: center;
+	}
+
+	.ac-equation-01 .ac-eq__cred {
+		padding: 0 1.5rem;
+		border-left: 1px solid var(--ac-divider, var(--borders));
+	}
+
+	.ac-equation-01 .ac-eq__cred:first-child {
+		padding-left: 0;
+		border-left: 0;
+	}
+
+	.ac-equation-01 .text-center .ac-eq__cred:first-child {
+		padding-left: 1.5rem;
+	}
+}
+
+/* ---------- Equation ---------- */
+
+.ac-equation-01 .ac-eq__parts {
+	list-style: none;
+	margin: 0;
+	padding-left: 0;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.75rem 0;
+}
+
+.ac-equation-01 .text-center .ac-eq__parts {
+	justify-content: center;
+}
+
+.ac-equation-01 .ac-eq__part {
+	display: inline-flex;
+	align-items: center;
+}
+
+.ac-equation-01 .ac-eq__sign {
+	padding: 0 0.75rem;
+	font-family: var(--heading_font, inherit);
+	font-size: 1.5em;
+	line-height: 1;
+	color: var(--primary);
+}
+
+.ac-equation-01 .ac-eq__chip {
+	display: inline-block;
+	padding: 0.65em 1.25em;
+	border: 1px solid var(--ac-divider, var(--borders));
+	border-radius: 999px;
+	font-weight: 500;
+	line-height: 1.2;
+	white-space: nowrap;
+}
+
+/* The result: filled in the theme's accent, so the equation lands on it. */
+.ac-equation-01 .ac-eq__chip--result {
+	background: var(--primary);
+	border-color: var(--primary);
+	color: var(--tertiary);
+	font-weight: 600;
+}
+
+/* The result sits on its own line below the parts, so it always reads as the
+   conclusion rather than one more item in the list. */
+.ac-equation-01 .ac-eq__part--result {
+	flex-basis: 100%;
+	margin-top: 0.75rem;
+}
+
+.ac-equation-01 .text-center .ac-eq__part--result {
+	justify-content: center;
+}
+
+@media (max-width: 767px) {
+	.ac-equation-01 .ac-eq__chip {
+		white-space: normal;
+	}
+}
