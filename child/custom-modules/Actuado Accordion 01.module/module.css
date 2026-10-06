@@ -8,21 +8,14 @@
    padding classes, so never set padding-top / padding-bottom.
    ========================================================================== */
 
-.ac-accordion-01 .ac-acc {
-	/* Applies once the columns stack (below lg). */
-	row-gap: 3rem;
-}
+/* ---------- Layout ---------- */
 
-/* Horizontal separation between the two columns. Bootstrap columns are
-   flex: 0 0 <pct> and never grow, so the gap must be explicit padding. */
+/* The intro carries sr-spacer-bottom-50 so the gap to the list matches the
+   other modules once the columns stack. Side by side there is nothing below
+   it, so the spacer's padding is dropped. */
 @media (min-width: 992px) {
 	.ac-accordion-01 .ac-acc__intro {
-		padding-right: var(--ac-column-gap, 3.5rem);
-	}
-
-	.ac-accordion-01 .ac-acc__intro.order-lg-2 {
-		padding-right: 0;
-		padding-left: var(--ac-column-gap, 3.5rem);
+		padding-bottom: 0;
 	}
 }
 

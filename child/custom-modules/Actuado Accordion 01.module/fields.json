@@ -106,22 +106,6 @@
         "default": "max"
       },
       {
-        "id": "design_settings.column_gap",
-        "name": "column_gap",
-        "label": "Column Gap",
-        "help_text": "Horizontal space between the left column and the points list on desktop.",
-        "required": false,
-        "locked": false,
-        "display": "text",
-        "min": 0,
-        "max": 160,
-        "step": 4,
-        "suffix": "px",
-        "type": "number",
-        "display_width": null,
-        "default": 56
-      },
-      {
         "id": "design_settings.divider_color",
         "name": "divider_color",
         "label": "Divider Color",
@@ -2044,7 +2028,7 @@
     "id": "text_column_width",
     "name": "text_column_width",
     "label": "Text Column Width",
-    "help_text": "Width of the left-hand column on desktop.",
+    "help_text": "Width of the heading column on desktop. The list takes the rest, after a one-column gap.",
     "required": false,
     "locked": false,
     "display": "select",
@@ -2079,7 +2063,7 @@
     "preset": null,
     "type": "choice",
     "display_width": null,
-    "default": "4"
+    "default": "5"
   },
   {
     "id": "text_column_side",
