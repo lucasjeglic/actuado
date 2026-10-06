@@ -225,6 +225,9 @@
 		aspect-ratio: 1;
 		color: var(--ac-divider, var(--borders));
 		pointer-events: none;
+		/* The outermost square lies on the drawing's edge; without this, half
+		   its line is clipped and it looks thinner than the rest. */
+		overflow: visible;
 	}
 
 	.ac-accordion-01 .ac-acc__deco path {
