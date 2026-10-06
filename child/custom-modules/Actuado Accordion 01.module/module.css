@@ -228,7 +228,7 @@
 		top: calc(100% + 3rem);
 		left: calc(-1 * (var(--ac-edge) + 15px));
 		width: 38rem;
-		height: 38rem;
+		height: 26rem;
 		/* The heading colour, at the low opacities set on each column. */
 		color: var(--heading);
 		pointer-events: none;
@@ -238,8 +238,27 @@
 		vector-effect: non-scaling-stroke;
 	}
 
+	/* Each ring breathes between its own opacity and 40% of it, a little
+	   later the further it is from the corner. */
+	.ac-accordion-01 .ac-acc__deco path {
+		opacity: var(--o, 1);
+		animation: ac-acc-breathe 4.8s ease-in-out var(--d, 0s) infinite;
+	}
+
 	.ac-accordion-01 .ac-acc__deco .ac-acc__deco-accent {
 		stroke: var(--primary);
 		stroke-width: 2;
+		animation: none;
+	}
+}
+
+@keyframes ac-acc-breathe {
+	0%, 100% { opacity: var(--o, 1); }
+	50%      { opacity: calc(var(--o, 1) * 0.4); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.ac-accordion-01 .ac-acc__deco path {
+		animation: none;
 	}
 }
