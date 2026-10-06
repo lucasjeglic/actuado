@@ -1968,16 +1968,6 @@
     ]
   },
   {
-    "name": "show_decoration",
-    "label": "Decoration",
-    "type": "boolean",
-    "display": "toggle",
-    "required": false,
-    "locked": false,
-    "default": true,
-    "help_text": "A field of plus signs under the heading, from the screen edge. Desktop only."
-  },
-  {
     "id": "columns_align",
     "name": "columns_align",
     "label": "Vertical Alignment",
