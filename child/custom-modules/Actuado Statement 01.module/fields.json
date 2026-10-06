@@ -73,53 +73,6 @@
         "default": "container"
       },
       {
-        "id": "design_settings.container_width",
-        "name": "container_width",
-        "label": "Container Width",
-        "help_text": "<strong>Maximum:</strong> 100% of the container<br><br>\n<strong>Wide:</strong> 83% of the container<br><br>\n<strong>Narrow:</strong> 66% of the container<br><br>\n<strong>Minimum:</strong> 50% of the container",
-        "required": false,
-        "locked": false,
-        "display": "select",
-        "choices": [
-          [
-            "min",
-            "Minimum"
-          ],
-          [
-            "narrow",
-            "Narrow"
-          ],
-          [
-            "wide",
-            "Wide"
-          ],
-          [
-            "max",
-            "Maximum"
-          ]
-        ],
-        "multiple": false,
-        "reordering_enabled": true,
-        "preset": null,
-        "type": "choice",
-        "display_width": null,
-        "default": "max"
-      },
-      {
-        "id": "design_settings.divider_color",
-        "name": "divider_color",
-        "label": "Divider Color",
-        "help_text": "Hairline rule between rows. Defaults to the theme border colour.",
-        "required": false,
-        "locked": false,
-        "type": "color",
-        "display_width": null,
-        "default": {
-          "color": "",
-          "opacity": 100
-        }
-      },
-      {
         "id": "design_settings.top_bottom_padding",
         "name": "top_bottom_padding",
         "label": "Top Bottom Padding",
