@@ -1729,75 +1729,29 @@
     }
   },
   {
-    "id": "number",
-    "name": "number",
-    "label": "Number",
-    "help_text": "Editorial sequence number, e.g. 01. Leave blank to hide.",
+    "id": "eyebrow",
+    "name": "eyebrow",
+    "label": "Eyebrow",
+    "help_text": "Small uppercase label above the heading. Leave blank to hide it.",
     "required": false,
     "locked": false,
     "allow_new_line": false,
     "type": "text",
     "display_width": null,
-    "default": "01"
+    "default": "FAQ"
   },
   {
-    "id": "show_icon",
-    "name": "show_icon",
-    "label": "Show Icon",
+    "id": "show_eyebrow_rule",
+    "name": "show_eyebrow_rule",
+    "label": "Show Gold Rule",
+    "help_text": "A short gold rule above the eyebrow. Works with or without eyebrow text.",
     "required": false,
     "locked": false,
     "display": "toggle",
     "type": "boolean",
     "display_width": null,
-    "default": true
-  },
-  {
-    "id": "icon",
-    "name": "icon",
-    "label": "Icon",
-    "required": false,
-    "locked": false,
-    "icon_set": "fontawesome-6.4.2",
-    "type": "icon",
-    "display_width": null,
-    "default": {
-      "name": "database",
-      "type": "SOLID",
-      "unicode": "f1c0"
-    }
-  },
-  {
-    "id": "accent_icon",
-    "name": "accent_icon",
-    "label": "Accent Icon",
-    "help_text": "Fills the icon tile with the soft gold used for the AI block.",
-    "required": false,
-    "locked": false,
-    "display": "toggle",
-    "type": "boolean",
-    "display_width": null,
-    "default": false
-  },
-  {
-    "id": "accent_color",
-    "name": "accent_color",
-    "label": "Accent Tile Color",
-    "required": false,
-    "locked": false,
-    "visibility": {
-      "controlling_field": "accent_icon",
-      "controlling_field_path": null,
-      "controlling_value_regex": "true",
-      "property": null,
-      "operator": "EQUAL",
-      "access": null
-    },
-    "type": "color",
-    "display_width": null,
-    "default": {
-      "color": "#F7EBC8",
-      "opacity": 100
-    }
+    "default": true,
+    "visibility": null
   },
   {
     "id": "heading",
@@ -1815,7 +1769,7 @@
         "allow_new_line": false,
         "type": "text",
         "display_width": null,
-        "default": "CRM Architecture"
+        "default": "Frequently asked questions"
       },
       {
         "id": "heading.heading_size",
@@ -1946,24 +1900,24 @@
     "id": "lead",
     "name": "lead",
     "label": "Lead",
-    "help_text": "Single supporting line under the title.",
+    "help_text": "Optional text under the heading.",
     "required": false,
     "locked": false,
     "type": "richtext",
     "display_width": null,
-    "default": "<p>A data model your business can defend.</p>"
+    "default": ""
   },
   {
     "id": "points",
     "name": "points",
-    "label": "Points",
+    "label": "Items",
     "required": false,
     "locked": false,
     "occurrence": {
       "min": 1,
       "max": null,
       "sorting_label_field": "points.text",
-      "default": 4
+      "default": 8
     },
     "children": [
       {
@@ -1996,34 +1950,38 @@
     "display_width": null,
     "default": [
       {
-        "text": "Object and property design, naming conventions, governance",
-        "detail": "<p>We start from how the business actually reports and sells, then design objects, properties and lifecycle stages that hold up as the model changes.</p>"
+        "text": "What does a HubSpot CRM implementation include?",
+        "detail": "<p>A typical implementation includes process and requirements workshops, CRM architecture, HubSpot configuration, data migration, automation, integrations, reporting, testing, user training and go-live support. The exact scope depends on your business processes and HubSpot subscription.</p>"
       },
       {
-        "text": "Migration from Salesforce, Dynamics or legacy systems",
-        "detail": "<p>Migrations are staged and reversible, with field-level mapping agreed up front and a dry run against real records before anything moves.</p>"
+        "text": "How long does a HubSpot implementation take?",
+        "detail": "<p>Most of our CRM implementations take 3\u20136 months. A focused implementation for one team can be faster, while multi-Hub implementations involving complex migrations or integrations may take longer.</p>"
       },
       {
-        "text": "Integration architecture with ERP, billing and product data",
-        "detail": "<p>Integrations are designed around a single source of truth per entity, so ERP, billing and product data reconcile rather than compete.</p>"
+        "text": "What is the difference between HubSpot onboarding and CRM implementation?",
+        "detail": "<p>HubSpot onboarding helps you get started with the platform. A CRM implementation goes deeper: we design how HubSpot should support your business processes and then configure the CRM, data structure, automation, reporting and integrations around those requirements.</p>"
       },
       {
-        "text": "Permission models for multi-entity organisations",
-        "detail": "<p>Permission models are built for multi-entity groups, so teams see the records they own without fragmenting reporting.</p>"
+        "text": "Do we need to have our processes defined before we start?",
+        "detail": "<p>No. Process design is part of our implementation approach. We work with your teams to understand the current process, identify gaps and agree on how it should work before configuring it in HubSpot.</p>"
+      },
+      {
+        "text": "Can you migrate our existing CRM to HubSpot?",
+        "detail": "<p>Yes. We can migrate data from existing CRM and marketing platforms, spreadsheets and other systems. Migration typically includes data assessment, mapping, cleaning, migration and validation.</p>"
+      },
+      {
+        "text": "Can HubSpot integrate with our ERP or other business systems?",
+        "detail": "<p>Usually, yes. We work with native HubSpot integrations as well as custom API integrations for ERP systems, websites, telephony, configurators and other business applications.</p>"
+      },
+      {
+        "text": "Can you implement several HubSpot Hubs at the same time?",
+        "detail": "<p>Yes. We implement Marketing, Sales, Service, Content and Data Hub individually or as part of a connected multi-Hub implementation.</p>"
+      },
+      {
+        "text": "What happens after go-live?",
+        "detail": "<p>We can continue working with your team through ongoing HubSpot support and continuous optimization \u2014 improving automation, reporting, data quality and processes as your business evolves.</p>"
       }
     ]
-  },
-  {
-    "id": "scroll_sequence",
-    "name": "scroll_sequence",
-    "label": "Open Points On Scroll",
-    "help_text": "Desktop only: the section pins in place and each point opens in turn as you scroll, then releases. Points are not clickable while this is on. Mobile keeps the normal tap-to-open accordion.",
-    "required": false,
-    "locked": false,
-    "display": "toggle",
-    "type": "boolean",
-    "display_width": null,
-    "default": false
   },
   {
     "id": "columns_align",
