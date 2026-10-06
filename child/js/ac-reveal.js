@@ -21,6 +21,10 @@
  *   --ac-reveal-line-in    the rule arriving at the item (centred layouts,
  *                          where each gap is drawn as two halves)
  *
+ * With data-ac-reveal-line-only as well, the items themselves stay still and
+ * only the rules draw - for a highlight sweeping across text that should not
+ * move while it does.
+ *
  * Whether a rule is actually visible - screen size, last item of a row, rule
  * switched off - is left entirely to that CSS, so the timing is the same on
  * every screen and nothing here needs to know the layout.
@@ -46,6 +50,7 @@
 		// Centred, each gap is two half-rules: out of one item, into the next.
 		// Each half gets half the time, so together they take one step.
 		var lineTime = line === 'center' ? step / 2 : step;
+		var lineOnly = list.hasAttribute('data-ac-reveal-line-only');
 
 		var tl = gsap.timeline({
 			scrollTrigger: { trigger: list, start: 'top bottom-=10%', once: true }
@@ -54,9 +59,9 @@
 		items.forEach(function (item, i) {
 			var at = i * step;
 
-			var fade = item.querySelectorAll('[data-ac-reveal-fade]');
-			var rise = item.querySelectorAll('[data-ac-reveal-rise]');
-			if (!fade.length && !rise.length) rise = [item];
+			var fade = lineOnly ? [] : item.querySelectorAll('[data-ac-reveal-fade]');
+			var rise = lineOnly ? [] : item.querySelectorAll('[data-ac-reveal-rise]');
+			if (!lineOnly && !fade.length && !rise.length) rise = [item];
 
 			// fromTo rather than from: from applies its start values only when
 			// the tween first renders, so a list already past the trigger point

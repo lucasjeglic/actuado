@@ -132,14 +132,15 @@
 	   runs the list simply shows. Rules drawn by the reveal start undrawn too.
 	   ========================================================================== */
 	/* Items that mark their own parts (data-ac-reveal-fade / -rise) hide just
-	   those parts; any other item is hidden whole. */
+	   those parts; any other item is hidden whole. Lists marked
+	   data-ac-reveal-line-only keep their items visible: only the rules draw. */
 	[data-ac-reveal].is-revealing > * {
 		--ac-reveal-line-in: 0;
 		--ac-reveal-line-out: 0;
 	}
 
-	[data-ac-reveal].is-revealing > :not(:has([data-ac-reveal-fade], [data-ac-reveal-rise])),
-	[data-ac-reveal].is-revealing :is([data-ac-reveal-fade], [data-ac-reveal-rise]) {
+	[data-ac-reveal]:not([data-ac-reveal-line-only]).is-revealing > :not(:has([data-ac-reveal-fade], [data-ac-reveal-rise])),
+	[data-ac-reveal]:not([data-ac-reveal-line-only]).is-revealing :is([data-ac-reveal-fade], [data-ac-reveal-rise]) {
 		opacity: 0;
 	}
 
