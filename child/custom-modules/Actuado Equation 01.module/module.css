@@ -101,7 +101,9 @@
 	text-wrap: pretty;
 }
 
-/* A marker-style highlight behind the full height of the key words. It runs
+/* A marker-style highlight behind the letters of the key words: from about the
+   capital height to just under the baseline, measured from the bottom of the
+   font's line box so it follows the type at any size. It runs
    line by line as one strip (slice), so the sweep - --ac-reveal-line-out from
    0 to 1 when the animation is on - crosses each line in turn. Drawn in full
    without it. */
@@ -109,8 +111,8 @@
 	font-weight: 700;
 	background-image: linear-gradient(var(--primary), var(--primary));
 	background-repeat: no-repeat;
-	background-position: 0 0;
-	background-size: calc(var(--ac-reveal-line-out, 1) * 100%) 100%;
+	background-position: left 0 bottom 0.12em;
+	background-size: calc(var(--ac-reveal-line-out, 1) * 100%) 0.8em;
 	-webkit-box-decoration-break: slice;
 	box-decoration-break: slice;
 }
