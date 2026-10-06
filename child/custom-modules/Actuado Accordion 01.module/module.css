@@ -18,6 +18,18 @@
 		padding-bottom: 0;
 	}
 
+	/* The heading stays in view while the questions scroll past: the column
+	   stretches to the list's height and its content sticks within it. */
+	.ac-accordion-01 .ac-acc__intro {
+		align-self: stretch;
+	}
+
+	.ac-accordion-01 .ac-acc__intro > .content-wrapper {
+		position: sticky;
+		top: 7.5rem;
+		height: auto;
+	}
+
 	/* The space between the columns, the same as Statement 01's: padding on the
 	   list column, so the split stays 5/7. */
 	.ac-accordion-01 .ac-acc__list-col > .content-wrapper {
@@ -62,9 +74,14 @@
 	border-bottom: 1px solid var(--ac-divider, var(--borders));
 }
 
-/* Short gold dash standing in for a bullet. On expandable points it also
-   carries the open/closed state by rotating upright. */
+/* The marker sits at the right-hand end of the row, after the text. */
+.ac-accordion-01 .ac-acc__text {
+	flex: 1 1 auto;
+}
+
+/* Short gold dash standing in for a bullet. */
 .ac-accordion-01 .ac-acc__rule {
+	order: 2;
 	flex: none;
 	width: 1.5rem;
 	height: 1px;
@@ -98,9 +115,6 @@
 	outline-offset: 2px;
 }
 
-/* The dash is the only mark: it rotates a quarter turn to stand upright when
-   the point is open. One line turning, nothing added or removed - the state
-   reads at a glance without introducing an icon. */
 /* On expandable items the dash becomes a plus: two gold bars, the upright one
    turning flat as the item opens, so the plus becomes a minus. Centred on the
    first line of the question. */
@@ -148,9 +162,9 @@
 }
 
 .ac-accordion-01 .ac-acc__detail-inner {
-	/* Aligns the detail with the question text: the plus (0.875rem) plus the
-	   gap after it (1.25rem). */
-	padding: 0 0 1.25rem 2.125rem;
+	/* Under the question text, clear of the plus on the right: the plus
+	   (0.875rem) plus the gap before it (1.25rem). */
+	padding: 0 2.125rem 1.25rem 0;
 	opacity: 0.85;
 }
 
@@ -191,11 +205,4 @@
 .ac-accordion-01 .ac-points-lg .ac-acc__text {
 	font-size: 1.125rem;
 	line-height: 1.6;
-}
-
-/* "Match heights" needs the columns themselves to stretch, not just align. */
-.ac-accordion-01 .align-items-stretch .ac-acc__intro {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
 }

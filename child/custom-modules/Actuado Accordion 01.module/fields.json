@@ -1968,35 +1968,6 @@
     ]
   },
   {
-    "id": "columns_align",
-    "name": "columns_align",
-    "label": "Vertical Alignment",
-    "help_text": "How the two columns sit against each other when one is taller.",
-    "required": false,
-    "locked": false,
-    "display": "select",
-    "choices": [
-      [
-        "start",
-        "Top"
-      ],
-      [
-        "center",
-        "Centre"
-      ],
-      [
-        "stretch",
-        "Match heights"
-      ]
-    ],
-    "multiple": false,
-    "reordering_enabled": true,
-    "preset": null,
-    "type": "choice",
-    "display_width": null,
-    "default": "start"
-  },
-  {
     "id": "points_size",
     "name": "points_size",
     "label": "Points Text Size",
