@@ -1722,7 +1722,7 @@
     "allow_new_line": false,
     "type": "text",
     "display_width": null,
-    "default": "More than a HubSpot setup"
+    "default": ""
   },
   {
     "id": "show_eyebrow_rule",
@@ -1753,7 +1753,7 @@
         "allow_new_line": false,
         "type": "text",
         "display_width": null,
-        "default": "More than a HubSpot Setup"
+        "default": "Why Actuado?"
       },
       {
         "id": "heading.heading_size",
@@ -1881,49 +1881,23 @@
     "default": true
   },
   {
-    "id": "description",
-    "name": "description",
-    "label": "Description",
-    "required": false,
-    "locked": false,
-    "type": "richtext",
-    "display_width": null,
-    "default": "<p>A CRM implementation shouldn't start with creating properties and pipelines. It starts with questions \u2014 and we map the answers before we build the system.</p>"
-  },
-  {
-    "name": "rows",
-    "label": "Rows",
+    "name": "credentials",
+    "label": "Credentials",
     "type": "group",
     "required": false,
     "locked": false,
     "occurrence": {
-      "min": 1,
-      "max": 10,
+      "min": 0,
+      "max": 6,
       "sorting_enabled": true,
-      "default": 5
+      "default": 3
     },
-    "display": "drilldown",
-    "help_text": "Each row renders as an icon plus a line of text, separated by a hairline rule.",
+    "display": "inline",
+    "help_text": "Short factual proof points, shown as a row divided by hairlines.",
     "children": [
       {
-        "id": "rows.icon",
-        "name": "icon",
-        "label": "Icon",
-        "type": "icon",
-        "help_text": "Optional. Leave blank for no icon on this row.",
-        "required": false,
-        "locked": false,
-        "icon_set": "fontawesome-6.4.2",
-        "display_width": null,
-        "default": {
-          "name": "",
-          "type": "SOLID",
-          "unicode": ""
-        }
-      },
-      {
         "name": "text",
-        "label": "Text",
+        "label": "Credential",
         "type": "text",
         "required": false,
         "locked": false,
@@ -1934,515 +1908,118 @@
     ],
     "default": [
       {
-        "icon": {
-          "name": "circle-user",
-          "type": "SOLID",
-          "unicode": ""
-        },
-        "text": "How does a lead become a customer?"
+        "text": "HubSpot Diamond Solutions Partner"
       },
       {
-        "icon": {
-          "name": "clipboard-list",
-          "type": "SOLID",
-          "unicode": ""
-        },
-        "text": "Who owns what \u2014 and when?"
+        "text": "HubSpot Onboarding Accredited"
       },
       {
-        "icon": {
-          "name": "layer-group",
-          "type": "SOLID",
-          "unicode": ""
-        },
-        "text": "Where does customer data come from?"
-      },
-      {
-        "icon": {
-          "name": "diagram-project",
-          "type": "SOLID",
-          "unicode": ""
-        },
-        "text": "What should happen automatically?"
-      },
-      {
-        "icon": {
-          "name": "chart-line",
-          "type": "SOLID",
-          "unicode": ""
-        },
-        "text": "What does management need to know?"
+        "text": "HubSpot partner since 2015"
       }
     ]
   },
   {
-    "name": "row_text_size",
-    "label": "Row Text Size",
-    "type": "choice",
+    "name": "pivot",
+    "label": "Pivot Line",
+    "type": "text",
     "required": false,
     "locked": false,
-    "display": "select",
-    "default": "h4",
-    "help_text": "Visual size only, using the theme's type scale. Auto uses the tag's own size.",
-    "choices": [
-      [
-        "auto",
-        "Auto"
-      ],
-      [
-        "h1",
-        "H1"
-      ],
-      [
-        "h2",
-        "H2"
-      ],
-      [
-        "h3",
-        "H3"
-      ],
-      [
-        "h4",
-        "H4"
-      ],
-      [
-        "h5",
-        "H5"
-      ],
-      [
-        "h6",
-        "H6"
-      ],
-      [
-        "p",
-        "P"
-      ],
-      [
-        "display-4",
-        "L"
-      ],
-      [
-        "display-3",
-        "XL"
-      ],
-      [
-        "display-2",
-        "XXL"
-      ],
-      [
-        "display-1",
-        "XXXL"
-      ]
+    "default": "But certifications are only part of it.",
+    "allow_new_line": false,
+    "show_emoji_picker": false,
+    "help_text": "The turn from the credentials to the argument below."
+  },
+  {
+    "name": "parts",
+    "label": "Equation Parts",
+    "type": "group",
+    "required": false,
+    "locked": false,
+    "occurrence": {
+      "min": 1,
+      "max": 8,
+      "sorting_enabled": true,
+      "default": 5
+    },
+    "display": "inline",
+    "help_text": "Joined with + signs, in this order.",
+    "children": [
+      {
+        "name": "text",
+        "label": "Part",
+        "type": "text",
+        "required": false,
+        "locked": false,
+        "default": "",
+        "allow_new_line": false,
+        "show_emoji_picker": false
+      }
+    ],
+    "default": [
+      {
+        "text": "Business process consulting"
+      },
+      {
+        "text": "HubSpot expertise"
+      },
+      {
+        "text": "Data"
+      },
+      {
+        "text": "Integrations"
+      },
+      {
+        "text": "Automation"
+      }
     ]
   },
   {
-    "name": "icon_size",
-    "label": "Icon Size",
-    "type": "number",
+    "name": "result",
+    "label": "Result",
+    "type": "text",
     "required": false,
     "locked": false,
-    "display": "slider",
-    "min": 16,
-    "max": 64,
-    "step": 2,
-    "suffix": "px",
-    "default": 32
+    "default": "One implementation team",
+    "allow_new_line": false,
+    "show_emoji_picker": false,
+    "help_text": "Shown after the = sign, highlighted."
   },
   {
-    "name": "icon_color",
-    "label": "Icon Color",
-    "type": "color",
+    "name": "closing",
+    "label": "Closing Text",
+    "type": "richtext",
     "required": false,
     "locked": false,
-    "help_text": "Defaults to the body text colour.",
-    "default": {
-      "color": null,
-      "opacity": 100
-    }
+    "default": "<p>That means you don't need one consultant to design the process, another company to configure HubSpot and a third developer to figure out how the systems should connect.</p>"
   },
   {
-    "name": "row_spacing",
-    "label": "Row Spacing",
-    "type": "choice",
-    "required": false,
-    "locked": false,
-    "display": "select",
-    "default": "25",
-    "help_text": "Vertical space inside each row. Uses the theme's spacer scale (Theme Settings > Padding & Spacers).",
-    "choices": [
-      [
-        "25",
-        "Small"
-      ],
-      [
-        "50",
-        "Medium"
-      ],
-      [
-        "75",
-        "Large"
-      ]
-    ]
-  },
-  {
-    "name": "show_rules",
-    "label": "Show rules between rows",
-    "type": "boolean",
-    "required": false,
-    "locked": false,
-    "display": "toggle",
-    "default": true
-  },
-  {
-    "name": "animate_rows",
-    "label": "Reveal rows on scroll",
+    "name": "animate_parts",
+    "label": "Animate Equation",
     "type": "boolean",
     "required": false,
     "locked": false,
     "display": "toggle",
     "default": true,
-    "help_text": "Rows fade up in sequence as the section enters the viewport."
+    "help_text": "The parts appear one after another as the section scrolls into view, ending on the result."
   },
   {
-    "name": "custom_column_size",
-    "label": "Custom Column Widths",
-    "type": "boolean",
-    "required": false,
-    "locked": false,
-    "display": "toggle",
-    "default": false,
-    "help_text": "Off: the two columns split the row evenly, as SR's two-column modules do. On: set each column's width and offset yourself."
-  },
-  {
-    "name": "intro_column_size",
-    "label": "Intro Column",
-    "type": "group",
-    "required": false,
-    "locked": false,
-    "display": "inline",
-    "visibility": {
-      "controlling_field": "custom_column_size",
-      "operator": "EQUAL",
-      "controlling_value_regex": "true"
-    },
-    "children": [
-      {
-        "name": "column_breakpoint",
-        "label": "Breakpoint",
-        "type": "choice",
-        "display": "select",
-        "default": "md",
-        "choices": [
-          [
-            "sm",
-            "Small"
-          ],
-          [
-            "md",
-            "Medium"
-          ],
-          [
-            "lg",
-            "Large"
-          ],
-          [
-            "xl",
-            "Extra Large"
-          ]
-        ]
-      },
-      {
-        "name": "column_width",
-        "label": "Width",
-        "type": "choice",
-        "display": "select",
-        "default": "6",
-        "choices": [
-          [
-            "1",
-            "1 / 12"
-          ],
-          [
-            "2",
-            "2 / 12"
-          ],
-          [
-            "3",
-            "3 / 12"
-          ],
-          [
-            "4",
-            "4 / 12"
-          ],
-          [
-            "5",
-            "5 / 12"
-          ],
-          [
-            "6",
-            "6 / 12"
-          ],
-          [
-            "7",
-            "7 / 12"
-          ],
-          [
-            "8",
-            "8 / 12"
-          ],
-          [
-            "9",
-            "9 / 12"
-          ],
-          [
-            "10",
-            "10 / 12"
-          ],
-          [
-            "11",
-            "11 / 12"
-          ],
-          [
-            "12",
-            "12 / 12"
-          ]
-        ]
-      },
-      {
-        "name": "column_offset",
-        "label": "Offset",
-        "type": "choice",
-        "display": "select",
-        "default": "0",
-        "choices": [
-          [
-            "0",
-            "0 / 12"
-          ],
-          [
-            "1",
-            "1 / 12"
-          ],
-          [
-            "2",
-            "2 / 12"
-          ],
-          [
-            "3",
-            "3 / 12"
-          ],
-          [
-            "4",
-            "4 / 12"
-          ],
-          [
-            "5",
-            "5 / 12"
-          ],
-          [
-            "6",
-            "6 / 12"
-          ]
-        ]
-      },
-      {
-        "name": "column_order",
-        "label": "Order",
-        "type": "choice",
-        "display": "select",
-        "default": "1",
-        "help_text": "Which column comes first at this breakpoint.",
-        "choices": [
-          [
-            "1",
-            "First"
-          ],
-          [
-            "2",
-            "Second"
-          ]
-        ]
-      }
-    ]
-  },
-  {
-    "name": "rows_column_size",
-    "label": "Rows Column",
-    "type": "group",
-    "required": false,
-    "locked": false,
-    "display": "inline",
-    "visibility": {
-      "controlling_field": "custom_column_size",
-      "operator": "EQUAL",
-      "controlling_value_regex": "true"
-    },
-    "children": [
-      {
-        "name": "column_breakpoint",
-        "label": "Breakpoint",
-        "type": "choice",
-        "display": "select",
-        "default": "md",
-        "choices": [
-          [
-            "sm",
-            "Small"
-          ],
-          [
-            "md",
-            "Medium"
-          ],
-          [
-            "lg",
-            "Large"
-          ],
-          [
-            "xl",
-            "Extra Large"
-          ]
-        ]
-      },
-      {
-        "name": "column_width",
-        "label": "Width",
-        "type": "choice",
-        "display": "select",
-        "default": "6",
-        "choices": [
-          [
-            "1",
-            "1 / 12"
-          ],
-          [
-            "2",
-            "2 / 12"
-          ],
-          [
-            "3",
-            "3 / 12"
-          ],
-          [
-            "4",
-            "4 / 12"
-          ],
-          [
-            "5",
-            "5 / 12"
-          ],
-          [
-            "6",
-            "6 / 12"
-          ],
-          [
-            "7",
-            "7 / 12"
-          ],
-          [
-            "8",
-            "8 / 12"
-          ],
-          [
-            "9",
-            "9 / 12"
-          ],
-          [
-            "10",
-            "10 / 12"
-          ],
-          [
-            "11",
-            "11 / 12"
-          ],
-          [
-            "12",
-            "12 / 12"
-          ]
-        ]
-      },
-      {
-        "name": "column_offset",
-        "label": "Offset",
-        "type": "choice",
-        "display": "select",
-        "default": "0",
-        "choices": [
-          [
-            "0",
-            "0 / 12"
-          ],
-          [
-            "1",
-            "1 / 12"
-          ],
-          [
-            "2",
-            "2 / 12"
-          ],
-          [
-            "3",
-            "3 / 12"
-          ],
-          [
-            "4",
-            "4 / 12"
-          ],
-          [
-            "5",
-            "5 / 12"
-          ],
-          [
-            "6",
-            "6 / 12"
-          ]
-        ]
-      },
-      {
-        "name": "column_order",
-        "label": "Order",
-        "type": "choice",
-        "display": "select",
-        "default": "2",
-        "help_text": "Which column comes first at this breakpoint.",
-        "choices": [
-          [
-            "1",
-            "First"
-          ],
-          [
-            "2",
-            "Second"
-          ]
-        ]
-      }
-    ]
-  },
-  {
-    "name": "column_vertical_align",
-    "label": "Column Vertical Alignment",
+    "name": "intro_align",
+    "label": "Alignment",
     "type": "choice",
     "required": false,
     "locked": false,
     "display": "select",
-    "default": "top",
-    "help_text": "Uses the theme's own alignment utilities.",
+    "default": "center",
     "choices": [
       [
-        "top",
-        "Top"
+        "left",
+        "Left"
       ],
       [
         "center",
-        "Middle"
-      ],
-      [
-        "bottom",
-        "Bottom"
-      ],
-      [
-        "stretch",
-        "Equal height"
+        "Center"
       ]
-    ]
+    ],
+    "help_text": "Alignment of the intro, the items and the note."
   }
 ]

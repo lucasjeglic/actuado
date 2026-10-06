@@ -106,20 +106,6 @@
         "default": "max"
       },
       {
-        "id": "design_settings.divider_color",
-        "name": "divider_color",
-        "label": "Divider Color",
-        "help_text": "Hairline rule between rows. Defaults to the theme border colour.",
-        "required": false,
-        "locked": false,
-        "type": "color",
-        "display_width": null,
-        "default": {
-          "color": "",
-          "opacity": 100
-        }
-      },
-      {
         "id": "design_settings.top_bottom_padding",
         "name": "top_bottom_padding",
         "label": "Top Bottom Padding",
@@ -1722,7 +1708,7 @@
     "allow_new_line": false,
     "type": "text",
     "display_width": null,
-    "default": "More than a HubSpot setup"
+    "default": ""
   },
   {
     "id": "show_eyebrow_rule",
@@ -1734,7 +1720,7 @@
     "display": "toggle",
     "type": "boolean",
     "display_width": null,
-    "default": true,
+    "default": false,
     "visibility": null
   },
   {
@@ -1753,7 +1739,7 @@
         "allow_new_line": false,
         "type": "text",
         "display_width": null,
-        "default": "More than a HubSpot Setup"
+        "default": "Results, not just configuration"
       },
       {
         "id": "heading.heading_size",
@@ -1878,543 +1864,104 @@
     "display": "toggle",
     "type": "boolean",
     "display_width": null,
-    "default": true
+    "default": false
   },
   {
-    "id": "description",
     "name": "description",
     "label": "Description",
+    "type": "richtext",
     "required": false,
     "locked": false,
-    "type": "richtext",
-    "display_width": null,
-    "default": "<p>A CRM implementation shouldn't start with creating properties and pipelines. It starts with questions \u2014 and we map the answers before we build the system.</p>"
+    "default": "",
+    "help_text": "Optional copy beside the figures."
   },
   {
-    "name": "rows",
-    "label": "Rows",
-    "type": "group",
+    "id": "stats",
+    "name": "stats",
+    "label": "Stats",
     "required": false,
     "locked": false,
     "occurrence": {
       "min": 1,
-      "max": 10,
-      "sorting_enabled": true,
-      "default": 5
+      "max": null,
+      "sorting_label_field": "stats.value",
+      "default": 2
     },
-    "display": "drilldown",
-    "help_text": "Each row renders as an icon plus a line of text, separated by a hairline rule.",
     "children": [
       {
-        "id": "rows.icon",
-        "name": "icon",
-        "label": "Icon",
-        "type": "icon",
-        "help_text": "Optional. Leave blank for no icon on this row.",
+        "id": "stats.value",
+        "name": "value",
+        "label": "Value",
+        "help_text": "Numbers count up on scroll. Any prefix or suffix is kept, so 180+, 31%, 12 yrs and \u20ac2.4M all work. Non-numeric values like Diamond simply fade in.",
         "required": false,
         "locked": false,
-        "icon_set": "fontawesome-6.4.2",
+        "allow_new_line": false,
+        "type": "text",
         "display_width": null,
-        "default": {
-          "name": "",
-          "type": "SOLID",
-          "unicode": ""
-        }
+        "default": ""
       },
       {
-        "name": "text",
-        "label": "Text",
-        "type": "text",
+        "id": "stats.caption",
+        "name": "caption",
+        "label": "Label",
         "required": false,
         "locked": false,
-        "default": "",
         "allow_new_line": false,
-        "show_emoji_picker": false
+        "type": "text",
+        "display_width": null,
+        "default": ""
       }
     ],
+    "tab": "CONTENT",
+    "expanded": false,
+    "group_occurrence_meta": null,
+    "type": "group",
+    "display_width": null,
     "default": [
       {
-        "icon": {
-          "name": "circle-user",
-          "type": "SOLID",
-          "unicode": ""
-        },
-        "text": "How does a lead become a customer?"
+        "value": "100+",
+        "caption": "HubSpot implementations delivered"
       },
       {
-        "icon": {
-          "name": "clipboard-list",
-          "type": "SOLID",
-          "unicode": ""
-        },
-        "text": "Who owns what \u2014 and when?"
-      },
-      {
-        "icon": {
-          "name": "layer-group",
-          "type": "SOLID",
-          "unicode": ""
-        },
-        "text": "Where does customer data come from?"
-      },
-      {
-        "icon": {
-          "name": "diagram-project",
-          "type": "SOLID",
-          "unicode": ""
-        },
-        "text": "What should happen automatically?"
-      },
-      {
-        "icon": {
-          "name": "chart-line",
-          "type": "SOLID",
-          "unicode": ""
-        },
-        "text": "What does management need to know?"
+        "value": "11+ years",
+        "caption": "as a HubSpot Solutions Partner"
       }
     ]
   },
   {
-    "name": "row_text_size",
-    "label": "Row Text Size",
-    "type": "choice",
-    "required": false,
-    "locked": false,
-    "display": "select",
-    "default": "h4",
-    "help_text": "Visual size only, using the theme's type scale. Auto uses the tag's own size.",
-    "choices": [
-      [
-        "auto",
-        "Auto"
-      ],
-      [
-        "h1",
-        "H1"
-      ],
-      [
-        "h2",
-        "H2"
-      ],
-      [
-        "h3",
-        "H3"
-      ],
-      [
-        "h4",
-        "H4"
-      ],
-      [
-        "h5",
-        "H5"
-      ],
-      [
-        "h6",
-        "H6"
-      ],
-      [
-        "p",
-        "P"
-      ],
-      [
-        "display-4",
-        "L"
-      ],
-      [
-        "display-3",
-        "XL"
-      ],
-      [
-        "display-2",
-        "XXL"
-      ],
-      [
-        "display-1",
-        "XXXL"
-      ]
-    ]
-  },
-  {
-    "name": "icon_size",
-    "label": "Icon Size",
-    "type": "number",
-    "required": false,
-    "locked": false,
-    "display": "slider",
-    "min": 16,
-    "max": 64,
-    "step": 2,
-    "suffix": "px",
-    "default": 32
-  },
-  {
-    "name": "icon_color",
-    "label": "Icon Color",
-    "type": "color",
-    "required": false,
-    "locked": false,
-    "help_text": "Defaults to the body text colour.",
-    "default": {
-      "color": null,
-      "opacity": 100
-    }
-  },
-  {
-    "name": "row_spacing",
-    "label": "Row Spacing",
-    "type": "choice",
-    "required": false,
-    "locked": false,
-    "display": "select",
-    "default": "25",
-    "help_text": "Vertical space inside each row. Uses the theme's spacer scale (Theme Settings > Padding & Spacers).",
-    "choices": [
-      [
-        "25",
-        "Small"
-      ],
-      [
-        "50",
-        "Medium"
-      ],
-      [
-        "75",
-        "Large"
-      ]
-    ]
-  },
-  {
-    "name": "show_rules",
-    "label": "Show rules between rows",
-    "type": "boolean",
+    "id": "count_up",
+    "name": "count_up",
+    "label": "Count Up On Scroll",
+    "help_text": "Numeric values animate from zero the first time they scroll into view.",
     "required": false,
     "locked": false,
     "display": "toggle",
+    "type": "boolean",
+    "display_width": null,
     "default": true
   },
   {
-    "name": "animate_rows",
-    "label": "Reveal rows on scroll",
-    "type": "boolean",
+    "name": "text_column_width",
+    "label": "Text Column Width",
+    "type": "choice",
     "required": false,
     "locked": false,
-    "display": "toggle",
-    "default": true,
-    "help_text": "Rows fade up in sequence as the section enters the viewport."
-  },
-  {
-    "name": "custom_column_size",
-    "label": "Custom Column Widths",
-    "type": "boolean",
-    "required": false,
-    "locked": false,
-    "display": "toggle",
-    "default": false,
-    "help_text": "Off: the two columns split the row evenly, as SR's two-column modules do. On: set each column's width and offset yourself."
-  },
-  {
-    "name": "intro_column_size",
-    "label": "Intro Column",
-    "type": "group",
-    "required": false,
-    "locked": false,
-    "display": "inline",
-    "visibility": {
-      "controlling_field": "custom_column_size",
-      "operator": "EQUAL",
-      "controlling_value_regex": "true"
-    },
-    "children": [
-      {
-        "name": "column_breakpoint",
-        "label": "Breakpoint",
-        "type": "choice",
-        "display": "select",
-        "default": "md",
-        "choices": [
-          [
-            "sm",
-            "Small"
-          ],
-          [
-            "md",
-            "Medium"
-          ],
-          [
-            "lg",
-            "Large"
-          ],
-          [
-            "xl",
-            "Extra Large"
-          ]
-        ]
-      },
-      {
-        "name": "column_width",
-        "label": "Width",
-        "type": "choice",
-        "display": "select",
-        "default": "6",
-        "choices": [
-          [
-            "1",
-            "1 / 12"
-          ],
-          [
-            "2",
-            "2 / 12"
-          ],
-          [
-            "3",
-            "3 / 12"
-          ],
-          [
-            "4",
-            "4 / 12"
-          ],
-          [
-            "5",
-            "5 / 12"
-          ],
-          [
-            "6",
-            "6 / 12"
-          ],
-          [
-            "7",
-            "7 / 12"
-          ],
-          [
-            "8",
-            "8 / 12"
-          ],
-          [
-            "9",
-            "9 / 12"
-          ],
-          [
-            "10",
-            "10 / 12"
-          ],
-          [
-            "11",
-            "11 / 12"
-          ],
-          [
-            "12",
-            "12 / 12"
-          ]
-        ]
-      },
-      {
-        "name": "column_offset",
-        "label": "Offset",
-        "type": "choice",
-        "display": "select",
-        "default": "0",
-        "choices": [
-          [
-            "0",
-            "0 / 12"
-          ],
-          [
-            "1",
-            "1 / 12"
-          ],
-          [
-            "2",
-            "2 / 12"
-          ],
-          [
-            "3",
-            "3 / 12"
-          ],
-          [
-            "4",
-            "4 / 12"
-          ],
-          [
-            "5",
-            "5 / 12"
-          ],
-          [
-            "6",
-            "6 / 12"
-          ]
-        ]
-      },
-      {
-        "name": "column_order",
-        "label": "Order",
-        "type": "choice",
-        "display": "select",
-        "default": "1",
-        "help_text": "Which column comes first at this breakpoint.",
-        "choices": [
-          [
-            "1",
-            "First"
-          ],
-          [
-            "2",
-            "Second"
-          ]
-        ]
-      }
-    ]
-  },
-  {
-    "name": "rows_column_size",
-    "label": "Rows Column",
-    "type": "group",
-    "required": false,
-    "locked": false,
-    "display": "inline",
-    "visibility": {
-      "controlling_field": "custom_column_size",
-      "operator": "EQUAL",
-      "controlling_value_regex": "true"
-    },
-    "children": [
-      {
-        "name": "column_breakpoint",
-        "label": "Breakpoint",
-        "type": "choice",
-        "display": "select",
-        "default": "md",
-        "choices": [
-          [
-            "sm",
-            "Small"
-          ],
-          [
-            "md",
-            "Medium"
-          ],
-          [
-            "lg",
-            "Large"
-          ],
-          [
-            "xl",
-            "Extra Large"
-          ]
-        ]
-      },
-      {
-        "name": "column_width",
-        "label": "Width",
-        "type": "choice",
-        "display": "select",
-        "default": "6",
-        "choices": [
-          [
-            "1",
-            "1 / 12"
-          ],
-          [
-            "2",
-            "2 / 12"
-          ],
-          [
-            "3",
-            "3 / 12"
-          ],
-          [
-            "4",
-            "4 / 12"
-          ],
-          [
-            "5",
-            "5 / 12"
-          ],
-          [
-            "6",
-            "6 / 12"
-          ],
-          [
-            "7",
-            "7 / 12"
-          ],
-          [
-            "8",
-            "8 / 12"
-          ],
-          [
-            "9",
-            "9 / 12"
-          ],
-          [
-            "10",
-            "10 / 12"
-          ],
-          [
-            "11",
-            "11 / 12"
-          ],
-          [
-            "12",
-            "12 / 12"
-          ]
-        ]
-      },
-      {
-        "name": "column_offset",
-        "label": "Offset",
-        "type": "choice",
-        "display": "select",
-        "default": "0",
-        "choices": [
-          [
-            "0",
-            "0 / 12"
-          ],
-          [
-            "1",
-            "1 / 12"
-          ],
-          [
-            "2",
-            "2 / 12"
-          ],
-          [
-            "3",
-            "3 / 12"
-          ],
-          [
-            "4",
-            "4 / 12"
-          ],
-          [
-            "5",
-            "5 / 12"
-          ],
-          [
-            "6",
-            "6 / 12"
-          ]
-        ]
-      },
-      {
-        "name": "column_order",
-        "label": "Order",
-        "type": "choice",
-        "display": "select",
-        "default": "2",
-        "help_text": "Which column comes first at this breakpoint.",
-        "choices": [
-          [
-            "1",
-            "First"
-          ],
-          [
-            "2",
-            "Second"
-          ]
-        ]
-      }
+    "display": "select",
+    "default": "5",
+    "help_text": "Width of the left column out of 12. The figures take the rest.",
+    "choices": [
+      [
+        "4",
+        "4 / 12"
+      ],
+      [
+        "5",
+        "5 / 12"
+      ],
+      [
+        "6",
+        "6 / 12 (half)"
+      ]
     ]
   },
   {
@@ -2425,7 +1972,6 @@
     "locked": false,
     "display": "select",
     "default": "top",
-    "help_text": "Uses the theme's own alignment utilities.",
     "choices": [
       [
         "top",
@@ -2443,6 +1989,822 @@
         "stretch",
         "Equal height"
       ]
+    ]
+  },
+  {
+    "name": "show_quote",
+    "label": "Show Quote",
+    "type": "boolean",
+    "required": false,
+    "locked": false,
+    "display": "toggle",
+    "default": true
+  },
+  {
+    "name": "show_quote_accent",
+    "label": "Show Top Accent Bar",
+    "type": "boolean",
+    "required": false,
+    "locked": false,
+    "display": "toggle",
+    "default": true,
+    "help_text": "A gold bar across the top edge of the quote panel.",
+    "visibility": {
+      "controlling_field": "show_quote",
+      "operator": "EQUAL",
+      "controlling_value_regex": "true"
+    }
+  },
+  {
+    "name": "quote_accent",
+    "label": "Accent Color",
+    "type": "color",
+    "required": false,
+    "locked": false,
+    "help_text": "Defaults to the theme's primary colour.",
+    "default": {
+      "color": null,
+      "opacity": 100
+    },
+    "visibility": {
+      "controlling_field": "show_quote_accent",
+      "operator": "EQUAL",
+      "controlling_value_regex": "true"
+    }
+  },
+  {
+    "name": "quote_radius",
+    "label": "Quote Corner Radius",
+    "type": "number",
+    "required": false,
+    "locked": false,
+    "display": "slider",
+    "min": 0,
+    "max": 32,
+    "step": 2,
+    "suffix": "px",
+    "default": 12,
+    "help_text": "Matches the card radius used in Actuado Services Grid 01.",
+    "visibility": {
+      "controlling_field": "show_quote",
+      "operator": "EQUAL",
+      "controlling_value_regex": "true"
+    }
+  },
+  {
+    "name": "quote_background",
+    "label": "Quote Background",
+    "type": "color",
+    "required": false,
+    "locked": false,
+    "help_text": "Defaults to the theme's tertiary colour (navy).",
+    "default": {
+      "color": null,
+      "opacity": 100
+    },
+    "visibility": {
+      "controlling_field": "show_quote",
+      "operator": "EQUAL",
+      "controlling_value_regex": "true"
+    }
+  },
+  {
+    "name": "quote_text_color",
+    "label": "Quote Text Color",
+    "type": "color",
+    "required": false,
+    "locked": false,
+    "help_text": "Defaults to white, to suit the navy panel.",
+    "default": {
+      "color": null,
+      "opacity": 100
+    },
+    "visibility": {
+      "controlling_field": "show_quote",
+      "operator": "EQUAL",
+      "controlling_value_regex": "true"
+    }
+  },
+  {
+    "name": "quote",
+    "label": "Quote",
+    "type": "richtext",
+    "required": false,
+    "locked": false,
+    "default": "<p>&ldquo;We loved working with Actuado because&hellip; Short explanation of what changed for the client &mdash; for example improved data quality, reduced manual work, faster sales process or better visibility across the funnel.&rdquo;</p>",
+    "visibility": {
+      "controlling_field": "show_quote",
+      "operator": "EQUAL",
+      "controlling_value_regex": "true"
+    }
+  },
+  {
+    "name": "quote_metric",
+    "label": "Metric",
+    "type": "text",
+    "required": false,
+    "locked": false,
+    "default": "[Insert strong metric]",
+    "allow_new_line": false,
+    "help_text": "Optional figure shown above the quote.",
+    "visibility": {
+      "controlling_field": "show_quote",
+      "operator": "EQUAL",
+      "controlling_value_regex": "true"
+    }
+  },
+  {
+    "name": "quote_name",
+    "label": "Name",
+    "type": "text",
+    "required": false,
+    "locked": false,
+    "default": "John Doe",
+    "allow_new_line": false,
+    "visibility": {
+      "controlling_field": "show_quote",
+      "operator": "EQUAL",
+      "controlling_value_regex": "true"
+    }
+  },
+  {
+    "name": "quote_company",
+    "label": "Company",
+    "type": "text",
+    "required": false,
+    "locked": false,
+    "default": "Company Acme",
+    "allow_new_line": false,
+    "visibility": {
+      "controlling_field": "show_quote",
+      "operator": "EQUAL",
+      "controlling_value_regex": "true"
+    }
+  },
+  {
+    "id": "ctas",
+    "name": "ctas",
+    "label": "Case Study Link",
+    "required": false,
+    "locked": false,
+    "occurrence": {
+      "min": 0,
+      "max": null,
+      "sorting_label_field": null,
+      "default": 0
+    },
+    "children": [
+      {
+        "id": "ctas.cta_type",
+        "name": "cta_type",
+        "label": "CTA Type",
+        "required": true,
+        "locked": false,
+        "display": "select",
+        "choices": [
+          [
+            "cta",
+            "HubSpot CTA"
+          ],
+          [
+            "hs_payment",
+            "HubSpot Payment"
+          ],
+          [
+            "btn",
+            "Button"
+          ],
+          [
+            "modal",
+            "Modal"
+          ]
+        ],
+        "multiple": false,
+        "reordering_enabled": true,
+        "preset": null,
+        "type": "choice",
+        "display_width": null,
+        "default": "btn"
+      },
+      {
+        "id": "ctas.cta_style",
+        "name": "cta_style",
+        "label": "CTA Style",
+        "required": true,
+        "locked": false,
+        "visibility": {
+          "controlling_field": "ctas.cta_type",
+          "controlling_field_path": null,
+          "controlling_value_regex": "none",
+          "property": null,
+          "operator": "NOT_EQUAL",
+          "access": null
+        },
+        "display": "select",
+        "choices": [
+          [
+            "primary",
+            "Primary"
+          ],
+          [
+            "secondary",
+            "Secondary"
+          ],
+          [
+            "tertiary",
+            "Tertiary"
+          ],
+          [
+            "white",
+            "White"
+          ],
+          [
+            "black",
+            "Black"
+          ],
+          [
+            "dark",
+            "Dark"
+          ],
+          [
+            "light",
+            "Light"
+          ],
+          [
+            "success",
+            "Success"
+          ],
+          [
+            "info",
+            "Info"
+          ],
+          [
+            "warning",
+            "Warning"
+          ],
+          [
+            "danger",
+            "Danger"
+          ],
+          [
+            "outline-primary",
+            "Outline Primary"
+          ],
+          [
+            "outline-secondary",
+            "Outline Secondary"
+          ],
+          [
+            "outline-tertiary",
+            "Outline Tertiary"
+          ],
+          [
+            "outline-white",
+            "Outline White"
+          ],
+          [
+            "outline-black",
+            "Outline Black"
+          ],
+          [
+            "outline-dark",
+            "Outline Dark"
+          ],
+          [
+            "outline-light",
+            "Outline Light"
+          ],
+          [
+            "outline-success",
+            "Outline Success"
+          ],
+          [
+            "outline-info",
+            "Outline Info"
+          ],
+          [
+            "outline-warning",
+            "Outline Warning"
+          ],
+          [
+            "outline-danger",
+            "Outline Danger"
+          ],
+          [
+            "custom",
+            "Custom"
+          ],
+          [
+            "none",
+            "None"
+          ]
+        ],
+        "multiple": false,
+        "reordering_enabled": true,
+        "preset": null,
+        "type": "choice",
+        "display_width": null,
+        "default": "primary"
+      },
+      {
+        "id": "ctas.default",
+        "name": "default",
+        "label": "Default",
+        "required": false,
+        "locked": false,
+        "visibility": {
+          "controlling_field": "ctas.cta_style",
+          "controlling_field_path": null,
+          "controlling_value_regex": "custom",
+          "property": null,
+          "operator": "EQUAL",
+          "access": null
+        },
+        "children": [
+          {
+            "id": "ctas.default.background",
+            "name": "background",
+            "label": "Background",
+            "required": false,
+            "locked": false,
+            "type": "color",
+            "display_width": null,
+            "default": {
+              "color": "#0c63ff",
+              "opacity": 100
+            }
+          },
+          {
+            "id": "ctas.default.text",
+            "name": "text",
+            "label": "Text",
+            "required": false,
+            "locked": false,
+            "type": "color",
+            "display_width": null,
+            "default": {
+              "color": "#fff",
+              "opacity": 100
+            }
+          },
+          {
+            "id": "ctas.default.border",
+            "name": "border",
+            "label": "Border",
+            "required": false,
+            "locked": false,
+            "type": "color",
+            "display_width": null,
+            "default": {
+              "color": "#0c63ff",
+              "opacity": 100
+            }
+          }
+        ],
+        "tab": "CONTENT",
+        "expanded": true,
+        "group_occurrence_meta": null,
+        "type": "group",
+        "display_width": null,
+        "default": {
+          "text": {
+            "color": "#fff",
+            "opacity": 100
+          },
+          "border": {
+            "color": "#0c63ff",
+            "opacity": 100
+          },
+          "background": {
+            "color": "#0c63ff",
+            "opacity": 100
+          }
+        }
+      },
+      {
+        "id": "ctas.hover",
+        "name": "hover",
+        "label": "Hover",
+        "required": false,
+        "locked": false,
+        "visibility": {
+          "controlling_field": "ctas.cta_style",
+          "controlling_field_path": null,
+          "controlling_value_regex": "custom",
+          "property": null,
+          "operator": "EQUAL",
+          "access": null
+        },
+        "children": [
+          {
+            "id": "ctas.hover.background",
+            "name": "background",
+            "label": "Background",
+            "required": false,
+            "locked": false,
+            "type": "color",
+            "display_width": null,
+            "default": {
+              "color": "#5a93fd",
+              "opacity": 100
+            }
+          },
+          {
+            "id": "ctas.hover.text",
+            "name": "text",
+            "label": "Text",
+            "required": false,
+            "locked": false,
+            "type": "color",
+            "display_width": null,
+            "default": {
+              "color": "#fff",
+              "opacity": 100
+            }
+          },
+          {
+            "id": "ctas.hover.border",
+            "name": "border",
+            "label": "Border Color",
+            "required": false,
+            "locked": false,
+            "type": "color",
+            "display_width": null,
+            "default": {
+              "color": "#5a93fd",
+              "opacity": 100
+            }
+          }
+        ],
+        "tab": "CONTENT",
+        "expanded": true,
+        "group_occurrence_meta": null,
+        "type": "group",
+        "display_width": null,
+        "default": {
+          "text": {
+            "color": "#fff",
+            "opacity": 100
+          },
+          "border": {
+            "color": "#5a93fd",
+            "opacity": 100
+          },
+          "background": {
+            "color": "#5a93fd",
+            "opacity": 100
+          }
+        }
+      },
+      {
+        "id": "ctas.cta",
+        "name": "cta",
+        "label": "CTA",
+        "required": false,
+        "locked": false,
+        "visibility": {
+          "controlling_field": "ctas.cta_type",
+          "controlling_field_path": null,
+          "controlling_value_regex": "cta",
+          "property": null,
+          "operator": "EQUAL",
+          "access": null
+        },
+        "type": "cta",
+        "display_width": null,
+        "default": ""
+      },
+      {
+        "id": "ctas.button_text",
+        "name": "button_text",
+        "label": "Button Text",
+        "required": false,
+        "locked": false,
+        "visibility": {
+          "controlling_field": "ctas.cta_type",
+          "controlling_field_path": null,
+          "controlling_value_regex": "btn|modal",
+          "property": null,
+          "operator": "MATCHES_REGEX",
+          "access": null
+        },
+        "allow_new_line": false,
+        "type": "text",
+        "display_width": null,
+        "default": "Watch Demo"
+      },
+      {
+        "id": "ctas.modal_target",
+        "name": "modal_target",
+        "label": "Modal Target",
+        "required": false,
+        "locked": false,
+        "visibility": {
+          "controlling_field": "ctas.cta_type",
+          "controlling_field_path": null,
+          "controlling_value_regex": "modal",
+          "property": null,
+          "operator": "EQUAL",
+          "access": null
+        },
+        "allow_new_line": false,
+        "type": "text",
+        "display_width": null,
+        "default": "demo"
+      },
+      {
+        "id": "ctas.link",
+        "name": "link",
+        "label": "Link",
+        "required": false,
+        "locked": false,
+        "visibility": {
+          "controlling_field": "ctas.cta_type",
+          "controlling_field_path": null,
+          "controlling_value_regex": "btn",
+          "property": null,
+          "operator": "EQUAL",
+          "access": null
+        },
+        "supported_types": [
+          "EXTERNAL",
+          "CONTENT",
+          "FILE",
+          "EMAIL_ADDRESS",
+          "BLOG",
+          "CALL_TO_ACTION",
+          "PHONE_NUMBER",
+          "PAYMENT"
+        ],
+        "show_advanced_rel_options": true,
+        "type": "link",
+        "display_width": null,
+        "default": {
+          "url": {
+            "href": "#",
+            "type": "EXTERNAL",
+            "content_id": null
+          },
+          "no_follow": false,
+          "open_in_new_tab": false
+        }
+      },
+      {
+        "id": "ctas.payment",
+        "name": "payment",
+        "label": "Payment link",
+        "required": false,
+        "locked": false,
+        "visibility": {
+          "controlling_field": "ctas.cta_type",
+          "controlling_field_path": null,
+          "controlling_value_regex": "hs_payment",
+          "property": null,
+          "operator": "EQUAL",
+          "access": null
+        },
+        "type": "payment",
+        "display_width": null,
+        "default": {}
+      },
+      {
+        "id": "ctas.checkout_location",
+        "name": "checkout_location",
+        "label": "Checkout behavior",
+        "required": false,
+        "locked": false,
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field": "ctas.payment",
+              "controlling_field_path": null,
+              "controlling_value_regex": "id\":\\d+",
+              "property": null,
+              "operator": "MATCHES_REGEX",
+              "access": null
+            },
+            {
+              "controlling_field": "ctas.cta_type",
+              "controlling_field_path": null,
+              "controlling_value_regex": "hs_payment",
+              "property": null,
+              "operator": "EQUAL",
+              "access": null
+            }
+          ],
+          "children": []
+        },
+        "display": "radio",
+        "choices": [
+          [
+            "new_tab",
+            "Open in a new tab"
+          ],
+          [
+            "overlay",
+            "Sliding overlay"
+          ]
+        ],
+        "multiple": false,
+        "reordering_enabled": true,
+        "preset": null,
+        "type": "choice",
+        "display_width": null,
+        "default": "new_tab"
+      },
+      {
+        "id": "ctas.cta_size",
+        "name": "cta_size",
+        "label": "CTA Size",
+        "required": true,
+        "locked": false,
+        "visibility": {
+          "controlling_field": "ctas.cta_type",
+          "controlling_field_path": null,
+          "controlling_value_regex": "none",
+          "property": null,
+          "operator": "NOT_EQUAL",
+          "access": null
+        },
+        "display": "select",
+        "choices": [
+          [
+            "sm",
+            "Small"
+          ],
+          [
+            "md",
+            "Default"
+          ],
+          [
+            "lg",
+            "Large"
+          ]
+        ],
+        "multiple": false,
+        "reordering_enabled": true,
+        "preset": null,
+        "type": "choice",
+        "display_width": null,
+        "default": "md"
+      },
+      {
+        "id": "ctas.add_icon",
+        "name": "add_icon",
+        "label": "Add icon",
+        "required": false,
+        "locked": false,
+        "visibility": {
+          "controlling_field": "ctas.cta_type",
+          "controlling_field_path": null,
+          "controlling_value_regex": "cta",
+          "property": null,
+          "operator": "NOT_EQUAL",
+          "access": null
+        },
+        "display": "checkbox",
+        "type": "boolean",
+        "display_width": null,
+        "default": false
+      },
+      {
+        "id": "ctas.icon",
+        "name": "icon",
+        "label": "Icon",
+        "required": false,
+        "locked": false,
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field": "ctas.cta_type",
+              "controlling_field_path": null,
+              "controlling_value_regex": "cta",
+              "property": null,
+              "operator": "NOT_EQUAL",
+              "access": null
+            },
+            {
+              "controlling_field": "ctas.add_icon",
+              "controlling_field_path": null,
+              "controlling_value_regex": "true",
+              "property": null,
+              "operator": "EQUAL",
+              "access": null
+            }
+          ],
+          "children": []
+        },
+        "children": [
+          {
+            "id": "ctas.icon.icon",
+            "name": "icon",
+            "label": "Icon",
+            "required": true,
+            "locked": false,
+            "icon_set": "fontawesome-5.14.0",
+            "type": "icon",
+            "display_width": null,
+            "default": {
+              "name": "arrow-right",
+              "type": "SOLID",
+              "unicode": "f061"
+            }
+          },
+          {
+            "id": "ctas.icon.position",
+            "name": "position",
+            "label": "Position",
+            "required": true,
+            "locked": false,
+            "display": "select",
+            "choices": [
+              [
+                "left",
+                "Left"
+              ],
+              [
+                "right",
+                "Right"
+              ]
+            ],
+            "multiple": false,
+            "reordering_enabled": true,
+            "preset": null,
+            "type": "choice",
+            "display_width": null,
+            "default": "right"
+          }
+        ],
+        "tab": "CONTENT",
+        "expanded": true,
+        "group_occurrence_meta": null,
+        "type": "group",
+        "display_width": null,
+        "default": {
+          "icon": {
+            "name": "arrow-right",
+            "type": "SOLID",
+            "unicode": "f061"
+          },
+          "position": "right"
+        }
+      }
+    ],
+    "tab": "CONTENT",
+    "expanded": false,
+    "group_occurrence_meta": null,
+    "type": "group",
+    "display_width": null,
+    "default": [
+      {
+        "cta": "",
+        "link": {
+          "url": {
+            "href": "#",
+            "type": "EXTERNAL",
+            "content_id": null
+          },
+          "no_follow": false,
+          "open_in_new_tab": false
+        },
+        "hover": {
+          "text": {
+            "color": "#fff",
+            "opacity": 100
+          },
+          "border": {
+            "color": "#5a93fd",
+            "opacity": 100
+          },
+          "background": {
+            "color": "#5a93fd",
+            "opacity": 100
+          }
+        },
+        "default": {
+          "text": {
+            "color": "#fff",
+            "opacity": 100
+          },
+          "border": {
+            "color": "#0c63ff",
+            "opacity": 100
+          },
+          "background": {
+            "color": "#0c63ff",
+            "opacity": 100
+          }
+        },
+        "cta_size": "md",
+        "cta_type": "btn",
+        "cta_style": "primary",
+        "button_text": "Watch Demo",
+        "modal_target": "demo"
+      }
     ]
   }
 ]

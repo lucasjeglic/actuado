@@ -1,0 +1,122 @@
+{% if module.enabled %}
+
+	{% import "../../templates/macros.html" as macros %}
+	{% import "../../templates/ac-macros.html" as ac %}
+
+
+	{# Choice fields return strings; coerce and clamp so the split cannot collapse. #}
+	{% set text_cols = module.text_column_width|int %}
+	{% set text_cols = text_cols >= 4 and text_cols <= 6 ? text_cols : 6 %}
+	{% set stat_cols = 12 - text_cols %}
+
+	{% require_css %}
+	<style>
+		{{ macros.design_settings(name, module.design_settings) }}
+
+		.{{ name }} .ac-results__quote {
+			--ac-quote-radius: {{ module.quote_radius|int }}px;
+			{% if module.quote_accent.color %}--ac-quote-accent: {{ macros.color(module.quote_accent) }};{% endif %}
+			{% if module.quote_background.color %}--ac-quote-bg: {{ macros.color(module.quote_background) }};{% endif %}
+			{% if module.quote_text_color.color %}--ac-quote-text: {{ macros.color(module.quote_text_color) }};{% endif %}
+		}
+	</style>
+	{% end_require_css %}
+
+	<div class="ac-results-01 {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} {{ ac.text_color_class(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
+
+		{{ macros.module_bg_video(module) }}
+
+		<div class="{{ module.design_settings.layout }}">
+			{% if module.design_settings.container_width != 'max' %}
+			<div class="row">
+				<div class="{{ ac.width_class(module.design_settings) }}">
+			{% endif %}
+
+					<div class="row ac-results sr-valign-{{ module.column_vertical_align }}">
+
+						{# ---------- Intro ---------- #}
+						<div class="col-lg-{{ text_cols }} sr-col ac-results__intro sr-spacer-bottom-50">
+							<div class="content-wrapper">
+
+								{{ ac.eyebrow(module, 'sr-spacer-bottom-25' if module.heading.heading_text || module.description else '') }}
+
+								{{ ac.heading(module, 'ac-results__heading' ~ (' sr-spacer-bottom-25' if module.description else '')) }}
+
+								{% if module.description %}
+								<div class="description ac-results__description">{{ module.description }}</div>
+								{% endif %}
+
+							</div>
+						</div>
+
+						{# ---------- Figures ---------- #}
+						<div class="col-lg-{{ stat_cols }} sr-col ac-results__stats">
+							<div class="content-wrapper">
+								<div class="ac-stats{% if module.count_up %} ac-stats--count{% endif %}">
+									{% for item in module.stats %}
+									{% if item.value || item.caption %}
+									<div class="ac-stat">
+										{% if item.value %}
+										<p class="ac-stat__value" data-value="{{ item.value }}">{{ item.value }}</p>
+										{% endif %}
+										{% if item.caption %}
+										<p class="ac-stat__label">{{ item.caption }}</p>
+										{% endif %}
+									</div>
+									{% endif %}
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					{# ---------- Quote ---------- #}
+					{% if module.show_quote && (module.quote || module.quote_name) %}
+					{# The spacer is on a wrapper, not the frame: .sr-spacer-* sets padding,
+					   which inside a bordered element pads its interior rather than
+					   separating it from what is above. #}
+					<div class="ac-results__quote-wrap sr-spacer-top-50">
+					<figure class="ac-results__quote{% if module.show_quote_accent %} ac-results__quote--accent{% endif %}">
+
+						{% if module.quote_metric %}
+						<p class="ac-results__metric blockquote">{{ module.quote_metric }}</p>
+						{% endif %}
+
+						{% if module.quote %}
+						{# The theme's Blockquote slot is condensed bold display type, which
+						   reads as a pull quote. This is a testimonial paragraph, so it
+						   uses the body type instead. #}
+						<blockquote class="ac-results__quote-text blockquote">{{ module.quote }}</blockquote>
+						{% endif %}
+
+						{% if module.quote_name || module.quote_company %}
+						<figcaption class="ac-results__attr small">
+							{% if module.quote_name %}<span class="ac-results__name">{{ module.quote_name }}</span>{% endif %}
+							{% if module.quote_company %}<span class="ac-results__company">{{ module.quote_company }}</span>{% endif %}
+						</figcaption>
+						{% endif %}
+
+						{{ macros.cta(module.ctas, 'sr-spacer-top-25') }}
+
+					</figure>
+					</div>
+					{% endif %}
+
+			{% if module.design_settings.container_width != 'max' %}
+				</div>
+			</div>
+			{% endif %}
+
+		</div>
+	</div>
+
+	{{ ac.heading_scripts(module) }}
+
+	{% if module.count_up %}
+	{{ require_js(get_asset_url('../../js/gsap.js'), { defer: true, position: head }) }}
+	{{ require_js(get_asset_url('../../js/TextPlugin.js'), { defer: true, position: head }) }}
+	{{ require_js(get_asset_url('../../js/ac-stats-count.js'), { defer: true }) }}
+	{% endif %}
+
+{% endif %}

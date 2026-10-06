@@ -14,23 +14,30 @@
 /* ---------- Grid ---------- */
 
 /* CSS grid rather than Bootstrap columns: the step count is editor-controlled,
-   and grid lets the same markup reflow to 2 and 1 columns without per-count
-   classes. gap applies only between items, so no edge margins to undo. */
+   and grid lets the same markup reflow without per-count classes. gap applies
+   only between items, so no edge margins to undo.
+
+   One column on phones, two from 576px - the same steps as the other Actuado
+   grids. Three and six-step layouts get an extra three-column stage at 768px,
+   since six steps two-across makes a long tablet page. */
 .ac-steps-01 .ac-steps {
 	list-style: none;
 	margin: 0;
 	padding: 0;
 	display: grid;
-	grid-template-columns: repeat(2, 1fr);
+	grid-template-columns: 1fr;
 	/* Shared with the connecting rule, which has to span this gap to reach the
 	   next column. */
 	--ac-steps-gap: 1.5rem;
 	gap: 2.5rem var(--ac-steps-gap);
 }
 
+@media (min-width: 576px) {
+	.ac-steps-01 .ac-steps { grid-template-columns: repeat(2, 1fr); }
+}
+
 @media (min-width: 768px) {
-	.ac-steps-01 .ac-steps--3 { grid-template-columns: repeat(3, 1fr); }
-	.ac-steps-01 .ac-steps--4 { grid-template-columns: repeat(2, 1fr); }
+	.ac-steps-01 .ac-steps--3,
 	.ac-steps-01 .ac-steps--6 { grid-template-columns: repeat(3, 1fr); }
 }
 
@@ -90,41 +97,84 @@
    than across the glyphs themselves. Suppressed on the last item of each row
    so nothing overhangs the grid edge, which is why it disappears when the row
    breaks. */
-@media (min-width: 992px) {
-	/* The wrapper spans the full column width; the number sits inside it at the
-	   chosen alignment, and the rule fills whatever space is left. */
-	.ac-steps-01 .ac-steps--ruled .ac-steps__number {
-		display: flex;
-		align-items: center;
-		/* Clear space either side of the digits, so the rule reads as a short
-		   segment between two numbers rather than one line running through
-		   them. */
-		gap: 2.5rem;
-		width: 100%;
-	}
+/* The wrapper spans the full column width; the number sits inside it at the
+   chosen alignment, and the rule fills whatever space is left. Applied at every
+   width, not just desktop: the grid is still two or three columns on smaller
+   screens, where a line between items is just as wanted. */
+.ac-steps-01 .ac-steps--ruled .ac-steps__number {
+	display: flex;
+	align-items: center;
+	/* Clear space either side of the digits, so the rule reads as a short
+	   segment between two numbers rather than one line running through them. */
+	gap: 2.5rem;
+	width: 100%;
+}
 
-	.ac-steps-01 .ac-steps--ruled .ac-steps__number::after {
-		content: "";
-		/* Reaches HALF way into the grid gap, where the next number's leading
-		   half meets it. Pulling the full gap width made the two overlap, which
-		   showed as a thicker, darker segment in the middle. */
-		flex: 1 1 auto;
-		margin-right: calc(var(--ac-steps-gap, 1.5rem) / -2);
-		height: 1px;
-		/* The body text colour, not currentColor - the number is gold, and the
-		   theme's divider colour is too faint on a light background. */
-		background: var(--body_color, var(--borders));
-		opacity: 0.45;
-	}
+.ac-steps-01 .ac-steps--ruled .ac-steps__number::after {
+	content: "";
+	/* Reaches HALF way into the grid gap, where the next number's leading half
+	   meets it. Pulling the full gap width made the two overlap, which showed
+	   as a thicker, darker segment in the middle. */
+	flex: 1 1 auto;
+	margin-right: calc(var(--ac-steps-gap, 1.5rem) / -2);
+	height: 1px;
+	/* The body text colour, not currentColor - the number is gold, and the
+	   theme's divider colour is too faint on a light background. */
+	background: var(--body_color, var(--borders));
+	opacity: 0.45;
+}
 
-	/* visibility rather than display: the element keeps its width, so the number
-	   stays in the same place on the last item of a row as on every other. */
-	.ac-steps-01 .ac-steps--6 .ac-steps__item:nth-child(6n) .ac-steps__number::after,
-	.ac-steps-01 .ac-steps--4 .ac-steps__item:nth-child(4n) .ac-steps__number::after,
-	.ac-steps-01 .ac-steps--3 .ac-steps__item:nth-child(3n) .ac-steps__number::after,
-	.ac-steps-01 .ac-steps--ruled .ac-steps__item:last-child .ac-steps__number::after {
+/* The line is hidden on the last item of each row, so it never overhangs the
+   grid edge or runs on to the next row. nth-child can't read the column count,
+   so each width band below states its own rule outright - exclusive ranges
+   matching grid-template-columns above, rather than overrides that undo each
+   other. visibility rather than display, so the element keeps its width and the
+   number stays put on the last item of a row. The leading half (centred layouts
+   only) is hidden on the first item of each row the same way. */
+
+/* Under 576px: one column, so there is nothing to connect. */
+@media (max-width: 575px) {
+	.ac-steps-01 .ac-steps--ruled .ac-steps__number::after,
+	.ac-steps-01 .ac-steps--ruled .ac-steps__number::before {
 		visibility: hidden;
 	}
+}
+
+/* 576-767px: two columns for every layout. */
+@media (min-width: 576px) and (max-width: 767px) {
+	.ac-steps-01 .ac-steps--ruled .ac-steps__item:nth-child(2n) .ac-steps__number::after,
+	.ac-steps-01 .ac-steps--ruled .ac-steps__item:nth-child(2n + 1) .ac-steps__number::before {
+		visibility: hidden;
+	}
+}
+
+/* 768-991px: three columns for 3 and 6 steps, still two for 4. */
+@media (min-width: 768px) and (max-width: 991px) {
+	.ac-steps-01 .ac-steps--3 .ac-steps__item:nth-child(3n) .ac-steps__number::after,
+	.ac-steps-01 .ac-steps--6 .ac-steps__item:nth-child(3n) .ac-steps__number::after,
+	.ac-steps-01 .ac-steps--4 .ac-steps__item:nth-child(2n) .ac-steps__number::after,
+	.ac-steps-01 .ac-steps--3 .ac-steps__item:nth-child(3n + 1) .ac-steps__number::before,
+	.ac-steps-01 .ac-steps--6 .ac-steps__item:nth-child(3n + 1) .ac-steps__number::before,
+	.ac-steps-01 .ac-steps--4 .ac-steps__item:nth-child(2n + 1) .ac-steps__number::before {
+		visibility: hidden;
+	}
+}
+
+/* 992px and up: the full count. */
+@media (min-width: 992px) {
+	.ac-steps-01 .ac-steps--3 .ac-steps__item:nth-child(3n) .ac-steps__number::after,
+	.ac-steps-01 .ac-steps--4 .ac-steps__item:nth-child(4n) .ac-steps__number::after,
+	.ac-steps-01 .ac-steps--6 .ac-steps__item:nth-child(6n) .ac-steps__number::after,
+	.ac-steps-01 .ac-steps--3 .ac-steps__item:nth-child(3n + 1) .ac-steps__number::before,
+	.ac-steps-01 .ac-steps--4 .ac-steps__item:nth-child(4n + 1) .ac-steps__number::before,
+	.ac-steps-01 .ac-steps--6 .ac-steps__item:nth-child(6n + 1) .ac-steps__number::before {
+		visibility: hidden;
+	}
+}
+
+/* At any width, the last step has nothing after it. */
+.ac-steps-01 .ac-steps--ruled .ac-steps__item:last-child .ac-steps__number::after {
+	visibility: hidden;
 }
 
 .ac-steps-01 .ac-steps.text-center .ac-steps__item {
@@ -135,23 +185,13 @@
    as well - otherwise the number is pushed off-centre by the right-hand one.
    The two halves together run from one number to the next, with the gap on
    either side coming from the flex gap. */
-@media (min-width: 992px) {
-	.ac-steps-01 .ac-steps--ruled.text-center .ac-steps__number::before {
-		content: "";
-		flex: 1 1 auto;
-		margin-left: calc(var(--ac-steps-gap, 1.5rem) / -2);
-		height: 1px;
-		background: var(--body_color, var(--borders));
-		opacity: 0.45;
-	}
-
-	/* The first item of each row has nothing to its left, so its leading half is
-	   hidden - again by visibility, to keep the number in place. */
-	.ac-steps-01 .ac-steps--6.text-center .ac-steps__item:nth-child(6n + 1) .ac-steps__number::before,
-	.ac-steps-01 .ac-steps--4.text-center .ac-steps__item:nth-child(4n + 1) .ac-steps__number::before,
-	.ac-steps-01 .ac-steps--3.text-center .ac-steps__item:nth-child(3n + 1) .ac-steps__number::before {
-		visibility: hidden;
-	}
+.ac-steps-01 .ac-steps--ruled.text-center .ac-steps__number::before {
+	content: "";
+	flex: 1 1 auto;
+	margin-left: calc(var(--ac-steps-gap, 1.5rem) / -2);
+	height: 1px;
+	background: var(--body_color, var(--borders));
+	opacity: 0.45;
 }
 
 /* ---------- Reveal ---------- */
@@ -161,19 +201,17 @@
    --ac-reveal-line-out / --ac-reveal-line-in on each step so the rule draws
    from each number towards the next. The number itself never moves or fades,
    so the two halves of each rule - one on either step - stay level and read
-   as a single line. The rules only exist at this breakpoint, so below it the
-   steps still animate and there is simply no line to draw. Without the
-   animation the properties are unset and the rules sit at full length. */
-@media (min-width: 992px) {
-	.ac-steps-01 .ac-steps--ruled .ac-steps__number::after {
-		transform: scaleX(var(--ac-reveal-line-out, 1));
-		transform-origin: left center;
-	}
+   as a single line. Applied at every width, matching the rules themselves.
+   Without the animation the properties are unset and the rules sit at full
+   length. */
+.ac-steps-01 .ac-steps--ruled .ac-steps__number::after {
+	transform: scaleX(var(--ac-reveal-line-out, 1));
+	transform-origin: left center;
+}
 
-	/* Centred, the leading half arrives at the number, so it also draws left
-	   to right and finishes as the number appears. */
-	.ac-steps-01 .ac-steps--ruled.text-center .ac-steps__number::before {
-		transform: scaleX(var(--ac-reveal-line-in, 1));
-		transform-origin: left center;
-	}
+/* Centred, the leading half arrives at the number, so it also draws left to
+   right and finishes as the number appears. */
+.ac-steps-01 .ac-steps--ruled.text-center .ac-steps__number::before {
+	transform: scaleX(var(--ac-reveal-line-in, 1));
+	transform-origin: left center;
 }

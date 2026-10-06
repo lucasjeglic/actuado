@@ -1,0 +1,121 @@
+/* ==========================================================================
+   Actuado Results 01
+   Copy on one side, figures on the other, with a framed client quote below.
+
+   Layout, background and padding come from the theme's own primitives, and the
+   figures themselves are styled in child.css so they match Actuado Stats 01.
+   Only the stacking of the figures and the quote frame live here.
+
+   Section padding is owned by the SR padding classes - never set section
+   padding-top / padding-bottom here.
+   ========================================================================== */
+
+/* ---------- Intro ---------- */
+
+/* The gap below the heading is an .sr-spacer-* class in the markup, so the
+   element's own margin is dropped to stop the two stacking. */
+.ac-results-01 .ac-results__heading {
+	margin-bottom: 0;
+	text-wrap: balance;
+}
+
+.ac-results-01 .ac-results__description > *:last-child {
+	margin-bottom: 0;
+}
+
+/* The intro carries sr-spacer-bottom-50 so the gap to the figures matches every
+   other module once the columns stack - always the case below 992px. Side by
+   side there is nothing below it, so the spacer's padding is dropped. */
+@media (min-width: 992px) {
+	.ac-results-01 .ac-results__intro {
+		padding-bottom: 0;
+		padding-right: 3rem;
+	}
+}
+
+/* ---------- Figures ---------- */
+
+/* Side by side from the point the figures have room, so a pair reads as one
+   row of results rather than a tall column. The shared .ac-stat styling in
+   child.css handles the figure and label themselves. */
+.ac-results-01 .ac-stats {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 2.5rem 2rem;
+}
+
+@media (min-width: 576px) {
+	.ac-results-01 .ac-stats {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+/* ---------- Quote ---------- */
+
+/* A solid navy panel, matching Actuado Quote 01, rather than a bordered box -
+   the fill does the separating, so no border is needed. The text inside is
+   inverted to suit it. */
+.ac-results-01 .ac-results__quote {
+	margin: 0;
+	padding: 2rem;
+	background: var(--ac-quote-bg, var(--tertiary));
+	color: var(--ac-quote-text, var(--white));
+	/* Matches the card radius in Actuado Services Grid 01. */
+	border-radius: var(--ac-quote-radius, 12px);
+	/* Anchors the accent bar, and clips it to the rounded corners - a plain
+	   border-top would run straight past the curve at both ends. */
+	position: relative;
+	overflow: hidden;
+}
+
+@media (min-width: 992px) {
+	.ac-results-01 .ac-results__quote {
+		padding: 3rem 3.5rem;
+	}
+}
+
+/* A gold bar across the top edge, tying the panel to the gold rules used
+   elsewhere. Drawn as a pseudo-element rather than a border so the panel's
+   overflow clips it to the rounded corners. */
+.ac-results-01 .ac-results__quote--accent::before {
+	content: "";
+	position: absolute;
+	inset: 0 0 auto;
+	height: var(--ac-quote-accent-width, 6px);
+	background: var(--ac-quote-accent, var(--primary));
+}
+
+/* Identical to the quote beneath it - it is the quote's opening line, not a
+   heading. Colour is inherited from the panel rather than set, so both follow
+   whatever the panel's text colour is. */
+.ac-results-01 .ac-results__metric {
+	margin: 0 0 1.25rem;
+	color: inherit;
+}
+
+/* Body type, as set in the markup - the theme's Blockquote slot is condensed
+   display type and reads as a pull quote rather than a testimonial. No measure
+   cap: the panel's own padding sets the line length, and capping it left an
+   obvious empty band down the right-hand side. */
+.ac-results-01 .ac-results__quote-text {
+	margin: 0;
+}
+
+.ac-results-01 .ac-results__quote-text > *:last-child {
+	margin-bottom: 0;
+}
+
+/* Inherits the panel's text colour rather than the theme body colour, which
+   would be unreadable on navy. */
+.ac-results-01 .ac-results__attr {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 0.25rem 0.75rem;
+	margin-top: 1.5rem;
+	color: inherit;
+}
+
+.ac-results-01 .ac-results__name {
+	font-weight: 600;
+}

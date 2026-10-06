@@ -2611,6 +2611,26 @@
     ]
   },
   {
+    "name": "stack_order",
+    "label": "Stacked Order",
+    "type": "choice",
+    "required": false,
+    "locked": false,
+    "display": "select",
+    "default": "text",
+    "help_text": "Which column comes first once the two stack, below the Large breakpoint.",
+    "choices": [
+      [
+        "text",
+        "Text first"
+      ],
+      [
+        "media",
+        "Media first"
+      ]
+    ]
+  },
+  {
     "name": "custom_column_size",
     "label": "Custom Column Widths",
     "type": "boolean",

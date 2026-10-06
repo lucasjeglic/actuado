@@ -23,11 +23,13 @@
 	{% end_require_css %}
 
 	{# Default geometry matches SR's two-column sections: a 6-wide intro, then a
-	   1-column gutter before a 5-wide second column (col-lg-5 offset-lg-1). That
+	   1-column gutter before a 5-wide second column (col-lg-5 offset-lg-1). The
+	   columns sit side by side from 768px (an even 6/6 there, too narrow for the
+	   gutter) rather than stacking at 992px like the other modules. That
 	   gutter is what stops the right-hand column running to the container edge.
 	   The custom size fields override both, through SR's own col_size() macro. #}
-	{% set intro_default = 'col-lg-6' %}
-	{% set rows_default  = 'col-lg-5 offset-lg-1' %}
+	{% set intro_default = 'col-md-6' %}
+	{% set rows_default  = 'col-md-6 col-lg-5 offset-lg-1' %}
 
 	<div class="ac-question-list-01 {{ name }} {{ macros.module_background(module.design_settings) }} {{ macros.padding(module.design_settings) }} {{ ac.text_color_class(module.design_settings) }} prototype-no-background{% if module.class %} {{ module.class }}{% endif %} sr_module" {% if module.sr_module_id %}id="{{ module.sr_module_id }}"{% endif %} {{ "data-preview" if module_preview }}>
 

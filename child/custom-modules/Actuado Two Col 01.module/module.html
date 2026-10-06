@@ -14,9 +14,9 @@
 
 	{# Default geometry matches SR Two Col 04: text and media split the row 6/6,
 	   media on the right at desktop width. The custom size fields override both,
-	   through SR's own col_size() macro. The media column always carries
-	   order-first so it sits above the text once the columns stack, as in SR Two
-	   Col 04; a breakpoint order from col_size() takes over above that. #}
+	   through SR's own col_size() macro. Stacked Order decides which column
+	   comes first once they stack; a breakpoint order from col_size() takes
+	   over above that. #}
 	{% set text_col  = module.custom_column_size ? macros.col_size([module.text_column_size]) : 'col-lg-6' %}
 	{% set media_col = module.custom_column_size ? macros.col_size([module.media_column_size]) :
 		(module.media_side == 'right' ? 'col-lg-6 order-lg-last' : 'col-lg-6') %}
@@ -52,7 +52,7 @@
 
 						{# ---------- Media ---------- #}
 						{% if has_media %}
-						<div class="{{ media_col }} order-first sr-col ac-tc__media">
+						<div class="{{ media_col }}{% if module.stack_order == 'media' %} order-first{% endif %} sr-col ac-tc__media">
 							<div class="content-wrapper">
 							{% if is_lottie %}
 							{# The same player SR Two Col 04 loads for its Lottie option. #}

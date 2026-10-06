@@ -17,9 +17,9 @@
 
 /* The intro carries sr-spacer-bottom-50 so the gap to the rows matches every
    other module once the two columns stack - which is always the case below
-   992px. Side by side there is nothing below the intro, so the spacer's
+   768px. Side by side there is nothing below the intro, so the spacer's
    padding is dropped at that breakpoint. */
-@media (min-width: 992px) {
+@media (min-width: 768px) {
 	.ac-question-list-01 .ac-ql__intro {
 		padding-bottom: 0;
 	}

@@ -156,4 +156,76 @@
 		}
 	}
 
+	/* ==========================================================================
+	   Statistic figures
+	   A large figure with a caption beneath. Shared by Actuado Stats 01 and
+	   Actuado Results 01, so the styling is defined once here rather than
+	   duplicated per module. The count-up and type-on animations are driven by
+	   js/ac-stats-count.js, which keys off these same class names.
+	   ========================================================================== */
+
+	/* ---------- The figure ---------- */
+
+	.ac-stat__value {
+		font-family: var(--heading_font, inherit);
+		font-size: clamp(2.25rem, 4.4vw, 3rem);
+		line-height: 1;
+		letter-spacing: -0.02em;
+		color: var(--heading);
+		margin: 0;
+		/* Digits are tabular so the figure does not jitter in width while it
+		   counts up. */
+		font-variant-numeric: tabular-nums;
+		font-feature-settings: "tnum";
+	}
+
+	/* Hidden until the count begins, so a figure is never seen at its final value
+	   before animating. Only applied once the script has confirmed it can run. */
+	.ac-stats--count.is-ready .ac-stat__value {
+		visibility: hidden;
+	}
+
+	.ac-stats--count.is-ready .ac-stat__value.is-counted {
+		visibility: visible;
+	}
+
+	/* A value with no number types itself in rather than counting, so it carries
+	   a caret while it does. Reserves the caret's width up front so the figure
+	   does not shift as it disappears. */
+	.ac-stat__value::after {
+		content: "";
+		display: inline-block;
+		width: 0.06em;
+		height: 0.8em;
+		margin-left: 0.06em;
+		background: var(--primary);
+		opacity: 0;
+		transform: translateY(0.04em);
+	}
+
+	/* Solid while typing: a blinking caret reads as disappearing halfway through
+	   a short animation, so it only blinks once the word is complete. */
+	.ac-stat__value.is-typing::after {
+		opacity: 1;
+		animation: none;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.ac-stat__value::after {
+			display: none;
+		}
+	}
+
+	/* ---------- The label ---------- */
+
+	/* Body size, not .small: at 14px the caption was too faint against the
+	   figure above it. The measure is capped so a long caption wraps to two
+	   tidy lines rather than running the column's full width. */
+	.ac-stat__label {
+		margin: 0.875rem 0 0;
+		max-width: 26ch;
+		color: var(--body_color);
+	}
+
+
 }
