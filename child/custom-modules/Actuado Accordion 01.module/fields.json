@@ -2079,7 +2079,7 @@
     "preset": null,
     "type": "choice",
     "display_width": null,
-    "default": "5"
+    "default": "4"
   },
   {
     "id": "text_column_side",

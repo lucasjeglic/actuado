@@ -83,7 +83,7 @@
 /* The toggle carries the row's padding so the whole row is clickable. */
 .ac-accordion-01 .ac-acc__toggle {
 	display: flex;
-	gap: 1.5rem;
+	gap: 1.25rem;
 	width: 100%;
 	padding: 1.25rem 0;
 	background: none;
@@ -102,13 +102,36 @@
 /* The dash is the only mark: it rotates a quarter turn to stand upright when
    the point is open. One line turning, nothing added or removed - the state
    reads at a glance without introducing an icon. */
+/* On expandable items the dash becomes a plus: two gold bars, the upright one
+   turning flat as the item opens, so the plus becomes a minus. Centred on the
+   first line of the question. */
 .ac-accordion-01 .ac-acc__item--expandable .ac-acc__rule {
-	transform-origin: center;
-	transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+	position: relative;
+	width: 0.875rem;
+	height: 0.875rem;
+	margin-top: calc(0.8em - 0.4375rem);
+	background: none;
 }
 
-.ac-accordion-01 .ac-acc__toggle[aria-expanded="true"] .ac-acc__rule {
+.ac-accordion-01 .ac-acc__item--expandable .ac-acc__rule::before,
+.ac-accordion-01 .ac-acc__item--expandable .ac-acc__rule::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 100%;
+	height: 2px;
+	margin-top: -1px;
+	background: var(--primary);
+	transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ac-accordion-01 .ac-acc__item--expandable .ac-acc__rule::after {
 	transform: rotate(90deg);
+}
+
+.ac-accordion-01 .ac-acc__toggle[aria-expanded="true"] .ac-acc__rule::after {
+	transform: rotate(0deg);
 }
 
 .ac-accordion-01 .ac-acc__toggle:hover .ac-acc__text {
@@ -126,8 +149,9 @@
 }
 
 .ac-accordion-01 .ac-acc__detail-inner {
-	/* Aligns the detail with the point text, past the gold rule. */
-	padding: 0 0 1.25rem 3rem;
+	/* Aligns the detail with the question text: the plus (0.875rem) plus the
+	   gap after it (1.25rem). */
+	padding: 0 0 1.25rem 2.125rem;
 	opacity: 0.85;
 }
 
@@ -136,7 +160,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.ac-accordion-01 .ac-acc__item--expandable .ac-acc__rule {
+	.ac-accordion-01 .ac-acc__item--expandable .ac-acc__rule::before,
+	.ac-accordion-01 .ac-acc__item--expandable .ac-acc__rule::after {
 		transition: none;
 	}
 }
