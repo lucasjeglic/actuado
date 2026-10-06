@@ -27,7 +27,7 @@
 
 					{# Same geometry as Question List: a 6-wide intro, then a 5-wide
 					   second column after a 1-column gutter. #}
-					<div class="row ac-eq">
+					<div class="row ac-eq sr-valign-center">
 
 						{# ---------- Setup: heading, credentials, pivot ---------- #}
 						<div class="col-lg-6 sr-col ac-eq__intro sr-spacer-bottom-50">
@@ -52,29 +52,31 @@
 							</div>
 						</div>
 
-						{# ---------- Answer: the parts converging into the result ---------- #}
-						{# A gold line runs down beside the parts, drawn segment by segment
-						   as each part appears (the reveal's line feature), and leads into
-						   the result. The segments are on the rows, which stay still; only
+						{# ---------- Answer: the sentence, as a converging line ---------- #}
+						{# The lead-in, the parts and the result read as one sentence. A gold
+						   line runs down beside them, drawn segment by segment as each row
+						   appears (the reveal's line feature), and turns into the result.
+						   Emphasis follows the source: the parts bold, the rest regular. The segments are on the rows, which stay still; only
 						   the text rises. #}
 						<div class="col-lg-5 offset-lg-1 sr-col ac-eq__answer">
 							<div class="content-wrapper">
 
-							{% if module.lead %}
-							<p class="ac-eq__lead">{{ module.lead }}</p>
-							{% endif %}
-
 							<ol class="ac-eq__parts{% if module.animate_parts %} is-revealing{% endif %}"{% if module.animate_parts %} data-ac-reveal="0.25" data-ac-reveal-line="out"{% endif %}>
+								{% if module.lead %}
+								<li class="ac-eq__part ac-eq__part--lead">
+									<span data-ac-reveal-rise><span class="lead">{{ module.lead }}</span></span>
+								</li>
+								{% endif %}
 								{% for item in module.parts %}
 								{% if item.text %}
 								<li class="ac-eq__part">
-									<span data-ac-reveal-rise><span class="heading h4">{{ item.text }}{% if !loop.last %}<span class="ac-eq__plus"> +</span>{% endif %}</span></span>
+									<span data-ac-reveal-rise><span class="heading h4">{{ item.text }}{% if !loop.last %}<span class="ac-eq__plus">&nbsp;+</span>{% endif %}</span></span>
 								</li>
 								{% endif %}
 								{% endfor %}
 								{% if module.result %}
 								<li class="ac-eq__part ac-eq__part--result">
-									<span data-ac-reveal-rise><span class="heading h3">{{ module.result }}</span></span>
+									<span data-ac-reveal-rise><span class="lead">{{ module.result }}</span></span>
 								</li>
 								{% endif %}
 							</ol>
