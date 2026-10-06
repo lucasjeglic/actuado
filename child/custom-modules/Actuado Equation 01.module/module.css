@@ -51,9 +51,12 @@
 	padding: 0.25rem 0 0.25rem 1.75rem;
 }
 
+.ac-equation-01 .ac-eq__part {
+	margin: 0;
+}
+
 .ac-equation-01 .ac-eq__part > span,
-.ac-equation-01 .ac-eq__part .heading,
-.ac-equation-01 .ac-eq__part .lead {
+.ac-equation-01 .ac-eq__part .heading {
 	display: block;
 	margin: 0;
 }
@@ -95,13 +98,24 @@
 }
 
 /* The line starts with a short turn out of the lead-in and ends with one into
-   the result, both at the middle of their line of text, bracketing the parts. */
+   the result, bracketing the parts. Each turn sits at the middle of the first
+   line of its text: the row's top padding plus half a line (lh), which the
+   row's own .lead type sets. */
+.ac-equation-01 .ac-eq__part--lead {
+	--ac-turn: calc(0.25rem + 0.5lh);
+}
+
+.ac-equation-01 .ac-eq__part--result {
+	--ac-turn: calc(0.75rem + 0.5lh);
+}
+
 .ac-equation-01 .ac-eq__part--lead::before {
-	top: 50%;
+	top: var(--ac-turn);
 }
 
 .ac-equation-01 .ac-eq__part--result::before {
-	bottom: 50%;
+	bottom: auto;
+	height: var(--ac-turn);
 }
 
 .ac-equation-01 .ac-eq__part--lead::after,
@@ -109,7 +123,7 @@
 	content: "";
 	position: absolute;
 	left: 0;
-	top: 50%;
+	top: var(--ac-turn);
 	width: 1rem;
 	height: 2px;
 	background: var(--primary);

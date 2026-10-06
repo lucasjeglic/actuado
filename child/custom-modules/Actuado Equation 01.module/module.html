@@ -63,8 +63,8 @@
 
 							<ol class="ac-eq__parts{% if module.animate_parts %} is-revealing{% endif %}"{% if module.animate_parts %} data-ac-reveal="0.25" data-ac-reveal-line="out"{% endif %}>
 								{% if module.lead %}
-								<li class="ac-eq__part ac-eq__part--lead">
-									<span data-ac-reveal-rise><span class="lead">{{ module.lead }}</span></span>
+								<li class="ac-eq__part ac-eq__part--lead lead">
+									<span data-ac-reveal-rise>{{ module.lead }}</span>
 								</li>
 								{% endif %}
 								{% for item in module.parts %}
@@ -75,8 +75,8 @@
 								{% endif %}
 								{% endfor %}
 								{% if module.result %}
-								<li class="ac-eq__part ac-eq__part--result">
-									<span data-ac-reveal-rise><span class="lead">{{ module.result }}</span></span>
+								<li class="ac-eq__part ac-eq__part--result lead">
+									<span data-ac-reveal-rise>{{ module.result }}</span>
 								</li>
 								{% endif %}
 							</ol>
